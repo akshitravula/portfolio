@@ -31,38 +31,33 @@
    padding-right: 10px !important;
  }
 }
-/*======================================
-//--//-->   ABOUT - MOBILE OPTIMIZED
-======================================*/
 
-/* Base styles for all devices */
+/======================================
+//--//-->   ABOUT
+======================================/
 .about-mf .box-shadow-full {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
-
 .about-mf .about-img {
   margin-bottom: 2rem;
 }
-
 .about-mf .about-img img {
   margin-left: 10px;
-  max-width: 100%;
-  height: auto;
 }
-
 .skill-mf .progress {
+  /* background-color: 
+#cde1f8; /
   margin: .5rem 0 1.2rem 0;
   border-radius: 0;
   height: .7rem;
 }
-
 .skill-mf .progress .progress-bar {
   height: .7rem;
-  background-color: #ffbd39;
+  background-color: 
+#ffbd39;
 }
-
-/* Animation styles - Mobile optimized */
+/ Animation styles /
 #typing-animation {
   position: relative;
   font-size: 30px;
@@ -72,9 +67,9 @@
   white-space: nowrap;
   animation: typing 3s steps(20, end) infinite;
 }
-
 #typing-animation:before {
   content: "";
+  / position: absolute; /
   top: 0;
   left: 0;
   width: 0;
@@ -82,7 +77,6 @@
   background-color: #ccc;
   animation: typing-cursor 0.5s ease-in-out infinite;
 }
-
 @keyframes typing {
   from {
     width: 0;
@@ -91,7 +85,6 @@
     width: 100%;
   }
 }
-
 @keyframes typing-cursor {
   from {
     width: 5px;
@@ -100,155 +93,14 @@
     width: 0;
   }
 }
-
-/* Project image zoom effect - Touch optimized */
+/ project image zoom effect */
 .zoom-effect {
   overflow: hidden;
   transition: transform 0.3s ease-out;
 }
-
 .zoom-effect:hover {
   transform: scale(1.1);
 }
-
-/* Touch devices - add active state for better mobile interaction */
-.zoom-effect:active {
-  transform: scale(1.05);
-}
-
-/*======================================
-//--//-->   MOBILE RESPONSIVE STYLES
-======================================*/
-
-/* Tablet styles */
-@media screen and (max-width: 768px) {
-  .about-mf .box-shadow-full {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-  }
-  
-  .about-mf .about-img {
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-  
-  .about-mf .about-img img {
-    margin-left: 0;
-    max-width: 80%;
-  }
-  
-  #typing-animation {
-    font-size: 24px;
-  }
-  
-  .skill-mf .progress {
-    height: .8rem;
-    margin: .8rem 0 1.5rem 0;
-  }
-  
-  .skill-mf .progress .progress-bar {
-    height: .8rem;
-  }
-}
-
-/* Mobile phone styles */
-@media screen and (max-width: 480px) {
-  .about-mf .box-shadow-full {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  
-  .about-mf .about-img {
-    margin-bottom: 1rem;
-  }
-  
-  .about-mf .about-img img {
-    max-width: 90%;
-    margin-left: 0;
-  }
-  
-  #typing-animation {
-    font-size: 18px;
-    line-height: 1.2;
-    white-space: normal;
-    overflow: visible;
-    animation: none; /* Disable animation on very small screens for performance */
-  }
-  
-  .skill-mf .progress {
-    height: 1rem;
-    margin: 1rem 0 1.8rem 0;
-    border-radius: 4px;
-  }
-  
-  .skill-mf .progress .progress-bar {
-    height: 1rem;
-    border-radius: 4px;
-  }
-  
-  /* Reduce zoom effect intensity on mobile */
-  .zoom-effect:hover {
-    transform: scale(1.02);
-  }
-  
-  .zoom-effect:active {
-    transform: scale(1.01);
-  }
-}
-
-/* Very small screens */
-@media screen and (max-width: 320px) {
-  .about-mf .box-shadow-full {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-  
-  #typing-animation {
-    font-size: 16px;
-  }
-  
-  .skill-mf .progress {
-    margin: 0.8rem 0 1.5rem 0;
-  }
-}
-
-/*======================================
-//--//-->   TOUCH & ACCESSIBILITY
-======================================*/
-
-/* Improve touch targets */
-@media (hover: none) and (pointer: coarse) {
-  .zoom-effect {
-    /* Disable hover effects on touch devices */
-    transform: none;
-  }
-  
-  .zoom-effect:active {
-    transform: scale(1.02);
-    transition: transform 0.1s ease-out;
-  }
-}
-
-/* Reduce motion for users who prefer it */
-@media (prefers-reduced-motion: reduce) {
-  #typing-animation {
-    animation: none;
-  }
-  
-  .zoom-effect {
-    transition: none;
-  }
-  
-  .zoom-effect:hover,
-  .zoom-effect:active {
-    transform: none;
-  }
-}
-
 </style>
 
 
