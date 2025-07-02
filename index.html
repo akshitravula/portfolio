@@ -26,32 +26,44 @@
 
 <style>
 	
-/======================================
-//--//-->   ABOUT
-======================================/
+/*======================================
+//--//-->   ABOUT SECTION
+======================================*/
 .about-mf .box-shadow-full {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
+
 .about-mf .about-img {
   margin-bottom: 2rem;
 }
+
 .about-mf .about-img img {
   margin-left: 10px;
+  max-width: 100%;
+  height: auto;
 }
+
+/*======================================
+//--//-->   SKILLS SECTION
+======================================*/
 .skill-mf .progress {
-  /* background-color: 
-#cde1f8; /
-  margin: .5rem 0 1.2rem 0;
-  border-radius: 0;
-  height: .7rem;
+  background-color: #cde1f8;
+  margin: 0.5rem 0 1.2rem 0;
+  border-radius: 0.25rem;
+  height: 0.7rem;
+  overflow: hidden;
 }
+
 .skill-mf .progress .progress-bar {
-  height: .7rem;
-  background-color: 
-#ffbd39;
+  height: 0.7rem;
+  background-color: #ffbd39;
+  transition: width 0.6s ease;
 }
-/ Animation styles /
+
+/*======================================
+//--//-->   TYPING ANIMATION
+======================================*/
 #typing-animation {
   position: relative;
   font-size: 30px;
@@ -59,18 +71,11 @@
   color: rgb(255, 255, 255);
   overflow: hidden;
   white-space: nowrap;
-  animation: typing 3s steps(20, end) infinite;
+  border-right: 3px solid #ccc;
+  animation: typing 3s steps(20, end) infinite, 
+             blink-caret 0.75s step-end infinite;
 }
-#typing-animation:before {
-  content: "";
-  / position: absolute; /
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background-color: #ccc;
-  animation: typing-cursor 0.5s ease-in-out infinite;
-}
+
 @keyframes typing {
   from {
     width: 0;
@@ -79,21 +84,188 @@
     width: 100%;
   }
 }
-@keyframes typing-cursor {
-  from {
-    width: 5px;
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
   }
-  to {
-    width: 0;
+  50% {
+    border-color: #ccc;
   }
 }
-/ project image zoom effect */
+
+/*======================================
+//--//-->   PROJECT IMAGE EFFECTS
+======================================*/
 .zoom-effect {
   overflow: hidden;
   transition: transform 0.3s ease-out;
+  border-radius: 0.5rem;
 }
+
 .zoom-effect:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
+}
+
+.zoom-effect img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/*======================================
+//--//-->   MOBILE OPTIMIZATIONS
+======================================*/
+
+/* Tablet and small desktop */
+@media screen and (max-width: 1024px) {
+  .about-mf .box-shadow-full {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  #typing-animation {
+    font-size: 24px;
+  }
+}
+
+/* Mobile landscape and small tablets */
+@media screen and (max-width: 768px) {
+  .about-mf .box-shadow-full {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .about-mf .about-img {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .about-mf .about-img img {
+    margin-left: 0;
+    max-width: 250px;
+  }
+  
+  .skill-mf .progress {
+    height: 0.8rem;
+    margin: 0.75rem 0 1.5rem 0;
+  }
+  
+  .skill-mf .progress .progress-bar {
+    height: 0.8rem;
+  }
+  
+  #typing-animation {
+    font-size: 20px;
+    white-space: normal;
+    line-height: 1.3;
+  }
+  
+  .zoom-effect:hover {
+    transform: scale(1.02);
+  }
+}
+
+/* Mobile portrait */
+@media screen and (max-width: 480px) {
+  .about-mf .box-shadow-full {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .about-mf .about-img {
+    margin-bottom: 1rem;
+  }
+  
+  .about-mf .about-img img {
+    max-width: 200px;
+  }
+  
+  .skill-mf .progress {
+    height: 1rem;
+    margin: 1rem 0 2rem 0;
+    border-radius: 0.5rem;
+  }
+  
+  .skill-mf .progress .progress-bar {
+    height: 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  #typing-animation {
+    font-size: 18px;
+    animation: typing 4s steps(15, end) infinite,
+               blink-caret 0.75s step-end infinite;
+  }
+  
+  .zoom-effect {
+    border-radius: 0.25rem;
+  }
+  
+  .zoom-effect:hover {
+    transform: scale(1.01);
+  }
+}
+
+/* Extra small devices */
+@media screen and (max-width: 320px) {
+  .about-mf .box-shadow-full {
+    padding: 1rem 0.5rem;
+  }
+  
+  .about-mf .about-img img {
+    max-width: 150px;
+  }
+  
+  #typing-animation {
+    font-size: 16px;
+  }
+  
+  .skill-mf .progress {
+    margin: 0.75rem 0 1.5rem 0;
+  }
+}
+
+/*======================================
+//--//-->   TOUCH DEVICE OPTIMIZATIONS
+======================================*/
+@media (hover: none) and (pointer: coarse) {
+  .zoom-effect:hover {
+    transform: none;
+  }
+  
+  .zoom-effect:active {
+    transform: scale(0.98);
+  }
+}
+
+/*======================================
+//--//-->   ACCESSIBILITY IMPROVEMENTS
+======================================*/
+@media (prefers-reduced-motion: reduce) {
+  #typing-animation {
+    animation: none;
+  }
+  
+  .zoom-effect {
+    transition: none;
+  }
+  
+  .skill-mf .progress .progress-bar {
+    transition: none;
+  }
+}
+
+/*======================================
+//--//-->   HIGH DPI DISPLAYS
+======================================*/
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .about-mf .about-img img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
 }
 </style>
 
@@ -985,7 +1157,7 @@ user engagement by 25%.</li>
           			<span class="icon-globe"></span>
           		</div>
           		<h3 class="mb-4">Download Resume</h3>
-	            <p><a href="https://drive.google.com/file/d/1CDWJfjZTuEj63Z4cF-nWSwr-M93lkUTN/view?usp=drive_link">Click Here</a></p>
+	            <p><a href="https://drive.google.com/file/d/1GWl68c-t3Z9ME2ac6UjU2g5gjLaDlrG9/view?usp=drivesdk">Click Here</a></p>
 	          </div>
           </div>
 
