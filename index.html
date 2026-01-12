@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Akshit Ravula | Full Stack Developer & Process Systems Expert</title>
-  <meta name="description" content="Akshit Ravula - Full Stack Developer, Cloud Engineer & Process Systems Expert">
+  <title>Akshit Ravula | Full Stack Developer</title>
+  <meta name="description" content="Akshit Ravula - Full Stack Developer & Cloud Engineer">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -117,7 +117,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ==========================================
-   PRELOADER
+   CREATIVE PRELOADER - Ball & Bar
 ========================================== */
 .preloader {
   position: fixed;
@@ -126,8 +126,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: 60px;
   z-index: 99999;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
 .preloader.hide {
@@ -136,30 +138,155 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   pointer-events: none;
 }
 
-.loader {
+.loader-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 }
 
-.loader-spinner {
-  width: 50px;
-  height: 50px;
-  border: 3px solid var(--border);
-  border-top-color: var(--primary);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+.loader-bar-container {
+  position: relative;
+  width: 200px;
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
-@keyframes spin { to { transform: rotate(360deg); } }
+.loader-ball {
+  position: absolute;
+  bottom: 50px;
+  left: calc(100% - 20px);
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 50%;
+  animation: ball-move 3s ease-in-out infinite alternate;
+  box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.5);
+}
+
+.loader-ball::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+}
+
+.loader-ball::after {
+  position: absolute;
+  content: '';
+  top: 20px;
+  right: 8px;
+  width: 6px;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+}
+
+.loader-bar {
+  width: 200px;
+  height: 14px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 30px;
+  transform: rotate(-15deg);
+  animation: bar-tilt 3s ease-in-out infinite alternate;
+  box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.3);
+}
+
+@keyframes bar-tilt {
+  from {
+    transform: rotate(-15deg);
+  }
+  to {
+    transform: rotate(15deg);
+  }
+}
+
+@keyframes ball-move {
+  from {
+    left: calc(100% - 30px);
+    transform: rotate(360deg);
+  }
+  to {
+    left: calc(0% - 10px);
+    transform: rotate(0deg);
+  }
+}
 
 .loader-text {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--text-muted);
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
+  display: flex;
+  gap: 4px;
+}
+
+.loader-text span {
+  animation: text-bounce 1.4s ease-in-out infinite;
+}
+
+.loader-text span:nth-child(1) { animation-delay: 0s; }
+.loader-text span:nth-child(2) { animation-delay: 0.1s; }
+.loader-text span:nth-child(3) { animation-delay: 0.2s; }
+.loader-text span:nth-child(4) { animation-delay: 0.3s; }
+.loader-text span:nth-child(5) { animation-delay: 0.4s; }
+.loader-text span:nth-child(6) { animation-delay: 0.5s; }
+.loader-text span:nth-child(7) { animation-delay: 0.6s; }
+
+@keyframes text-bounce {
+  0%, 100% { 
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% { 
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+/* Floating dots background */
+.loader-dots {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.loader-dots span {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--primary);
+  border-radius: 50%;
+  opacity: 0.2;
+  animation: float-dot 4s ease-in-out infinite;
+}
+
+.loader-dots span:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+.loader-dots span:nth-child(2) { left: 20%; top: 80%; animation-delay: 0.5s; }
+.loader-dots span:nth-child(3) { left: 35%; top: 30%; animation-delay: 1s; }
+.loader-dots span:nth-child(4) { left: 50%; top: 70%; animation-delay: 1.5s; }
+.loader-dots span:nth-child(5) { left: 65%; top: 25%; animation-delay: 2s; }
+.loader-dots span:nth-child(6) { left: 80%; top: 60%; animation-delay: 2.5s; }
+.loader-dots span:nth-child(7) { left: 90%; top: 40%; animation-delay: 3s; }
+
+@keyframes float-dot {
+  0%, 100% { 
+    transform: translateY(0) scale(1);
+    opacity: 0.2;
+  }
+  50% { 
+    transform: translateY(-20px) scale(1.5);
+    opacity: 0.5;
+  }
 }
 
 /* ==========================================
@@ -420,7 +547,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   justify-content: center;
   gap: 8px;
   font-size: clamp(16px, 2.5vw, 22px);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   min-height: 34px;
   animation: fadeInUp 0.6s ease 0.2s forwards;
   opacity: 0;
@@ -438,25 +565,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-/* Special Highlight Badge */
-.hero-special {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(251, 191, 36, 0.1));
-  border: 1px solid rgba(245, 158, 11, 0.3);
-  border-radius: 50px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--warning);
-  margin-bottom: 24px;
-  animation: fadeInUp 0.6s ease 0.25s forwards;
-  opacity: 0;
-}
-
-.hero-special i { font-size: 16px; }
 
 .hero-description {
   font-size: 16px;
@@ -619,7 +727,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ==========================================
-   ABOUT SECTION - FIXED ALIGNMENT
+   ABOUT SECTION
 ========================================== */
 .about-container {
   display: flex;
@@ -742,43 +850,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--text-muted);
   line-height: 1.7;
   margin-bottom: 20px;
-}
-
-/* CEO Badge - Special Highlight */
-.role-highlight {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 20px;
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(251, 191, 36, 0.08));
-  border: 1px solid rgba(245, 158, 11, 0.25);
-  border-radius: var(--radius-sm);
-  margin-bottom: 20px;
-}
-
-.role-highlight-icon {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, var(--warning), #fbbf24);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 18px;
-}
-
-.role-highlight-text h4 {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--warning);
-  margin-bottom: 2px;
-}
-
-.role-highlight-text p {
-  font-size: 12px;
-  color: var(--text-muted);
-  margin: 0;
 }
 
 /* Info Grid */
@@ -935,7 +1006,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ==========================================
-   EXPERIENCE SECTION - OPTIMIZED
+   EXPERIENCE SECTION
 ========================================== */
 .experience-grid {
   display: flex;
@@ -1061,7 +1132,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ==========================================
-   PROJECTS SECTION - NO CATEGORIES
+   PROJECTS SECTION
 ========================================== */
 .projects-grid {
   display: grid;
@@ -1466,6 +1537,8 @@ textarea.form-input { min-height: 110px; resize: vertical; }
   .projects-grid { grid-template-columns: 1fr; }
   
   .exp-card { padding: 20px; }
+  
+  .loader-bar-container { transform: scale(0.8); }
 }
 
 @media (max-width: 480px) {
@@ -1503,6 +1576,8 @@ textarea.form-input { min-height: 110px; resize: vertical; }
     bottom: 64px;
     right: 16px;
   }
+  
+  .loader-bar-container { transform: scale(0.7); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1525,11 +1600,20 @@ textarea.form-input { min-height: 110px; resize: vertical; }
     <i class="fas fa-sun"></i>
   </button>
   
-  <!-- Preloader -->
+  <!-- Creative Preloader -->
   <div class="preloader" id="preloader">
-    <div class="loader">
-      <div class="loader-spinner"></div>
-      <div class="loader-text">Loading</div>
+    <div class="loader-dots">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+    <div class="loader-wrapper">
+      <div class="loader-bar-container">
+        <div class="loader-ball"></div>
+        <div class="loader-bar"></div>
+      </div>
+      <div class="loader-text">
+        <span>L</span><span>O</span><span>A</span><span>D</span><span>I</span><span>N</span><span>G</span>
+      </div>
     </div>
   </div>
   
@@ -1577,15 +1661,9 @@ textarea.form-input { min-height: 110px; resize: vertical; }
         <span class="typewriter-cursor"></span>
       </div>
       
-      <!-- Special CEO Highlight -->
-      <div class="hero-special">
-        <i class="fas fa-crown"></i>
-        Process & Systems King | Executive to CEO
-      </div>
-      
       <p class="hero-description">
-        Full Stack Developer & Cloud Engineer crafting scalable solutions. 
-        Currently driving process excellence and system optimization at Creative Garage.
+        Full Stack Developer & Cloud Engineer building scalable digital solutions 
+        with modern technologies and a focus on quality.
       </p>
       
       <div class="hero-buttons">
@@ -1610,7 +1688,7 @@ textarea.form-input { min-height: 110px; resize: vertical; }
       <div class="section-header">
         <span class="section-label">About Me</span>
         <h2 class="section-title">Know Me Better</h2>
-        <p class="section-subtitle">Building systems that scale & processes that work</p>
+        <p class="section-subtitle">Building solutions that scale</p>
       </div>
       
       <div class="about-container">
@@ -1642,28 +1720,17 @@ textarea.form-input { min-height: 110px; resize: vertical; }
           
           <!-- Content Section -->
           <div class="about-content reveal delay-1">
-            <h3>Full Stack Developer & Process Systems Expert</h3>
+            <h3>Full Stack Developer & Cloud Engineer</h3>
             
             <p class="lead">
-              I'm a results-driven developer currently working at Creative Garage, where I wear multiple hats 
-              as a Full Stack Developer and Executive to CEO. I don't just write code—I build systems, 
-              streamline processes, and ensure everything runs like a well-oiled machine.
+              I'm a results-driven developer currently working at Creative Garage as a Full Stack Developer. 
+              I specialize in building scalable web applications using React.js, Node.js, and cloud technologies.
+              With hands-on experience from multiple roles, I'm passionate about creating efficient, user-centric solutions.
             </p>
             
-            <!-- CEO Role Highlight -->
-            <div class="role-highlight">
-              <div class="role-highlight-icon">
-                <i class="fas fa-chess-king"></i>
-              </div>
-              <div class="role-highlight-text">
-                <h4>Process & Systems King</h4>
-                <p>Executive to CEO @ Creative Garage - Overseeing operations, optimizing workflows, and driving excellence</p>
-              </div>
-            </div>
-            
             <p class="lead">
-              My approach combines technical expertise with a keen eye for process optimization. 
-              I ensure projects don't just work—they work efficiently, scalably, and sustainably.
+              Beyond development, I also work closely with leadership to ensure processes run smoothly 
+              and systems are optimized for maximum efficiency.
             </p>
             
             <div class="info-grid">
@@ -1774,29 +1841,29 @@ textarea.form-input { min-height: 110px; resize: vertical; }
         
         <div class="skill-card reveal delay-2">
           <div class="skill-card-header">
-            <div class="skill-card-icon"><i class="fas fa-cogs"></i></div>
-            <h3>Process & Systems</h3>
+            <div class="skill-card-icon"><i class="fas fa-cloud"></i></div>
+            <h3>Cloud & Tools</h3>
           </div>
           <div class="skill-row">
             <div class="skill-info">
-              <span class="skill-name">Process Optimization</span>
+              <span class="skill-name">Azure</span>
+              <span class="skill-percent">82%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-info">
+              <span class="skill-name">WordPress</span>
               <span class="skill-percent">95%</span>
             </div>
             <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
           </div>
           <div class="skill-row">
             <div class="skill-info">
-              <span class="skill-name">System Design</span>
+              <span class="skill-name">Shopify</span>
               <span class="skill-percent">88%</span>
             </div>
             <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-info">
-              <span class="skill-name">Team Leadership</span>
-              <span class="skill-percent">90%</span>
-            </div>
-            <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
           </div>
         </div>
       </div>
@@ -1817,7 +1884,6 @@ textarea.form-input { min-height: 110px; resize: vertical; }
         <span class="tech-tag">WordPress</span>
         <span class="tech-tag">Shopify</span>
         <span class="tech-tag">Figma</span>
-        <span class="tech-tag">Process Design</span>
       </div>
     </div>
   </section>
@@ -1838,12 +1904,11 @@ textarea.form-input { min-height: 110px; resize: vertical; }
             <span class="exp-date">Feb 2025 – Present</span>
             <span class="exp-badge">Current</span>
           </div>
-          <h3 class="exp-title">Full Stack Developer & Executive to CEO</h3>
+          <h3 class="exp-title">Full Stack Developer</h3>
           <p class="exp-company">Creative Garage</p>
           <ul class="exp-list">
             <li>Developing robust full-stack applications with React.js and Node.js</li>
-            <li>Serving as Executive to CEO - overseeing processes, systems, and operations</li>
-            <li>Implementing and monitoring company-wide quality standards and workflows</li>
+            <li>Working as Executive to CEO - managing processes, systems, and operations</li>
             <li>Collaborating with UX/UI teams to deliver exceptional user experiences</li>
             <li>Optimizing performance through efficient code practices and system design</li>
           </ul>
@@ -2097,7 +2162,7 @@ textarea.form-input { min-height: 110px; resize: vertical; }
           <h3>Let's Connect</h3>
           <p>
             I'm always excited about new projects and opportunities. 
-            Whether you need a developer or want to optimize your processes—let's talk!
+            Whether you need a developer or have an interesting project—let's talk!
           </p>
           
           <div class="contact-list">
@@ -2191,11 +2256,11 @@ textarea.form-input { min-height: 110px; resize: vertical; }
     }
     
     window.addEventListener('load', function() {
-      setTimeout(hidePreloader, 800);
+      setTimeout(hidePreloader, 1500);
     });
     
     // Fallback
-    setTimeout(hidePreloader, 3000);
+    setTimeout(hidePreloader, 4000);
     
     // ========== THEME TOGGLE ==========
     const themeToggle = document.getElementById('themeToggle');
@@ -2283,8 +2348,8 @@ textarea.form-input { min-height: 110px; resize: vertical; }
     // ========== TYPEWRITER ==========
     const typewriterTexts = [
       'Full Stack Developer',
-      'Process & Systems Expert',
       'Cloud Engineer',
+      'React.js Developer',
       'Problem Solver'
     ];
     let textIndex = 0;
