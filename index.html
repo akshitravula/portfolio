@@ -27,6 +27,8 @@
   --radius: 16px;
   --radius-sm: 10px;
   --radius-xs: 6px;
+  
+  --navbar-height: 70px;
 }
 
 /* Dark Theme */
@@ -93,6 +95,11 @@ body {
 html, body {
   max-width: 100%;
   overflow-x: hidden;
+}
+
+/* Prevent scroll when menu is open */
+body.menu-open {
+  overflow: hidden;
 }
 
 ::selection {
@@ -320,20 +327,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ==========================================
-   NAVBAR
+   NAVBAR - FIXED
 ========================================== */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  padding: 16px 0;
+  height: var(--navbar-height);
+  padding: 0;
   z-index: 1000;
   transition: var(--transition);
+  display: flex;
+  align-items: center;
 }
 
 .navbar.scrolled {
-  padding: 12px 0;
   background: var(--bg-body);
   border-bottom: 1px solid var(--border);
   box-shadow: 0 4px 30px var(--shadow);
@@ -349,10 +358,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   backdrop-filter: blur(20px);
 }
 
+/* When menu is open, make navbar transparent on mobile */
+.navbar.menu-active {
+  background: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
 .navbar .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 
 .nav-logo {
@@ -362,6 +380,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  position: relative;
+  z-index: 1002;
 }
 
 .nav-menu {
@@ -400,41 +420,57 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* Enhanced Mobile Menu Toggle */
 .menu-toggle {
   display: none;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   position: relative;
   cursor: pointer;
-  z-index: 1001;
+  z-index: 1002;
   border-radius: 8px;
   background: var(--bg-card);
   border: 1px solid var(--border);
   align-items: center;
   justify-content: center;
+  transition: var(--transition);
+}
+
+.menu-toggle:hover {
+  border-color: var(--primary);
+}
+
+.menu-toggle.active {
+  background: var(--bg-card);
+  border-color: var(--primary);
 }
 
 .menu-toggle-inner {
-  width: 20px;
-  height: 14px;
+  width: 22px;
+  height: 16px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .menu-toggle span {
-  position: absolute;
-  left: 0;
+  display: block;
   width: 100%;
   height: 2px;
   background: var(--text-primary);
   border-radius: 2px;
   transition: all 0.3s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  transform-origin: center;
 }
 
-.menu-toggle span:nth-child(1) { top: 0; }
-.menu-toggle span:nth-child(2) { top: 6px; width: 70%; }
-.menu-toggle span:nth-child(3) { top: 12px; width: 85%; }
+.menu-toggle span:nth-child(2) { 
+  width: 70%; 
+}
+
+.menu-toggle span:nth-child(3) { 
+  width: 85%; 
+}
 
 .menu-toggle.active span:nth-child(1) {
-  top: 6px;
-  transform: rotate(45deg);
+  transform: translateY(7px) rotate(45deg);
 }
 
 .menu-toggle.active span:nth-child(2) {
@@ -443,9 +479,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .menu-toggle.active span:nth-child(3) {
-  top: 6px;
   width: 100%;
-  transform: rotate(-45deg);
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ==========================================
@@ -737,7 +772,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ==========================================
-   ABOUT SECTION - FIXED PHOTO ALIGNMENT
+   ABOUT SECTION
 ========================================== */
 .about-container {
   display: flex;
@@ -758,7 +793,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   gap: 20px;
 }
 
-/* PROPERLY ALIGNED Photo Wrapper */
 .photo-wrapper {
   position: relative;
   width: 100%;
@@ -788,14 +822,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border-radius: var(--radius-sm);
 }
 
-/* FIXED Decoration - Positioned behind */
 .photo-decoration {
   position: absolute;
   top: 0;
   left: 0;
   width: calc(100% - 15px);
   height: calc(100% - 15px);
- 
+  border: 2px solid var(--primary);
   border-radius: var(--radius);
   z-index: 1;
   opacity: 0.6;
@@ -1535,7 +1568,7 @@ textarea.form-input { min-height: 110px; resize: vertical; }
 .reveal.delay-3 { transition-delay: 0.3s; }
 
 /* ==========================================
-   RESPONSIVE
+   RESPONSIVE - FIXED MOBILE MENU
 ========================================== */
 @media (max-width: 992px) {
   .about-top {
@@ -1570,46 +1603,50 @@ textarea.form-input { min-height: 110px; resize: vertical; }
 }
 
 @media (max-width: 768px) {
-    /* Full screenshot visible - no crop */
-  .projects-mobile .project-img {
-    height: auto;
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-  }
-  
-  .projects-mobile .project-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background: var(--bg-card);
-  }
   .section { padding: 60px 16px; }
   
+  /* FIXED Mobile Menu */
   .nav-menu {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile */
     background: var(--bg-body);
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 24px;
+    gap: 28px;
     opacity: 0;
     visibility: hidden;
-    transition: var(--transition);
-    z-index: 999;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1001;
   }
   
   .nav-menu.active { 
     opacity: 1; 
-    visibility: visible; 
+    visibility: visible;
+    pointer-events: auto;
   }
   
   .nav-link { 
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 600;
+    padding: 12px 20px;
   }
   
-  .menu-toggle { display: flex; }
+  .nav-link::after {
+    height: 3px;
+    bottom: 4px;
+  }
+  
+  .menu-toggle { 
+    display: flex; 
+  }
   
   .hero { padding: 90px 16px 50px; }
   
@@ -1627,11 +1664,7 @@ textarea.form-input { min-height: 110px; resize: vertical; }
   .projects-desktop { display: none; }
   .projects-mobile { display: block; }
   
-  .exp-card { padding: 20px; }
-}
-
-@media (max-width: 480px) {
-    /* Full screenshot visible - no crop */
+  /* Full screenshot visible - no crop */
   .projects-mobile .project-img {
     height: auto;
     aspect-ratio: 16 / 10;
@@ -1644,6 +1677,11 @@ textarea.form-input { min-height: 110px; resize: vertical; }
     object-fit: contain;
     background: var(--bg-card);
   }
+  
+  .exp-card { padding: 20px; }
+}
+
+@media (max-width: 480px) {
   .section { padding: 50px 14px; }
   
   .stats-mini { gap: 8px; }
@@ -1685,6 +1723,11 @@ textarea.form-input { min-height: 110px; resize: vertical; }
   .carousel-dot {
     width: 8px;
     height: 8px;
+  }
+  
+  /* Mobile menu adjustments */
+  .nav-link {
+    font-size: 24px;
   }
 }
 
@@ -1730,7 +1773,7 @@ textarea.form-input { min-height: 110px; resize: vertical; }
     </a>
   </div>
   
-  <!-- Background Music - YOUR LOCAL FILE -->
+  <!-- Background Music -->
   <audio id="bgMusic" loop preload="auto">
     <source src="images/Boost Your Business with the RIGHT Background Music.mp3" type="audio/mpeg">
   </audio>
@@ -1747,7 +1790,7 @@ textarea.form-input { min-height: 110px; resize: vertical; }
         <li><a href="#projects" class="nav-link">Projects</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
-      <div class="menu-toggle" id="menuToggle">
+      <div class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" role="button" tabindex="0">
         <div class="menu-toggle-inner">
           <span></span>
           <span></span>
@@ -2231,8 +2274,7 @@ textarea.form-input { min-height: 110px; resize: vertical; }
   // ALL PROJECTS DATA
   // ==========================================
   const allProjects = [
-    // Featured First
-     { title: "Clootrack", img: "images/project4.png", url: "https://www.clootrack.com/", desc: "Optimized website with enhanced UX.", stack: ["React", "JS" , "Node"] },
+    { title: "Clootrack", img: "images/project4.png", url: "https://www.clootrack.com/", desc: "Optimized website with enhanced UX.", stack: ["React", "JS" , "Node"] },
     { title: "SATO – LIXIL", img: "images/sato..jpg", url: "https://sato.lixil.com/", desc: "Global sanitation solutions with multilingual support.", stack: ["PHP", "MySQL", "JS"] },
     { title: "Bharat Certis", img: "images/bharatcertis.jpg", url: "https://www.bharatcertis.com/", desc: "Corporate website for agrochemical company.", stack: ["PHP", "MySQL", "JS"] },
     { title: "RD Overseas", img: "images/rdoverseas.jpg", url: "https://rdoverseas.in/", desc: "eCommerce store for automotive accessories.", stack: ["Shopify", "Liquid", "JS"] },
@@ -2240,12 +2282,10 @@ textarea.form-input { min-height: 110px; resize: vertical; }
     { title: "Creative Garage", img: "images/creativegarage.jpg", url: "https://creative-garage.in/", desc: "Creative agency with bold design.", stack: ["WordPress", "JS", "CSS"] },
     { title: "Bloom Agency", img: "images/project7.png", url: "https://www.bloomagency.in/", desc: "Digital agency website with modern UX.", stack: ["WordPress", "JS", "CSS"] },
     { title: "Wooum", img: "images/project6.png", url: "https://www.wooum.com/", desc: "Visually appealing responsive design.", stack: ["WordPress", "JS", "CSS"] },
-    // Rest A-Z
     { title: "23 Consulting Services", img: "images/project16.png", url: "https://23consultingservices.com/", desc: "Professional consulting platform.", stack: ["WordPress", "JS"] },
     { title: "Amarjothi Granites", img: "images/amarjothi.jpg", url: "https://amarjothigranites.com/", desc: "Natural stone and granite exporter.", stack: ["WordPress", "CSS"] },
     { title: "Anzo Controls", img: "images/anzocontrols.jpg", url: "https://www.anzocontrols.com/", desc: "Industrial automation solutions.", stack: ["WordPress", "JS"] },
     { title: "Bodhi Diamonds", img: "images/project8.png", url: "https://www.bodhidiamonds.in/", desc: "Elegant jewelry platform.", stack: ["WordPress", "CSS"] },
-   
     { title: "Customer Care Service", img: "images/project13.png", url: "https://customercareelectronicservice.in/", desc: "Customer care service brand.", stack: ["WordPress", "CSS"] },
     { title: "Cycler", img: "images/project1.jpg", url: "#", desc: "Bicycle rental platform for students.", stack: ["React", "Node.js"] },
     { title: "Ecotonique", img: "images/project5.png", url: "https://www.ecotonique.in/", desc: "Engaging user experience design.", stack: ["WordPress", "JS"] },
@@ -2330,12 +2370,10 @@ textarea.form-input { min-height: 110px; resize: vertical; }
       }
     }
     
-    // Hide when fully loaded
     window.addEventListener('load', function() {
       setTimeout(hidePreloader, 1000);
     });
     
-    // Fallback - always hide after 3 seconds
     setTimeout(hidePreloader, 3000);
     
     // ========== THEME TOGGLE ==========
@@ -2361,7 +2399,7 @@ textarea.form-input { min-height: 110px; resize: vertical; }
         musicBtn.classList.remove('playing');
         musicBtn.innerHTML = '<i class="fas fa-music"></i>';
       } else {
-        bgMusic.volume = 0.3; // Set volume to 30%
+        bgMusic.volume = 0.3;
         bgMusic.play().then(function() {
           musicBtn.classList.add('playing');
           musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
@@ -2385,25 +2423,72 @@ textarea.form-input { min-height: 110px; resize: vertical; }
     const navbar = document.getElementById('navbar');
     
     window.addEventListener('scroll', function() {
-      navbar.classList.toggle('scrolled', window.scrollY > 50);
+      if (!navMenu.classList.contains('active')) {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+      }
     });
     
-    // ========== MOBILE MENU ==========
+    // ========== MOBILE MENU - FIXED ==========
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
     
-    menuToggle.addEventListener('click', function() {
-      menuToggle.classList.toggle('active');
-      navMenu.classList.toggle('active');
-      document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+    function openMenu() {
+      menuToggle.classList.add('active');
+      navMenu.classList.add('active');
+      navbar.classList.add('menu-active');
+      document.body.classList.add('menu-open');
+    }
+    
+    function closeMenu() {
+      menuToggle.classList.remove('active');
+      navMenu.classList.remove('active');
+      navbar.classList.remove('menu-active');
+      document.body.classList.remove('menu-open');
+      
+      // Re-apply scrolled state if needed
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      }
+    }
+    
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (navMenu.classList.contains('active')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
     
+    // Keyboard accessibility
+    menuToggle.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        menuToggle.click();
+      }
+    });
+    
+    // Close menu when clicking nav links
     document.querySelectorAll('.nav-link').forEach(function(link) {
       link.addEventListener('click', function() {
-        menuToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-        document.body.style.overflow = '';
+        closeMenu();
       });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (navMenu.classList.contains('active') && 
+          !navMenu.contains(e.target) && 
+          !menuToggle.contains(e.target)) {
+        closeMenu();
+      }
+    });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+        closeMenu();
+      }
     });
     
     // ========== ACTIVE NAV LINK ==========
@@ -2431,12 +2516,11 @@ textarea.form-input { min-height: 110px; resize: vertical; }
     
     // ========== TYPEWRITER ==========
     const typewriterTexts = [
-  'Full Stack Developer',
-  'React.js & Node.js Engineer',
-  'AI & Cloud Enthusiast',
-  'Problem Solver',
- 
-];
+      'Full Stack Developer',
+      'React.js & Node.js Engineer',
+      'AI & Cloud Enthusiast',
+      'Problem Solver',
+    ];
     let textIndex = 0, charIndex = 0, isDeleting = false;
     const typewriterElement = document.getElementById('typewriter');
     
@@ -2514,7 +2598,6 @@ textarea.form-input { min-height: 110px; resize: vertical; }
     
     window.addEventListener('scroll', animateCounters);
     animateCounters();
-    
     // ========== MOBILE CAROUSEL ==========
     const carousel = document.getElementById('projectsCarousel');
     let currentSlide = 0;
