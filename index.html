@@ -10,7 +10,7 @@
 
 <style>
 /* ==========================================
-   CSS VARIABLES
+   CSS VARIABLES - THEME SYSTEM
 ========================================== */
 :root {
   --primary: #0066ff;
@@ -20,10 +20,13 @@
   --secondary: #00d4ff;
   --accent: #00e5ff;
   --success: #22c55e;
+  --whatsapp: #25D366;
   
   --transition: all 0.3s ease;
+  --transition-fast: all 0.15s ease;
   --radius: 16px;
   --radius-sm: 10px;
+  --radius-xs: 6px;
 }
 
 /* Dark Theme */
@@ -32,6 +35,7 @@
   --bg-section: #030308;
   --bg-card: #0a0a14;
   --bg-card-hover: #10101a;
+  --bg-elevated: #12121e;
   
   --text-primary: #ffffff;
   --text-secondary: #e0e6ed;
@@ -50,6 +54,7 @@
   --bg-section: #f8fafc;
   --bg-card: #ffffff;
   --bg-card-hover: #f1f5f9;
+  --bg-elevated: #ffffff;
   
   --text-primary: #0f172a;
   --text-secondary: #1e293b;
@@ -63,7 +68,7 @@
 }
 
 /* ==========================================
-   RESET
+   RESET & BASE
 ========================================== */
 *, *::before, *::after {
   margin: 0;
@@ -112,48 +117,55 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ==========================================
-   PRELOADER - SIMPLE & RELIABLE
+   PRELOADER - FIXED
 ========================================== */
-#preloader {
+.preloader {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: #000;
+  background: #000000;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  z-index: 99999;
+  z-index: 999999;
 }
 
-#preloader.loaded {
+.preloader.loaded {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
-.preloader-animation {
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.loader-animation {
   position: relative;
   width: 200px;
   height: 80px;
 }
 
-.preloader-ball {
+.loader-ball {
   position: absolute;
   bottom: 45px;
-  left: calc(100% - 25px);
+  left: calc(100% - 30px);
   width: 35px;
   height: 35px;
-  background: linear-gradient(135deg, #0066ff, #00d4ff);
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
   border-radius: 50%;
   animation: ballMove 2.5s ease-in-out infinite alternate;
-  box-shadow: 0 0 20px rgba(0, 102, 255, 0.5);
+  box-shadow: 0 5px 15px rgba(0, 102, 255, 0.4);
 }
 
-.preloader-ball::before {
+.loader-ball::before {
   content: '';
   position: absolute;
   top: 6px;
@@ -164,18 +176,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border-radius: 50%;
 }
 
-.preloader-bar {
+.loader-bar {
   position: absolute;
-  bottom: 0;
+  bottom: 15px;
   left: 0;
   width: 200px;
   height: 12px;
-  background: linear-gradient(90deg, #0066ff, #00d4ff);
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
   border-radius: 30px;
   transform: rotate(-12deg);
-  transform-origin: center;
   animation: barTilt 2.5s ease-in-out infinite alternate;
-  box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+  box-shadow: 0 3px 10px rgba(0, 102, 255, 0.3);
 }
 
 @keyframes barTilt {
@@ -184,54 +195,122 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 @keyframes ballMove {
-  0% { left: calc(100% - 25px); transform: rotate(360deg); }
-  100% { left: -10px; transform: rotate(0deg); }
+  0% { 
+    left: calc(100% - 25px); 
+    transform: rotate(360deg); 
+  }
+  100% { 
+    left: -10px; 
+    transform: rotate(0deg); 
+  }
 }
 
-.preloader-text {
-  margin-top: 40px;
-  font-size: 12px;
+.loader-text {
+  font-size: 14px;
   font-weight: 600;
-  color: #8b95a5;
-  letter-spacing: 4px;
+  color: var(--text-muted);
+  letter-spacing: 6px;
   text-transform: uppercase;
 }
 
+.loader-text span {
+  display: inline-block;
+  animation: textPulse 1.5s ease-in-out infinite;
+}
+
+.loader-text span:nth-child(1) { animation-delay: 0s; }
+.loader-text span:nth-child(2) { animation-delay: 0.1s; }
+.loader-text span:nth-child(3) { animation-delay: 0.2s; }
+.loader-text span:nth-child(4) { animation-delay: 0.3s; }
+.loader-text span:nth-child(5) { animation-delay: 0.4s; }
+.loader-text span:nth-child(6) { animation-delay: 0.5s; }
+.loader-text span:nth-child(7) { animation-delay: 0.6s; }
+
+@keyframes textPulse {
+  0%, 100% { opacity: 0.4; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-3px); }
+}
+
 /* ==========================================
-   THEME TOGGLE
+   FLOATING BUTTONS (WhatsApp, Theme, Music)
 ========================================== */
-.theme-toggle {
+.floating-buttons {
   position: fixed;
-  bottom: 90px;
+  bottom: 100px;
   right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.float-btn {
   width: 50px;
   height: 50px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 1000;
   transition: var(--transition);
   box-shadow: 0 4px 20px var(--shadow);
+  border: none;
 }
 
-.theme-toggle:hover {
-  border-color: var(--primary);
-  transform: scale(1.1);
+.float-btn:hover {
+  transform: scale(1.1) translateY(-2px);
 }
 
-.theme-toggle i {
+.float-btn i {
   font-size: 20px;
+}
+
+/* WhatsApp Button */
+.whatsapp-btn {
+  background: var(--whatsapp);
+  color: white;
+}
+
+.whatsapp-btn:hover {
+  box-shadow: 0 0 25px rgba(37, 211, 102, 0.5);
+}
+
+/* Music Button */
+.music-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   color: var(--primary);
 }
 
-.theme-toggle .fa-sun { display: none; }
-.theme-toggle .fa-moon { display: block; }
-[data-theme="light"] .theme-toggle .fa-sun { display: block; }
-[data-theme="light"] .theme-toggle .fa-moon { display: none; }
+.music-btn:hover {
+  border-color: var(--primary);
+}
+
+.music-btn.playing {
+  animation: musicPulse 1s ease infinite;
+}
+
+@keyframes musicPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 102, 255, 0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(0, 102, 255, 0); }
+}
+
+/* Theme Toggle */
+.theme-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--primary);
+}
+
+.theme-btn:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 25px var(--glow);
+}
+
+.theme-btn .fa-sun { display: none; }
+.theme-btn .fa-moon { display: block; }
+[data-theme="light"] .theme-btn .fa-sun { display: block; }
+[data-theme="light"] .theme-btn .fa-moon { display: none; }
 
 /* ==========================================
    SCROLL PROGRESS
@@ -324,29 +403,74 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   width: 100%;
 }
 
+/* Mobile Menu Toggle - Enhanced */
 .menu-toggle {
   display: none;
-  flex-direction: column;
-  gap: 5px;
-  padding: 8px;
+  width: 40px;
+  height: 40px;
+  position: relative;
   cursor: pointer;
   z-index: 1001;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
-.menu-toggle span {
-  width: 24px;
+.hamburger {
+  width: 20px;
+  height: 14px;
+  position: relative;
+}
+
+.hamburger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
   height: 2px;
   background: var(--text-primary);
   border-radius: 2px;
-  transition: var(--transition);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-.menu-toggle.active span:nth-child(2) { opacity: 0; }
-.menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 6px; width: 70%; }
+.hamburger span:nth-child(3) { top: 12px; }
+
+.menu-toggle.active .hamburger span:nth-child(1) {
+  top: 6px;
+  transform: rotate(45deg);
+}
+
+.menu-toggle.active .hamburger span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.menu-toggle.active .hamburger span:nth-child(3) {
+  top: 6px;
+  transform: rotate(-45deg);
+}
+
+/* Mobile Menu */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+  z-index: 998;
+}
+
+.mobile-menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
 
 /* ==========================================
-   HERO
+   HERO SECTION
 ========================================== */
 .hero {
   min-height: 100vh;
@@ -634,41 +758,48 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ==========================================
-   ABOUT - FIXED PHOTO ALIGNMENT
+   ABOUT SECTION - FIXED PHOTO ALIGNMENT
 ========================================== */
-.about-grid {
+.about-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.about-top {
   display: grid;
   grid-template-columns: 280px 1fr;
-  gap: 50px;
+  gap: 40px;
   align-items: start;
 }
 
-.about-left {
+.about-photo-section {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* FIXED Photo Container */
-.photo-container {
+/* FIXED: Photo wrapper with proper alignment */
+.photo-wrapper {
   position: relative;
   width: 100%;
-  padding: 15px;
+  max-width: 280px;
+  padding: 15px 0 0 15px;
 }
-
 
 .photo-card {
   position: relative;
-  z-index: 2;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 10px;
   transition: var(--transition);
+  z-index: 2;
 }
 
 .photo-card:hover {
   border-color: var(--primary);
+  box-shadow: 0 10px 40px var(--shadow);
 }
 
 .photo-card img {
@@ -678,14 +809,32 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border-radius: var(--radius-sm);
 }
 
-/* Stats */
+/* FIXED: Decoration box properly aligned behind photo */
+.photo-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 15px);
+  height: calc(100% - 15px);
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+  z-index: 1;
+  transition: var(--transition);
+}
+
+.photo-wrapper:hover .photo-decoration {
+  top: 5px;
+  left: 5px;
+}
+
+/* Stats Grid */
 .stats-mini {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
 
-.stat-box {
+.stat-mini-box {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -694,12 +843,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: var(--transition);
 }
 
-.stat-box:hover {
+.stat-mini-box:hover {
   border-color: var(--primary);
   transform: translateY(-3px);
 }
 
-.stat-num {
+.stat-mini-num {
   font-size: 22px;
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -709,7 +858,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   line-height: 1;
 }
 
-.stat-label {
+.stat-mini-label {
   font-size: 10px;
   color: var(--text-muted);
   margin-top: 4px;
@@ -718,6 +867,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* About Content */
+.about-content {
+  display: flex;
+  flex-direction: column;
+}
+
 .about-content h3 {
   font-size: 24px;
   font-weight: 700;
@@ -732,6 +886,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-bottom: 20px;
 }
 
+/* Info Grid */
 .info-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -739,7 +894,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-bottom: 20px;
 }
 
-.info-item {
+.info-box {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -750,7 +905,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: var(--transition);
 }
 
-.info-item:hover { border-color: var(--primary); }
+.info-box:hover { border-color: var(--primary); }
 
 .info-icon {
   width: 38px;
@@ -780,7 +935,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ==========================================
-   SKILLS
+   SKILLS SECTION
 ========================================== */
 .skills-grid {
   display: grid;
@@ -802,14 +957,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   box-shadow: 0 15px 40px var(--shadow);
 }
 
-.skill-header {
+.skill-card-header {
   display: flex;
   align-items: center;
   gap: 14px;
   margin-bottom: 20px;
 }
 
-.skill-icon {
+.skill-card-icon {
   width: 48px;
   height: 48px;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -821,7 +976,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: white;
 }
 
-.skill-header h3 {
+.skill-card-header h3 {
   font-size: 18px;
   font-weight: 700;
   color: var(--text-primary);
@@ -857,6 +1012,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: width 1.2s ease-out;
 }
 
+/* Tech Cloud */
 .tech-cloud {
   display: flex;
   flex-wrap: wrap;
@@ -884,9 +1040,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ==========================================
-   EXPERIENCE
+   EXPERIENCE SECTION
 ========================================== */
-.exp-grid {
+.experience-grid {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -925,11 +1081,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .exp-card.current {
   border-color: rgba(var(--primary-rgb), 0.3);
+  background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.03), transparent);
 }
 
 .exp-card.current::before { opacity: 1; }
 
-.exp-top {
+.exp-header {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -974,6 +1131,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-bottom: 12px;
 }
 
+.exp-list { padding-left: 0; }
+
 .exp-list li {
   position: relative;
   padding-left: 16px;
@@ -991,6 +1150,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 11px;
 }
 
+.exp-list li:last-child { margin-bottom: 0; }
+
 .exp-grade {
   display: inline-block;
   padding: 4px 12px;
@@ -1003,12 +1164,64 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ==========================================
-   PROJECTS
+   PROJECTS SECTION
 ========================================== */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 24px;
+}
+
+/* Mobile Carousel */
+@media (max-width: 768px) {
+  .projects-wrapper {
+    position: relative;
+    overflow: hidden;
+    margin: 0 -20px;
+    padding: 0 20px;
+  }
+  
+  .projects-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 16px;
+    padding-bottom: 20px;
+  }
+  
+  .projects-grid::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .project-card {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+    min-width: 280px;
+  }
+  
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .carousel-dot.active {
+    background: var(--primary);
+    width: 24px;
+    border-radius: 4px;
+  }
 }
 
 .project-card {
@@ -1029,7 +1242,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   position: relative;
   height: 180px;
   overflow: hidden;
-  background: var(--bg-section);
 }
 
 .project-img img {
@@ -1044,7 +1256,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .project-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%);
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
   display: flex;
   align-items: flex-end;
   padding: 16px;
@@ -1069,7 +1281,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .project-card:hover .project-link { transform: translateY(0); }
-.project-link:hover { background: var(--secondary); }
+.project-link:hover { background: var(--secondary); transform: scale(1.1) !important; }
 
 .project-body { padding: 20px; }
 
@@ -1126,16 +1338,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin: 0 auto;
 }
 
-.stats-item { text-align: center; }
+.stats-banner-item { text-align: center; }
 
-.stats-item .num {
+.stats-banner-item .num {
   font-size: clamp(28px, 5vw, 40px);
   font-weight: 800;
   color: white;
   line-height: 1;
 }
 
-.stats-item .label {
+.stats-banner-item .label {
   font-size: 11px;
   color: rgba(255,255,255,0.8);
   margin-top: 6px;
@@ -1144,7 +1356,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ==========================================
-   CONTACT
+   CONTACT SECTION
 ========================================== */
 .contact-grid {
   display: grid;
@@ -1174,6 +1386,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   gap: 14px;
   margin-bottom: 14px;
 }
+
+.contact-item:last-child { margin-bottom: 0; }
 
 .contact-item .icon {
   width: 44px;
@@ -1331,7 +1545,7 @@ textarea.form-input { min-height: 110px; resize: vertical; }
 .back-top:hover { transform: translateY(-4px); }
 
 /* ==========================================
-   REVEAL
+   REVEAL ANIMATION
 ========================================== */
 .reveal {
   opacity: 0;
@@ -1344,17 +1558,21 @@ textarea.form-input { min-height: 110px; resize: vertical; }
   transform: translateY(0);
 }
 
+.reveal.delay-1 { transition-delay: 0.1s; }
+.reveal.delay-2 { transition-delay: 0.2s; }
+.reveal.delay-3 { transition-delay: 0.3s; }
+
 /* ==========================================
    RESPONSIVE
 ========================================== */
 @media (max-width: 992px) {
-  .about-grid {
+  .about-top {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 30px;
   }
   
-  .about-left {
-    max-width: 280px;
+  .about-photo-section {
+    max-width: 260px;
     margin: 0 auto;
   }
   
@@ -1365,11 +1583,17 @@ textarea.form-input { min-height: 110px; resize: vertical; }
   
   .stats-banner-grid { grid-template-columns: repeat(2, 1fr); }
   
-  .theme-toggle {
+  .floating-buttons {
     bottom: 80px;
+    right: 16px;
+  }
+  
+  .float-btn {
     width: 44px;
     height: 44px;
   }
+  
+  .float-btn i { font-size: 18px; }
 }
 
 @media (max-width: 768px) {
@@ -1377,18 +1601,22 @@ textarea.form-input { min-height: 110px; resize: vertical; }
   
   .nav-menu {
     position: fixed;
-    inset: 0;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
     background: var(--bg-body);
     flex-direction: column;
     justify-content: center;
     gap: 24px;
-    opacity: 0;
-    visibility: hidden;
-    transition: var(--transition);
+    padding: 40px;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+    border-left: 1px solid var(--border);
   }
   
-  .nav-menu.active { opacity: 1; visibility: visible; }
-  .nav-link { font-size: 20px; }
+  .nav-menu.active { right: 0; }
+  .nav-link { font-size: 18px; }
   .menu-toggle { display: flex; }
   
   .hero { padding: 90px 16px 50px; }
@@ -1403,38 +1631,72 @@ textarea.form-input { min-height: 110px; resize: vertical; }
   
   .info-grid { grid-template-columns: 1fr; }
   
-  .projects-grid { grid-template-columns: 1fr; }
-  
   .exp-card { padding: 20px; }
+  
+  .floating-buttons {
+    bottom: 70px;
+    right: 12px;
+    gap: 10px;
+  }
+  
+  .float-btn {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .float-btn i { font-size: 16px; }
 }
 
 @media (max-width: 480px) {
   .section { padding: 50px 14px; }
   
+  .photo-wrapper {
+    padding: 10px 0 0 10px;
+  }
+  
+  .photo-decoration {
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+  }
+  
   .stats-mini { gap: 8px; }
-  .stat-box { padding: 12px 8px; }
-  .stat-num { font-size: 18px; }
-  .stat-label { font-size: 9px; }
+  
+  .stat-mini-box { padding: 12px 8px; }
+  .stat-mini-num { font-size: 18px; }
+  .stat-mini-label { font-size: 9px; }
   
   .skill-card { padding: 22px 18px; }
   
   .exp-card { padding: 18px; }
+  .exp-title { font-size: 15px; }
   
   .stats-banner { padding: 40px 16px; }
   .stats-banner-grid { gap: 16px; }
-  .stats-item .num { font-size: 26px; }
+  .stats-banner-item .num { font-size: 26px; }
   
   .contact-form { padding: 22px 18px; }
   
   .skills-grid { grid-template-columns: 1fr; }
   
-  .back-top, .theme-toggle {
+  .back-top {
     width: 40px;
     height: 40px;
+    bottom: 16px;
+    right: 16px;
   }
-  
-  .back-top { bottom: 16px; right: 16px; }
-  .theme-toggle { bottom: 64px; right: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* Hide carousel dots on desktop */
+@media (min-width: 769px) {
+  .carousel-dots { display: none; }
 }
 </style>
 </head>
@@ -1443,20 +1705,40 @@ textarea.form-input { min-height: 110px; resize: vertical; }
   <!-- Scroll Progress -->
   <div class="scroll-progress" id="scrollProgress"></div>
   
-  <!-- Theme Toggle -->
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-    <i class="fas fa-moon"></i>
-    <i class="fas fa-sun"></i>
-  </button>
-  
-  <!-- Preloader -->
-  <div id="preloader">
-    <div class="preloader-animation">
-      <div class="preloader-ball"></div>
-      <div class="preloader-bar"></div>
+  <!-- FIXED Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="loader-container">
+      <div class="loader-animation">
+        <div class="loader-ball"></div>
+        <div class="loader-bar"></div>
+      </div>
+      <div class="loader-text">
+        <span>L</span><span>O</span><span>A</span><span>D</span><span>I</span><span>N</span><span>G</span>
+      </div>
     </div>
-    <div class="preloader-text">Loading...</div>
   </div>
+  
+  <!-- Floating Buttons -->
+  <div class="floating-buttons">
+    <a href="https://wa.me/917045538721" target="_blank" class="float-btn whatsapp-btn" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <button class="float-btn music-btn" id="musicBtn" aria-label="Toggle Music">
+      <i class="fas fa-music"></i>
+    </button>
+    <button class="float-btn theme-btn" id="themeToggle" aria-label="Toggle Theme">
+      <i class="fas fa-moon"></i>
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+  
+  <!-- Background Music (hidden) -->
+  <audio id="bgMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+  
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="menuOverlay"></div>
   
   <!-- Navbar -->
   <nav class="navbar" id="navbar">
@@ -1471,9 +1753,11 @@ textarea.form-input { min-height: 110px; resize: vertical; }
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
       <div class="menu-toggle" id="menuToggle">
-        <span></span>
-        <span></span>
-        <span></span>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </div>
   </nav>
@@ -1532,81 +1816,81 @@ textarea.form-input { min-height: 110px; resize: vertical; }
         <p class="section-subtitle">Building solutions that scale</p>
       </div>
       
-      <div class="about-grid">
-        <!-- Left Side - Photo -->
-        <div class="about-left reveal">
-          <div class="photo-container">
-          
-            <div class="photo-card">
-              <img src="images/mypicture.jpg" alt="Akshit Ravula">
-            </div>
-          </div>
-          
-          <div class="stats-mini">
-            <div class="stat-box">
-              <div class="stat-num" data-count="30">0</div>
-              <div class="stat-label">Projects</div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-num" data-count="6">0</div>
-              <div class="stat-label">Roles</div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-num" data-count="5">0</div>
-              <div class="stat-label">Awards</div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Right Side - Content -->
-        <div class="about-content reveal">
-          <h3>Full Stack Developer & Cloud Engineer</h3>
-          
-          <p class="lead">
-            I'm a results-driven developer currently working at Creative Garage as a Full Stack Developer. 
-            I specialize in building scalable web applications using React.js, Node.js, and cloud technologies.
-            With hands-on experience from multiple roles, I'm passionate about creating efficient, user-centric solutions.
-          </p>
-          
-          <p class="lead">
-            Beyond development, I also work closely with leadership to ensure processes run smoothly 
-            and systems are optimized for maximum efficiency.
-          </p>
-          
-          <div class="info-grid">
-            <div class="info-item">
-              <div class="info-icon"><i class="fas fa-user"></i></div>
-              <div class="info-text">
-                <h4>Name</h4>
-                <p>Akshit Ravula</p>
+      <div class="about-container">
+        <div class="about-top">
+          <div class="about-photo-section reveal">
+            <div class="photo-wrapper">
+              <div class="photo-decoration"></div>
+              <div class="photo-card">
+                <img src="images/mypicture.jpg" alt="Akshit Ravula">
               </div>
             </div>
-            <div class="info-item">
-              <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-              <div class="info-text">
-                <h4>Location</h4>
-                <p>Mumbai, India</p>
+            
+            <div class="stats-mini">
+              <div class="stat-mini-box">
+                <div class="stat-mini-num" data-count="30">0</div>
+                <div class="stat-mini-label">Projects</div>
               </div>
-            </div>
-            <div class="info-item">
-              <div class="info-icon"><i class="fas fa-graduation-cap"></i></div>
-              <div class="info-text">
-                <h4>Education</h4>
-                <p>B.Tech CSE - VIT</p>
+              <div class="stat-mini-box">
+                <div class="stat-mini-num" data-count="6">0</div>
+                <div class="stat-mini-label">Roles</div>
               </div>
-            </div>
-            <div class="info-item">
-              <div class="info-icon"><i class="fas fa-globe"></i></div>
-              <div class="info-text">
-                <h4>Languages</h4>
-                <p>English, Hindi, Telugu</p>
+              <div class="stat-mini-box">
+                <div class="stat-mini-num" data-count="5">0</div>
+                <div class="stat-mini-label">Awards</div>
               </div>
             </div>
           </div>
           
-          <a href="https://drive.google.com/file/d/1GWl68c-t3Z9ME2ac6UjU2g5gjLaDlrG9/view?usp=drivesdk" target="_blank" rel="noopener" class="btn btn-primary">
-            <i class="fas fa-download"></i> Download Resume
-          </a>
+          <div class="about-content reveal delay-1">
+            <h3>Full Stack Developer & Cloud Engineer</h3>
+            
+            <p class="lead">
+              I'm a results-driven developer currently working at Creative Garage as a Full Stack Developer. 
+              I specialize in building scalable web applications using React.js, Node.js, and cloud technologies.
+              With hands-on experience from multiple roles, I'm passionate about creating efficient, user-centric solutions.
+            </p>
+            
+            <p class="lead">
+              Beyond development, I also work closely with leadership to ensure processes run smoothly 
+              and systems are optimized for maximum efficiency.
+            </p>
+            
+            <div class="info-grid">
+              <div class="info-box">
+                <div class="info-icon"><i class="fas fa-user"></i></div>
+                <div class="info-text">
+                  <h4>Name</h4>
+                  <p>Akshit Ravula</p>
+                </div>
+              </div>
+              <div class="info-box">
+                <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="info-text">
+                  <h4>Location</h4>
+                  <p>Mumbai, India</p>
+                </div>
+              </div>
+              <div class="info-box">
+                <div class="info-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="info-text">
+                  <h4>Education</h4>
+                  <p>B.Tech CSE - VIT</p>
+                </div>
+              </div>
+              <div class="info-box">
+                <div class="info-icon"><i class="fas fa-globe"></i></div>
+                <div class="info-text">
+                  <h4>Languages</h4>
+                  <p>English, Hindi, Telugu</p>
+                </div>
+              </div>
+            </div>
+            
+            <a href="https://drive.google.com/file/d/1GWl68c-t3Z9ME2ac6UjU2g5gjLaDlrG9/view?usp=drivesdk" target="_blank" rel="noopener" class="btn btn-primary">
+              <i class="fas fa-download"></i> Download Resume
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -1623,8 +1907,8 @@ textarea.form-input { min-height: 110px; resize: vertical; }
       
       <div class="skills-grid">
         <div class="skill-card reveal">
-          <div class="skill-header">
-            <div class="skill-icon"><i class="fas fa-code"></i></div>
+          <div class="skill-card-header">
+            <div class="skill-card-icon"><i class="fas fa-code"></i></div>
             <h3>Frontend</h3>
           </div>
           <div class="skill-row">
@@ -1650,9 +1934,9 @@ textarea.form-input { min-height: 110px; resize: vertical; }
           </div>
         </div>
         
-        <div class="skill-card reveal">
-          <div class="skill-header">
-            <div class="skill-icon"><i class="fas fa-server"></i></div>
+        <div class="skill-card reveal delay-1">
+          <div class="skill-card-header">
+            <div class="skill-card-icon"><i class="fas fa-server"></i></div>
             <h3>Backend</h3>
           </div>
           <div class="skill-row">
@@ -1678,9 +1962,9 @@ textarea.form-input { min-height: 110px; resize: vertical; }
           </div>
         </div>
         
-        <div class="skill-card reveal">
-          <div class="skill-header">
-            <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+        <div class="skill-card reveal delay-2">
+          <div class="skill-card-header">
+            <div class="skill-card-icon"><i class="fas fa-cloud"></i></div>
             <h3>Cloud & Tools</h3>
           </div>
           <div class="skill-row">
@@ -1736,9 +2020,9 @@ textarea.form-input { min-height: 110px; resize: vertical; }
         <p class="section-subtitle">My professional path</p>
       </div>
       
-      <div class="exp-grid">
+      <div class="experience-grid">
         <div class="exp-card current reveal">
-          <div class="exp-top">
+          <div class="exp-header">
             <span class="exp-date">Feb 2025 – Present</span>
             <span class="exp-badge">Current</span>
           </div>
@@ -1748,25 +2032,25 @@ textarea.form-input { min-height: 110px; resize: vertical; }
             <li>Developing robust full-stack applications with React.js and Node.js</li>
             <li>Working as Executive to CEO - managing processes, systems, and operations</li>
             <li>Collaborating with UX/UI teams to deliver exceptional user experiences</li>
-            <li>Optimizing performance through efficient code practices</li>
+            <li>Optimizing performance through efficient code practices and system design</li>
           </ul>
         </div>
         
         <div class="exp-card reveal">
-          <div class="exp-top">
+          <div class="exp-header">
             <span class="exp-date">Nov 2024 – Feb 2025</span>
           </div>
           <h3 class="exp-title">Full Stack Developer</h3>
           <p class="exp-company">Bloom Agency</p>
           <ul class="exp-list">
             <li>Engineered scalable web applications using React.js, Node.js, and MongoDB</li>
-            <li>Led development of client-facing dashboards</li>
-            <li>Implemented RESTful API services</li>
+            <li>Led development of client-facing dashboards improving business intelligence</li>
+            <li>Implemented RESTful API services for seamless integration</li>
           </ul>
         </div>
         
         <div class="exp-card reveal">
-          <div class="exp-top">
+          <div class="exp-header">
             <span class="exp-date">Sep 2024 – Dec 2024</span>
           </div>
           <h3 class="exp-title">Web Developer</h3>
@@ -1778,7 +2062,7 @@ textarea.form-input { min-height: 110px; resize: vertical; }
         </div>
         
         <div class="exp-card reveal">
-          <div class="exp-top">
+          <div class="exp-header">
             <span class="exp-date">Jul 2024 – Sep 2024</span>
           </div>
           <h3 class="exp-title">Technical Lead</h3>
@@ -1790,19 +2074,19 @@ textarea.form-input { min-height: 110px; resize: vertical; }
         </div>
         
         <div class="exp-card reveal">
-          <div class="exp-top">
+          <div class="exp-header">
             <span class="exp-date">Nov 2023 – Dec 2023</span>
           </div>
           <h3 class="exp-title">Cloud Computing Intern</h3>
           <p class="exp-company">Sam Infosystems</p>
           <ul class="exp-list">
             <li>Managed cloud infrastructure using Microsoft Azure</li>
-            <li>Optimized cloud-based applications for performance</li>
+            <li>Optimized applications for performance and cost-efficiency</li>
           </ul>
         </div>
         
         <div class="exp-card reveal">
-          <div class="exp-top">
+          <div class="exp-header">
             <span class="exp-date">Aug 2023 – Sep 2023</span>
           </div>
           <h3 class="exp-title">Frontend Developer</h3>
@@ -1814,7 +2098,7 @@ textarea.form-input { min-height: 110px; resize: vertical; }
         </div>
         
         <div class="exp-card reveal">
-          <div class="exp-top">
+          <div class="exp-header">
             <span class="exp-date">2021 – 2025</span>
             <span class="exp-badge edu">Education</span>
           </div>
@@ -1829,497 +2113,536 @@ textarea.form-input { min-height: 110px; resize: vertical; }
     </div>
   </section>
   
-  <!-- Projects -->
+  <!-- Projects - ALL PROJECTS A-Z -->
   <section class="section" id="projects">
     <div class="container">
       <div class="section-header">
         <span class="section-label">Portfolio</span>
         <h2 class="section-title">All Projects</h2>
-        <p class="section-subtitle">A collection of my work</p>
+        <p class="section-subtitle">Complete collection of my work</p>
       </div>
       
-      <div class="projects-grid">
-        <!-- Priority Projects First -->
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/sato..jpg" alt="SATO LIXIL">
-            <div class="project-overlay">
-              <a href="https://sato.lixil.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+      <div class="projects-wrapper">
+        <div class="projects-grid" id="projectsGrid">
+          <!-- Priority Projects First -->
+          
+          <!-- SATO LIXIL -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/sato..jpg" alt="SATO LIXIL">
+              <div class="project-overlay">
+                <a href="https://sato.lixil.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">SATO – LIXIL</h3>
+              <p class="project-desc">Global website for SATO providing sanitation solutions with multilingual support.</p>
+              <div class="project-stack"><span>PHP</span><span>MySQL</span><span>JavaScript</span></div>
             </div>
           </div>
-          <div class="project-body">
-            <h3 class="project-title">SATO – LIXIL</h3>
-            <p class="project-desc">Global website for SATO providing safe and affordable sanitation solutions with multilingual support.</p>
-            <div class="project-stack"><span>PHP</span><span>MySQL</span><span>JavaScript</span></div>
+          
+          <!-- Bharat Certis -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/bharatcertis.jpg" alt="Bharat Certis">
+              <div class="project-overlay">
+                <a href="https://www.bharatcertis.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Bharat Certis</h3>
+              <p class="project-desc">Corporate website for agrochemical company showcasing crop protection products.</p>
+              <div class="project-stack"><span>PHP</span><span>MySQL</span><span>JS</span></div>
+            </div>
+          </div>
+          
+          <!-- RD Overseas -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/rdoverseas.jpg" alt="RD Overseas">
+              <div class="project-overlay">
+                <a href="https://rdoverseas.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">RD Overseas</h3>
+              <p class="project-desc">High-performance eCommerce store for automotive accessories.</p>
+              <div class="project-stack"><span>Shopify</span><span>Liquid</span><span>JS</span></div>
+            </div>
+          </div>
+          
+          <!-- Vicefy -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/vicefy.jpg" alt="Vicefy">
+              <div class="project-overlay">
+                <a href="https://vicefy.store/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Vicefy</h3>
+              <p class="project-desc">Modern eCommerce website for beauty and personal care brand.</p>
+              <div class="project-stack"><span>Shopify</span><span>Liquid</span><span>CSS</span></div>
+            </div>
+          </div>
+          
+          <!-- Creative Garage -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/creativegarage.jpg" alt="Creative Garage">
+              <div class="project-overlay">
+                <a href="https://creative-garage.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Creative Garage</h3>
+              <p class="project-desc">Bold creative agency website with engaging animations.</p>
+              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JS</span></div>
+            </div>
+          </div>
+          
+          <!-- Bloom Agency -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/project7.png" alt="Bloom Agency">
+              <div class="project-overlay">
+                <a href="https://www.bloomagency.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Bloom Agency</h3>
+              <p class="project-desc">Digital marketing agency website with modern design.</p>
+              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
+            </div>
+          </div>
+          
+          <!-- Wooum -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/project6.png" alt="Wooum">
+              <div class="project-overlay">
+                <a href="https://www.wooum.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Wooum</h3>
+              <p class="project-desc">Visually appealing, user-friendly, and responsive design.</p>
+              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JS</span></div>
+            </div>
+          </div>
+          
+          <!-- 23 Consulting Services -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/project16.png" alt="23 Consulting">
+              <div class="project-overlay">
+                <a href="https://23consultingservices.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">23 Consulting Services</h3>
+              <p class="project-desc">Professional consulting platform for business growth.</p>
+              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JS</span></div>
+            </div>
+          </div>
+          
+          <!-- Amarjothi Granites -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/amarjothi.jpg" alt="Amarjothi Granites">
+              <div class="project-overlay">
+                <a href="https://amarjothigranites.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Amarjothi Granites</h3>
+              <p class="project-desc">Showcase website for natural stone and granite exporter.</p>
+              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
+            </div>
+          </div>
+          
+          <!-- Anzo Controls -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/anzocontrols.jpg" alt="Anzo Controls">
+              <div class="project-overlay">
+                <a href="https://www.anzocontrols.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Anzo Controls</h3>
+              <p class="project-desc">Corporate website for industrial automation company.</p>
+              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JS</span></div>
+            </div>
+          </div>
+          
+          <!-- Bodhi Diamonds -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/project8.png" alt="Bodhi Diamonds">
+              <div class="project-overlay">
+                <a href="https://www.bodhidiamonds.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Bodhi Diamonds</h3>
+              <p class="project-desc">Elegant jewelry platform with responsive design.</p>
+              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
+            </div>
+          </div>
+          
+          <!-- Clootrack -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/project4.png" alt="Clootrack">
+              <div class="project-overlay">
+                <a href="https://www.clootrack.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Clootrack</h3>
+              <p class="project-desc">Optimized website with enhanced performance and UX.</p>
+              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JS</span></div>
+            </div>
+          </div>
+          
+          <!-- Customer Care Service -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/project13.png" alt="Customer Care Service">
+              <div class="project-overlay">
+                <a href="https://customercareelectronicservice.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Customer Care Service</h3>
+              <p class="project-desc">User-friendly customer service platform.</p>
+              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
+            </div>
+          </div>
+          
+          <!-- Cycler -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/project1.jpg" alt="Cycler">
+              <div class="project-overlay">
+                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Cycler</h3>
+              <p class="project-desc">Web app for college students to rent, sell, or buy bicycles.</p>
+              <div class="project-stack"><span>React.js</span><span>Node.js</span><span>Bootstrap</span></div>
+            </div>
+          </div>
+          
+          <!-- Ecotonique -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/project5.png" alt="Ecotonique">
+              <div class="project-overlay">
+                <a href="https://www.ecotonique.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Ecotonique</h3>
+              <p class="project-desc">Engaging website with responsive design and functionality.</p>
+              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JS</span></div>
+            </div>
+          </div>
+          
+          <!-- Fitness Tracker -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/project2.jpg" alt="Fitness Tracker">
+              <div class="project-overlay">
+                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Fitness Tracker</h3>
+              <p class="project-desc">System to calculate stress, calories, and sleep efficiency.</p>
+              <div class="project-stack"><span>React.js</span><span>Node.js</span><span>CSS</span></div>
+            </div>
+          </div>
+          
+          <!-- Goldpot -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/project15.png" alt="Goldpot">
+              <div class="project-overlay">
+                <a href="https://goldpot.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Goldpot</h3>
+              <p class="project-desc">Digital platform for gold investment management.</p>
+              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JS</span></div>
+            </div>
+          </div>
+          
+          <!-- Haldiram's Franchise -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/project10.png" alt="Haldiram's">
+              <div class="project-overlay">
+                <a href="https://www.haldirams.store/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Haldiram's Franchise</h3>
+              <p class="project-desc">Professional franchise website with responsive design.</p>
+              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
+            </div>
+          </div>
+          
+          <!-- Hawtever -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/hawtever.jpg" alt="Hawtever">
+              <div class="project-overlay">
+                <a href="https://hawtever.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Hawtever</h3>
+              <p class="project-desc">Modern e-commerce for skincare and haircare products.</p>
+              <div class="project-stack"><span>WordPress</span><span>WooCommerce</span><span>Elementor</span></div>
+            </div>
+          </div>
+          
+          <!-- Homecare & Planners -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/homecare.jpg" alt="Homecare & Planners">
+              <div class="project-overlay">
+                <a href="https://homecareandplanners.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Homecare & Planners</h3>
+              <p class="project-desc">Professional website for hardware and construction firm.</p>
+              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
+            </div>
+          </div>
+          
+          <!-- House of Buck -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/project14.png" alt="House of Buck">
+              <div class="project-overlay">
+                <a href="https://houseofbuck.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">House of Buck</h3>
+              <p class="project-desc">Dropshipping store with seamless e-commerce functionality.</p>
+              <div class="project-stack"><span>WordPress</span><span>WooCommerce</span><span>Elementor</span></div>
+            </div>
+          </div>
+          
+          <!-- Jewellery Khazana -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/project12.png" alt="Jewellery Khazana">
+              <div class="project-overlay">
+                <a href="https://jewellerykhazana.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Jewellery Khazana</h3>
+              <p class="project-desc">Elegant platform for online jewellery shopping.</p>
+              <div class="project-stack"><span>WordPress</span><span>WooCommerce</span><span>Elementor</span></div>
+            </div>
+          </div>
+          
+          <!-- Kailasa Ink -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/kailasa.jpg" alt="Kailasa Ink">
+              <div class="project-overlay">
+                <a href="https://kailasaink.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Kailasa Ink</h3>
+              <p class="project-desc">Artistic website for spiritual ink brand inspired by mythology.</p>
+              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
+            </div>
+          </div>
+          
+          <!-- Luvialz -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/luvialz.jpg" alt="Luvialz">
+              <div class="project-overlay">
+                <a href="https://luvialz.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Luvialz</h3>
+              <p class="project-desc">Elegant eCommerce for skincare and wellness brand.</p>
+              <div class="project-stack"><span>WordPress</span><span>WooCommerce</span><span>Elementor</span></div>
+            </div>
+          </div>
+          
+          <!-- Mitaksh Radiance -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/project9.png" alt="Mitaksh Radiance">
+              <div class="project-overlay">
+                <a href="https://www.mitakshradiance.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Mitaksh Radiance</h3>
+              <p class="project-desc">Jewelry brand platform with elegant design.</p>
+              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
+            </div>
+          </div>
+          
+          <!-- OneWay Happiness -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/onewayhappiness.jpg" alt="OneWay Happiness">
+              <div class="project-overlay">
+                <a href="https://www.onewayhappiness.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">OneWay Happiness</h3>
+              <p class="project-desc">Soothing eCommerce for personal care and wellness.</p>
+              <div class="project-stack"><span>Shopify</span><span>Liquid</span><span>CSS</span></div>
+            </div>
+          </div>
+          
+          <!-- Piers St. Barth -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/pierstbarth.jpg" alt="Piers St. Barth">
+              <div class="project-overlay">
+                <a href="https://pierstbarth.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Piers St. Barth</h3>
+              <p class="project-desc">Premium fashion eCommerce for luxury clothing.</p>
+              <div class="project-stack"><span>Shopify</span><span>Liquid</span><span>JS</span></div>
+            </div>
+          </div>
+          
+          <!-- PlanYourWay -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/project3.jpg" alt="PlanYourWay">
+              <div class="project-overlay">
+                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">PlanYourWay</h3>
+              <p class="project-desc">Web application for booking tickets through agents.</p>
+              <div class="project-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+            </div>
+          </div>
+          
+          <!-- SD Infra & Mep Services -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/project11.png" alt="SD Infra">
+              <div class="project-overlay">
+                <a href="https://www.sdinframep.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">SD Infra & Mep Services</h3>
+              <p class="project-desc">Functional platform for construction services.</p>
+              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
+            </div>
+          </div>
+          
+          <!-- Souvenir Care -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/souvenircare.jpg" alt="Souvenir Care">
+              <div class="project-overlay">
+                <a href="https://souvenircare.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Souvenir Care</h3>
+              <p class="project-desc">Elegant eCommerce for beauty and wellness products.</p>
+              <div class="project-stack"><span>WordPress</span><span>WooCommerce</span><span>Elementor</span></div>
+            </div>
+          </div>
+          
+          <!-- TPS Aerospace -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/tpsaerospace.jpg" alt="TPS Aerospace">
+              <div class="project-overlay">
+                <a href="https://tpsaerospace.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">TPS Aerospace</h3>
+              <p class="project-desc">Corporate website for MRO aviation company.</p>
+              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JS</span></div>
+            </div>
+          </div>
+          
+          <!-- Trademark Dekho -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/trademarkdekho.jpg" alt="Trademark Dekho">
+              <div class="project-overlay">
+                <a href="https://trademarkdekho.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Trademark Dekho</h3>
+              <p class="project-desc">Legal consultancy for trademark registration services.</p>
+              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
+            </div>
+          </div>
+          
+          <!-- Trudiance -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/trudiance.jpg" alt="Trudiance">
+              <div class="project-overlay">
+                <a href="https://trudiance.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Trudiance</h3>
+              <p class="project-desc">Clean beauty eCommerce focused on skin-positive messaging.</p>
+              <div class="project-stack"><span>WordPress</span><span>WooCommerce</span><span>Elementor</span></div>
+            </div>
+          </div>
+          
+          <!-- AI Drug Discovery -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="images/project17.jpeg" alt="AI Drug Discovery">
+              <div class="project-overlay">
+                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">AI Drug Discovery</h3>
+              <p class="project-desc">Research project using AI for drug discovery and screening.</p>
+              <div class="project-stack"><span>Python</span><span>TensorFlow</span><span>PyTorch</span></div>
+            </div>
           </div>
         </div>
         
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/bharatcertis.jpg" alt="Bharat Certis">
-            <div class="project-overlay">
-              <a href="https://www.bharatcertis.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Bharat Certis</h3>
-            <p class="project-desc">Corporate website for agrochemical company showcasing crop protection products.</p>
-            <div class="project-stack"><span>PHP</span><span>MySQL</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/rdoverseas.jpg" alt="RD Overseas">
-            <div class="project-overlay">
-              <a href="https://rdoverseas.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">RD Overseas</h3>
-            <p class="project-desc">High-performance eCommerce store for automotive accessories with modern interface.</p>
-            <div class="project-stack"><span>Shopify</span><span>Liquid</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/vicefy.jpg" alt="Vicefy">
-            <div class="project-overlay">
-              <a href="https://vicefy.store/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Vicefy</h3>
-            <p class="project-desc">Modern eCommerce website for beauty and personal care brand with bold identity.</p>
-            <div class="project-stack"><span>Shopify</span><span>Liquid</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/creativegarage.jpg" alt="Creative Garage">
-            <div class="project-overlay">
-              <a href="https://creative-garage.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Creative Garage</h3>
-            <p class="project-desc">Bold website for creative agency offering branding, digital marketing, films, and design.</p>
-            <div class="project-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/project7.png" alt="Bloom Agency">
-            <div class="project-overlay">
-              <a href="https://www.bloomagency.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Bloom Agency</h3>
-            <p class="project-desc">Collaborated to design and develop seamless responsive user experience.</p>
-            <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/project6.png" alt="Wooum">
-            <div class="project-overlay">
-              <a href="https://www.wooum.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Wooum</h3>
-            <p class="project-desc">Created visually appealing, user-friendly, and responsive design.</p>
-            <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <!-- Rest of Projects -->
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/anzocontrols.jpg" alt="Anzo Controls">
-            <div class="project-overlay">
-              <a href="https://www.anzocontrols.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Anzo Controls</h3>
-            <p class="project-desc">Corporate website for industrial automation and control systems company.</p>
-            <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/pierstbarth.jpg" alt="Piers St. Barth">
-            <div class="project-overlay">
-              <a href="https://pierstbarth.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Piers St. Barth</h3>
-            <p class="project-desc">Premium fashion eCommerce for luxury clothing brand inspired by island culture.</p>
-            <div class="project-stack"><span>Shopify</span><span>Liquid</span><span>CSS</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/onewayhappiness.jpg" alt="OneWay Happiness">
-            <div class="project-overlay">
-              <a href="https://www.onewayhappiness.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">OneWay Happiness</h3>
-            <p class="project-desc">Soothing eCommerce website for personal care and wellness brand.</p>
-            <div class="project-stack"><span>Shopify</span><span>Liquid</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/souvenircare.jpg" alt="Souvenir Care">
-            <div class="project-overlay">
-              <a href="https://souvenircare.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Souvenir Care</h3>
-            <p class="project-desc">Elegant eCommerce for beauty and wellness brand offering skincare products.</p>
-            <div class="project-stack"><span>WordPress</span><span>WooCommerce</span><span>Elementor</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/trudiance.jpg" alt="Trudiance">
-            <div class="project-overlay">
-              <a href="https://trudiance.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Trudiance</h3>
-            <p class="project-desc">Refined eCommerce for clean beauty and skincare brand with ingredient transparency.</p>
-            <div class="project-stack"><span>WordPress</span><span>WooCommerce</span><span>Elementor</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/luvialz.jpg" alt="Luvialz">
-            <div class="project-overlay">
-              <a href="https://luvialz.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Luvialz</h3>
-            <p class="project-desc">Elegant eCommerce for skincare and wellness brand with premium visual feel.</p>
-            <div class="project-stack"><span>WordPress</span><span>WooCommerce</span><span>Elementor</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/hawtever.jpg" alt="Hawtever">
-            <div class="project-overlay">
-              <a href="https://hawtever.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Hawtever</h3>
-            <p class="project-desc">Modern e-commerce for skincare and haircare brand with youthful appeal.</p>
-            <div class="project-stack"><span>WordPress</span><span>WooCommerce</span><span>Elementor</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/trademarkdekho.jpg" alt="Trademark Dekho">
-            <div class="project-overlay">
-              <a href="https://trademarkdekho.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Trademark Dekho</h3>
-            <p class="project-desc">Professional website for legal consultancy offering trademark registration.</p>
-            <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/amarjothi.jpg" alt="Amarjothi Granites">
-            <div class="project-overlay">
-              <a href="https://amarjothigranites.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Amarjothi Granites</h3>
-            <p class="project-desc">Modern showcase website for natural stone and granite exporter.</p>
-            <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/tpsaerospace.jpg" alt="TPS Aerospace">
-            <div class="project-overlay">
-              <a href="https://tpsaerospace.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">TPS Aerospace</h3>
-            <p class="project-desc">Corporate website for MRO aviation company specializing in aircraft services.</p>
-            <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/kailasa.jpg" alt="Kailasa Ink">
-            <div class="project-overlay">
-              <a href="https://kailasaink.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Kailasa Ink</h3>
-            <p class="project-desc">Vibrant artistic website for spiritual ink brand inspired by Indian mythology.</p>
-            <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/homecare.jpg" alt="Homecare & Planners">
-            <div class="project-overlay">
-              <a href="https://homecareandplanners.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Homecare & Planners</h3>
-            <p class="project-desc">Professional website for hardware and construction firm.</p>
-            <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/project4.png" alt="Clootrack">
-            <div class="project-overlay">
-              <a href="https://www.clootrack.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Clootrack</h3>
-            <p class="project-desc">Developed and optimized website, enhancing performance and user experience.</p>
-            <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/project5.png" alt="Ecotonique">
-            <div class="project-overlay">
-              <a href="https://www.ecotonique.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Ecotonique</h3>
-            <p class="project-desc">Designed and developed with engaging user experience and responsive design.</p>
-            <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/project8.png" alt="Bodhi Diamonds">
-            <div class="project-overlay">
-              <a href="https://www.bodhidiamonds.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Bodhi Diamonds</h3>
-            <p class="project-desc">Dedicated jewelry platform with elegance and user-centric design.</p>
-            <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/project9.png" alt="Mitaksh Radiance">
-            <div class="project-overlay">
-              <a href="https://www.mitakshradiance.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Mitaksh Radiance</h3>
-            <p class="project-desc">Jewelry brand platform with elegant design and user-friendly interface.</p>
-            <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/project10.png" alt="Haldiram's Franchise">
-            <div class="project-overlay">
-              <a href="https://www.haldirams.store/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Haldiram's Franchise</h3>
-            <p class="project-desc">Professional responsive design to enhance user engagement and accessibility.</p>
-            <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/project11.png" alt="SD Infra & Mep">
-            <div class="project-overlay">
-              <a href="https://www.sdinframep.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">SD Infra & Mep Services</h3>
-            <p class="project-desc">Functional and user-focused platform tailored to industry needs.</p>
-            <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/project12.png" alt="Jewellery Khazana">
-            <div class="project-overlay">
-              <a href="https://jewellerykhazana.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Jewellery Khazana</h3>
-            <p class="project-desc">Elegant responsive platform to enhance online jewellery shopping.</p>
-            <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/project13.png" alt="Customer Care Service">
-            <div class="project-overlay">
-              <a href="https://customercareelectronicservice.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Customer Care Service</h3>
-            <p class="project-desc">User-friendly design to improve customer engagement and accessibility.</p>
-            <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/project14.png" alt="House of Buck">
-            <div class="project-overlay">
-              <a href="https://houseofbuck.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">House of Buck</h3>
-            <p class="project-desc">Dropshipping store with seamless e-commerce functionality.</p>
-            <div class="project-stack"><span>WordPress</span><span>WooCommerce</span><span>Elementor</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/project15.png" alt="Goldpot">
-            <div class="project-overlay">
-              <a href="https://goldpot.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Goldpot</h3>
-            <p class="project-desc">Digital platform simplifying gold investment - buy, sell, and manage.</p>
-            <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/project16.png" alt="23 Consulting">
-            <div class="project-overlay">
-              <a href="https://23consultingservices.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">23 Consulting Services</h3>
-            <p class="project-desc">Professional consulting platform delivering tailored business solutions.</p>
-            <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/project1.jpg" alt="Cycler">
-            <div class="project-overlay">
-              <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Cycler</h3>
-            <p class="project-desc">Web application for college students to rent, sell, or buy bicycles.</p>
-            <div class="project-stack"><span>React.js</span><span>Node.js</span><span>Bootstrap</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/project2.jpg" alt="Fitness Tracker">
-            <div class="project-overlay">
-              <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">Fitness Tracker</h3>
-            <p class="project-desc">System calculating stress, calories, and sleep efficiency.</p>
-            <div class="project-stack"><span>React.js</span><span>Node.js</span><span>CSS</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/project3.jpg" alt="PlanYourWay">
-            <div class="project-overlay">
-              <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">PlanYourWay</h3>
-            <p class="project-desc">Web application for booking tickets through agents.</p>
-            <div class="project-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-          </div>
-        </div>
-        
-        <div class="project-card reveal">
-          <div class="project-img">
-            <img src="images/project17.jpeg" alt="AI Drug Discovery">
-            <div class="project-overlay">
-              <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">AI For Drug Discovery</h3>
-            <p class="project-desc">Research project leveraging AI for drug discovery using SMILES analysis.</p>
-            <div class="project-stack"><span>Python</span><span>TensorFlow</span><span>PyTorch</span></div>
-          </div>
-        </div>
+        <!-- Carousel Dots for Mobile -->
+        <div class="carousel-dots" id="carouselDots"></div>
       </div>
       
       <div class="load-more reveal">
-        <a href="https://github.com/akshitravula" target="_blank" class="btn btn-outline">
+        <a href="https://github.com/akshitravula" target="_blank" rel="noopener" class="btn btn-outline">
           <i class="fab fa-github"></i> View on GitHub
         </a>
       </div>
@@ -2329,19 +2652,19 @@ textarea.form-input { min-height: 110px; resize: vertical; }
   <!-- Stats Banner -->
   <section class="stats-banner">
     <div class="stats-banner-grid">
-      <div class="stats-item reveal">
-        <div class="num" data-count="30">0</div>
+      <div class="stats-banner-item reveal">
+        <div class="num" data-count="35">0</div>
         <div class="label">Projects</div>
       </div>
-      <div class="stats-item reveal">
+      <div class="stats-banner-item reveal delay-1">
         <div class="num" data-count="6">0</div>
         <div class="label">Roles</div>
       </div>
-      <div class="stats-item reveal">
+      <div class="stats-banner-item reveal delay-2">
         <div class="num" data-count="5">0</div>
         <div class="label">Achievements</div>
       </div>
-      <div class="stats-item reveal">
+      <div class="stats-banner-item reveal delay-3">
         <div class="num" data-count="3">0</div>
         <div class="label">Certifications</div>
       </div>
