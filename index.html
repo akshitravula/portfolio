@@ -20,7 +20,7 @@
   --secondary: #00d4ff;
   --accent: #00e5ff;
   --success: #22c55e;
-  --whatsapp: #25D366;
+  --whatsapp: #25d366;
   
   --transition: all 0.3s ease;
   --transition-fast: all 0.15s ease;
@@ -121,16 +121,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 ========================================== */
 .preloader {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000000;
+  inset: 0;
+  background: var(--bg-body);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  z-index: 999999;
+  z-index: 99999;
 }
 
 .preloader.loaded {
@@ -140,29 +137,32 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
-.loader-container {
+.loader-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 30px;
 }
 
-.loader-animation {
+.loader-bar-container {
   position: relative;
   width: 200px;
   height: 80px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .loader-ball {
   position: absolute;
   bottom: 45px;
-  left: calc(100% - 30px);
+  left: calc(100% - 20px);
   width: 35px;
   height: 35px;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   border-radius: 50%;
-  animation: ballMove 2.5s ease-in-out infinite alternate;
-  box-shadow: 0 5px 15px rgba(0, 102, 255, 0.4);
+  animation: ball-move 2.5s ease-in-out infinite alternate;
+  box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.5);
 }
 
 .loader-ball::before {
@@ -177,66 +177,39 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .loader-bar {
-  position: absolute;
-  bottom: 15px;
-  left: 0;
-  width: 200px;
+  width: 180px;
   height: 12px;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   border-radius: 30px;
   transform: rotate(-12deg);
-  animation: barTilt 2.5s ease-in-out infinite alternate;
-  box-shadow: 0 3px 10px rgba(0, 102, 255, 0.3);
+  animation: bar-tilt 2.5s ease-in-out infinite alternate;
+  box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.3);
 }
 
-@keyframes barTilt {
-  0% { transform: rotate(-12deg); }
-  100% { transform: rotate(12deg); }
+@keyframes bar-tilt {
+  from { transform: rotate(-12deg); }
+  to { transform: rotate(12deg); }
 }
 
-@keyframes ballMove {
-  0% { 
-    left: calc(100% - 25px); 
-    transform: rotate(360deg); 
-  }
-  100% { 
-    left: -10px; 
-    transform: rotate(0deg); 
-  }
+@keyframes ball-move {
+  from { left: calc(100% - 25px); transform: rotate(360deg); }
+  to { left: calc(0% - 10px); transform: rotate(0deg); }
 }
 
 .loader-text {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--text-muted);
-  letter-spacing: 6px;
+  letter-spacing: 4px;
   text-transform: uppercase;
 }
 
-.loader-text span {
-  display: inline-block;
-  animation: textPulse 1.5s ease-in-out infinite;
-}
-
-.loader-text span:nth-child(1) { animation-delay: 0s; }
-.loader-text span:nth-child(2) { animation-delay: 0.1s; }
-.loader-text span:nth-child(3) { animation-delay: 0.2s; }
-.loader-text span:nth-child(4) { animation-delay: 0.3s; }
-.loader-text span:nth-child(5) { animation-delay: 0.4s; }
-.loader-text span:nth-child(6) { animation-delay: 0.5s; }
-.loader-text span:nth-child(7) { animation-delay: 0.6s; }
-
-@keyframes textPulse {
-  0%, 100% { opacity: 0.4; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(-3px); }
-}
-
 /* ==========================================
-   FLOATING BUTTONS (WhatsApp, Theme, Music)
+   FLOATING BUTTONS (WhatsApp, Theme, Music, Back to Top)
 ========================================== */
 .floating-buttons {
   position: fixed;
-  bottom: 100px;
+  bottom: 24px;
   right: 20px;
   display: flex;
   flex-direction: column;
@@ -253,8 +226,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   justify-content: center;
   cursor: pointer;
   transition: var(--transition);
-  box-shadow: 0 4px 20px var(--shadow);
   border: none;
+  box-shadow: 0 4px 15px var(--shadow);
 }
 
 .float-btn:hover {
@@ -287,12 +260,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .music-btn.playing {
-  animation: musicPulse 1s ease infinite;
+  animation: pulse-music 1s ease infinite;
 }
 
-@keyframes musicPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 102, 255, 0.4); }
-  50% { box-shadow: 0 0 0 10px rgba(0, 102, 255, 0); }
+@keyframes pulse-music {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(var(--primary-rgb), 0); }
 }
 
 /* Theme Toggle */
@@ -311,6 +284,21 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .theme-btn .fa-moon { display: block; }
 [data-theme="light"] .theme-btn .fa-sun { display: block; }
 [data-theme="light"] .theme-btn .fa-moon { display: none; }
+
+/* Back to Top */
+.back-top-btn {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+}
+
+.back-top-btn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
 
 /* ==========================================
    SCROLL PROGRESS
@@ -403,7 +391,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   width: 100%;
 }
 
-/* Mobile Menu Toggle - Enhanced */
+/* Enhanced Mobile Menu Toggle */
 .menu-toggle {
   display: none;
   width: 40px;
@@ -411,62 +399,47 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   position: relative;
   cursor: pointer;
   z-index: 1001;
+  border-radius: 8px;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 10px;
   align-items: center;
   justify-content: center;
 }
 
-.hamburger {
+.menu-toggle-inner {
   width: 20px;
   height: 14px;
   position: relative;
 }
 
-.hamburger span {
+.menu-toggle span {
   position: absolute;
   left: 0;
   width: 100%;
   height: 2px;
   background: var(--text-primary);
   border-radius: 2px;
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 0.3s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 
-.hamburger span:nth-child(1) { top: 0; }
-.hamburger span:nth-child(2) { top: 6px; width: 70%; }
-.hamburger span:nth-child(3) { top: 12px; }
+.menu-toggle span:nth-child(1) { top: 0; }
+.menu-toggle span:nth-child(2) { top: 6px; width: 70%; }
+.menu-toggle span:nth-child(3) { top: 12px; width: 85%; }
 
-.menu-toggle.active .hamburger span:nth-child(1) {
+.menu-toggle.active span:nth-child(1) {
   top: 6px;
   transform: rotate(45deg);
 }
 
-.menu-toggle.active .hamburger span:nth-child(2) {
+.menu-toggle.active span:nth-child(2) {
   opacity: 0;
   transform: translateX(-10px);
 }
 
-.menu-toggle.active .hamburger span:nth-child(3) {
+.menu-toggle.active span:nth-child(3) {
   top: 6px;
+  width: 100%;
   transform: rotate(-45deg);
-}
-
-/* Mobile Menu */
-.mobile-menu-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.8);
-  opacity: 0;
-  visibility: hidden;
-  transition: var(--transition);
-  z-index: 998;
-}
-
-.mobile-menu-overlay.active {
-  opacity: 1;
-  visibility: visible;
 }
 
 /* ==========================================
@@ -758,7 +731,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ==========================================
-   ABOUT SECTION - FIXED PHOTO ALIGNMENT
+   ABOUT SECTION - FIXED ALIGNMENT
 ========================================== */
 .about-container {
   display: flex;
@@ -779,12 +752,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   gap: 20px;
 }
 
-/* FIXED: Photo wrapper with proper alignment */
+/* FIXED Photo Wrapper */
 .photo-wrapper {
   position: relative;
   width: 100%;
   max-width: 280px;
-  padding: 15px 0 0 15px;
 }
 
 .photo-card {
@@ -792,7 +764,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 10px;
+  padding: 12px;
   transition: var(--transition);
   z-index: 2;
 }
@@ -809,22 +781,25 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border-radius: var(--radius-sm);
 }
 
-/* FIXED: Decoration box properly aligned behind photo */
+/* FIXED Decoration - Now properly aligned */
 .photo-decoration {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: calc(100% - 15px);
-  height: calc(100% - 15px);
+  top: 15px;
+  left: 15px;
+  width: 100%;
+  height: 100%;
   border: 2px solid var(--primary);
   border-radius: var(--radius);
   z-index: 1;
+  opacity: 0.5;
   transition: var(--transition);
+  pointer-events: none;
 }
 
 .photo-wrapper:hover .photo-decoration {
-  top: 5px;
-  left: 5px;
+  top: 10px;
+  left: 10px;
+  opacity: 0.8;
 }
 
 /* Stats Grid */
@@ -1131,7 +1106,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-bottom: 12px;
 }
 
-.exp-list { padding-left: 0; }
+.exp-list {
+  padding-left: 0;
+}
 
 .exp-list li {
   position: relative;
@@ -1164,72 +1141,70 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ==========================================
-   PROJECTS SECTION
+   PROJECTS SECTION - DESKTOP GRID & MOBILE CAROUSEL
 ========================================== */
-.projects-grid {
+.projects-desktop {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 24px;
 }
 
 /* Mobile Carousel */
-@media (max-width: 768px) {
-  .projects-wrapper {
-    position: relative;
-    overflow: hidden;
-    margin: 0 -20px;
-    padding: 0 20px;
-  }
-  
-  .projects-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    gap: 16px;
-    padding-bottom: 20px;
-  }
-  
-  .projects-grid::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .project-card {
-    flex: 0 0 85%;
-    scroll-snap-align: center;
-    min-width: 280px;
-  }
-  
-  .carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 20px;
-  }
-  
-  .carousel-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--border);
-    cursor: pointer;
-    transition: var(--transition);
-  }
-  
-  .carousel-dot.active {
-    background: var(--primary);
-    width: 24px;
-    border-radius: 4px;
-  }
+.projects-mobile {
+  display: none;
+  position: relative;
+  overflow: hidden;
 }
 
+.projects-carousel {
+  display: flex;
+  transition: transform 0.4s ease;
+  touch-action: pan-x;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+/* Carousel Dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 0;
+}
+
+.carousel-dot.active {
+  background: var(--primary);
+  transform: scale(1.2);
+}
+
+.carousel-dot:hover {
+  background: var(--primary-light);
+}
+
+/* Project Card */
 .project-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
   transition: var(--transition);
+  height: 100%;
 }
 
 .project-card:hover {
@@ -1319,8 +1294,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 11px;
   color: var(--secondary);
 }
-
-.load-more { text-align: center; margin-top: 40px; }
 
 /* ==========================================
    STATS BANNER
@@ -1519,32 +1492,6 @@ textarea.form-input { min-height: 110px; resize: vertical; }
 .footer a { color: var(--primary); }
 
 /* ==========================================
-   BACK TO TOP
-========================================== */
-.back-top {
-  position: fixed;
-  bottom: 24px;
-  right: 20px;
-  width: 44px;
-  height: 44px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 18px;
-  opacity: 0;
-  visibility: hidden;
-  transition: var(--transition);
-  z-index: 999;
-  box-shadow: 0 4px 20px rgba(var(--primary-rgb), 0.3);
-}
-
-.back-top.show { opacity: 1; visibility: visible; }
-.back-top:hover { transform: translateY(-4px); }
-
-/* ==========================================
    REVEAL ANIMATION
 ========================================== */
 .reveal {
@@ -1584,13 +1531,14 @@ textarea.form-input { min-height: 110px; resize: vertical; }
   .stats-banner-grid { grid-template-columns: repeat(2, 1fr); }
   
   .floating-buttons {
-    bottom: 80px;
     right: 16px;
+    bottom: 20px;
+    gap: 10px;
   }
   
   .float-btn {
-    width: 44px;
-    height: 44px;
+    width: 46px;
+    height: 46px;
   }
   
   .float-btn i { font-size: 18px; }
@@ -1601,22 +1549,28 @@ textarea.form-input { min-height: 110px; resize: vertical; }
   
   .nav-menu {
     position: fixed;
-    top: 0;
-    right: -100%;
-    width: 280px;
-    height: 100vh;
+    inset: 0;
     background: var(--bg-body);
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 24px;
-    padding: 40px;
-    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
-    border-left: 1px solid var(--border);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 999;
   }
   
-  .nav-menu.active { right: 0; }
-  .nav-link { font-size: 18px; }
+  .nav-menu.active { 
+    opacity: 1; 
+    visibility: visible; 
+  }
+  
+  .nav-link { 
+    font-size: 24px;
+    font-weight: 600;
+  }
+  
   .menu-toggle { display: flex; }
   
   .hero { padding: 90px 16px 50px; }
@@ -1631,33 +1585,15 @@ textarea.form-input { min-height: 110px; resize: vertical; }
   
   .info-grid { grid-template-columns: 1fr; }
   
+  /* Show mobile carousel, hide desktop grid */
+  .projects-desktop { display: none; }
+  .projects-mobile { display: block; }
+  
   .exp-card { padding: 20px; }
-  
-  .floating-buttons {
-    bottom: 70px;
-    right: 12px;
-    gap: 10px;
-  }
-  
-  .float-btn {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .float-btn i { font-size: 16px; }
 }
 
 @media (max-width: 480px) {
   .section { padding: 50px 14px; }
-  
-  .photo-wrapper {
-    padding: 10px 0 0 10px;
-  }
-  
-  .photo-decoration {
-    width: calc(100% - 10px);
-    height: calc(100% - 10px);
-  }
   
   .stats-mini { gap: 8px; }
   
@@ -1678,11 +1614,26 @@ textarea.form-input { min-height: 110px; resize: vertical; }
   
   .skills-grid { grid-template-columns: 1fr; }
   
-  .back-top {
-    width: 40px;
-    height: 40px;
+  .floating-buttons {
+    right: 12px;
     bottom: 16px;
-    right: 16px;
+    gap: 8px;
+  }
+  
+  .float-btn {
+    width: 42px;
+    height: 42px;
+  }
+  
+  .float-btn i { font-size: 16px; }
+  
+  .carousel-dots {
+    gap: 6px;
+  }
+  
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
   }
 }
 
@@ -1693,11 +1644,6 @@ textarea.form-input { min-height: 110px; resize: vertical; }
   }
   html { scroll-behavior: auto; }
 }
-
-/* Hide carousel dots on desktop */
-@media (min-width: 769px) {
-  .carousel-dots { display: none; }
-}
 </style>
 </head>
 
@@ -1705,16 +1651,14 @@ textarea.form-input { min-height: 110px; resize: vertical; }
   <!-- Scroll Progress -->
   <div class="scroll-progress" id="scrollProgress"></div>
   
-  <!-- FIXED Preloader -->
+  <!-- Preloader -->
   <div class="preloader" id="preloader">
-    <div class="loader-container">
-      <div class="loader-animation">
+    <div class="loader-wrapper">
+      <div class="loader-bar-container">
         <div class="loader-ball"></div>
         <div class="loader-bar"></div>
       </div>
-      <div class="loader-text">
-        <span>L</span><span>O</span><span>A</span><span>D</span><span>I</span><span>N</span><span>G</span>
-      </div>
+      <div class="loader-text">Loading...</div>
     </div>
   </div>
   
@@ -1730,15 +1674,15 @@ textarea.form-input { min-height: 110px; resize: vertical; }
       <i class="fas fa-moon"></i>
       <i class="fas fa-sun"></i>
     </button>
+    <a href="#home" class="float-btn back-top-btn" id="backTop" aria-label="Back to Top">
+      <i class="fas fa-arrow-up"></i>
+    </a>
   </div>
   
-  <!-- Background Music (hidden) -->
+  <!-- Background Music -->
   <audio id="bgMusic" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <source src="https://www.soundjay.com/ambient/sounds/ambient-music-1.mp3" type="audio/mpeg">
   </audio>
-  
-  <!-- Mobile Menu Overlay -->
-  <div class="mobile-menu-overlay" id="menuOverlay"></div>
   
   <!-- Navbar -->
   <nav class="navbar" id="navbar">
@@ -1753,7 +1697,7 @@ textarea.form-input { min-height: 110px; resize: vertical; }
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
       <div class="menu-toggle" id="menuToggle">
-        <div class="hamburger">
+        <div class="menu-toggle-inner">
           <span></span>
           <span></span>
           <span></span>
@@ -2045,7 +1989,7 @@ textarea.form-input { min-height: 110px; resize: vertical; }
           <ul class="exp-list">
             <li>Engineered scalable web applications using React.js, Node.js, and MongoDB</li>
             <li>Led development of client-facing dashboards improving business intelligence</li>
-            <li>Implemented RESTful API services for seamless integration</li>
+            <li>Implemented RESTful API services for seamless front-end-backend integration</li>
           </ul>
         </div>
         
@@ -2068,8 +2012,8 @@ textarea.form-input { min-height: 110px; resize: vertical; }
           <h3 class="exp-title">Technical Lead</h3>
           <p class="exp-company">Recit</p>
           <ul class="exp-list">
-            <li>Implemented API integrations, reducing manual efforts by 90%</li>
-            <li>Deployed responsive landing page boosting engagement by 25%</li>
+            <li>Implemented Google Sheets sync and API integrations</li>
+            <li>Deployed responsive landing page boosting user engagement by 25%</li>
           </ul>
         </div>
         
@@ -2081,19 +2025,6 @@ textarea.form-input { min-height: 110px; resize: vertical; }
           <p class="exp-company">Sam Infosystems</p>
           <ul class="exp-list">
             <li>Managed cloud infrastructure using Microsoft Azure</li>
-            <li>Optimized applications for performance and cost-efficiency</li>
-          </ul>
-        </div>
-        
-        <div class="exp-card reveal">
-          <div class="exp-header">
-            <span class="exp-date">Aug 2023 – Sep 2023</span>
-          </div>
-          <h3 class="exp-title">Frontend Developer</h3>
-          <p class="exp-company">SD Infra and Mep Services</p>
-          <ul class="exp-list">
-            <li>Designed user-friendly interfaces using HTML, CSS, React.js</li>
-            <li>Optimized web applications for speed and scalability</li>
           </ul>
         </div>
         
@@ -2103,548 +2034,35 @@ textarea.form-input { min-height: 110px; resize: vertical; }
             <span class="exp-badge edu">Education</span>
           </div>
           <h3 class="exp-title">B.Tech in Computer Science</h3>
-          <p class="exp-company">Vellore Institute of Technology, Vellore</p>
-          <ul class="exp-list">
-            <li>Specialization in Bioinformatics</li>
-          </ul>
+          <p class="exp-company">Vellore Institute of Technology</p>
           <span class="exp-grade">CGPA: 8.23</span>
         </div>
       </div>
     </div>
   </section>
   
-  <!-- Projects - ALL PROJECTS A-Z -->
+  <!-- Projects -->
   <section class="section" id="projects">
     <div class="container">
       <div class="section-header">
         <span class="section-label">Portfolio</span>
-        <h2 class="section-title">All Projects</h2>
-        <p class="section-subtitle">Complete collection of my work</p>
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">A selection of my recent work</p>
       </div>
       
-      <div class="projects-wrapper">
-        <div class="projects-grid" id="projectsGrid">
-          <!-- Priority Projects First -->
-          
-          <!-- SATO LIXIL -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/sato..jpg" alt="SATO LIXIL">
-              <div class="project-overlay">
-                <a href="https://sato.lixil.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">SATO – LIXIL</h3>
-              <p class="project-desc">Global website for SATO providing sanitation solutions with multilingual support.</p>
-              <div class="project-stack"><span>PHP</span><span>MySQL</span><span>JavaScript</span></div>
-            </div>
-          </div>
-          
-          <!-- Bharat Certis -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/bharatcertis.jpg" alt="Bharat Certis">
-              <div class="project-overlay">
-                <a href="https://www.bharatcertis.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Bharat Certis</h3>
-              <p class="project-desc">Corporate website for agrochemical company showcasing crop protection products.</p>
-              <div class="project-stack"><span>PHP</span><span>MySQL</span><span>JS</span></div>
-            </div>
-          </div>
-          
-          <!-- RD Overseas -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/rdoverseas.jpg" alt="RD Overseas">
-              <div class="project-overlay">
-                <a href="https://rdoverseas.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">RD Overseas</h3>
-              <p class="project-desc">High-performance eCommerce store for automotive accessories.</p>
-              <div class="project-stack"><span>Shopify</span><span>Liquid</span><span>JS</span></div>
-            </div>
-          </div>
-          
-          <!-- Vicefy -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/vicefy.jpg" alt="Vicefy">
-              <div class="project-overlay">
-                <a href="https://vicefy.store/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Vicefy</h3>
-              <p class="project-desc">Modern eCommerce website for beauty and personal care brand.</p>
-              <div class="project-stack"><span>Shopify</span><span>Liquid</span><span>CSS</span></div>
-            </div>
-          </div>
-          
-          <!-- Creative Garage -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/creativegarage.jpg" alt="Creative Garage">
-              <div class="project-overlay">
-                <a href="https://creative-garage.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Creative Garage</h3>
-              <p class="project-desc">Bold creative agency website with engaging animations.</p>
-              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JS</span></div>
-            </div>
-          </div>
-          
-          <!-- Bloom Agency -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/project7.png" alt="Bloom Agency">
-              <div class="project-overlay">
-                <a href="https://www.bloomagency.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Bloom Agency</h3>
-              <p class="project-desc">Digital marketing agency website with modern design.</p>
-              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
-            </div>
-          </div>
-          
-          <!-- Wooum -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/project6.png" alt="Wooum">
-              <div class="project-overlay">
-                <a href="https://www.wooum.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Wooum</h3>
-              <p class="project-desc">Visually appealing, user-friendly, and responsive design.</p>
-              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JS</span></div>
-            </div>
-          </div>
-          
-          <!-- 23 Consulting Services -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/project16.png" alt="23 Consulting">
-              <div class="project-overlay">
-                <a href="https://23consultingservices.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">23 Consulting Services</h3>
-              <p class="project-desc">Professional consulting platform for business growth.</p>
-              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JS</span></div>
-            </div>
-          </div>
-          
-          <!-- Amarjothi Granites -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/amarjothi.jpg" alt="Amarjothi Granites">
-              <div class="project-overlay">
-                <a href="https://amarjothigranites.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Amarjothi Granites</h3>
-              <p class="project-desc">Showcase website for natural stone and granite exporter.</p>
-              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
-            </div>
-          </div>
-          
-          <!-- Anzo Controls -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/anzocontrols.jpg" alt="Anzo Controls">
-              <div class="project-overlay">
-                <a href="https://www.anzocontrols.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Anzo Controls</h3>
-              <p class="project-desc">Corporate website for industrial automation company.</p>
-              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JS</span></div>
-            </div>
-          </div>
-          
-          <!-- Bodhi Diamonds -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/project8.png" alt="Bodhi Diamonds">
-              <div class="project-overlay">
-                <a href="https://www.bodhidiamonds.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Bodhi Diamonds</h3>
-              <p class="project-desc">Elegant jewelry platform with responsive design.</p>
-              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
-            </div>
-          </div>
-          
-          <!-- Clootrack -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/project4.png" alt="Clootrack">
-              <div class="project-overlay">
-                <a href="https://www.clootrack.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Clootrack</h3>
-              <p class="project-desc">Optimized website with enhanced performance and UX.</p>
-              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JS</span></div>
-            </div>
-          </div>
-          
-          <!-- Customer Care Service -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/project13.png" alt="Customer Care Service">
-              <div class="project-overlay">
-                <a href="https://customercareelectronicservice.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Customer Care Service</h3>
-              <p class="project-desc">User-friendly customer service platform.</p>
-              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
-            </div>
-          </div>
-          
-          <!-- Cycler -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/project1.jpg" alt="Cycler">
-              <div class="project-overlay">
-                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Cycler</h3>
-              <p class="project-desc">Web app for college students to rent, sell, or buy bicycles.</p>
-              <div class="project-stack"><span>React.js</span><span>Node.js</span><span>Bootstrap</span></div>
-            </div>
-          </div>
-          
-          <!-- Ecotonique -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/project5.png" alt="Ecotonique">
-              <div class="project-overlay">
-                <a href="https://www.ecotonique.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Ecotonique</h3>
-              <p class="project-desc">Engaging website with responsive design and functionality.</p>
-              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JS</span></div>
-            </div>
-          </div>
-          
-          <!-- Fitness Tracker -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/project2.jpg" alt="Fitness Tracker">
-              <div class="project-overlay">
-                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Fitness Tracker</h3>
-              <p class="project-desc">System to calculate stress, calories, and sleep efficiency.</p>
-              <div class="project-stack"><span>React.js</span><span>Node.js</span><span>CSS</span></div>
-            </div>
-          </div>
-          
-          <!-- Goldpot -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/project15.png" alt="Goldpot">
-              <div class="project-overlay">
-                <a href="https://goldpot.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Goldpot</h3>
-              <p class="project-desc">Digital platform for gold investment management.</p>
-              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JS</span></div>
-            </div>
-          </div>
-          
-          <!-- Haldiram's Franchise -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/project10.png" alt="Haldiram's">
-              <div class="project-overlay">
-                <a href="https://www.haldirams.store/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Haldiram's Franchise</h3>
-              <p class="project-desc">Professional franchise website with responsive design.</p>
-              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
-            </div>
-          </div>
-          
-          <!-- Hawtever -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/hawtever.jpg" alt="Hawtever">
-              <div class="project-overlay">
-                <a href="https://hawtever.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Hawtever</h3>
-              <p class="project-desc">Modern e-commerce for skincare and haircare products.</p>
-              <div class="project-stack"><span>WordPress</span><span>WooCommerce</span><span>Elementor</span></div>
-            </div>
-          </div>
-          
-          <!-- Homecare & Planners -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/homecare.jpg" alt="Homecare & Planners">
-              <div class="project-overlay">
-                <a href="https://homecareandplanners.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Homecare & Planners</h3>
-              <p class="project-desc">Professional website for hardware and construction firm.</p>
-              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
-            </div>
-          </div>
-          
-          <!-- House of Buck -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/project14.png" alt="House of Buck">
-              <div class="project-overlay">
-                <a href="https://houseofbuck.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">House of Buck</h3>
-              <p class="project-desc">Dropshipping store with seamless e-commerce functionality.</p>
-              <div class="project-stack"><span>WordPress</span><span>WooCommerce</span><span>Elementor</span></div>
-            </div>
-          </div>
-          
-          <!-- Jewellery Khazana -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/project12.png" alt="Jewellery Khazana">
-              <div class="project-overlay">
-                <a href="https://jewellerykhazana.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Jewellery Khazana</h3>
-              <p class="project-desc">Elegant platform for online jewellery shopping.</p>
-              <div class="project-stack"><span>WordPress</span><span>WooCommerce</span><span>Elementor</span></div>
-            </div>
-          </div>
-          
-          <!-- Kailasa Ink -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/kailasa.jpg" alt="Kailasa Ink">
-              <div class="project-overlay">
-                <a href="https://kailasaink.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Kailasa Ink</h3>
-              <p class="project-desc">Artistic website for spiritual ink brand inspired by mythology.</p>
-              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
-            </div>
-          </div>
-          
-          <!-- Luvialz -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/luvialz.jpg" alt="Luvialz">
-              <div class="project-overlay">
-                <a href="https://luvialz.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Luvialz</h3>
-              <p class="project-desc">Elegant eCommerce for skincare and wellness brand.</p>
-              <div class="project-stack"><span>WordPress</span><span>WooCommerce</span><span>Elementor</span></div>
-            </div>
-          </div>
-          
-          <!-- Mitaksh Radiance -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/project9.png" alt="Mitaksh Radiance">
-              <div class="project-overlay">
-                <a href="https://www.mitakshradiance.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Mitaksh Radiance</h3>
-              <p class="project-desc">Jewelry brand platform with elegant design.</p>
-              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
-            </div>
-          </div>
-          
-          <!-- OneWay Happiness -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/onewayhappiness.jpg" alt="OneWay Happiness">
-              <div class="project-overlay">
-                <a href="https://www.onewayhappiness.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">OneWay Happiness</h3>
-              <p class="project-desc">Soothing eCommerce for personal care and wellness.</p>
-              <div class="project-stack"><span>Shopify</span><span>Liquid</span><span>CSS</span></div>
-            </div>
-          </div>
-          
-          <!-- Piers St. Barth -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/pierstbarth.jpg" alt="Piers St. Barth">
-              <div class="project-overlay">
-                <a href="https://pierstbarth.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Piers St. Barth</h3>
-              <p class="project-desc">Premium fashion eCommerce for luxury clothing.</p>
-              <div class="project-stack"><span>Shopify</span><span>Liquid</span><span>JS</span></div>
-            </div>
-          </div>
-          
-          <!-- PlanYourWay -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/project3.jpg" alt="PlanYourWay">
-              <div class="project-overlay">
-                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">PlanYourWay</h3>
-              <p class="project-desc">Web application for booking tickets through agents.</p>
-              <div class="project-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-            </div>
-          </div>
-          
-          <!-- SD Infra & Mep Services -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/project11.png" alt="SD Infra">
-              <div class="project-overlay">
-                <a href="https://www.sdinframep.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">SD Infra & Mep Services</h3>
-              <p class="project-desc">Functional platform for construction services.</p>
-              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
-            </div>
-          </div>
-          
-          <!-- Souvenir Care -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/souvenircare.jpg" alt="Souvenir Care">
-              <div class="project-overlay">
-                <a href="https://souvenircare.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Souvenir Care</h3>
-              <p class="project-desc">Elegant eCommerce for beauty and wellness products.</p>
-              <div class="project-stack"><span>WordPress</span><span>WooCommerce</span><span>Elementor</span></div>
-            </div>
-          </div>
-          
-          <!-- TPS Aerospace -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/tpsaerospace.jpg" alt="TPS Aerospace">
-              <div class="project-overlay">
-                <a href="https://tpsaerospace.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">TPS Aerospace</h3>
-              <p class="project-desc">Corporate website for MRO aviation company.</p>
-              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>JS</span></div>
-            </div>
-          </div>
-          
-          <!-- Trademark Dekho -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/trademarkdekho.jpg" alt="Trademark Dekho">
-              <div class="project-overlay">
-                <a href="https://trademarkdekho.in/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Trademark Dekho</h3>
-              <p class="project-desc">Legal consultancy for trademark registration services.</p>
-              <div class="project-stack"><span>WordPress</span><span>Elementor</span><span>CSS</span></div>
-            </div>
-          </div>
-          
-          <!-- Trudiance -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/trudiance.jpg" alt="Trudiance">
-              <div class="project-overlay">
-                <a href="https://trudiance.com/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Trudiance</h3>
-              <p class="project-desc">Clean beauty eCommerce focused on skin-positive messaging.</p>
-              <div class="project-stack"><span>WordPress</span><span>WooCommerce</span><span>Elementor</span></div>
-            </div>
-          </div>
-          
-          <!-- AI Drug Discovery -->
-          <div class="project-card reveal">
-            <div class="project-img">
-              <img src="images/project17.jpeg" alt="AI Drug Discovery">
-              <div class="project-overlay">
-                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">AI Drug Discovery</h3>
-              <p class="project-desc">Research project using AI for drug discovery and screening.</p>
-              <div class="project-stack"><span>Python</span><span>TensorFlow</span><span>PyTorch</span></div>
-            </div>
-          </div>
+      <!-- Desktop Grid -->
+      <div class="projects-desktop" id="projectsDesktop">
+        <!-- Projects will be inserted by JavaScript -->
+      </div>
+      
+      <!-- Mobile Carousel -->
+      <div class="projects-mobile" id="projectsMobile">
+        <div class="projects-carousel" id="projectsCarousel">
+          <!-- Projects will be inserted by JavaScript -->
         </div>
-        
-        <!-- Carousel Dots for Mobile -->
-        <div class="carousel-dots" id="carouselDots"></div>
-      </div>
-      
-      <div class="load-more reveal">
-        <a href="https://github.com/akshitravula" target="_blank" rel="noopener" class="btn btn-outline">
-          <i class="fab fa-github"></i> View on GitHub
-        </a>
+        <div class="carousel-dots" id="carouselDots">
+          <!-- Dots will be inserted by JavaScript -->
+        </div>
       </div>
     </div>
   </section>
@@ -2653,7 +2071,7 @@ textarea.form-input { min-height: 110px; resize: vertical; }
   <section class="stats-banner">
     <div class="stats-banner-grid">
       <div class="stats-banner-item reveal">
-        <div class="num" data-count="35">0</div>
+        <div class="num" data-count="30">0</div>
         <div class="label">Projects</div>
       </div>
       <div class="stats-banner-item reveal delay-1">
@@ -2683,7 +2101,10 @@ textarea.form-input { min-height: 110px; resize: vertical; }
       <div class="contact-grid">
         <div class="contact-info reveal">
           <h3>Let's Connect</h3>
-          <p>I'm always excited about new projects and opportunities. Let's talk!</p>
+          <p>
+            I'm always excited about new projects and opportunities. 
+            Whether you need a developer or have an interesting project—let's talk!
+          </p>
           
           <div class="contact-list">
             <div class="contact-item">
@@ -2710,14 +2131,44 @@ textarea.form-input { min-height: 110px; resize: vertical; }
           </div>
           
           <div class="social-row">
-            <a href="https://www.linkedin.com/in/akshit-ravula/" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://github.com/akshitravula" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
-            <a href="https://x.com/AkshitRAVULA1" target="_blank" class="social-btn"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.instagram.com/theakshitravula" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/akshit-ravula/" target="_blank" rel="noopener" class="social-btn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/akshitravula" target="_blank" rel="noopener" class="social-btn">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://x.com/AkshitRAVULA1" target="_blank" rel="noopener" class="social-btn">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com/theakshitravula" target="_blank" rel="noopener" class="social-btn">
+              <i class="fab fa-instagram"></i>
+            </a>
           </div>
         </div>
         
-       
+        <div class="contact-form reveal delay-1">
+          <form id="contactForm">
+            <div class="form-row">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" class="form-input" placeholder="John Doe" required>
+            </div>
+            <div class="form-row">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" class="form-input" placeholder="john@example.com" required>
+            </div>
+            <div class="form-row">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" class="form-input" placeholder="Project Inquiry">
+            </div>
+            <div class="form-row">
+              <label for="message">Message</label>
+              <textarea id="message" class="form-input" placeholder="Tell me about your project..." required></textarea>
+            </div>
+            <button type="submit" class="form-btn">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -2726,69 +2177,167 @@ textarea.form-input { min-height: 110px; resize: vertical; }
   <footer class="footer">
     <p>© 2025 <a href="#">Akshit Ravula</a>. Built with ❤️</p>
   </footer>
-  
-  <!-- Back to Top -->
-  <a href="#home" class="back-top" id="backTop"><i class="fas fa-arrow-up"></i></a>
 
   <script>
-  // IMMEDIATELY hide preloader after short delay - NO dependencies
-  (function() {
-    var preloader = document.getElementById('preloader');
+  // ==========================================
+  // ALL PROJECTS DATA (Ordered: Featured first, then A-Z)
+  // ==========================================
+  const allProjects = [
+    // Featured Projects First
+    { title: "SATO – LIXIL", img: "images/sato..jpg", url: "https://sato.lixil.com/", desc: "Global sanitation solutions with multilingual support.", stack: ["PHP", "MySQL", "JS"] },
+    { title: "Bharat Certis", img: "images/bharatcertis.jpg", url: "https://www.bharatcertis.com/", desc: "Corporate website for agrochemical company.", stack: ["PHP", "MySQL", "JS"] },
+    { title: "RD Overseas", img: "images/rdoverseas.jpg", url: "https://rdoverseas.in/", desc: "eCommerce store for automotive accessories.", stack: ["Shopify", "Liquid", "JS"] },
+    { title: "Vicefy", img: "images/vicefy.jpg", url: "https://vicefy.store/", desc: "Modern eCommerce for beauty and personal care.", stack: ["Shopify", "Liquid", "CSS"] },
+    { title: "Creative Garage", img: "images/creativegarage.jpg", url: "https://creative-garage.in/", desc: "Creative agency with bold design.", stack: ["WordPress", "JS", "CSS"] },
+    { title: "Bloom Agency", img: "images/project7.png", url: "https://www.bloomagency.in/", desc: "Digital agency website with modern UX.", stack: ["WordPress", "JS", "CSS"] },
+    { title: "Wooum", img: "images/project6.png", url: "https://www.wooum.com/", desc: "Visually appealing responsive design.", stack: ["WordPress", "JS", "CSS"] },
+    // Rest A-Z
+    { title: "23 Consulting Services", img: "images/project16.png", url: "https://23consultingservices.com/", desc: "Professional consulting platform.", stack: ["WordPress", "JS"] },
+    { title: "Amarjothi Granites", img: "images/amarjothi.jpg", url: "https://amarjothigranites.com/", desc: "Natural stone and granite exporter.", stack: ["WordPress", "CSS"] },
+    { title: "Anzo Controls", img: "images/anzocontrols.jpg", url: "https://www.anzocontrols.com/", desc: "Industrial automation solutions.", stack: ["WordPress", "JS"] },
+    { title: "Bodhi Diamonds", img: "images/project8.png", url: "https://www.bodhidiamonds.in/", desc: "Elegant jewelry platform.", stack: ["WordPress", "CSS"] },
+    { title: "Clootrack", img: "images/project4.png", url: "https://www.clootrack.com/", desc: "Optimized website with enhanced UX.", stack: ["WordPress", "JS"] },
+    { title: "Customer Care Service", img: "images/project13.png", url: "https://customercareelectronicservice.in/", desc: "Customer care service brand.", stack: ["WordPress", "CSS"] },
+    { title: "Cycler", img: "images/project1.jpg", url: "#", desc: "Bicycle rental platform for students.", stack: ["React", "Node.js"] },
+    { title: "Ecotonique", img: "images/project5.png", url: "https://www.ecotonique.in/", desc: "Engaging user experience design.", stack: ["WordPress", "JS"] },
+    { title: "Fitness Tracker", img: "images/project2.jpg", url: "#", desc: "Tracks stress, calories, sleep.", stack: ["React", "Node.js"] },
+    { title: "Goldpot", img: "images/project15.png", url: "https://goldpot.in/", desc: "Digital gold investment platform.", stack: ["WordPress", "JS"] },
+    { title: "Haldiram's Franchise", img: "images/project10.png", url: "https://www.haldirams.store/", desc: "Professional franchise website.", stack: ["WordPress", "CSS"] },
+    { title: "Hawtever", img: "images/hawtever.jpg", url: "https://hawtever.com/", desc: "Bold skincare and haircare brand.", stack: ["WordPress", "CSS"] },
+    { title: "Homecare & Planners", img: "images/homecare.jpg", url: "https://homecareandplanners.com/", desc: "Property consultation services.", stack: ["WordPress", "JS"] },
+    { title: "House of Buck", img: "images/project14.png", url: "https://houseofbuck.in/", desc: "Dropshipping store with modern UI.", stack: ["WordPress", "CSS"] },
+    { title: "Jewellery Khazana", img: "images/project12.png", url: "https://jewellerykhazana.com/", desc: "Elegant online jewellery platform.", stack: ["WordPress", "JS"] },
+    { title: "Kailasa Ink", img: "images/kailasa.jpg", url: "https://kailasaink.com/", desc: "Spiritual ink brand with mythology.", stack: ["WordPress", "CSS"] },
+    { title: "Luvialz", img: "images/luvialz.jpg", url: "https://luvialz.com/", desc: "Luxury skincare and wellness.", stack: ["WordPress", "WooCommerce"] },
+    { title: "Mitaksh Radiance", img: "images/project9.png", url: "https://www.mitakshradiance.in/", desc: "Jewelry brand with elegant design.", stack: ["WordPress", "CSS"] },
+    { title: "OneWay Happiness", img: "images/onewayhappiness.jpg", url: "https://www.onewayhappiness.com/", desc: "Personal care and wellness brand.", stack: ["Shopify", "Liquid"] },
+    { title: "Piers St. Barth", img: "images/pierstbarth.jpg", url: "https://pierstbarth.com/", desc: "Premium luxury fashion brand.", stack: ["Shopify", "Liquid"] },
+    { title: "PlanYourWay", img: "images/project3.jpg", url: "#", desc: "Ticket booking web application.", stack: ["HTML", "CSS", "JS"] },
+    { title: "SD Infra & Mep", img: "images/project11.png", url: "https://www.sdinframep.in/", desc: "Industry-focused platform.", stack: ["WordPress", "CSS"] },
+    { title: "Souvenir Care", img: "images/souvenircare.jpg", url: "https://souvenircare.com/", desc: "Beauty and wellness eCommerce.", stack: ["WordPress", "WooCommerce"] },
+    { title: "Trademark Dekho", img: "images/trademarkdekho.jpg", url: "https://trademarkdekho.in/", desc: "Legal consultancy for trademarks.", stack: ["WordPress", "JS"] },
+    { title: "TPS Aerospace", img: "images/tpsaerospace.jpg", url: "https://tpsaerospace.com/", desc: "MRO aviation company website.", stack: ["WordPress", "CSS"] },
+    { title: "Trudiance", img: "images/trudiance.jpg", url: "https://trudiance.com/", desc: "Clean beauty skincare brand.", stack: ["WordPress", "WooCommerce"] },
+    { title: "AI Drug Discovery", img: "images/project17.jpeg", url: "#", desc: "AI-powered drug discovery research.", stack: ["Python", "TensorFlow"] }
+  ];
+
+  // ==========================================
+  // RENDER PROJECTS
+  // ==========================================
+  function renderProjects() {
+    const desktopContainer = document.getElementById('projectsDesktop');
+    const carouselContainer = document.getElementById('projectsCarousel');
+    const dotsContainer = document.getElementById('carouselDots');
     
-    // Hide after 2 seconds no matter what
-    setTimeout(function() {
-      if (preloader) {
-        preloader.classList.add('loaded');
-      }
-    }, 2000);
+    let desktopHTML = '';
+    let carouselHTML = '';
+    let dotsHTML = '';
     
-    // Also try on window load
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        if (preloader) {
-          preloader.classList.add('loaded');
-        }
-      }, 500);
+    allProjects.forEach((project, index) => {
+      const cardHTML = `
+        <div class="project-card reveal ${index < 3 ? 'delay-' + (index + 1) : ''}">
+          <div class="project-img">
+            <img src="${project.img}" alt="${project.title}" loading="lazy">
+            <div class="project-overlay">
+              <a href="${project.url}" target="_blank" rel="noopener" class="project-link">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">${project.title}</h3>
+            <p class="project-desc">${project.desc}</p>
+            <div class="project-stack">
+              ${project.stack.map(s => `<span>${s}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+      
+      desktopHTML += cardHTML;
+      carouselHTML += `<div class="carousel-slide">${cardHTML}</div>`;
+      dotsHTML += `<button class="carousel-dot ${index === 0 ? 'active' : ''}" data-index="${index}"></button>`;
     });
-  })();
-  
-  // Main script
+    
+    desktopContainer.innerHTML = desktopHTML;
+    carouselContainer.innerHTML = carouselHTML;
+    dotsContainer.innerHTML = dotsHTML;
+  }
+
+  // ==========================================
+  // MAIN SCRIPT
+  // ==========================================
   document.addEventListener('DOMContentLoaded', function() {
     
-    // Theme Toggle
-    var themeToggle = document.getElementById('themeToggle');
-    var html = document.documentElement;
-    var savedTheme = localStorage.getItem('theme') || 'dark';
+    // Render projects
+    renderProjects();
+    
+    // ========== PRELOADER - FIXED ==========
+    const preloader = document.getElementById('preloader');
+    
+    function hidePreloader() {
+      preloader.classList.add('loaded');
+    }
+    
+    // Hide after load
+    if (document.readyState === 'complete') {
+      setTimeout(hidePreloader, 1200);
+    } else {
+      window.addEventListener('load', function() {
+        setTimeout(hidePreloader, 1200);
+      });
+    }
+    
+    // Fallback - always hide after 3 seconds
+    setTimeout(hidePreloader, 3000);
+    
+    // ========== THEME TOGGLE ==========
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     html.setAttribute('data-theme', savedTheme);
     
     themeToggle.addEventListener('click', function() {
-      var current = html.getAttribute('data-theme');
-      var next = current === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
+      const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
     });
     
-    // Scroll Progress
-    window.addEventListener('scroll', function() {
-      var scrollTop = document.documentElement.scrollTop;
-      var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      var progress = (scrollTop / scrollHeight) * 100;
-      document.getElementById('scrollProgress').style.width = progress + '%';
-    });
+    // ========== MUSIC TOGGLE ==========
+    const musicBtn = document.getElementById('musicBtn');
+    const bgMusic = document.getElementById('bgMusic');
+    let isPlaying = false;
     
-    // Navbar
-    var navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
+    musicBtn.addEventListener('click', function() {
+      if (isPlaying) {
+        bgMusic.pause();
+        musicBtn.classList.remove('playing');
       } else {
-        navbar.classList.remove('scrolled');
+        bgMusic.play().catch(() => {});
+        musicBtn.classList.add('playing');
       }
+      isPlaying = !isPlaying;
     });
     
-    // Mobile Menu
-    var menuToggle = document.getElementById('menuToggle');
-    var navMenu = document.getElementById('navMenu');
+    // ========== SCROLL PROGRESS ==========
+    const scrollProgress = document.getElementById('scrollProgress');
+    
+    window.addEventListener('scroll', function() {
+      const scrollTop = document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      scrollProgress.style.width = (scrollTop / scrollHeight) * 100 + '%';
+    });
+    
+    // ========== NAVBAR ==========
+    const navbar = document.getElementById('navbar');
+    
+    window.addEventListener('scroll', function() {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+    
+    // ========== MOBILE MENU ==========
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
     
     menuToggle.addEventListener('click', function() {
       menuToggle.classList.toggle('active');
@@ -2802,86 +2351,62 @@ textarea.form-input { min-height: 110px; resize: vertical; }
       });
     });
     
-    // Active Nav
-    var sections = document.querySelectorAll('section[id]');
+    // ========== ACTIVE NAV LINK ==========
+    const sections = document.querySelectorAll('section[id]');
+    
     window.addEventListener('scroll', function() {
-      var current = '';
+      let current = '';
       sections.forEach(function(section) {
         if (window.scrollY >= section.offsetTop - 200) {
           current = section.getAttribute('id');
         }
       });
+      
       document.querySelectorAll('.nav-link').forEach(function(link) {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) {
-          link.classList.add('active');
-        }
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
       });
     });
     
-     // ========== BACK TO TOP ==========
+    // ========== BACK TO TOP ==========
     const backTop = document.getElementById('backTop');
     
     window.addEventListener('scroll', function() {
-      if (window.scrollY > 400) {
-        backTop.classList.add('show');
-      } else {
-        backTop.classList.remove('show');
-      }
+      backTop.classList.toggle('show', window.scrollY > 400);
     });
     
     // ========== TYPEWRITER ==========
-    const typewriterTexts = [
-      'Full Stack Developer',
-      'Cloud Engineer',
-      'React.js Developer',
-      'Problem Solver'
-    ];
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
+    const typewriterTexts = ['Full Stack Developer', 'Cloud Engineer', 'React.js Developer', 'Problem Solver'];
+    let textIndex = 0, charIndex = 0, isDeleting = false;
     const typewriterElement = document.getElementById('typewriter');
     
     function typeWriter() {
       if (!typewriterElement) return;
-      
       const currentText = typewriterTexts[textIndex];
       
-      if (isDeleting) {
-        typewriterElement.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-      } else {
-        typewriterElement.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
-      }
+      typewriterElement.textContent = currentText.substring(0, isDeleting ? --charIndex : ++charIndex);
       
-      let typeSpeed = isDeleting ? 40 : 80;
+      let speed = isDeleting ? 40 : 80;
       
       if (!isDeleting && charIndex === currentText.length) {
-        typeSpeed = 2000;
+        speed = 2000;
         isDeleting = true;
       } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         textIndex = (textIndex + 1) % typewriterTexts.length;
-        typeSpeed = 400;
+        speed = 400;
       }
       
-      setTimeout(typeWriter, typeSpeed);
+      setTimeout(typeWriter, speed);
     }
-    
     typeWriter();
     
     // ========== REVEAL ON SCROLL ==========
     const reveals = document.querySelectorAll('.reveal');
     
     function revealOnScroll() {
-      reveals.forEach(function(reveal) {
-        const windowHeight = window.innerHeight;
-        const revealTop = reveal.getBoundingClientRect().top;
-        const revealPoint = 100;
-        
-        if (revealTop < windowHeight - revealPoint) {
-          reveal.classList.add('active');
+      reveals.forEach(function(el) {
+        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+          el.classList.add('active');
         }
       });
     }
@@ -2894,11 +2419,9 @@ textarea.form-input { min-height: 110px; resize: vertical; }
     
     function animateSkills() {
       skillBars.forEach(function(bar) {
-        const width = bar.getAttribute('data-width');
         const rect = bar.getBoundingClientRect();
-        
         if (rect.top < window.innerHeight && rect.bottom >= 0) {
-          bar.style.width = width + '%';
+          bar.style.width = bar.getAttribute('data-width') + '%';
         }
       });
     }
@@ -2912,42 +2435,94 @@ textarea.form-input { min-height: 110px; resize: vertical; }
     function animateCounters() {
       counters.forEach(function(counter) {
         const rect = counter.getBoundingClientRect();
-        
-        if (rect.top < window.innerHeight && rect.bottom >= 0 && !counter.classList.contains('counted')) {
+        if (rect.top < window.innerHeight && !counter.classList.contains('counted')) {
           counter.classList.add('counted');
           const target = parseInt(counter.getAttribute('data-count'));
           let count = 0;
           const increment = Math.ceil(target / 30);
           
-          function updateCount() {
-            if (count < target) {
-              count += increment;
-              if (count > target) count = target;
-              counter.textContent = count + '+';
-              setTimeout(updateCount, 40);
-            } else {
-              counter.textContent = target + '+';
-            }
+          function update() {
+            count = Math.min(count + increment, target);
+            counter.textContent = count + '+';
+            if (count < target) setTimeout(update, 40);
           }
-          
-          updateCount();
+          update();
         }
       });
     }
     
     window.addEventListener('scroll', animateCounters);
     animateCounters();
-     // ========== SMOOTH SCROLL ==========
+    
+    // ========== MOBILE CAROUSEL ==========
+    const carousel = document.getElementById('projectsCarousel');
+    const dots = document.querySelectorAll('.carousel-dot');
+    let currentSlide = 0;
+    let startX = 0;
+    let isDragging = false;
+    
+    function goToSlide(index) {
+      currentSlide = Math.max(0, Math.min(index, allProjects.length - 1));
+      carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+      
+      document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+    }
+    
+    // Touch events
+    carousel.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    });
+    
+    carousel.addEventListener('touchmove', function(e) {
+      if (!isDragging) return;
+    });
+    
+    carousel.addEventListener('touchend', function(e) {
+      if (!isDragging) return;
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+      
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          goToSlide(currentSlide + 1);
+        } else {
+          goToSlide(currentSlide - 1);
+        }
+      }
+      isDragging = false;
+    });
+    
+    // Dot clicks
+    document.getElementById('carouselDots').addEventListener('click', function(e) {
+      if (e.target.classList.contains('carousel-dot')) {
+        goToSlide(parseInt(e.target.getAttribute('data-index')));
+      }
+    });
+    
+    // ========== CONTACT FORM ==========
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+      
+      const whatsappMessage = `Hi, I'm ${name}!\n\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`;
+      window.open('https://wa.me/917045538721?text=' + encodeURIComponent(whatsappMessage), '_blank');
+      this.reset();
+    });
+    
+    // ========== SMOOTH SCROLL ==========
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          const offsetTop = target.offsetTop - 80;
-          window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
-          });
+          window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
         }
       });
     });
