@@ -10,7 +10,7 @@
   <meta name="description" content="Akshit Ravula - Full Stack Developer & Cloud Engineer Portfolio">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
@@ -42,6 +42,8 @@
   --navbar-height: 70px;
   --safe-area-top: env(safe-area-inset-top, 0px);
   --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  
+  --font-main: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* Dark Theme */
@@ -92,7 +94,7 @@
 }
 
 /* ==========================================
-   RESET & BASE
+   RESET & BASE - PREVENT HORIZONTAL SCROLL
 ========================================== */
 *, *::before, *::after {
   margin: 0;
@@ -105,10 +107,11 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--navbar-height) + 20px);
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: var(--font-main);
   background: var(--neu-bg);
   color: var(--text-secondary);
   line-height: 1.6;
@@ -118,6 +121,9 @@ body {
   min-height: 100dvh;
   padding-top: var(--safe-area-top);
   padding-bottom: var(--safe-area-bottom);
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
 }
 
 body.menu-open {
@@ -125,6 +131,14 @@ body.menu-open {
   position: fixed;
   width: 100%;
   height: 100%;
+}
+
+/* Wrapper to prevent overflow */
+.page-wrapper {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
 }
 
 ::selection {
@@ -163,7 +177,8 @@ button {
 }
 
 input, textarea {
-  font-size: 16px; /* Prevents iOS zoom */
+  font-size: 16px;
+  font-family: var(--font-main);
 }
 
 .container {
@@ -200,6 +215,8 @@ input, textarea {
   align-items: center;
   gap: 24px;
   padding: 20px;
+  width: 100%;
+  max-width: 300px;
 }
 
 .loader-character {
@@ -241,7 +258,8 @@ input, textarea {
 }
 
 .loader-bar-wrapper {
-  width: min(260px, 80vw);
+  width: 100%;
+  max-width: 260px;
   padding: 6px;
   background: var(--neu-bg);
   border-radius: 50px;
@@ -273,7 +291,7 @@ input, textarea {
 }
 
 .loader-text {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: 12px;
   font-weight: 600;
   color: var(--primary);
@@ -284,7 +302,6 @@ input, textarea {
 .loader-tip {
   font-size: 12px;
   color: var(--text-muted);
-  max-width: 280px;
   text-align: center;
   font-style: italic;
   padding: 0 20px;
@@ -340,23 +357,18 @@ input, textarea {
 }
 
 .player-name {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 12px;
+  font-family: var(--font-main);
+  font-size: 13px;
   font-weight: 700;
   color: var(--text-primary);
   white-space: nowrap;
 }
 
 .player-class {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--primary);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-weight: 500;
   white-space: nowrap;
-}
-
-.player-bars {
-  display: none;
 }
 
 /* HUD Center - Navigation */
@@ -383,8 +395,8 @@ input, textarea {
   background: var(--neu-bg);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-neu-sm);
-  font-family: 'Orbitron', sans-serif;
-  font-size: 10px;
+  font-family: var(--font-main);
+  font-size: 11px;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -613,21 +625,29 @@ input, textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: calc(var(--navbar-height) + var(--safe-area-top) + 30px) 16px calc(50px + var(--safe-area-bottom));
+  padding: calc(var(--navbar-height) + var(--safe-area-top) + 30px) 20px calc(50px + var(--safe-area-bottom));
   position: relative;
   overflow: hidden;
 }
 
 .hero-bg {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: -1;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .hero-particles {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .particle {
@@ -647,7 +667,10 @@ input, textarea {
 
 .hero-grid {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-image: 
     linear-gradient(rgba(var(--primary-rgb), 0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(var(--primary-rgb), 0.02) 1px, transparent 1px);
@@ -657,22 +680,25 @@ input, textarea {
 
 .hero-glow {
   position: absolute;
-  width: 400px;
-  height: 400px;
   border-radius: 50%;
   filter: blur(120px);
   opacity: 0.25;
+  pointer-events: none;
 }
 
 .hero-glow-1 {
-  top: -150px;
-  right: -150px;
+  width: 300px;
+  height: 300px;
+  top: -100px;
+  right: -100px;
   background: var(--primary);
 }
 
 .hero-glow-2 {
-  bottom: -150px;
-  left: -150px;
+  width: 300px;
+  height: 300px;
+  bottom: -100px;
+  left: -100px;
   background: var(--secondary);
 }
 
@@ -687,6 +713,7 @@ input, textarea {
 
 .hero-left {
   flex: 1;
+  min-width: 0;
 }
 
 .hero-right {
@@ -720,7 +747,7 @@ input, textarea {
   padding: 5px 12px;
   background: linear-gradient(135deg, var(--legendary), #c084fc);
   border-radius: 20px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: 9px;
   font-weight: 700;
   color: white;
@@ -768,7 +795,7 @@ input, textarea {
 .character-name {
   text-align: center;
   margin-top: 16px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: 18px;
   font-weight: 700;
   color: var(--text-primary);
@@ -779,6 +806,7 @@ input, textarea {
   font-size: 13px;
   color: var(--primary);
   margin-top: 4px;
+  font-weight: 500;
 }
 
 .character-stats {
@@ -797,9 +825,9 @@ input, textarea {
 }
 
 .char-stat-value {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 800;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -812,6 +840,7 @@ input, textarea {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-top: 4px;
+  font-weight: 600;
 }
 
 /* Hero Text */
@@ -823,7 +852,7 @@ input, textarea {
   background: var(--neu-bg);
   border-radius: 50px;
   box-shadow: var(--shadow-neu-sm);
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: 11px;
   font-weight: 600;
   color: var(--stamina-green);
@@ -846,10 +875,10 @@ input, textarea {
 }
 
 .hero-title {
-  font-family: 'Orbitron', sans-serif;
-  font-size: clamp(28px, 6vw, 52px);
-  font-weight: 900;
-  line-height: 1.15;
+  font-family: var(--font-main);
+  font-size: clamp(28px, 6vw, 48px);
+  font-weight: 800;
+  line-height: 1.2;
   color: var(--text-primary);
   margin-bottom: 14px;
   animation: fadeInUp 0.6s ease 0.1s forwards;
@@ -874,15 +903,18 @@ input, textarea {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: clamp(14px, 3vw, 20px);
+  font-size: clamp(14px, 3vw, 18px);
   margin-bottom: 20px;
-  min-height: 30px;
+  min-height: 28px;
   animation: fadeInUp 0.6s ease 0.2s forwards;
   opacity: 0;
   flex-wrap: wrap;
 }
 
-.typewriter-wrapper .static { color: var(--text-muted); }
+.typewriter-wrapper .static { 
+  color: var(--text-muted);
+  font-weight: 500;
+}
 
 .typewriter-text { 
   color: var(--primary); 
@@ -929,11 +961,11 @@ input, textarea {
   background: var(--neu-bg);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-neu);
-  font-family: 'Orbitron', sans-serif;
-  font-size: 12px;
+  font-family: var(--font-main);
+  font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   color: var(--text-primary);
   transition: var(--transition);
   position: relative;
@@ -979,8 +1011,9 @@ input, textarea {
    SECTIONS
 ========================================== */
 .section {
-  padding: 80px 16px;
+  padding: 80px 20px;
   position: relative;
+  overflow: hidden;
 }
 
 .section-header {
@@ -1008,17 +1041,17 @@ input, textarea {
   background: var(--neu-bg);
   border-radius: 50px;
   box-shadow: var(--shadow-neu-sm);
-  font-family: 'Orbitron', sans-serif;
-  font-size: 10px;
+  font-family: var(--font-main);
+  font-size: 11px;
   font-weight: 600;
   color: var(--primary);
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   margin-bottom: 14px;
 }
 
 .section-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: clamp(24px, 5vw, 36px);
   font-weight: 800;
   color: var(--text-primary);
@@ -1072,16 +1105,17 @@ input, textarea {
 }
 
 .player-card-name {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: 18px;
   font-weight: 700;
   color: var(--text-primary);
 }
 
 .player-card-class {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--primary);
   margin-top: 4px;
+  font-weight: 500;
 }
 
 .attributes-section {
@@ -1089,8 +1123,9 @@ input, textarea {
 }
 
 .attribute-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: 11px;
+  font-weight: 600;
   color: var(--text-muted);
   margin-bottom: 14px;
   text-transform: uppercase;
@@ -1133,11 +1168,13 @@ input, textarea {
 .attribute-name {
   font-size: 12px;
   color: var(--text-secondary);
+  font-weight: 500;
 }
 
 .attribute-value {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: 11px;
+  font-weight: 600;
   color: var(--primary);
 }
 
@@ -1178,9 +1215,9 @@ input, textarea {
 }
 
 .quick-stat-value {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 800;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1193,6 +1230,7 @@ input, textarea {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-top: 4px;
+  font-weight: 600;
 }
 
 .bio-section {
@@ -1209,7 +1247,7 @@ input, textarea {
 }
 
 .bio-card h3 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: 18px;
   font-weight: 700;
   color: var(--text-primary);
@@ -1268,12 +1306,14 @@ input, textarea {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 2px;
+  font-weight: 600;
 }
 
 .info-item-text p {
   font-size: 13px;
   color: var(--text-secondary);
   margin: 0;
+  font-weight: 500;
 }
 
 /* ==========================================
@@ -1326,7 +1366,7 @@ input, textarea {
 }
 
 .skill-tree-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: 16px;
   font-weight: 700;
   color: var(--text-primary);
@@ -1336,6 +1376,7 @@ input, textarea {
   font-size: 11px;
   color: var(--xp-gold);
   margin-top: 2px;
+  font-weight: 600;
 }
 
 .skill-item {
@@ -1357,6 +1398,7 @@ input, textarea {
   display: flex;
   align-items: center;
   gap: 6px;
+  font-weight: 500;
 }
 
 .skill-name i {
@@ -1365,8 +1407,9 @@ input, textarea {
 }
 
 .skill-level {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: 11px;
+  font-weight: 600;
   color: var(--primary);
 }
 
@@ -1409,8 +1452,8 @@ input, textarea {
   background: var(--neu-bg);
   border-radius: 50px;
   box-shadow: var(--shadow-neu-sm);
-  font-family: 'Orbitron', sans-serif;
-  font-size: 11px;
+  font-family: var(--font-main);
+  font-size: 12px;
   font-weight: 500;
   color: var(--text-secondary);
   transition: var(--transition);
@@ -1474,8 +1517,8 @@ input, textarea {
   background: var(--neu-bg);
   border-radius: 20px;
   box-shadow: var(--shadow-neu-inset);
-  font-family: 'Orbitron', sans-serif;
-  font-size: 10px;
+  font-family: var(--font-main);
+  font-size: 11px;
   font-weight: 600;
   color: var(--primary);
 }
@@ -1483,8 +1526,8 @@ input, textarea {
 .quest-status {
   padding: 5px 12px;
   border-radius: 20px;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 9px;
+  font-family: var(--font-main);
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1508,7 +1551,7 @@ input, textarea {
 }
 
 .quest-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: 16px;
   font-weight: 700;
   color: var(--text-primary);
@@ -1522,6 +1565,7 @@ input, textarea {
   display: flex;
   align-items: center;
   gap: 6px;
+  font-weight: 500;
 }
 
 .quest-location i { font-size: 11px; }
@@ -1567,7 +1611,7 @@ input, textarea {
   background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 149, 0, 0.1));
   border-radius: 20px;
   margin-top: 14px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: 11px;
   font-weight: 600;
   color: var(--xp-gold);
@@ -1587,16 +1631,20 @@ input, textarea {
 .inventory-mobile {
   display: none;
   position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
 .inventory-carousel {
   display: flex;
   transition: transform 0.4s ease;
   touch-action: pan-x;
+  width: 100%;
 }
 
 .inventory-slide {
   min-width: 100%;
+  flex-shrink: 0;
   padding: 0 8px;
   box-sizing: border-box;
 }
@@ -1655,8 +1703,8 @@ input, textarea {
   left: 12px;
   padding: 5px 10px;
   border-radius: 20px;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 8px;
+  font-family: var(--font-main);
+  font-size: 9px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1715,8 +1763,8 @@ input, textarea {
 }
 
 .inventory-item-title {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 14px;
+  font-family: var(--font-main);
+  font-size: 15px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 8px;
@@ -1746,7 +1794,7 @@ input, textarea {
   box-shadow: var(--shadow-neu-inset);
   font-size: 10px;
   color: var(--primary);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* ==========================================
@@ -1754,7 +1802,7 @@ input, textarea {
 ========================================== */
 .achievements-banner {
   background: linear-gradient(135deg, var(--neu-bg-dark), var(--neu-bg));
-  padding: 50px 16px;
+  padding: 50px 20px;
   position: relative;
   overflow: hidden;
 }
@@ -1813,7 +1861,7 @@ input, textarea {
 }
 
 .achievement-value {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: clamp(28px, 5vw, 42px);
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -1823,8 +1871,9 @@ input, textarea {
 }
 
 .achievement-label {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: 11px;
+  font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -1848,7 +1897,7 @@ input, textarea {
 }
 
 .contact-info-card h3 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: 20px;
   font-weight: 700;
   color: var(--text-primary);
@@ -1901,6 +1950,7 @@ input, textarea {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 3px;
+  font-weight: 600;
 }
 
 .contact-item-text p,
@@ -1909,6 +1959,7 @@ input, textarea {
   color: var(--text-secondary);
   margin: 0;
   word-break: break-word;
+  font-weight: 500;
 }
 
 .social-links {
@@ -1948,12 +1999,12 @@ input, textarea {
 
 .form-row label {
   display: block;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 10px;
+  font-family: var(--font-main);
+  font-size: 11px;
   font-weight: 600;
   color: var(--text-secondary);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   margin-bottom: 8px;
 }
 
@@ -1966,7 +2017,7 @@ input, textarea {
   box-shadow: var(--shadow-neu-inset);
   color: var(--text-primary);
   font-size: 16px;
-  font-family: inherit;
+  font-family: var(--font-main);
   transition: var(--transition);
   -webkit-appearance: none;
   appearance: none;
@@ -1994,11 +2045,11 @@ textarea.form-input {
   border-radius: var(--radius-sm);
   box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.4);
   color: white;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 13px;
+  font-family: var(--font-main);
+  font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   cursor: pointer;
   transition: var(--transition);
   display: flex;
@@ -2019,8 +2070,9 @@ textarea.form-input {
   color: var(--stamina-green);
   text-align: center;
   margin-top: 18px;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 12px;
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .form-success.show {
@@ -2035,15 +2087,16 @@ textarea.form-input {
    FOOTER
 ========================================== */
 .footer {
-  padding: 24px 16px calc(24px + var(--safe-area-bottom));
+  padding: 24px 20px calc(24px + var(--safe-area-bottom));
   text-align: center;
   background: var(--neu-bg-dark);
 }
 
 .footer p {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 12px;
+  font-family: var(--font-main);
+  font-size: 13px;
   color: var(--text-muted);
+  font-weight: 500;
 }
 
 .footer a {
@@ -2076,28 +2129,12 @@ textarea.form-input {
 }
 
 /* ==========================================
-   CLICK EFFECT & XP POPUP
+   XP POPUP
 ========================================== */
-.click-effect {
-  position: fixed;
-  pointer-events: none;
-  width: 25px;
-  height: 25px;
-  border: 2px solid var(--primary);
-  border-radius: 50%;
-  animation: click-ripple 0.5s ease-out forwards;
-  z-index: 9999;
-}
-
-@keyframes click-ripple {
-  from { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-  to { transform: translate(-50%, -50%) scale(2); opacity: 0; }
-}
-
 .xp-popup {
   position: fixed;
   pointer-events: none;
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-main);
   font-size: 14px;
   font-weight: 700;
   color: var(--xp-gold);
@@ -2158,14 +2195,25 @@ textarea.form-input {
 }
 
 /* ==========================================
-   RESPONSIVE - MOBILE
+   RESPONSIVE - MOBILE (NO HORIZONTAL SCROLL FIX)
 ========================================== */
 @media (max-width: 768px) {
   :root {
     --navbar-height: 60px;
   }
   
-  .section { padding: 60px 16px; }
+  html, body {
+    overflow-x: hidden;
+  }
+  
+  .section { 
+    padding: 60px 16px;
+    overflow: hidden;
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
   
   /* HUD Mobile */
   .hud-center { display: none; }
@@ -2214,6 +2262,21 @@ textarea.form-input {
   .hero {
     padding: calc(var(--navbar-height) + var(--safe-area-top) + 20px) 16px calc(40px + var(--safe-area-bottom));
     min-height: auto;
+  }
+  
+  .hero-glow {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .hero-glow-1 {
+    top: -50px;
+    right: -50px;
+  }
+  
+  .hero-glow-2 {
+    bottom: -50px;
+    left: -50px;
   }
   
   .hero-buttons {
@@ -2278,6 +2341,16 @@ textarea.form-input {
     height: 46px;
     font-size: 18px;
   }
+  
+  .tech-cloud {
+    gap: 8px;
+    padding: 0 10px;
+  }
+  
+  .tech-tag {
+    padding: 8px 14px;
+    font-size: 11px;
+  }
 }
 
 /* ==========================================
@@ -2286,9 +2359,11 @@ textarea.form-input {
 @media (max-width: 480px) {
   .section { padding: 50px 14px; }
   
+  .container { padding: 0 14px; }
+  
   .player-avatar { width: 38px; height: 38px; }
-  .player-name { font-size: 11px; }
-  .player-class { font-size: 9px; }
+  .player-name { font-size: 12px; }
+  .player-class { font-size: 10px; }
   
   .hud-btn { width: 36px; height: 36px; font-size: 14px; }
   .menu-toggle { width: 36px; height: 36px; }
@@ -2343,9 +2418,6 @@ textarea.form-input {
   .skill-tree-title { font-size: 14px; }
   .skill-bar-wrapper { height: 6px; }
   
-  .tech-cloud { gap: 8px; }
-  .tech-tag { padding: 8px 14px; font-size: 10px; }
-  
   .quest-card { padding: 20px 16px; }
   .quest-title { font-size: 14px; }
   .quest-location { font-size: 13px; }
@@ -2370,7 +2442,7 @@ textarea.form-input {
   .social-link { width: 40px; height: 40px; font-size: 14px; }
   
   .form-input { padding: 12px 14px; }
-  .form-btn { padding: 14px; font-size: 12px; }
+  .form-btn { padding: 14px; font-size: 13px; }
   
   .floating-actions {
     right: 12px;
@@ -2426,6 +2498,7 @@ textarea.form-input {
 </head>
 
 <body>
+  <div class="page-wrapper">
   <!-- XP Progress Bar -->
   <div class="xp-progress-bar">
     <div class="xp-progress-fill" id="xpProgress"></div>
@@ -2475,11 +2548,11 @@ textarea.form-input {
     <div class="hud-center">
       <ul class="nav-menu" id="navMenu">
         <li class="nav-item"><a href="#home" class="nav-link active"><i class="fas fa-home"></i><span>Home</span></a></li>
-        <li class="nav-item"><a href="#about" class="nav-link"><i class="fas fa-user"></i><span>Stats</span></a></li>
+        <li class="nav-item"><a href="#about" class="nav-link"><i class="fas fa-user"></i><span>About</span></a></li>
         <li class="nav-item"><a href="#skills" class="nav-link"><i class="fas fa-magic"></i><span>Skills</span></a></li>
-        <li class="nav-item"><a href="#experience" class="nav-link"><i class="fas fa-scroll"></i><span>Quests</span></a></li>
-        <li class="nav-item"><a href="#projects" class="nav-link"><i class="fas fa-boxes"></i><span>Inventory</span></a></li>
-        <li class="nav-item"><a href="#contact" class="nav-link"><i class="fas fa-comments"></i><span>Guild</span></a></li>
+        <li class="nav-item"><a href="#experience" class="nav-link"><i class="fas fa-briefcase"></i><span>Experience</span></a></li>
+        <li class="nav-item"><a href="#projects" class="nav-link"><i class="fas fa-folder"></i><span>Projects</span></a></li>
+        <li class="nav-item"><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
       </ul>
     </div>
     
@@ -2514,7 +2587,7 @@ textarea.form-input {
       <div class="hero-left">
         <div class="hero-badge">
           <span class="pulse"></span>
-          Status: Available for Projects
+          Available for Projects
         </div>
         
         <h1 class="hero-title">
@@ -2534,7 +2607,7 @@ textarea.form-input {
         
         <div class="hero-buttons">
           <a href="#projects" class="btn-neu primary">
-            <i class="fas fa-boxes"></i>
+            <i class="fas fa-folder-open"></i>
             <span>View Projects</span>
           </a>
           <a href="https://www.linkedin.com/in/akshit-ravula/" target="_blank" rel="noopener" class="btn-neu">
@@ -2546,7 +2619,7 @@ textarea.form-input {
       
       <div class="hero-right">
         <div class="character-card reveal">
-          <span class="character-rarity">Legendary</span>
+          <span class="character-rarity">Available</span>
           <div class="character-avatar">
             <div class="character-avatar-ring"></div>
             <div class="character-avatar-inner">
@@ -2574,11 +2647,11 @@ textarea.form-input {
     </div>
   </section>
   
-  <!-- About / Player Stats -->
+  <!-- About Section -->
   <section class="section" id="about">
     <div class="container">
       <div class="section-header">
-        <div class="section-icon"><i class="fas fa-user-shield"></i></div>
+        <div class="section-icon"><i class="fas fa-user"></i></div>
         <span class="section-label">About Me</span>
         <h2 class="section-title">Profile Overview</h2>
         <p class="section-subtitle">Detailed statistics and background</p>
@@ -2598,11 +2671,11 @@ textarea.form-input {
             <h4 class="attribute-title">Core Skills</h4>
             
             <div class="attribute-row">
-              <div class="attribute-icon str"><i class="fas fa-fist-raised"></i></div>
+              <div class="attribute-icon str"><i class="fas fa-code"></i></div>
               <div class="attribute-info">
                 <div class="attribute-header">
-                  <span class="attribute-name">Frontend Power</span>
-                  <span class="attribute-value">92/100</span>
+                  <span class="attribute-name">Frontend</span>
+                  <span class="attribute-value">92%</span>
                 </div>
                 <div class="attribute-bar">
                   <div class="attribute-fill str" data-width="92"></div>
@@ -2611,11 +2684,11 @@ textarea.form-input {
             </div>
             
             <div class="attribute-row">
-              <div class="attribute-icon int"><i class="fas fa-brain"></i></div>
+              <div class="attribute-icon int"><i class="fas fa-server"></i></div>
               <div class="attribute-info">
                 <div class="attribute-header">
-                  <span class="attribute-name">Backend Logic</span>
-                  <span class="attribute-value">88/100</span>
+                  <span class="attribute-name">Backend</span>
+                  <span class="attribute-value">88%</span>
                 </div>
                 <div class="attribute-bar">
                   <div class="attribute-fill int" data-width="88"></div>
@@ -2624,11 +2697,11 @@ textarea.form-input {
             </div>
             
             <div class="attribute-row">
-              <div class="attribute-icon dex"><i class="fas fa-bolt"></i></div>
+              <div class="attribute-icon dex"><i class="fas fa-lightbulb"></i></div>
               <div class="attribute-info">
                 <div class="attribute-header">
                   <span class="attribute-name">Problem Solving</span>
-                  <span class="attribute-value">90/100</span>
+                  <span class="attribute-value">90%</span>
                 </div>
                 <div class="attribute-bar">
                   <div class="attribute-fill dex" data-width="90"></div>
@@ -2640,8 +2713,8 @@ textarea.form-input {
               <div class="attribute-icon wis"><i class="fas fa-cloud"></i></div>
               <div class="attribute-info">
                 <div class="attribute-header">
-                  <span class="attribute-name">Cloud Mastery</span>
-                  <span class="attribute-value">85/100</span>
+                  <span class="attribute-name">Cloud</span>
+                  <span class="attribute-value">85%</span>
                 </div>
                 <div class="attribute-bar">
                   <div class="attribute-fill wis" data-width="85"></div>
@@ -2668,7 +2741,7 @@ textarea.form-input {
         
         <div class="bio-section">
           <div class="bio-card reveal delay-1">
-            <h3><i class="fas fa-scroll"></i> Background</h3>
+            <h3><i class="fas fa-info-circle"></i> Background</h3>
             <p>
               I'm a results-driven developer currently working at Creative Garage as a Full Stack Developer. 
               I specialize in building scalable web applications using React.js, Node.js, and cloud technologies.
@@ -2720,11 +2793,11 @@ textarea.form-input {
     </div>
   </section>
   
-  <!-- Skills -->
+  <!-- Skills Section -->
   <section class="section" id="skills">
     <div class="container">
       <div class="section-header">
-        <div class="section-icon"><i class="fas fa-magic"></i></div>
+        <div class="section-icon"><i class="fas fa-cogs"></i></div>
         <span class="section-label">Skills</span>
         <h2 class="section-title">Technical Abilities</h2>
         <p class="section-subtitle">Technologies I've mastered</p>
@@ -2736,7 +2809,7 @@ textarea.form-input {
             <div class="skill-tree-icon"><i class="fas fa-code"></i></div>
             <div>
               <h3 class="skill-tree-title">Frontend</h3>
-              <p class="skill-tree-level">⭐ Master</p>
+              <p class="skill-tree-level">⭐ Expert</p>
             </div>
           </div>
           
@@ -2776,7 +2849,7 @@ textarea.form-input {
             <div class="skill-tree-icon"><i class="fas fa-server"></i></div>
             <div>
               <h3 class="skill-tree-title">Backend</h3>
-              <p class="skill-tree-level">⭐ Expert</p>
+              <p class="skill-tree-level">⭐ Advanced</p>
             </div>
           </div>
           
@@ -2816,7 +2889,7 @@ textarea.form-input {
             <div class="skill-tree-icon"><i class="fas fa-cloud"></i></div>
             <div>
               <h3 class="skill-tree-title">Cloud & CMS</h3>
-              <p class="skill-tree-level">⭐ Advanced</p>
+              <p class="skill-tree-level">⭐ Proficient</p>
             </div>
           </div>
           
@@ -2853,30 +2926,30 @@ textarea.form-input {
       </div>
       
       <div class="tech-cloud reveal">
-        <span class="tech-tag">⚔️ React.js</span>
-        <span class="tech-tag">🛡️ Node.js</span>
-        <span class="tech-tag">📦 MongoDB</span>
-        <span class="tech-tag">✨ JavaScript</span>
-        <span class="tech-tag">🔮 TypeScript</span>
-        <span class="tech-tag">🐍 Python</span>
-        <span class="tech-tag">🎨 HTML5</span>
-        <span class="tech-tag">💎 CSS3</span>
-        <span class="tech-tag">🗄️ MySQL</span>
-        <span class="tech-tag">☁️ Azure</span>
-        <span class="tech-tag">🔧 Git</span>
-        <span class="tech-tag">🌐 REST APIs</span>
-        <span class="tech-tag">📝 WordPress</span>
-        <span class="tech-tag">🛒 Shopify</span>
-        <span class="tech-tag">🎯 Figma</span>
+        <span class="tech-tag">React.js</span>
+        <span class="tech-tag">Node.js</span>
+        <span class="tech-tag">MongoDB</span>
+        <span class="tech-tag">JavaScript</span>
+        <span class="tech-tag">TypeScript</span>
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">HTML5</span>
+        <span class="tech-tag">CSS3</span>
+        <span class="tech-tag">MySQL</span>
+        <span class="tech-tag">Azure</span>
+        <span class="tech-tag">Git</span>
+        <span class="tech-tag">REST APIs</span>
+        <span class="tech-tag">WordPress</span>
+        <span class="tech-tag">Shopify</span>
+        <span class="tech-tag">Figma</span>
       </div>
     </div>
   </section>
   
-  <!-- Experience -->
+  <!-- Experience Section -->
   <section class="section" id="experience">
     <div class="container">
       <div class="section-header">
-        <div class="section-icon"><i class="fas fa-scroll"></i></div>
+        <div class="section-icon"><i class="fas fa-briefcase"></i></div>
         <span class="section-label">Experience</span>
         <h2 class="section-title">Work History</h2>
         <p class="section-subtitle">Professional journey and achievements</p>
@@ -2886,7 +2959,7 @@ textarea.form-input {
         <div class="quest-card active reveal">
           <div class="quest-header">
             <span class="quest-date">Feb 2025 – Present</span>
-            <span class="quest-status active">🟢 Current</span>
+            <span class="quest-status active">Current</span>
           </div>
           <h3 class="quest-title">Full Stack Developer</h3>
           <p class="quest-location"><i class="fas fa-building"></i> Creative Garage</p>
@@ -2896,13 +2969,13 @@ textarea.form-input {
             <li>Collaborating with UX/UI teams for exceptional experiences</li>
             <li>Optimizing performance through efficient code practices</li>
           </ul>
-          <span class="quest-reward"><i class="fas fa-star"></i> +1000 XP / month</span>
+          <span class="quest-reward"><i class="fas fa-star"></i> Currently Working</span>
         </div>
         
         <div class="quest-card reveal">
           <div class="quest-header">
             <span class="quest-date">Nov 2024 – Feb 2025</span>
-            <span class="quest-status completed">✓ Completed</span>
+            <span class="quest-status completed">Completed</span>
           </div>
           <h3 class="quest-title">Full Stack Developer</h3>
           <p class="quest-location"><i class="fas fa-building"></i> Bloom Agency</p>
@@ -2911,13 +2984,13 @@ textarea.form-input {
             <li>Led development of client-facing dashboards</li>
             <li>Implemented RESTful API services</li>
           </ul>
-          <span class="quest-reward"><i class="fas fa-star"></i> +2500 XP earned</span>
+          <span class="quest-reward"><i class="fas fa-check-circle"></i> Completed Successfully</span>
         </div>
         
         <div class="quest-card reveal">
           <div class="quest-header">
             <span class="quest-date">Sep 2024 – Dec 2024</span>
-            <span class="quest-status completed">✓ Completed</span>
+            <span class="quest-status completed">Completed</span>
           </div>
           <h3 class="quest-title">Web Developer</h3>
           <p class="quest-location"><i class="fas fa-building"></i> Unremot</p>
@@ -2925,13 +2998,13 @@ textarea.form-input {
             <li>Built user-friendly platform using HTML, CSS, and React.js</li>
             <li>Enhanced site responsiveness, cutting load times by 30%</li>
           </ul>
-          <span class="quest-reward"><i class="fas fa-star"></i> +1500 XP earned</span>
+          <span class="quest-reward"><i class="fas fa-check-circle"></i> Completed Successfully</span>
         </div>
         
         <div class="quest-card reveal">
           <div class="quest-header">
             <span class="quest-date">Jul 2024 – Sep 2024</span>
-            <span class="quest-status completed">✓ Completed</span>
+            <span class="quest-status completed">Completed</span>
           </div>
           <h3 class="quest-title">Technical Lead</h3>
           <p class="quest-location"><i class="fas fa-building"></i> Recit</p>
@@ -2939,26 +3012,26 @@ textarea.form-input {
             <li>Implemented Google Sheets sync and API integrations</li>
             <li>Deployed responsive landing page boosting engagement by 25%</li>
           </ul>
-          <span class="quest-reward"><i class="fas fa-star"></i> +1200 XP earned</span>
+          <span class="quest-reward"><i class="fas fa-check-circle"></i> Completed Successfully</span>
         </div>
         
         <div class="quest-card reveal">
           <div class="quest-header">
             <span class="quest-date">Nov 2023 – Dec 2023</span>
-            <span class="quest-status completed">✓ Completed</span>
+            <span class="quest-status completed">Completed</span>
           </div>
           <h3 class="quest-title">Cloud Computing Intern</h3>
           <p class="quest-location"><i class="fas fa-building"></i> Sam Infosystems</p>
           <ul class="quest-objectives">
             <li>Managed cloud infrastructure using Microsoft Azure</li>
           </ul>
-          <span class="quest-reward"><i class="fas fa-star"></i> +800 XP earned</span>
+          <span class="quest-reward"><i class="fas fa-check-circle"></i> Completed Successfully</span>
         </div>
         
         <div class="quest-card reveal">
           <div class="quest-header">
             <span class="quest-date">2021 – 2025</span>
-            <span class="quest-status education">🎓 Education</span>
+            <span class="quest-status education">Education</span>
           </div>
           <h3 class="quest-title">B.Tech in Computer Science</h3>
           <p class="quest-location"><i class="fas fa-university"></i> Vellore Institute of Technology</p>
@@ -2968,11 +3041,11 @@ textarea.form-input {
     </div>
   </section>
   
-  <!-- Projects -->
+  <!-- Projects Section -->
   <section class="section" id="projects">
     <div class="container">
       <div class="section-header">
-        <div class="section-icon"><i class="fas fa-boxes"></i></div>
+        <div class="section-icon"><i class="fas fa-folder-open"></i></div>
         <span class="section-label">Portfolio</span>
         <h2 class="section-title">Featured Projects</h2>
         <p class="section-subtitle">A collection of projects I've built</p>
@@ -3015,11 +3088,11 @@ textarea.form-input {
     </div>
   </section>
   
-  <!-- Contact -->
+  <!-- Contact Section -->
   <section class="section" id="contact">
     <div class="container">
       <div class="section-header">
-        <div class="section-icon"><i class="fas fa-comments"></i></div>
+        <div class="section-icon"><i class="fas fa-envelope"></i></div>
         <span class="section-label">Contact</span>
         <h2 class="section-title">Get In Touch</h2>
         <p class="section-subtitle">Let's work together on your next project!</p>
@@ -3058,16 +3131,16 @@ textarea.form-input {
           </div>
           
           <div class="social-links">
-            <a href="https://www.linkedin.com/in/akshit-ravula/" target="_blank" rel="noopener" class="social-link linkedin" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/akshit-ravula/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
               <i class="fab fa-linkedin-in"></i>
             </a>
-            <a href="https://github.com/akshitravula" target="_blank" rel="noopener" class="social-link github" aria-label="GitHub">
+            <a href="https://github.com/akshitravula" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
               <i class="fab fa-github"></i>
             </a>
-            <a href="https://x.com/AkshitRAVULA1" target="_blank" rel="noopener" class="social-link twitter" aria-label="Twitter">
+            <a href="https://x.com/AkshitRAVULA1" target="_blank" rel="noopener" class="social-link" aria-label="Twitter">
               <i class="fab fa-twitter"></i>
             </a>
-            <a href="https://www.instagram.com/theakshitravula" target="_blank" rel="noopener" class="social-link instagram" aria-label="Instagram">
+            <a href="https://www.instagram.com/theakshitravula" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
               <i class="fab fa-instagram"></i>
             </a>
           </div>
@@ -3106,8 +3179,10 @@ textarea.form-input {
   
   <!-- Footer -->
   <footer class="footer">
-    <p>© 2025 <a href="#">Akshit Ravula</a> | Built with ⚔️ & 💻</p>
+    <p>© 2025 <a href="#">Akshit Ravula</a> • Built with passion</p>
   </footer>
+  
+  </div><!-- End page-wrapper -->
 
 <script>
 // ==========================================
@@ -3116,7 +3191,7 @@ textarea.form-input {
 const allProjects = [
   { title: "Career AI", img: "images/Career Ai.png", url: "#", desc: "AI-powered career guidance and job matching platform.", stack: ["React", "Python", "AI/ML"], rarity: "legendary" },
   { title: "Hoshiyaar", img: "images/Hoshiyaar.png", url: "https://www.hoshiyaar.info/", desc: "Smart educational platform with interactive learning.", stack: ["React", "Node.js", "MongoDB"], rarity: "legendary" },
-  { title: "Trusatva", img: "images/Trusatva.png", url: "https://vedantawellness.co/", desc: "Ayurvedic wellness and natural products platform.", stack: ["Liquid", "Graph QL", "JS"], rarity: "epic" },
+  { title: "Trusatva", img: "images/Trusatva.png", url: "https://vedantawellness.co/", desc: "Ayurvedic wellness and natural products platform.", stack: ["Liquid", "GraphQL", "JS"], rarity: "epic" },
   { title: "AM Group", img: "images/Am Group.png", url: "https://amgroup-gcc.com/", desc: "Corporate website for GCC-based conglomerate.", stack: ["PHP", "JS", "CSS"], rarity: "epic" },
   { title: "Sonai Dairy", img: "images/Sonai.png", url: "https://sonaidairy.com/", desc: "Premium dairy products and farm-fresh services.", stack: ["PHP", "JS", "CSS"], rarity: "epic" },
   { title: "Clootrack", img: "images/project4.png", url: "https://www.clootrack.com/", desc: "Optimized website with enhanced UX.", stack: ["React", "JS", "Node"], rarity: "legendary" },
@@ -3125,34 +3200,7 @@ const allProjects = [
   { title: "RD Overseas", img: "images/rdoverseas.jpg", url: "https://rdoverseas.in/", desc: "eCommerce store for automotive accessories.", stack: ["Shopify", "Liquid", "JS"], rarity: "rare" },
   { title: "Vicefy", img: "images/vicefy.jpg", url: "https://vicefy.store/", desc: "Modern eCommerce for beauty and personal care.", stack: ["Shopify", "Liquid", "CSS"], rarity: "rare" },
   { title: "Creative Garage", img: "images/creativegarage.jpg", url: "https://creative-garage.in/", desc: "Creative agency with bold design.", stack: ["WordPress", "JS", "CSS"], rarity: "legendary" },
-  { title: "Bloom Agency", img: "images/project7.png", url: "https://www.bloomagency.in/", desc: "Digital agency website with modern UX.", stack: ["WordPress", "JS", "CSS"], rarity: "epic" },
-  { title: "Wooum", img: "images/project6.png", url: "https://www.wooum.com/", desc: "Visually appealing responsive design.", stack: ["WordPress", "JS", "CSS"], rarity: "rare" },
-  { title: "23 Consulting", img: "images/project16.png", url: "https://23consultingservices.com/", desc: "Professional consulting platform.", stack: ["WordPress", "JS"], rarity: "rare" },
-  { title: "Amarjothi Granites", img: "images/amarjothi.jpg", url: "https://amarjothigranites.com/", desc: "Natural stone and granite exporter.", stack: ["WordPress", "CSS"], rarity: "rare" },
-  { title: "Anzo Controls", img: "images/anzocontrols.jpg", url: "https://www.anzocontrols.com/", desc: "Industrial automation solutions.", stack: ["WordPress", "JS"], rarity: "rare" },
-  { title: "Bodhi Diamonds", img: "images/project8.png", url: "https://www.bodhidiamonds.in/", desc: "Elegant jewelry platform.", stack: ["WordPress", "CSS"], rarity: "epic" },
-  { title: "Customer Care", img: "images/project13.png", url: "https://customercareelectronicservice.in/", desc: "Customer care service brand.", stack: ["WordPress", "CSS"], rarity: "rare" },
-  { title: "Cycler", img: "images/project1.jpg", url: "#", desc: "Bicycle rental platform for students.", stack: ["React", "Node.js"], rarity: "legendary" },
-  { title: "Ecotonique", img: "images/project5.png", url: "https://www.ecotonique.in/", desc: "Engaging user experience design.", stack: ["WordPress", "JS"], rarity: "rare" },
-  { title: "Fitness Tracker", img: "images/project2.jpg", url: "#", desc: "Tracks stress, calories, sleep.", stack: ["React", "Node.js"], rarity: "epic" },
-  { title: "Goldpot", img: "images/project15.png", url: "https://goldpot.in/", desc: "Digital gold investment platform.", stack: ["WordPress", "JS"], rarity: "epic" },
-  { title: "Haldiram's Franchise", img: "images/project10.png", url: "https://www.haldirams.store/", desc: "Professional franchise website.", stack: ["WordPress", "CSS"], rarity: "legendary" },
-  { title: "Hawtever", img: "images/hawtever.jpg", url: "https://hawtever.com/", desc: "Bold skincare and haircare brand.", stack: ["WordPress", "CSS"], rarity: "rare" },
-  { title: "Homecare Planners", img: "images/homecare.jpg", url: "https://homecareandplanners.com/", desc: "Property consultation services.", stack: ["WordPress", "JS"], rarity: "rare" },
-  { title: "House of Buck", img: "images/project14.png", url: "https://houseofbuck.in/", desc: "Dropshipping store with modern UI.", stack: ["WordPress", "CSS"], rarity: "rare" },
-  { title: "Jewellery Khazana", img: "images/project12.png", url: "https://jewellerykhazana.com/", desc: "Elegant online jewellery platform.", stack: ["WordPress", "JS"], rarity: "epic" },
-  { title: "Kailasa Ink", img: "images/kailasa.jpg", url: "https://kailasaink.com/", desc: "Spiritual ink brand with mythology.", stack: ["WordPress", "CSS"], rarity: "rare" },
-  { title: "Luvialz", img: "images/luvialz.jpg", url: "https://luvialz.com/", desc: "Luxury skincare and wellness.", stack: ["WordPress", "WooCommerce"], rarity: "epic" },
-  { title: "Mitaksh Radiance", img: "images/project9.png", url: "https://www.mitakshradiance.in/", desc: "Jewelry brand with elegant design.", stack: ["WordPress", "CSS"], rarity: "epic" },
-  { title: "OneWay Happiness", img: "images/onewayhappiness.jpg", url: "https://www.onewayhappiness.com/", desc: "Personal care and wellness brand.", stack: ["Shopify", "Liquid"], rarity: "rare" },
-  { title: "Piers St. Barth", img: "images/pierstbarth.jpg", url: "https://pierstbarth.com/", desc: "Premium luxury fashion brand.", stack: ["Shopify", "Liquid"], rarity: "legendary" },
-  { title: "PlanYourWay", img: "images/project3.jpg", url: "#", desc: "Ticket booking web application.", stack: ["HTML", "CSS", "JS"], rarity: "rare" },
-  { title: "SD Infra & Mep", img: "images/project11.png", url: "https://www.sdinframep.in/", desc: "Industry-focused platform.", stack: ["WordPress", "CSS"], rarity: "rare" },
-  { title: "Souvenir Care", img: "images/souvenircare.jpg", url: "https://souvenircare.com/", desc: "Beauty and wellness eCommerce.", stack: ["WordPress", "WooCommerce"], rarity: "rare" },
-  { title: "Trademark Dekho", img: "images/trademarkdekho.jpg", url: "https://trademarkdekho.in/", desc: "Legal consultancy for trademarks.", stack: ["WordPress", "JS"], rarity: "rare" },
-  { title: "TPS Aerospace", img: "images/tpsaerospace.jpg", url: "https://tpsaerospace.com/", desc: "MRO aviation company website.", stack: ["WordPress", "CSS"], rarity: "epic" },
-  { title: "Trudiance", img: "images/trudiance.jpg", url: "https://trudiance.com/", desc: "Clean beauty skincare brand.", stack: ["WordPress", "WooCommerce"], rarity: "rare" },
-  { title: "AI Drug Discovery", img: "images/project17.jpeg", url: "#", desc: "AI-powered drug discovery research.", stack: ["Python", "TensorFlow"], rarity: "legendary" }
+  { title: "Bloom Agency", img: "images/project7.png", url: "https://www.bloomagency.in/", desc: "Digital agency website with modern UX.", stack: ["WordPress", "JS", "CSS"], rarity: "epic" }
 ];
 
 // ==========================================
@@ -3204,13 +3252,12 @@ function renderProjects() {
 // ==========================================
 document.addEventListener('DOMContentLoaded', function() {
   
-  // Render projects
   renderProjects();
   
   // Generate particles (reduced for mobile)
   const particlesContainer = document.getElementById('particles');
   const isMobile = window.innerWidth <= 768;
-  const particleCount = isMobile ? 15 : 25;
+  const particleCount = isMobile ? 10 : 20;
   
   for (let i = 0; i < particleCount; i++) {
     const particle = document.createElement('div');
@@ -3222,22 +3269,17 @@ document.addEventListener('DOMContentLoaded', function() {
     particlesContainer.appendChild(particle);
   }
   
-  // ========== PRELOADER ==========
+  // Preloader
   const preloader = document.getElementById('preloader');
-  
   function hidePreloader() {
-    if (preloader) {
-      preloader.classList.add('loaded');
-    }
+    if (preloader) preloader.classList.add('loaded');
   }
-  
   window.addEventListener('load', function() {
     setTimeout(hidePreloader, 2000);
   });
-  
   setTimeout(hidePreloader, 3500);
   
-  // ========== THEME TOGGLE ==========
+  // Theme Toggle
   const themeToggle = document.getElementById('themeToggle');
   const html = document.documentElement;
   const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -3247,10 +3289,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
-    showXPPopup(this, '+5 XP');
   });
   
-  // ========== MUSIC TOGGLE ==========
+  // Music Toggle
   const musicBtn = document.getElementById('musicBtn');
   const bgMusic = document.getElementById('bgMusic');
   let isPlaying = false;
@@ -3261,38 +3302,30 @@ document.addEventListener('DOMContentLoaded', function() {
       musicBtn.classList.remove('playing');
     } else {
       bgMusic.volume = 0.3;
-      bgMusic.play().then(function() {
-        musicBtn.classList.add('playing');
-        showXPPopup(musicBtn, '+10 XP');
-      }).catch(function(e) {
-        console.log('Audio play failed:', e);
-      });
+      bgMusic.play().catch(function() {});
+      musicBtn.classList.add('playing');
     }
     isPlaying = !isPlaying;
   });
   
-  // ========== XP PROGRESS BAR ==========
+  // XP Progress Bar
   const xpProgress = document.getElementById('xpProgress');
-  
   function updateXPProgress() {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
     xpProgress.style.width = progress + '%';
   }
-  
   window.addEventListener('scroll', updateXPProgress, { passive: true });
   
-  // ========== BACK TO TOP ==========
+  // Back to Top
   const backTop = document.getElementById('backTop');
-  
   function toggleBackTop() {
     backTop.classList.toggle('show', window.scrollY > 400);
   }
-  
   window.addEventListener('scroll', toggleBackTop, { passive: true });
   
-  // ========== MOBILE MENU ==========
+  // Mobile Menu
   const menuToggle = document.getElementById('menuToggle');
   const navMenu = document.getElementById('navMenu');
   let scrollPosition = 0;
@@ -3322,7 +3355,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  // Keyboard support for menu toggle
   menuToggle.addEventListener('keydown', function(e) {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -3342,16 +3374,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  // Close menu on escape
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && navMenu.classList.contains('active')) {
       closeMenu();
     }
   });
   
-  // ========== ACTIVE NAV LINK ==========
+  // Active Nav Link
   const sections = document.querySelectorAll('section[id]');
-  
   function updateActiveNav() {
     let current = '';
     sections.forEach(function(section) {
@@ -3359,33 +3389,22 @@ document.addEventListener('DOMContentLoaded', function() {
         current = section.getAttribute('id');
       }
     });
-    
     document.querySelectorAll('.nav-link').forEach(function(link) {
       link.classList.toggle('active', link.getAttribute('href') === '#' + current);
     });
   }
-  
   window.addEventListener('scroll', updateActiveNav, { passive: true });
   
-  // ========== TYPEWRITER ==========
-  const typewriterTexts = [
-    'Full Stack Developer',
-    'React.js Specialist',
-    'Cloud Engineer',
-    'Problem Solver',
-    'UI/UX Enthusiast'
-  ];
+  // Typewriter
+  const typewriterTexts = ['Full Stack Developer', 'React Specialist', 'Cloud Engineer', 'Problem Solver'];
   let textIndex = 0, charIndex = 0, isDeleting = false;
   const typewriterElement = document.getElementById('typewriter');
   
   function typeWriter() {
     if (!typewriterElement) return;
     const currentText = typewriterTexts[textIndex];
-    
     typewriterElement.textContent = currentText.substring(0, isDeleting ? --charIndex : ++charIndex);
-    
     let speed = isDeleting ? 40 : 80;
-    
     if (!isDeleting && charIndex === currentText.length) {
       speed = 2000;
       isDeleting = true;
@@ -3394,14 +3413,12 @@ document.addEventListener('DOMContentLoaded', function() {
       textIndex = (textIndex + 1) % typewriterTexts.length;
       speed = 400;
     }
-    
     setTimeout(typeWriter, speed);
   }
   typeWriter();
   
-  // ========== REVEAL ON SCROLL ==========
+  // Reveal on Scroll
   const reveals = document.querySelectorAll('.reveal');
-  
   function revealOnScroll() {
     reveals.forEach(function(el) {
       if (el.getBoundingClientRect().top < window.innerHeight - 80) {
@@ -3409,13 +3426,11 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-  
   window.addEventListener('scroll', revealOnScroll, { passive: true });
   revealOnScroll();
   
-  // ========== SKILL BARS ==========
+  // Skill Bars
   const skillBars = document.querySelectorAll('.skill-bar-fill, .attribute-fill');
-  
   function animateSkills() {
     skillBars.forEach(function(bar) {
       const rect = bar.getBoundingClientRect();
@@ -3424,13 +3439,11 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-  
   window.addEventListener('scroll', animateSkills, { passive: true });
   setTimeout(animateSkills, 500);
   
-  // ========== COUNTER ANIMATION ==========
+  // Counter Animation
   const counters = document.querySelectorAll('[data-count]');
-  
   function animateCounters() {
     counters.forEach(function(counter) {
       const rect = counter.getBoundingClientRect();
@@ -3439,7 +3452,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const target = parseInt(counter.getAttribute('data-count'));
         let count = 0;
         const increment = Math.ceil(target / 30);
-        
         function update() {
           count = Math.min(count + increment, target);
           counter.textContent = count + '+';
@@ -3449,11 +3461,10 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-  
   window.addEventListener('scroll', animateCounters, { passive: true });
   animateCounters();
   
-  // ========== MOBILE CAROUSEL ==========
+  // Mobile Carousel
   const carousel = document.getElementById('inventoryCarousel');
   let currentSlide = 0;
   let startX = 0;
@@ -3464,7 +3475,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalSlides = allProjects.length;
     currentSlide = Math.max(0, Math.min(index, totalSlides - 1));
     carousel.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-    
     document.querySelectorAll('.carousel-dot').forEach(function(dot, i) {
       dot.classList.toggle('active', i === currentSlide);
     });
@@ -3484,13 +3494,9 @@ document.addEventListener('DOMContentLoaded', function() {
   carousel.addEventListener('touchend', function() {
     if (!isDragging) return;
     const diff = startX - currentX;
-    
     if (Math.abs(diff) > 50) {
-      if (diff > 0) {
-        goToSlide(currentSlide + 1);
-      } else {
-        goToSlide(currentSlide - 1);
-      }
+      if (diff > 0) goToSlide(currentSlide + 1);
+      else goToSlide(currentSlide - 1);
     }
     isDragging = false;
   }, { passive: true });
@@ -3501,44 +3507,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  // ========== CLICK EFFECT ==========
-  document.addEventListener('click', function(e) {
-    // Skip on mobile for performance
-    if (window.innerWidth <= 768) return;
-    
-    const effect = document.createElement('div');
-    effect.className = 'click-effect';
-    effect.style.left = e.clientX + 'px';
-    effect.style.top = e.clientY + 'px';
-    document.body.appendChild(effect);
-    
-    setTimeout(function() {
-      effect.remove();
-    }, 500);
-  });
-  
-  // ========== XP POPUP FUNCTION ==========
-  function showXPPopup(element, text) {
-    const rect = element.getBoundingClientRect();
-    const popup = document.createElement('div');
-    popup.className = 'xp-popup';
-    popup.textContent = text;
-    popup.style.left = rect.left + rect.width / 2 + 'px';
-    popup.style.top = rect.top + 'px';
-    document.body.appendChild(popup);
-    
-    setTimeout(function() {
-      popup.remove();
-    }, 1000);
-  }
-  
-  // ========== CONTACT FORM ==========
+  // Contact Form
   const contactForm = document.getElementById('contactForm');
   const formSuccess = document.getElementById('formSuccess');
   
   contactForm.addEventListener('submit', function(e) {
     e.preventDefault();
-    
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const subject = document.getElementById('subject').value.trim() || 'No Subject';
@@ -3549,58 +3523,30 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
     
-    const whatsappText = 
-      '*New Inquiry*\n\n' +
-      '*Name:* ' + name + '\n' +
-      '*Email:* ' + email + '\n' +
-      '*Subject:* ' + subject + '\n\n' +
-      '*Message:*\n' + message;
-    
-    const encodedMessage = encodeURIComponent(whatsappText);
-    const whatsappURL = 'https://wa.me/917045538721?text=' + encodedMessage;
+    const whatsappText = '*New Inquiry*\n\n*Name:* ' + name + '\n*Email:* ' + email + '\n*Subject:* ' + subject + '\n\n*Message:*\n' + message;
+    const whatsappURL = 'https://wa.me/917045538721?text=' + encodeURIComponent(whatsappText);
     
     formSuccess.classList.add('show');
-    showXPPopup(document.querySelector('.form-btn'), '+100 XP');
-    
     setTimeout(function() {
       window.open(whatsappURL, '_blank');
       contactForm.reset();
-      
       setTimeout(function() {
         formSuccess.classList.remove('show');
       }, 3000);
     }, 500);
   });
   
-  // ========== SMOOTH SCROLL ==========
+  // Smooth Scroll
   document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
     anchor.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
       if (href === '#') return;
-      
       e.preventDefault();
       const target = document.querySelector(href);
       if (target) {
-        const offsetTop = target.offsetTop - 80;
-        window.scrollTo({ 
-          top: offsetTop, 
-          behavior: 'smooth' 
-        });
+        window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
       }
     });
-  });
-  
-  // ========== RESIZE HANDLER ==========
-  let resizeTimer;
-  window.addEventListener('resize', function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
-      // Reset carousel on resize
-      if (window.innerWidth > 768) {
-        carousel.style.transform = 'translateX(0)';
-        currentSlide = 0;
-      }
-    }, 250);
   });
   
 });
