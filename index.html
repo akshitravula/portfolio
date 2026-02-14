@@ -3,54 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Akshit Ravula | Full Stack Developer</title>
-  <meta name="description" content="Akshit Ravula - Full Stack Developer & Cloud Engineer">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <title>Akshit Ravula | Level 25 Developer</title>
+  <meta name="description" content="Akshit Ravula - Full Stack Developer & Cloud Engineer - Game Portfolio">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 /* ==========================================
-   CSS VARIABLES - NEUMORPHISM THEME
+   NEUMORPHISM GAME THEME VARIABLES
 ========================================== */
 :root {
-  --primary: #6366f1;
-  --primary-dark: #4f46e5;
-  --primary-light: #818cf8;
-  --primary-rgb: 99, 102, 241;
-  --secondary: #06b6d4;
-  --accent: #f472b6;
-  --success: #22c55e;
+  /* Game Colors */
+  --xp-gold: #ffd700;
+  --health-red: #ff4757;
+  --mana-blue: #3742fa;
+  --stamina-green: #2ed573;
+  --legendary: #a855f7;
+  --epic: #3b82f6;
+  --rare: #22d3ee;
+  --common: #94a3b8;
   
-  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  --radius: 24px;
-  --radius-sm: 16px;
-  --radius-xs: 10px;
+  --primary: #00d4ff;
+  --primary-dark: #00a8cc;
+  --primary-rgb: 0, 212, 255;
+  --secondary: #7c3aed;
+  --accent: #f472b6;
+  
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --radius: 20px;
+  --radius-sm: 12px;
+  --radius-xs: 8px;
   
   --navbar-height: 80px;
 }
 
-/* Dark Theme */
+/* Dark Neumorphism Theme */
 [data-theme="dark"] {
   --neu-bg: #1a1a2e;
-  --neu-bg-dark: #12121f;
-  --neu-bg-light: #252542;
-  --neu-shadow-dark: #0f0f1a;
+  --neu-bg-dark: #0f0f1a;
+  --neu-bg-light: #252545;
+  --neu-shadow-dark: #0d0d1a;
   --neu-shadow-light: #2a2a4a;
   
   --text-primary: #ffffff;
-  --text-secondary: #e2e8f0;
-  --text-muted: #94a3b8;
-  --text-subtle: #64748b;
+  --text-secondary: #e0e6ed;
+  --text-muted: #8b95a5;
+  --text-subtle: #5a6270;
   
-  --shadow-neu: 10px 10px 20px var(--neu-shadow-dark), -10px -10px 20px var(--neu-shadow-light);
-  --shadow-neu-sm: 5px 5px 10px var(--neu-shadow-dark), -5px -5px 10px var(--neu-shadow-light);
-  --shadow-neu-inset: inset 5px 5px 10px var(--neu-shadow-dark), inset -5px -5px 10px var(--neu-shadow-light);
-  --shadow-neu-pressed: inset 8px 8px 16px var(--neu-shadow-dark), inset -8px -8px 16px var(--neu-shadow-light);
+  --glass-bg: rgba(26, 26, 46, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  
+  --neu-flat: linear-gradient(145deg, var(--neu-bg-light), var(--neu-bg-dark));
+  --neu-convex: linear-gradient(145deg, var(--neu-bg-light), var(--neu-bg-dark));
+  --neu-concave: linear-gradient(145deg, var(--neu-bg-dark), var(--neu-bg-light));
+  
+  --shadow-neu: 8px 8px 16px var(--neu-shadow-dark), -8px -8px 16px var(--neu-shadow-light);
+  --shadow-neu-sm: 4px 4px 8px var(--neu-shadow-dark), -4px -4px 8px var(--neu-shadow-light);
+  --shadow-neu-inset: inset 4px 4px 8px var(--neu-shadow-dark), inset -4px -4px 8px var(--neu-shadow-light);
+  --shadow-neu-pressed: inset 6px 6px 12px var(--neu-shadow-dark), inset -6px -6px 12px var(--neu-shadow-light);
 }
 
-/* Light Theme */
+/* Light Neumorphism Theme */
 [data-theme="light"] {
   --neu-bg: #e0e5ec;
   --neu-bg-dark: #c8ccd4;
@@ -58,17 +72,25 @@
   --neu-shadow-dark: #a3b1c6;
   --neu-shadow-light: #ffffff;
   
-  --text-primary: #1e293b;
-  --text-secondary: #334155;
+  --text-primary: #1a1a2e;
+  --text-secondary: #2d3748;
   --text-muted: #64748b;
   --text-subtle: #94a3b8;
   
-  --shadow-neu: 10px 10px 20px var(--neu-shadow-dark), -10px -10px 20px var(--neu-shadow-light);
-  --shadow-neu-sm: 5px 5px 10px var(--neu-shadow-dark), -5px -5px 10px var(--neu-shadow-light);
-  --shadow-neu-inset: inset 5px 5px 10px var(--neu-shadow-dark), inset -5px -5px 10px var(--neu-shadow-light);
-  --shadow-neu-pressed: inset 8px 8px 16px var(--neu-shadow-dark), inset -8px -8px 16px var(--neu-shadow-light);
+  --glass-bg: rgba(224, 229, 236, 0.9);
+  --glass-border: rgba(0, 0, 0, 0.1);
   
-  --primary: #4f46e5;
+  --neu-flat: linear-gradient(145deg, var(--neu-bg-light), var(--neu-bg-dark));
+  --neu-convex: linear-gradient(145deg, var(--neu-bg-light), var(--neu-bg-dark));
+  --neu-concave: linear-gradient(145deg, var(--neu-bg-dark), var(--neu-bg-light));
+  
+  --shadow-neu: 8px 8px 16px var(--neu-shadow-dark), -8px -8px 16px var(--neu-shadow-light);
+  --shadow-neu-sm: 4px 4px 8px var(--neu-shadow-dark), -4px -4px 8px var(--neu-shadow-light);
+  --shadow-neu-inset: inset 4px 4px 8px var(--neu-shadow-dark), inset -4px -4px 8px var(--neu-shadow-light);
+  --shadow-neu-pressed: inset 6px 6px 12px var(--neu-shadow-dark), inset -6px -6px 12px var(--neu-shadow-light);
+  
+  --primary: #6366f1;
+  --xp-gold: #f59e0b;
 }
 
 /* ==========================================
@@ -86,13 +108,13 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Rajdhani', sans-serif;
   background: var(--neu-bg);
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.6;
   overflow-x: hidden;
   transition: background 0.5s ease, color 0.5s ease;
-  perspective: 1000px;
+  min-height: 100vh;
 }
 
 body.menu-open {
@@ -105,7 +127,10 @@ body.menu-open {
 }
 
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--neu-bg); }
+::-webkit-scrollbar-track { 
+  background: var(--neu-bg); 
+  border-radius: 4px;
+}
 ::-webkit-scrollbar-thumb { 
   background: linear-gradient(180deg, var(--primary), var(--secondary));
   border-radius: 4px;
@@ -124,15 +149,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ==========================================
-   3D WORLD CONTAINER
+   GAME FONTS
 ========================================== */
-.world-container {
-  position: relative;
-  transform-style: preserve-3d;
+.game-font {
+  font-family: 'Orbitron', sans-serif;
 }
 
 /* ==========================================
-   PRELOADER - PORTAL ENTRY
+   PRELOADER - GAME LOADING
 ========================================== */
 .preloader {
   position: fixed;
@@ -143,212 +167,260 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   justify-content: center;
   flex-direction: column;
   z-index: 99999;
-  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
 .preloader.loaded {
-  clip-path: circle(0% at 50% 50%);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
 
-.loader-3d {
+.loader-game {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
-  perspective: 800px;
+  gap: 30px;
 }
 
-.loader-cube {
-  width: 80px;
-  height: 80px;
-  transform-style: preserve-3d;
-  animation: cube-rotate 2s ease-in-out infinite;
-}
-
-.loader-cube-face {
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  border: 2px solid rgba(255,255,255,0.2);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  color: white;
-}
-
-.loader-cube-face:nth-child(1) { transform: translateZ(40px); }
-.loader-cube-face:nth-child(2) { transform: rotateY(180deg) translateZ(40px); }
-.loader-cube-face:nth-child(3) { transform: rotateY(90deg) translateZ(40px); }
-.loader-cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(40px); }
-.loader-cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(40px); }
-.loader-cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(40px); }
-
-@keyframes cube-rotate {
-  0% { transform: rotateX(0deg) rotateY(0deg); }
-  50% { transform: rotateX(180deg) rotateY(180deg); }
-  100% { transform: rotateX(360deg) rotateY(360deg); }
-}
-
-.loader-text {
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-muted);
-  letter-spacing: 4px;
-  text-transform: uppercase;
-}
-
-.loader-bar {
-  width: 200px;
-  height: 4px;
-  background: var(--neu-bg-dark);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.loader-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  width: 0%;
-  animation: loading 2s ease-out forwards;
-}
-
-@keyframes loading {
-  to { width: 100%; }
-}
-
-/* ==========================================
-   SCROLL PROGRESS
-========================================== */
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-  z-index: 10001;
-  width: 0%;
-  transition: width 0.1s ease;
-}
-
-/* ==========================================
-   FLOATING BUTTONS
-========================================== */
-.floating-buttons {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  z-index: 1000;
-}
-
-.float-btn {
-  width: 56px;
-  height: 56px;
+.loader-character {
+  width: 100px;
+  height: 100px;
   background: var(--neu-bg);
   border-radius: 50%;
   box-shadow: var(--shadow-neu);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
-  color: var(--text-muted);
-  transition: var(--transition);
-  transform-style: preserve-3d;
+  position: relative;
+  animation: float 2s ease-in-out infinite;
 }
 
-.float-btn:hover {
-  transform: translateY(-5px) rotateX(10deg);
-  color: var(--primary);
-}
-
-.float-btn:active {
-  box-shadow: var(--shadow-neu-pressed);
-  transform: translateY(0) rotateX(0);
-}
-
-.float-btn.whatsapp {
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  color: white;
-  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
-}
-
-.float-btn.whatsapp:hover {
-  color: white;
-  box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
-}
-
-.float-btn.back-top {
+.loader-character i {
+  font-size: 40px;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: white;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(20px) scale(0.8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.float-btn.back-top.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0) scale(1);
+.loader-character::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: var(--primary);
+  border-right-color: var(--secondary);
+  animation: spin 1.5s linear infinite;
 }
 
-.theme-btn .fa-sun { display: none; }
-.theme-btn .fa-moon { display: block; }
-[data-theme="light"] .theme-btn .fa-sun { display: block; }
-[data-theme="light"] .theme-btn .fa-moon { display: none; }
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.loader-bar-wrapper {
+  width: 280px;
+  padding: 8px;
+  background: var(--neu-bg);
+  border-radius: 50px;
+  box-shadow: var(--shadow-neu-inset);
+}
+
+.loader-bar-fill {
+  height: 16px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  border-radius: 50px;
+  width: 0%;
+  animation: loading 2s ease-out forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+.loader-bar-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer 1s infinite;
+}
+
+@keyframes loading {
+  to { width: 100%; }
+}
+
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+.loader-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.loader-tip {
+  font-size: 13px;
+  color: var(--text-muted);
+  max-width: 300px;
+  text-align: center;
+  font-style: italic;
+}
 
 /* ==========================================
-   NAVBAR - 3D GLASS
+   GAME HUD - TOP BAR
 ========================================== */
-.navbar {
+.game-hud {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   height: var(--navbar-height);
+  background: var(--neu-bg);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   z-index: 1000;
   display: flex;
   align-items: center;
-  padding: 0 30px;
+  padding: 0 20px;
   transition: var(--transition);
-  transform-style: preserve-3d;
 }
 
-.navbar.scrolled {
-  background: var(--neu-bg);
-  box-shadow: var(--shadow-neu-sm);
-}
-
-.navbar .container {
+.hud-left {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  gap: 20px;
 }
 
-.nav-logo {
-  font-family: 'Poppins', sans-serif;
-  font-size: 28px;
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.player-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--neu-bg);
+  box-shadow: var(--shadow-neu-sm);
+  padding: 3px;
   position: relative;
-  z-index: 1002;
-  transition: var(--transition);
 }
 
-.nav-logo:hover {
-  transform: scale(1.05);
+.player-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.player-level {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, var(--xp-gold), #ff9500);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: #000;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.5);
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.player-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.player-class {
+  font-size: 11px;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.player-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 150px;
+}
+
+.stat-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-bar-icon {
+  font-size: 12px;
+  width: 16px;
+}
+
+.stat-bar-icon.health { color: var(--health-red); }
+.stat-bar-icon.mana { color: var(--mana-blue); }
+.stat-bar-icon.xp { color: var(--xp-gold); }
+
+.stat-bar-track {
+  flex: 1;
+  height: 8px;
+  background: var(--neu-bg);
+  border-radius: 10px;
+  box-shadow: var(--shadow-neu-inset);
+  overflow: hidden;
+  position: relative;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+.stat-bar-fill.health {
+  background: linear-gradient(90deg, var(--health-red), #ff6b7a);
+  width: 85%;
+}
+
+.stat-bar-fill.mana {
+  background: linear-gradient(90deg, var(--mana-blue), #5a67f2);
+  width: 70%;
+}
+
+.stat-bar-fill.xp {
+  background: linear-gradient(90deg, var(--xp-gold), #ffeb3b);
+  width: 65%;
+}
+
+.stat-bar-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9px;
+  color: var(--text-muted);
+  min-width: 45px;
+  text-align: right;
+}
+
+/* HUD Center - Navigation */
+.hud-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .nav-menu {
@@ -356,21 +428,35 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   gap: 8px;
 }
 
+.nav-item {
+  position: relative;
+}
+
 .nav-link {
-  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
   background: var(--neu-bg);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-neu-sm);
-  font-size: 14px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
   font-weight: 600;
   color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
   transition: var(--transition);
-  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.nav-link i {
+  font-size: 14px;
 }
 
 .nav-link:hover {
   color: var(--primary);
-  transform: translateY(-3px) rotateX(5deg);
+  transform: translateY(-2px);
 }
 
 .nav-link:active {
@@ -383,18 +469,93 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   box-shadow: var(--shadow-neu-inset);
 }
 
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background: var(--primary);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--primary);
+}
+
+/* HUD Right - Actions */
+.hud-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hud-btn {
+  width: 44px;
+  height: 44px;
+  background: var(--neu-bg);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-neu-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 18px;
+  transition: var(--transition);
+  position: relative;
+}
+
+.hud-btn:hover {
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.hud-btn:active {
+  box-shadow: var(--shadow-neu-pressed);
+  transform: translateY(0);
+}
+
+.hud-btn.playing {
+  color: var(--primary);
+  animation: pulse-glow 1.5s ease infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: var(--shadow-neu-sm), 0 0 0 0 rgba(var(--primary-rgb), 0.4); }
+  50% { box-shadow: var(--shadow-neu-sm), 0 0 20px 5px rgba(var(--primary-rgb), 0.2); }
+}
+
+.hud-btn .badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 18px;
+  height: 18px;
+  background: var(--health-red);
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.theme-btn .fa-sun { display: none; }
+.theme-btn .fa-moon { display: block; }
+[data-theme="light"] .theme-btn .fa-sun { display: block; }
+[data-theme="light"] .theme-btn .fa-moon { display: none; }
+
 /* Mobile Menu Toggle */
 .menu-toggle {
   display: none;
-  width: 50px;
-  height: 50px;
+  width: 44px;
+  height: 44px;
   background: var(--neu-bg);
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-sm);
   box-shadow: var(--shadow-neu-sm);
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 1002;
   transition: var(--transition);
 }
 
@@ -403,8 +564,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .menu-toggle-inner {
-  width: 24px;
-  height: 18px;
+  width: 20px;
+  height: 14px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -422,7 +583,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .menu-toggle span:nth-child(3) { width: 85%; }
 
 .menu-toggle.active span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+  transform: translateY(6px) rotate(45deg);
 }
 .menu-toggle.active span:nth-child(2) {
   opacity: 0;
@@ -430,47 +591,142 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .menu-toggle.active span:nth-child(3) {
   width: 100%;
-  transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 /* ==========================================
-   HERO - 3D PARALLAX
+   FLOATING ACTION BUTTONS
+========================================== */
+.floating-actions {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 1000;
+}
+
+.fab {
+  width: 56px;
+  height: 56px;
+  background: var(--neu-bg);
+  border-radius: 50%;
+  box-shadow: var(--shadow-neu);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  transition: var(--transition-bounce);
+  position: relative;
+}
+
+.fab:hover {
+  transform: scale(1.1) translateY(-3px);
+}
+
+.fab:active {
+  box-shadow: var(--shadow-neu-pressed);
+  transform: scale(0.95);
+}
+
+.fab.whatsapp {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: white;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+}
+
+.fab.whatsapp:hover {
+  box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
+}
+
+.fab.back-top {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.8);
+}
+
+.fab.back-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* ==========================================
+   XP PROGRESS BAR (TOP)
+========================================== */
+.xp-progress-bar {
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--neu-bg-dark);
+  z-index: 999;
+}
+
+.xp-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--xp-gold), var(--primary), var(--secondary));
+  width: 0%;
+  transition: width 0.1s ease;
+  position: relative;
+}
+
+.xp-progress-fill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background: var(--xp-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--xp-gold);
+}
+
+/* ==========================================
+   HERO - CHARACTER SELECT
 ========================================== */
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: calc(var(--navbar-height) + 40px) 20px 80px;
+  padding: calc(var(--navbar-height) + 40px) 20px 60px;
   position: relative;
   overflow: hidden;
-  perspective: 1000px;
 }
 
-/* 3D Background Layers */
+/* Animated Background */
 .hero-bg {
   position: absolute;
   inset: 0;
   z-index: -1;
-  transform-style: preserve-3d;
+  overflow: hidden;
 }
 
-.hero-layer {
+.hero-particles {
   position: absolute;
   inset: 0;
-  transition: transform 0.1s ease-out;
 }
 
-.hero-layer-1 {
-  background: radial-gradient(ellipse at 70% 20%, rgba(var(--primary-rgb), 0.15) 0%, transparent 50%);
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--primary);
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: particle-float 8s infinite ease-in-out;
 }
 
-.hero-layer-2 {
-  background: radial-gradient(ellipse at 30% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
-}
-
-.hero-layer-3 {
-  background: radial-gradient(ellipse at 50% 50%, rgba(244, 114, 182, 0.05) 0%, transparent 40%);
+@keyframes particle-float {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.5; }
+  50% { transform: translateY(-100px) translateX(50px); opacity: 1; }
 }
 
 .hero-grid {
@@ -479,171 +735,182 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background-image: 
     linear-gradient(rgba(var(--primary-rgb), 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(var(--primary-rgb), 0.03) 1px, transparent 1px);
-  background-size: 80px 80px;
-  transform: perspective(500px) rotateX(60deg) translateY(-50%);
-  transform-origin: center top;
-  opacity: 0.5;
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
 }
 
-/* Floating 3D Shapes */
-.floating-shapes {
+.hero-glow {
   position: absolute;
-  inset: 0;
-  pointer-events: none;
-  transform-style: preserve-3d;
-}
-
-.shape {
-  position: absolute;
+  width: 600px;
+  height: 600px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  opacity: 0.1;
-  animation: float-shape 8s ease-in-out infinite;
+  filter: blur(150px);
+  opacity: 0.3;
 }
 
-.shape-1 { width: 300px; height: 300px; top: 10%; left: -10%; animation-delay: 0s; }
-.shape-2 { width: 200px; height: 200px; top: 60%; right: -5%; animation-delay: -2s; }
-.shape-3 { width: 150px; height: 150px; bottom: 10%; left: 20%; animation-delay: -4s; }
-.shape-4 { width: 100px; height: 100px; top: 30%; right: 20%; animation-delay: -6s; }
+.hero-glow-1 {
+  top: -200px;
+  right: -200px;
+  background: var(--primary);
+}
 
-@keyframes float-shape {
-  0%, 100% { transform: translateY(0) translateZ(0) rotate(0deg); }
-  50% { transform: translateY(-30px) translateZ(50px) rotate(180deg); }
+.hero-glow-2 {
+  bottom: -200px;
+  left: -200px;
+  background: var(--secondary);
 }
 
 /* Hero Content */
 .hero-content {
   display: flex;
-  gap: 80px;
+  gap: 60px;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1100px;
   z-index: 1;
-  transform-style: preserve-3d;
 }
 
 .hero-left {
   flex: 1;
-  transform-style: preserve-3d;
 }
 
 .hero-right {
-  flex: 0 0 380px;
-  transform-style: preserve-3d;
+  flex: 0 0 350px;
 }
 
-/* 3D Profile Card */
-.profile-card {
+/* Character Card */
+.character-card {
   background: var(--neu-bg);
   border-radius: var(--radius);
-  padding: 40px;
+  padding: 30px;
   box-shadow: var(--shadow-neu);
   position: relative;
-  transform-style: preserve-3d;
-  transition: var(--transition);
+  overflow: hidden;
 }
 
-.profile-card::before {
+.character-card::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-  border-radius: var(--radius) var(--radius) 0 0;
+  background: linear-gradient(90deg, var(--xp-gold), var(--primary), var(--secondary));
 }
 
-.profile-card:hover {
-  transform: translateZ(20px) rotateY(-5deg) rotateX(5deg);
+.character-rarity {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, var(--legendary), #c084fc);
+  border-radius: 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
 }
 
-.profile-avatar {
+.character-avatar {
   width: 180px;
   height: 180px;
-  margin: 0 auto 24px;
+  margin: 20px auto;
   position: relative;
-  transform-style: preserve-3d;
 }
 
-.profile-avatar-ring {
+.character-avatar-ring {
   position: absolute;
-  inset: -8px;
+  inset: -10px;
   border-radius: 50%;
   background: conic-gradient(from 0deg, var(--primary), var(--secondary), var(--accent), var(--primary));
-  animation: ring-rotate 6s linear infinite;
+  animation: rotate-ring 4s linear infinite;
+  opacity: 0.7;
 }
 
-@keyframes ring-rotate {
+@keyframes rotate-ring {
   to { transform: rotate(360deg); }
 }
 
-.profile-avatar-inner {
+.character-avatar-inner {
   position: relative;
   width: 100%;
   height: 100%;
   border-radius: 50%;
   background: var(--neu-bg);
   padding: 8px;
-  box-shadow: var(--shadow-neu-sm);
+  box-shadow: var(--shadow-neu);
   z-index: 1;
 }
 
-.profile-avatar-inner img {
+.character-avatar-inner img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.profile-name {
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 24px;
+.character-level-badge {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--xp-gold), #ff9500);
+  padding: 6px 20px;
+  border-radius: 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
   font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 8px;
+  color: #000;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+  z-index: 2;
 }
 
-.profile-title {
+.character-name {
+  text-align: center;
+  margin-top: 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.character-title {
   text-align: center;
   font-size: 14px;
   color: var(--primary);
-  font-weight: 500;
-  margin-bottom: 24px;
+  margin-top: 4px;
 }
 
-.profile-stats {
+/* Character Stats */
+.character-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
+  margin-top: 24px;
 }
 
-.profile-stat {
+.char-stat {
   background: var(--neu-bg);
-  border-radius: var(--radius-xs);
-  padding: 16px 12px;
+  border-radius: var(--radius-sm);
+  padding: 14px 10px;
   text-align: center;
   box-shadow: var(--shadow-neu-inset);
-  transition: var(--transition);
 }
 
-.profile-stat:hover {
-  box-shadow: var(--shadow-neu-sm);
-  transform: translateZ(10px);
-}
-
-.profile-stat-value {
-  font-family: 'Poppins', sans-serif;
-  font-size: 28px;
-  font-weight: 800;
+.char-stat-value {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.profile-stat-label {
-  font-size: 11px;
+.char-stat-label {
+  font-size: 10px;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -659,21 +926,21 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background: var(--neu-bg);
   border-radius: 50px;
   box-shadow: var(--shadow-neu-sm);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--success);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--stamina-green);
   margin-bottom: 28px;
-  transform: translateZ(30px);
-  animation: fade-in-up 0.8s ease forwards;
+  animation: fadeInUp 0.6s ease forwards;
 }
 
 .hero-badge .pulse {
   width: 10px;
   height: 10px;
-  background: var(--success);
+  background: var(--stamina-green);
   border-radius: 50%;
   animation: pulse 2s ease infinite;
-  box-shadow: 0 0 10px var(--success);
+  box-shadow: 0 0 10px var(--stamina-green);
 }
 
 @keyframes pulse {
@@ -682,14 +949,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .hero-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: clamp(40px, 6vw, 64px);
-  font-weight: 800;
-  line-height: 1.1;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 900;
+  line-height: 1.15;
   color: var(--text-primary);
-  margin-bottom: 20px;
-  transform: translateZ(50px);
-  animation: fade-in-up 0.8s ease 0.1s forwards;
+  margin-bottom: 16px;
+  animation: fadeInUp 0.6s ease 0.1s forwards;
   opacity: 0;
 }
 
@@ -699,7 +965,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   -webkit-text-fill-color: transparent;
   background-clip: text;
   background-size: 200% 200%;
-  animation: gradient-shift 4s ease infinite;
+  animation: gradient-shift 3s ease infinite;
 }
 
 @keyframes gradient-shift {
@@ -710,21 +976,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .typewriter-wrapper {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: clamp(18px, 3vw, 24px);
+  gap: 10px;
+  font-size: clamp(16px, 2.5vw, 22px);
   margin-bottom: 24px;
-  min-height: 40px;
-  transform: translateZ(40px);
-  animation: fade-in-up 0.8s ease 0.2s forwards;
+  min-height: 36px;
+  animation: fadeInUp 0.6s ease 0.2s forwards;
   opacity: 0;
 }
 
-.typewriter-wrapper .static {
-  color: var(--text-muted);
+.typewriter-wrapper .static { 
+  color: var(--text-muted); 
 }
 
-.typewriter-text {
-  color: var(--secondary);
+.typewriter-text { 
+  color: var(--primary); 
   font-family: 'Fira Code', monospace;
   font-weight: 500;
 }
@@ -742,13 +1007,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
 .hero-description {
-  font-size: 18px;
+  font-size: 17px;
   color: var(--text-muted);
-  max-width: 520px;
+  max-width: 500px;
   line-height: 1.8;
-  margin-bottom: 36px;
-  transform: translateZ(30px);
-  animation: fade-in-up 0.8s ease 0.3s forwards;
+  margin-bottom: 32px;
+  animation: fadeInUp 0.6s ease 0.3s forwards;
   opacity: 0;
 }
 
@@ -757,8 +1021,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  transform: translateZ(20px);
-  animation: fade-in-up 0.8s ease 0.4s forwards;
+  animation: fadeInUp 0.6s ease 0.4s forwards;
   opacity: 0;
 }
 
@@ -766,16 +1029,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 18px 36px;
+  gap: 10px;
+  padding: 16px 32px;
   background: var(--neu-bg);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-neu);
-  font-size: 15px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   color: var(--text-primary);
   transition: var(--transition);
-  transform-style: preserve-3d;
   position: relative;
   overflow: hidden;
 }
@@ -787,11 +1052,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   opacity: 0;
   transition: opacity 0.3s ease;
-  border-radius: var(--radius-sm);
 }
 
 .btn-neu:hover {
-  transform: translateY(-5px) translateZ(10px);
+  transform: translateY(-3px);
   color: white;
 }
 
@@ -800,7 +1064,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .btn-neu:active {
-  transform: translateY(0) translateZ(0);
+  transform: translateY(0);
   box-shadow: var(--shadow-neu-pressed);
 }
 
@@ -813,224 +1077,188 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .btn-neu.primary {
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: white;
-  box-shadow: 0 10px 30px rgba(var(--primary-rgb), 0.4);
+  box-shadow: 0 8px 25px rgba(var(--primary-rgb), 0.4);
 }
 
 .btn-neu.primary:hover {
-  box-shadow: 0 15px 40px rgba(var(--primary-rgb), 0.5);
+  box-shadow: 0 12px 35px rgba(var(--primary-rgb), 0.5);
 }
 
 .btn-neu.primary::before {
   display: none;
 }
 
-/* Scroll Indicator */
-.scroll-indicator {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  animation: fade-in 1s ease 1s forwards, bounce 2s ease infinite 1.5s;
-  opacity: 0;
-}
-
-.scroll-mouse {
-  width: 28px;
-  height: 44px;
-  border: 2px solid var(--text-subtle);
-  border-radius: 14px;
-  position: relative;
-  box-shadow: var(--shadow-neu-sm);
-}
-
-.scroll-mouse::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 8px;
-  background: var(--primary);
-  border-radius: 2px;
-  animation: scroll-wheel 1.5s ease infinite;
-}
-
-@keyframes scroll-wheel {
-  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
-  100% { transform: translateX(-50%) translateY(10px); opacity: 0; }
-}
-
-.scroll-text {
-  font-size: 11px;
-  color: var(--text-subtle);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-10px); }
-}
-
-@keyframes fade-in { to { opacity: 1; } }
-@keyframes fade-in-up { 
-  from { opacity: 0; transform: translateY(30px) translateZ(0); } 
-  to { opacity: 1; transform: translateY(0) translateZ(var(--tz, 0)); } 
-}
-
 /* ==========================================
-   SECTIONS - 3D DEPTH
+   SECTIONS
 ========================================== */
 .section {
-  padding: 120px 20px;
+  padding: 100px 20px;
   position: relative;
-  transform-style: preserve-3d;
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 70px;
-  transform-style: preserve-3d;
+  margin-bottom: 60px;
 }
 
 .section-icon {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   background: var(--neu-bg);
   border-radius: 50%;
   box-shadow: var(--shadow-neu);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 24px;
-  font-size: 32px;
+  margin: 0 auto 20px;
+  font-size: 28px;
   color: var(--primary);
-  transition: var(--transition);
-}
-
-.section-icon:hover {
-  transform: translateZ(20px) rotateY(15deg);
 }
 
 .section-label {
   display: inline-block;
-  padding: 10px 24px;
+  padding: 8px 20px;
   background: var(--neu-bg);
   border-radius: 50px;
   box-shadow: var(--shadow-neu-sm);
-  font-size: 12px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
   font-weight: 600;
   color: var(--primary);
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 16px;
 }
 
 .section-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: clamp(32px, 5vw, 48px);
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(28px, 4vw, 40px);
   font-weight: 800;
   color: var(--text-primary);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .section-subtitle {
-  font-size: 17px;
+  font-size: 16px;
   color: var(--text-muted);
-  max-width: 500px;
+  max-width: 450px;
   margin: 0 auto;
 }
 
 /* ==========================================
-   ABOUT SECTION - 3D CARDS
+   ABOUT - PLAYER STATS
 ========================================== */
 .about-grid {
   display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 60px;
+  grid-template-columns: 350px 1fr;
+  gap: 50px;
   align-items: start;
 }
 
-/* Profile Stats Card */
-.about-card {
+/* Player Card (Left) */
+.player-card {
   background: var(--neu-bg);
   border-radius: var(--radius);
-  padding: 36px;
+  padding: 30px;
   box-shadow: var(--shadow-neu);
-  transform-style: preserve-3d;
-  transition: var(--transition);
-}
-
-.about-card:hover {
-  transform: translateZ(15px);
-}
-
-.about-avatar {
-  width: 140px;
-  height: 140px;
-  margin: 0 auto 20px;
   position: relative;
 }
 
-.about-avatar img {
+.player-card-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.player-card-avatar {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 16px;
+  position: relative;
+}
+
+.player-card-avatar img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid var(--neu-bg);
-  box-shadow: var(--shadow-neu-sm);
+  box-shadow: var(--shadow-neu);
 }
 
-.about-name {
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 22px;
+.player-card-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 4px;
 }
 
-.about-title {
-  text-align: center;
-  font-size: 14px;
+.player-card-class {
+  font-size: 13px;
   color: var(--primary);
-  margin-bottom: 28px;
+  margin-top: 4px;
 }
 
 /* Attribute Bars */
-.attributes {
-  margin-bottom: 28px;
+.attributes-section {
+  margin-top: 24px;
+}
+
+.attribute-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .attribute-row {
-  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.attribute-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--neu-bg);
+  border-radius: 10px;
+  box-shadow: var(--shadow-neu-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.attribute-icon.str { color: var(--health-red); }
+.attribute-icon.int { color: var(--mana-blue); }
+.attribute-icon.dex { color: var(--stamina-green); }
+.attribute-icon.wis { color: var(--legendary); }
+
+.attribute-info {
+  flex: 1;
 }
 
 .attribute-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .attribute-name {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-secondary);
-  font-weight: 500;
 }
 
 .attribute-value {
-  font-size: 14px;
-  font-weight: 600;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
   color: var(--primary);
 }
 
 .attribute-bar {
-  height: 10px;
+  height: 8px;
   background: var(--neu-bg);
   border-radius: 10px;
   box-shadow: var(--shadow-neu-inset);
@@ -1040,51 +1268,40 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .attribute-fill {
   height: 100%;
   border-radius: 10px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  width: 0;
-  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
+  transition: width 1.2s ease-out;
 }
 
-.attribute-fill::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(100%); }
-}
+.attribute-fill.str { background: linear-gradient(90deg, var(--health-red), #ff6b7a); }
+.attribute-fill.int { background: linear-gradient(90deg, var(--mana-blue), #5a67f2); }
+.attribute-fill.dex { background: linear-gradient(90deg, var(--stamina-green), #5af27a); }
+.attribute-fill.wis { background: linear-gradient(90deg, var(--legendary), #c084fc); }
 
 /* Quick Stats */
 .quick-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
+  margin-top: 24px;
 }
 
 .quick-stat {
   background: var(--neu-bg);
-  border-radius: var(--radius-xs);
-  padding: 16px 10px;
+  border-radius: var(--radius-sm);
+  padding: 16px 12px;
   text-align: center;
   box-shadow: var(--shadow-neu-inset);
   transition: var(--transition);
-  transform-style: preserve-3d;
 }
 
 .quick-stat:hover {
-  box-shadow: var(--shadow-neu-sm);
-  transform: translateZ(10px);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-neu);
 }
 
 .quick-stat-value {
-  font-family: 'Poppins', sans-serif;
-  font-size: 26px;
-  font-weight: 800;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1099,29 +1316,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-top: 4px;
 }
 
-/* Bio Content */
-.bio-content {
+/* Bio Section (Right) */
+.bio-section {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 30px;
 }
 
 .bio-card {
   background: var(--neu-bg);
   border-radius: var(--radius);
-  padding: 36px;
+  padding: 30px;
   box-shadow: var(--shadow-neu);
-  transform-style: preserve-3d;
-  transition: var(--transition);
-}
-
-.bio-card:hover {
-  transform: translateZ(15px) rotateY(-2deg);
 }
 
 .bio-card h3 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 22px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 16px;
@@ -1135,10 +1346,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .bio-card p {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--text-muted);
   line-height: 1.8;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .bio-card p:last-of-type {
@@ -1149,30 +1360,28 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .info-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-top: 24px;
+  gap: 14px;
+  margin-top: 20px;
 }
 
 .info-item {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 18px;
+  gap: 14px;
+  padding: 16px;
   background: var(--neu-bg);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-neu-inset);
   transition: var(--transition);
-  transform-style: preserve-3d;
 }
 
 .info-item:hover {
   box-shadow: var(--shadow-neu-sm);
-  transform: translateZ(8px);
 }
 
 .info-item-icon {
-  width: 46px;
-  height: 46px;
+  width: 42px;
+  height: 42px;
   background: var(--neu-bg);
   border-radius: 12px;
   box-shadow: var(--shadow-neu-sm);
@@ -1180,95 +1389,88 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   align-items: center;
   justify-content: center;
   color: var(--primary);
-  font-size: 18px;
+  font-size: 16px;
   flex-shrink: 0;
 }
 
 .info-item-text h4 {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--text-subtle);
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
 }
 
 .info-item-text p {
-  font-size: 15px;
+  font-size: 14px;
   color: var(--text-secondary);
   margin: 0;
-  font-weight: 500;
 }
 
 /* ==========================================
-   SKILLS SECTION - 3D CARDS
+   SKILLS - ABILITY TREE
 ========================================== */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
 }
 
-.skill-card {
+.skill-tree-card {
   background: var(--neu-bg);
   border-radius: var(--radius);
-  padding: 32px;
+  padding: 30px;
   box-shadow: var(--shadow-neu);
-  transform-style: preserve-3d;
-  transition: var(--transition);
   position: relative;
   overflow: hidden;
 }
 
-.skill-card::before {
+.skill-tree-card::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
+  height: 3px;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
 }
 
-.skill-card:hover {
-  transform: translateZ(20px) rotateX(-3deg) rotateY(3deg);
-}
-
-.skill-card-header {
+.skill-tree-header {
   display: flex;
   align-items: center;
-  gap: 18px;
-  margin-bottom: 28px;
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
-.skill-card-icon {
-  width: 60px;
-  height: 60px;
+.skill-tree-icon {
+  width: 56px;
+  height: 56px;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
-  border-radius: 16px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
+  font-size: 24px;
   color: white;
-  box-shadow: 0 10px 25px rgba(var(--primary-rgb), 0.3);
+  box-shadow: 0 8px 20px rgba(var(--primary-rgb), 0.3);
 }
 
-.skill-card-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 20px;
+.skill-tree-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 18px;
   font-weight: 700;
   color: var(--text-primary);
 }
 
-.skill-card-subtitle {
-  font-size: 13px;
-  color: var(--text-muted);
+.skill-tree-level {
+  font-size: 12px;
+  color: var(--xp-gold);
   margin-top: 2px;
 }
 
-/* Skill Items */
+/* Individual Skills */
 .skill-item {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .skill-item:last-child { margin-bottom: 0; }
@@ -1276,43 +1478,52 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .skill-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .skill-name {
-  font-size: 15px;
+  font-size: 14px;
   color: var(--text-secondary);
-  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.skill-percent {
-  font-size: 14px;
-  font-weight: 600;
+.skill-name i {
+  font-size: 10px;
+  color: var(--xp-gold);
+}
+
+.skill-level {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
   color: var(--primary);
 }
 
-.skill-bar {
+.skill-bar-wrapper {
   height: 10px;
   background: var(--neu-bg);
   border-radius: 10px;
   box-shadow: var(--shadow-neu-inset);
   overflow: hidden;
+  position: relative;
 }
 
-.skill-fill {
+.skill-bar-fill {
   height: 100%;
   border-radius: 10px;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   width: 0;
-  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 1.5s ease-out;
   position: relative;
 }
 
-.skill-fill::after {
+.skill-bar-fill::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
   animation: shimmer 2s infinite;
 }
 
@@ -1320,96 +1531,81 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .tech-cloud {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 12px;
   justify-content: center;
-  margin-top: 60px;
+  margin-top: 50px;
 }
 
 .tech-tag {
-  padding: 14px 28px;
+  padding: 12px 24px;
   background: var(--neu-bg);
   border-radius: 50px;
   box-shadow: var(--shadow-neu-sm);
-  font-size: 14px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
   font-weight: 500;
   color: var(--text-secondary);
   transition: var(--transition);
-  transform-style: preserve-3d;
   cursor: pointer;
 }
 
 .tech-tag:hover {
-  transform: translateY(-5px) translateZ(10px);
+  transform: translateY(-3px) scale(1.05);
   color: var(--primary);
-  box-shadow: var(--shadow-neu), 0 10px 30px rgba(var(--primary-rgb), 0.2);
+  box-shadow: var(--shadow-neu), 0 0 20px rgba(var(--primary-rgb), 0.2);
 }
 
 .tech-tag:active {
   box-shadow: var(--shadow-neu-pressed);
-  transform: translateY(0) translateZ(0);
+  transform: translateY(0) scale(1);
 }
 
 /* ==========================================
-   EXPERIENCE SECTION - TIMELINE
+   EXPERIENCE - QUEST LOG
 ========================================== */
-.experience-timeline {
-  max-width: 900px;
+.quest-log {
+  max-width: 800px;
   margin: 0 auto;
-  position: relative;
 }
 
-.experience-timeline::before {
-  content: '';
-  position: absolute;
-  left: 30px;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(to bottom, var(--primary), var(--secondary), var(--accent));
-  border-radius: 3px;
-}
-
-.exp-card {
+.quest-card {
   background: var(--neu-bg);
   border-radius: var(--radius);
-  padding: 32px;
-  padding-left: 90px;
-  margin-bottom: 28px;
+  padding: 28px;
   box-shadow: var(--shadow-neu);
+  margin-bottom: 20px;
   position: relative;
-  transform-style: preserve-3d;
+  overflow: hidden;
   transition: var(--transition);
 }
 
-.exp-card:hover {
-  transform: translateX(10px) translateZ(15px);
+.quest-card:hover {
+  transform: translateX(8px);
 }
 
-.exp-card::before {
+.quest-card::before {
   content: '';
   position: absolute;
-  left: 22px;
-  top: 36px;
-  width: 20px;
-  height: 20px;
-  background: var(--neu-bg);
-  border: 4px solid var(--primary);
-  border-radius: 50%;
-  box-shadow: var(--shadow-neu-sm), 0 0 15px rgba(var(--primary-rgb), 0.4);
-  z-index: 1;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--primary), var(--secondary));
+  opacity: 0;
+  transition: var(--transition);
 }
 
-.exp-card.current::before {
-  background: var(--primary);
-  animation: pulse-dot 2s ease infinite;
+.quest-card:hover::before,
+.quest-card.active::before {
+  opacity: 1;
 }
 
-@keyframes pulse-dot {
-  0%, 100% { box-shadow: var(--shadow-neu-sm), 0 0 15px rgba(var(--primary-rgb), 0.4); }
-  50% { box-shadow: var(--shadow-neu-sm), 0 0 30px rgba(var(--primary-rgb), 0.8); }
+.quest-card.active {
+  border: 1px solid rgba(var(--primary-rgb), 0.3);
+  background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.05), transparent);
 }
 
-.exp-header {
+.quest-header {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -1417,111 +1613,144 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-bottom: 14px;
 }
 
-.exp-date {
-  padding: 8px 16px;
+.quest-date {
+  padding: 6px 14px;
   background: var(--neu-bg);
   border-radius: 20px;
   box-shadow: var(--shadow-neu-inset);
-  font-size: 13px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
   font-weight: 600;
   color: var(--primary);
 }
 
-.exp-badge {
+.quest-status {
   padding: 6px 14px;
   border-radius: 20px;
-  font-size: 11px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-.exp-badge.current {
-  background: linear-gradient(135deg, var(--success), #34d399);
-  color: white;
-  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+.quest-status.active {
+  background: linear-gradient(135deg, var(--stamina-green), #5af27a);
+  color: #000;
+  box-shadow: 0 4px 15px rgba(46, 213, 115, 0.4);
+  animation: pulse-status 2s ease infinite;
 }
 
-.exp-badge.education {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+@keyframes pulse-status {
+  0%, 100% { box-shadow: 0 4px 15px rgba(46, 213, 115, 0.4); }
+  50% { box-shadow: 0 4px 25px rgba(46, 213, 115, 0.6); }
+}
+
+.quest-status.completed {
+  background: var(--neu-bg);
+  box-shadow: var(--shadow-neu-sm);
+  color: var(--text-muted);
+}
+
+.quest-status.education {
+  background: linear-gradient(135deg, var(--mana-blue), #5a67f2);
   color: white;
 }
 
-.exp-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 20px;
+.quest-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 18px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 6px;
 }
 
-.exp-company {
-  font-size: 16px;
-  color: var(--secondary);
-  margin-bottom: 16px;
+.quest-location {
+  font-size: 15px;
+  color: var(--primary);
+  margin-bottom: 14px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.exp-company i {
-  font-size: 14px;
+.quest-location i {
+  font-size: 12px;
 }
 
-.exp-list li {
+.quest-objectives {
+  padding-left: 0;
+}
+
+.quest-objectives li {
   position: relative;
-  padding-left: 24px;
+  padding-left: 28px;
   margin-bottom: 10px;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--text-muted);
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
-.exp-list li::before {
-  content: '→';
+.quest-objectives li::before {
+  content: '✓';
   position: absolute;
   left: 0;
-  color: var(--primary);
-  font-weight: 600;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--neu-bg);
+  border-radius: 6px;
+  box-shadow: var(--shadow-neu-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--stamina-green);
+  font-size: 10px;
+  font-weight: 700;
 }
 
-.exp-list li:last-child { margin-bottom: 0; }
+.quest-objectives li:last-child { margin-bottom: 0; }
 
-.exp-grade {
+.quest-reward {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 20px;
-  background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.1), rgba(6, 182, 212, 0.1));
+  padding: 8px 16px;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 149, 0, 0.1));
   border-radius: 20px;
   margin-top: 16px;
-  font-size: 14px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
   font-weight: 600;
-  color: var(--primary);
+  color: var(--xp-gold);
+}
+
+.quest-reward i {
+  font-size: 14px;
 }
 
 /* ==========================================
-   PROJECTS SECTION - 3D GRID
+   PROJECTS - INVENTORY
 ========================================== */
-.projects-grid {
+.inventory-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 24px;
 }
 
 /* Mobile Carousel */
-.projects-mobile {
+.inventory-mobile {
   display: none;
   position: relative;
 }
 
-.projects-carousel {
+.inventory-carousel {
   display: flex;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s ease;
   touch-action: pan-x;
 }
 
-.carousel-slide {
+.inventory-slide {
   min-width: 100%;
   padding: 0 10px;
   box-sizing: border-box;
@@ -1530,13 +1759,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .carousel-dots {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-top: 36px;
+  gap: 10px;
+  margin-top: 30px;
 }
 
 .carousel-dot {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   background: var(--neu-bg);
   border-radius: 50%;
   box-shadow: var(--shadow-neu-sm);
@@ -1547,223 +1776,257 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .carousel-dot.active {
   background: var(--primary);
-  box-shadow: 0 0 20px var(--primary);
+  box-shadow: 0 0 15px var(--primary);
 }
 
-/* Project Card */
-.project-card {
+/* Inventory Item Card */
+.inventory-item {
   background: var(--neu-bg);
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-neu);
-  transform-style: preserve-3d;
   transition: var(--transition);
   height: 100%;
 }
 
-.project-card:hover {
-  transform: translateY(-10px) translateZ(25px) rotateX(-5deg);
+.inventory-item:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-neu), 0 20px 40px rgba(0,0,0,0.2);
 }
 
-.project-img {
+.inventory-item-img {
   position: relative;
-  height: 220px;
+  height: 200px;
   overflow: hidden;
   background: var(--neu-bg-dark);
 }
 
-.project-img img {
+.inventory-item-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.5s ease;
 }
 
-.project-card:hover .project-img img {
+.inventory-item:hover .inventory-item-img img {
   transform: scale(1.1);
 }
 
-.project-overlay {
+.inventory-rarity {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.inventory-rarity.legendary {
+  background: linear-gradient(135deg, var(--legendary), #c084fc);
+  color: white;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+}
+
+.inventory-rarity.epic {
+  background: linear-gradient(135deg, var(--epic), #60a5fa);
+  color: white;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+.inventory-rarity.rare {
+  background: linear-gradient(135deg, var(--rare), #67e8f9);
+  color: #000;
+  box-shadow: 0 4px 15px rgba(34, 211, 238, 0.4);
+}
+
+.inventory-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%);
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 50%);
   display: flex;
   align-items: flex-end;
-  justify-content: flex-end;
   padding: 20px;
   opacity: 0;
   transition: var(--transition);
 }
 
-.project-card:hover .project-overlay {
+.inventory-item:hover .inventory-overlay {
   opacity: 1;
 }
 
-.project-link {
-  width: 54px;
-  height: 54px;
+.inventory-link {
+  width: 50px;
+  height: 50px;
   background: var(--primary);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   transition: var(--transition);
   transform: translateY(20px);
-  box-shadow: 0 10px 25px rgba(var(--primary-rgb), 0.5);
+  box-shadow: 0 8px 20px rgba(var(--primary-rgb), 0.4);
 }
 
-.project-card:hover .project-link {
+.inventory-item:hover .inventory-link {
   transform: translateY(0);
 }
 
-.project-link:hover {
+.inventory-link:hover {
   background: var(--secondary);
   transform: scale(1.15) !important;
 }
 
-.project-body {
-  padding: 28px;
+.inventory-item-body {
+  padding: 24px;
 }
 
-.project-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
+.inventory-item-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   transition: color 0.3s ease;
 }
 
-.project-card:hover .project-title {
+.inventory-item:hover .inventory-item-title {
   color: var(--primary);
 }
 
-.project-desc {
+.inventory-item-desc {
   font-size: 14px;
   color: var(--text-muted);
-  line-height: 1.7;
-  margin-bottom: 18px;
+  line-height: 1.6;
+  margin-bottom: 16px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.project-tags {
+.inventory-item-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.project-tag {
-  padding: 6px 14px;
+.inventory-tag {
+  padding: 6px 12px;
   background: var(--neu-bg);
   border-radius: 20px;
   box-shadow: var(--shadow-neu-inset);
-  font-size: 12px;
+  font-size: 11px;
   color: var(--primary);
   font-weight: 500;
 }
 
 /* ==========================================
-   STATS BANNER - 3D FLOATING
+   STATS BANNER - ACHIEVEMENTS
 ========================================== */
-.stats-banner {
+.achievements-banner {
   background: linear-gradient(135deg, var(--neu-bg-dark), var(--neu-bg));
-  padding: 80px 20px;
+  padding: 60px 20px;
   position: relative;
   overflow: hidden;
 }
 
-.stats-banner::before {
+.achievements-banner::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  height: 3px;
+  background: linear-gradient(90deg, var(--xp-gold), var(--primary), var(--secondary), var(--accent));
 }
 
-.stats-grid {
+.achievements-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  max-width: 1000px;
+  gap: 24px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
-.stat-item {
+.achievement-item {
   text-align: center;
-  transform-style: preserve-3d;
+  position: relative;
 }
 
-.stat-icon {
-  width: 90px;
-  height: 90px;
+.achievement-icon {
+  width: 80px;
+  height: 80px;
   background: var(--neu-bg);
   border-radius: 50%;
   box-shadow: var(--shadow-neu);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 20px;
-  font-size: 36px;
-  color: var(--primary);
-  transition: var(--transition);
+  margin: 0 auto 16px;
+  position: relative;
 }
 
-.stat-item:hover .stat-icon {
-  transform: translateZ(30px) rotateY(15deg);
-  box-shadow: var(--shadow-neu), 0 20px 40px rgba(var(--primary-rgb), 0.3);
+.achievement-icon i {
+  font-size: 28px;
+  background: linear-gradient(135deg, var(--xp-gold), var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.stat-value {
-  font-family: 'Poppins', sans-serif;
-  font-size: clamp(36px, 5vw, 52px);
+.achievement-icon::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--xp-gold);
+  opacity: 0.3;
+}
+
+.achievement-value {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(32px, 5vw, 48px);
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  line-height: 1;
 }
 
-.stat-label {
-  font-size: 14px;
+.achievement-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 /* ==========================================
-   CONTACT SECTION
+   CONTACT - GUILD HALL
 ========================================== */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 50px;
+  gap: 40px;
 }
 
 .contact-info-card {
   background: var(--neu-bg);
   border-radius: var(--radius);
-  padding: 40px;
+  padding: 36px;
   box-shadow: var(--shadow-neu);
-  transform-style: preserve-3d;
-  transition: var(--transition);
-}
-
-.contact-info-card:hover {
-  transform: translateZ(15px);
 }
 
 .contact-info-card h3 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 24px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 22px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 16px;
@@ -1777,48 +2040,47 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .contact-info-card > p {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--text-muted);
   line-height: 1.8;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .contact-list {
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .contact-item {
   display: flex;
   align-items: center;
-  gap: 18px;
-  margin-bottom: 20px;
+  gap: 16px;
+  margin-bottom: 18px;
 }
 
 .contact-item:last-child { margin-bottom: 0; }
 
 .contact-item-icon {
-  width: 54px;
-  height: 54px;
+  width: 50px;
+  height: 50px;
   background: var(--neu-bg);
-  border-radius: 16px;
+  border-radius: 14px;
   box-shadow: var(--shadow-neu-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--primary);
-  font-size: 22px;
+  font-size: 20px;
   transition: var(--transition);
 }
 
 .contact-item:hover .contact-item-icon {
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: white;
-  transform: translateZ(10px) rotateY(10deg);
-  box-shadow: 0 10px 25px rgba(var(--primary-rgb), 0.4);
+  box-shadow: 0 8px 20px rgba(var(--primary-rgb), 0.3);
 }
 
 .contact-item-text h4 {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-subtle);
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -1827,10 +2089,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .contact-item-text p,
 .contact-item-text a {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--text-secondary);
   margin: 0;
-  font-weight: 500;
 }
 
 .contact-item-text a:hover {
@@ -1840,12 +2101,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* Social Links */
 .social-links {
   display: flex;
-  gap: 16px;
+  gap: 14px;
 }
 
 .social-link {
-  width: 52px;
-  height: 52px;
+  width: 48px;
+  height: 48px;
   background: var(--neu-bg);
   border-radius: 50%;
   box-shadow: var(--shadow-neu-sm);
@@ -1853,42 +2114,36 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   align-items: center;
   justify-content: center;
   color: var(--text-muted);
-  font-size: 20px;
+  font-size: 18px;
   transition: var(--transition);
-  transform-style: preserve-3d;
 }
 
 .social-link:hover {
-  transform: translateY(-5px) translateZ(15px);
+  transform: translateY(-4px);
   color: white;
 }
 
-.social-link:hover.linkedin { background: #0077b5; box-shadow: 0 10px 25px rgba(0, 119, 181, 0.5); }
-.social-link:hover.github { background: #333; box-shadow: 0 10px 25px rgba(51, 51, 51, 0.5); }
-.social-link:hover.twitter { background: #1da1f2; box-shadow: 0 10px 25px rgba(29, 161, 242, 0.5); }
-.social-link:hover.instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 10px 25px rgba(225, 48, 108, 0.5); }
+.social-link:hover.linkedin { background: #0077b5; box-shadow: 0 8px 20px rgba(0, 119, 181, 0.4); }
+.social-link:hover.github { background: #333; box-shadow: 0 8px 20px rgba(51, 51, 51, 0.4); }
+.social-link:hover.twitter { background: #1da1f2; box-shadow: 0 8px 20px rgba(29, 161, 242, 0.4); }
+.social-link:hover.instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 8px 20px rgba(225, 48, 108, 0.4); }
 
 /* Contact Form */
 .contact-form-card {
   background: var(--neu-bg);
   border-radius: var(--radius);
-  padding: 40px;
+  padding: 36px;
   box-shadow: var(--shadow-neu);
-  transform-style: preserve-3d;
-  transition: var(--transition);
-}
-
-.contact-form-card:hover {
-  transform: translateZ(15px);
 }
 
 .form-row {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .form-row label {
   display: block;
-  font-size: 13px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
   font-weight: 600;
   color: var(--text-secondary);
   text-transform: uppercase;
@@ -1898,20 +2153,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .form-input {
   width: 100%;
-  padding: 18px 22px;
+  padding: 16px 20px;
   background: var(--neu-bg);
   border: none;
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-neu-inset);
   color: var(--text-primary);
-  font-size: 16px;
+  font-size: 15px;
   font-family: inherit;
   transition: var(--transition);
 }
 
 .form-input:focus {
   outline: none;
-  box-shadow: var(--shadow-neu-inset), 0 0 0 3px rgba(var(--primary-rgb), 0.3);
+  box-shadow: var(--shadow-neu-inset), 0 0 0 3px rgba(var(--primary-rgb), 0.2);
 }
 
 .form-input::placeholder {
@@ -1919,21 +2174,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 textarea.form-input {
-  min-height: 140px;
+  min-height: 130px;
   resize: vertical;
 }
 
 .form-btn {
   width: 100%;
-  padding: 20px;
+  padding: 18px;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   border: none;
   border-radius: var(--radius-sm);
-  box-shadow: 0 10px 30px rgba(var(--primary-rgb), 0.4);
+  box-shadow: 0 8px 25px rgba(var(--primary-rgb), 0.4);
   color: white;
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   cursor: pointer;
   transition: var(--transition);
   display: flex;
@@ -1943,8 +2200,8 @@ textarea.form-input {
 }
 
 .form-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 40px rgba(var(--primary-rgb), 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(var(--primary-rgb), 0.5);
 }
 
 .form-btn:active {
@@ -1954,12 +2211,13 @@ textarea.form-input {
 .form-success {
   display: none;
   padding: 20px;
-  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(52, 211, 153, 0.1));
+  background: linear-gradient(135deg, rgba(46, 213, 115, 0.1), rgba(90, 242, 122, 0.1));
   border-radius: var(--radius-sm);
-  color: var(--success);
+  color: var(--stamina-green);
   text-align: center;
   margin-top: 20px;
-  font-weight: 500;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
 }
 
 .form-success.show {
@@ -1967,26 +2225,26 @@ textarea.form-input {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  animation: fade-in 0.3s ease;
+  animation: fadeIn 0.3s ease;
 }
 
 /* ==========================================
    FOOTER
 ========================================== */
 .footer {
-  padding: 36px 20px;
+  padding: 30px 20px;
   text-align: center;
   background: var(--neu-bg-dark);
 }
 
 .footer p {
-  font-size: 14px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
   color: var(--text-muted);
 }
 
 .footer a {
   color: var(--primary);
-  font-weight: 600;
   transition: color 0.3s ease;
 }
 
@@ -1995,86 +2253,73 @@ textarea.form-input {
 }
 
 /* ==========================================
-   3D REVEAL ANIMATIONS
+   REVEAL ANIMATION
 ========================================== */
-.reveal-3d {
+.reveal {
   opacity: 0;
-  transform: translateY(60px) translateZ(-50px) rotateX(15deg);
-  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.reveal-3d.active {
+.reveal.active {
   opacity: 1;
-  transform: translateY(0) translateZ(0) rotateX(0);
+  transform: translateY(0);
 }
 
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-80px) rotateY(15deg);
-  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-}
+.reveal.delay-1 { transition-delay: 0.15s; }
+.reveal.delay-2 { transition-delay: 0.3s; }
+.reveal.delay-3 { transition-delay: 0.45s; }
 
-.reveal-left.active {
-  opacity: 1;
-  transform: translateX(0) rotateY(0);
-}
-
-.reveal-right {
-  opacity: 0;
-  transform: translateX(80px) rotateY(-15deg);
-  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.reveal-right.active {
-  opacity: 1;
-  transform: translateX(0) rotateY(0);
-}
-
-.reveal-scale {
-  opacity: 0;
-  transform: scale(0.8) translateZ(-100px);
-  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.reveal-scale.active {
-  opacity: 1;
-  transform: scale(1) translateZ(0);
-}
-
-.delay-1 { transition-delay: 0.1s; }
-.delay-2 { transition-delay: 0.2s; }
-.delay-3 { transition-delay: 0.3s; }
-.delay-4 { transition-delay: 0.4s; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
 /* ==========================================
-   MOUSE FOLLOWER (CURSOR)
+   CLICK EFFECT (GAME FEEDBACK)
 ========================================== */
-.cursor {
-  width: 20px;
-  height: 20px;
+.click-effect {
+  position: fixed;
+  pointer-events: none;
+  width: 30px;
+  height: 30px;
   border: 2px solid var(--primary);
   border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 99999;
-  transition: transform 0.15s ease, opacity 0.15s ease;
-  mix-blend-mode: difference;
+  animation: click-ripple 0.5s ease-out forwards;
+  z-index: 9999;
 }
 
-.cursor-dot {
-  width: 6px;
-  height: 6px;
-  background: var(--primary);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 99999;
-  transition: transform 0.05s ease;
+@keyframes click-ripple {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
 }
 
-.cursor.hover {
-  transform: scale(2);
-  background: rgba(var(--primary-rgb), 0.1);
+/* XP Popup */
+.xp-popup {
+  position: fixed;
+  pointer-events: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--xp-gold);
+  text-shadow: 0 0 10px var(--xp-gold);
+  animation: xp-float 1s ease-out forwards;
+  z-index: 9999;
+}
+
+@keyframes xp-float {
+  from {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50px);
+    opacity: 0;
+  }
 }
 
 /* ==========================================
@@ -2084,13 +2329,12 @@ textarea.form-input {
   .hero-content {
     flex-direction: column-reverse;
     text-align: center;
-    gap: 50px;
   }
   
   .hero-right {
     flex: 0 0 auto;
     width: 100%;
-    max-width: 350px;
+    max-width: 320px;
   }
   
   .hero-left {
@@ -2104,7 +2348,7 @@ textarea.form-input {
     gap: 40px;
   }
   
-  .about-card {
+  .player-card {
     max-width: 400px;
     margin: 0 auto;
   }
@@ -2113,17 +2357,29 @@ textarea.form-input {
     grid-template-columns: 1fr;
   }
   
-  .stats-grid {
+  .achievements-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .cursor, .cursor-dot {
-    display: none;
+  .floating-actions {
+    right: 20px;
+    bottom: 20px;
+    gap: 12px;
+  }
+  
+  .fab {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
   }
 }
 
 @media (max-width: 768px) {
-  .section { padding: 80px 16px; }
+  .section { padding: 70px 16px; }
+  
+  /* HUD Mobile */
+  .hud-center { display: none; }
+  .hud-left .player-bars { display: none; }
   
   .nav-menu {
     position: fixed;
@@ -2142,7 +2398,7 @@ textarea.form-input {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 1001;
   }
   
@@ -2152,8 +2408,8 @@ textarea.form-input {
     pointer-events: auto;
   }
   
-  .nav-link {
-    font-size: 18px;
+  .nav-menu .nav-link {
+    font-size: 16px;
     padding: 16px 40px;
     box-shadow: var(--shadow-neu);
   }
@@ -2163,7 +2419,7 @@ textarea.form-input {
   }
   
   .hero {
-    padding: calc(var(--navbar-height) + 20px) 16px 60px;
+    padding: calc(var(--navbar-height) + 30px) 16px 50px;
   }
   
   .hero-buttons {
@@ -2176,91 +2432,78 @@ textarea.form-input {
     justify-content: center;
   }
   
-  .scroll-indicator { display: none; }
-  
   .info-grid {
     grid-template-columns: 1fr;
   }
   
-  .projects-grid { display: none; }
-  .projects-mobile { display: block; }
+  .inventory-grid { display: none; }
+  .inventory-mobile { display: block; }
   
-  .projects-mobile .project-img {
+  .inventory-mobile .inventory-item-img {
     height: auto;
     aspect-ratio: 16 / 10;
   }
   
-  .projects-mobile .project-img img {
+  .inventory-mobile .inventory-item-img img {
     object-fit: contain;
     background: var(--neu-bg-dark);
   }
   
-  .experience-timeline::before {
-    left: 20px;
+  .achievements-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
   
-  .exp-card {
-    padding-left: 70px;
+  .achievement-icon {
+    width: 60px;
+    height: 60px;
   }
   
-  .exp-card::before {
-    left: 12px;
-    width: 18px;
-    height: 18px;
-  }
-  
-  .floating-buttons {
-    right: 20px;
-    bottom: 20px;
-  }
-  
-  .float-btn {
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
+  .achievement-icon i {
+    font-size: 22px;
   }
 }
 
 @media (max-width: 480px) {
   .section { padding: 60px 14px; }
   
-  .profile-card { padding: 28px 20px; }
-  .profile-avatar { width: 140px; height: 140px; }
+  .player-avatar { width: 40px; height: 40px; }
+  .player-level { width: 20px; height: 20px; font-size: 9px; }
+  .player-name { font-size: 12px; }
+  .player-class { font-size: 10px; }
   
-  .profile-stats,
-  .quick-stats { gap: 8px; }
+  .hud-btn { width: 38px; height: 38px; font-size: 16px; }
   
-  .profile-stat,
-  .quick-stat { padding: 14px 8px; }
+  .character-card { padding: 24px 20px; }
+  .character-avatar { width: 140px; height: 140px; }
   
-  .profile-stat-value,
-  .quick-stat-value { font-size: 22px; }
+  .skill-tree-card { padding: 24px 20px; }
   
-  .skill-card { padding: 26px 20px; }
-  
-  .exp-card { padding: 24px 16px 24px 60px; }
-  .exp-title { font-size: 18px; }
+  .quest-card { padding: 22px 18px; }
+  .quest-title { font-size: 16px; }
   
   .contact-info-card,
   .contact-form-card { padding: 28px 20px; }
   
-  .skills-grid { grid-template-columns: 1fr; }
-  
-  .stats-grid { gap: 20px; }
-  .stat-icon { width: 70px; height: 70px; font-size: 28px; }
-  .stat-value { font-size: 32px; }
-  
-  .floating-buttons {
+  .floating-actions {
     right: 14px;
     bottom: 14px;
-    gap: 10px;
   }
   
-  .float-btn {
+  .fab {
     width: 46px;
     height: 46px;
     font-size: 18px;
   }
+  
+  .quick-stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .quick-stat { padding: 12px 8px; }
+  .quick-stat-value { font-size: 20px; }
+  .quick-stat-label { font-size: 9px; }
+  
+  .skills-grid { grid-template-columns: 1fr; }
+  
+  .inventory-grid { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2274,44 +2517,31 @@ textarea.form-input {
 </head>
 
 <body>
-  <!-- Scroll Progress -->
-  <div class="scroll-progress" id="scrollProgress"></div>
-  
-  <!-- Custom Cursor -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-dot" id="cursorDot"></div>
+  <!-- XP Progress Bar -->
+  <div class="xp-progress-bar">
+    <div class="xp-progress-fill" id="xpProgress"></div>
+  </div>
   
   <!-- Preloader -->
   <div class="preloader" id="preloader">
-    <div class="loader-3d">
-      <div class="loader-cube">
-        <div class="loader-cube-face"><i class="fas fa-code"></i></div>
-        <div class="loader-cube-face"><i class="fas fa-cloud"></i></div>
-        <div class="loader-cube-face"><i class="fas fa-database"></i></div>
-        <div class="loader-cube-face"><i class="fas fa-server"></i></div>
-        <div class="loader-cube-face"><i class="fas fa-rocket"></i></div>
-        <div class="loader-cube-face"><i class="fas fa-layer-group"></i></div>
+    <div class="loader-game">
+      <div class="loader-character">
+        <i class="fas fa-code"></i>
       </div>
-      <div class="loader-text">Entering My World</div>
-      <div class="loader-bar">
+      <div class="loader-bar-wrapper">
         <div class="loader-bar-fill"></div>
       </div>
+      <div class="loader-text">Loading...</div>
+      <div class="loader-tip">💡 Tip: Hover over elements to gain XP!</div>
     </div>
   </div>
   
-  <!-- Floating Buttons -->
-  <div class="floating-buttons">
-    <a href="https://wa.me/917045538721" target="_blank" class="float-btn whatsapp" aria-label="WhatsApp">
+  <!-- Floating Action Buttons -->
+  <div class="floating-actions">
+    <a href="https://wa.me/917045538721" target="_blank" class="fab whatsapp" aria-label="WhatsApp">
       <i class="fab fa-whatsapp"></i>
     </a>
-    <button class="float-btn" id="musicBtn" aria-label="Toggle Music">
-      <i class="fas fa-music"></i>
-    </button>
-    <button class="float-btn theme-btn" id="themeToggle" aria-label="Toggle Theme">
-      <i class="fas fa-moon"></i>
-      <i class="fas fa-sun"></i>
-    </button>
-    <a href="#home" class="float-btn back-top" id="backTop" aria-label="Back to Top">
+    <a href="#home" class="fab back-top" id="backTop" aria-label="Back to Top">
       <i class="fas fa-arrow-up"></i>
     </a>
   </div>
@@ -2321,18 +2551,54 @@ textarea.form-input {
     <source src="images/Boost Your Business with the RIGHT Background Music.mp3" type="audio/mpeg">
   </audio>
   
-  <!-- Navbar -->
-  <nav class="navbar" id="navbar">
-    <div class="container">
-      <a href="#" class="nav-logo">AR</a>
+  <!-- Game HUD / Navbar -->
+  <nav class="game-hud" id="gameHud">
+    <div class="hud-left">
+      <div class="player-avatar">
+        <img src="images/mypicture.jpg" alt="Akshit Ravula" onerror="this.src='https://via.placeholder.com/50'">
+        <span class="player-level">25</span>
+      </div>
+      <div class="player-info">
+        <span class="player-name">Akshit Ravula</span>
+        <span class="player-class">Full Stack Developer</span>
+      </div>
+      <div class="player-bars">
+        <div class="stat-bar">
+          <i class="fas fa-heart stat-bar-icon health"></i>
+          <div class="stat-bar-track">
+            <div class="stat-bar-fill health"></div>
+          </div>
+          <span class="stat-bar-text">85/100</span>
+        </div>
+        <div class="stat-bar">
+          <i class="fas fa-bolt stat-bar-icon xp"></i>
+          <div class="stat-bar-track">
+            <div class="stat-bar-fill xp"></div>
+          </div>
+          <span class="stat-bar-text">6500 XP</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="hud-center">
       <ul class="nav-menu" id="navMenu">
-        <li><a href="#home" class="nav-link active">Home</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#skills" class="nav-link">Skills</a></li>
-        <li><a href="#experience" class="nav-link">Experience</a></li>
-        <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li class="nav-item"><a href="#home" class="nav-link active"><i class="fas fa-home"></i><span>Home</span></a></li>
+        <li class="nav-item"><a href="#about" class="nav-link"><i class="fas fa-user"></i><span>Stats</span></a></li>
+        <li class="nav-item"><a href="#skills" class="nav-link"><i class="fas fa-magic"></i><span>Skills</span></a></li>
+        <li class="nav-item"><a href="#experience" class="nav-link"><i class="fas fa-scroll"></i><span>Quests</span></a></li>
+        <li class="nav-item"><a href="#projects" class="nav-link"><i class="fas fa-boxes"></i><span>Inventory</span></a></li>
+        <li class="nav-item"><a href="#contact" class="nav-link"><i class="fas fa-comments"></i><span>Guild</span></a></li>
       </ul>
+    </div>
+    
+    <div class="hud-right">
+      <button class="hud-btn" id="musicBtn" aria-label="Toggle Music">
+        <i class="fas fa-music"></i>
+      </button>
+      <button class="hud-btn theme-btn" id="themeToggle" aria-label="Toggle Theme">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+      </button>
       <div class="menu-toggle" id="menuToggle" aria-label="Toggle Menu" role="button" tabindex="0">
         <div class="menu-toggle-inner">
           <span></span>
@@ -2343,29 +2609,20 @@ textarea.form-input {
     </div>
   </nav>
   
-  <!-- World Container for 3D Effects -->
-  <div class="world-container">
-  
   <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="hero-bg">
-      <div class="hero-layer hero-layer-1" data-speed="0.02"></div>
-      <div class="hero-layer hero-layer-2" data-speed="0.04"></div>
-      <div class="hero-layer hero-layer-3" data-speed="0.06"></div>
       <div class="hero-grid"></div>
-      <div class="floating-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-        <div class="shape shape-4"></div>
-      </div>
+      <div class="hero-particles" id="particles"></div>
+      <div class="hero-glow hero-glow-1"></div>
+      <div class="hero-glow hero-glow-2"></div>
     </div>
     
     <div class="hero-content">
       <div class="hero-left">
         <div class="hero-badge">
           <span class="pulse"></span>
-          Available for Opportunities
+          Status: Available for Quests
         </div>
         
         <h1 class="hero-title">
@@ -2373,20 +2630,20 @@ textarea.form-input {
         </h1>
         
         <div class="typewriter-wrapper">
-          <span class="static">I'm a</span>
+          <span class="static">Class:</span>
           <span class="typewriter-text" id="typewriter"></span>
           <span class="typewriter-cursor"></span>
         </div>
         
         <p class="hero-description">
-          Full Stack Developer & Cloud Engineer crafting scalable digital solutions 
-          with modern technologies. Let's build something amazing together.
+          Level 25 Full Stack Developer & Cloud Engineer. I craft scalable digital 
+          solutions using modern tech stacks. Ready to embark on your next quest!
         </p>
         
         <div class="hero-buttons">
           <a href="#projects" class="btn-neu primary">
-            <i class="fas fa-briefcase"></i>
-            <span>View Projects</span>
+            <i class="fas fa-boxes"></i>
+            <span>View Inventory</span>
           </a>
           <a href="https://www.linkedin.com/in/akshit-ravula/" target="_blank" rel="noopener" class="btn-neu">
             <i class="fab fa-linkedin"></i>
@@ -2396,95 +2653,108 @@ textarea.form-input {
       </div>
       
       <div class="hero-right">
-        <div class="profile-card" data-tilt>
-          <div class="profile-avatar">
-            <div class="profile-avatar-ring"></div>
-            <div class="profile-avatar-inner">
+        <div class="character-card reveal">
+          <span class="character-rarity">Legendary</span>
+          <div class="character-avatar">
+            <div class="character-avatar-ring"></div>
+            <div class="character-avatar-inner">
               <img src="images/mypicture.jpg" alt="Akshit Ravula" onerror="this.src='https://via.placeholder.com/180'">
             </div>
+            <span class="character-level-badge">LVL 25</span>
           </div>
-          <h2 class="profile-name">Akshit Ravula</h2>
-          <p class="profile-title">Full Stack Developer</p>
-          <div class="profile-stats">
-            <div class="profile-stat">
-              <div class="profile-stat-value" data-count="30">0</div>
-              <div class="profile-stat-label">Projects</div>
+          <h2 class="character-name">Akshit Ravula</h2>
+          <p class="character-title">Full Stack Developer</p>
+          <div class="character-stats">
+            <div class="char-stat">
+              <div class="char-stat-value" data-count="30">0</div>
+              <div class="char-stat-label">Projects</div>
             </div>
-            <div class="profile-stat">
-              <div class="profile-stat-value" data-count="6">0</div>
-              <div class="profile-stat-label">Roles</div>
+            <div class="char-stat">
+              <div class="char-stat-value" data-count="6">0</div>
+              <div class="char-stat-label">Roles</div>
             </div>
-            <div class="profile-stat">
-              <div class="profile-stat-value" data-count="5">0</div>
-              <div class="profile-stat-label">Awards</div>
+            <div class="char-stat">
+              <div class="char-stat-value" data-count="5">0</div>
+              <div class="char-stat-label">Awards</div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
-    <div class="scroll-indicator">
-      <div class="scroll-mouse"></div>
-      <span class="scroll-text">Scroll Down</span>
-    </div>
   </section>
   
-  <!-- About Section -->
+  <!-- About / Player Stats -->
   <section class="section" id="about">
     <div class="container">
-      <div class="section-header reveal-3d">
-        <div class="section-icon"><i class="fas fa-user"></i></div>
-        <span class="section-label">About Me</span>
-        <h2 class="section-title">Know Me Better</h2>
-        <p class="section-subtitle">Building solutions that scale and drive results</p>
+      <div class="section-header">
+        <div class="section-icon"><i class="fas fa-user-shield"></i></div>
+        <span class="section-label">Player Stats</span>
+        <h2 class="section-title">Character Profile</h2>
+        <p class="section-subtitle">View detailed player statistics and attributes</p>
       </div>
       
       <div class="about-grid">
-        <div class="about-card reveal-left">
-          <div class="about-avatar">
-            <img src="images/mypicture.jpg" alt="Akshit Ravula" onerror="this.src='https://via.placeholder.com/140'">
+        <div class="player-card reveal">
+          <div class="player-card-header">
+            <div class="player-card-avatar">
+              <img src="images/mypicture.jpg" alt="Akshit Ravula" onerror="this.src='https://via.placeholder.com/120'">
+            </div>
+            <h3 class="player-card-name">Akshit Ravula</h3>
+            <p class="player-card-class">Full Stack Developer</p>
           </div>
-          <h3 class="about-name">Akshit Ravula</h3>
-          <p class="about-title">Full Stack Developer</p>
           
-          <div class="attributes">
+          <div class="attributes-section">
+            <h4 class="attribute-title">Core Attributes</h4>
+            
             <div class="attribute-row">
-              <div class="attribute-header">
-                <span class="attribute-name">Frontend Development</span>
-                <span class="attribute-value">92%</span>
-              </div>
-              <div class="attribute-bar">
-                <div class="attribute-fill" data-width="92"></div>
+              <div class="attribute-icon str"><i class="fas fa-fist-raised"></i></div>
+              <div class="attribute-info">
+                <div class="attribute-header">
+                  <span class="attribute-name">Frontend Power</span>
+                  <span class="attribute-value">92/100</span>
+                </div>
+                <div class="attribute-bar">
+                  <div class="attribute-fill str" data-width="92"></div>
+                </div>
               </div>
             </div>
             
             <div class="attribute-row">
-              <div class="attribute-header">
-                <span class="attribute-name">Backend Development</span>
-                <span class="attribute-value">88%</span>
-              </div>
-              <div class="attribute-bar">
-                <div class="attribute-fill" data-width="88"></div>
-              </div>
-            </div>
-            
-            <div class="attribute-row">
-              <div class="attribute-header">
-                <span class="attribute-name">Problem Solving</span>
-                <span class="attribute-value">90%</span>
-              </div>
-              <div class="attribute-bar">
-                <div class="attribute-fill" data-width="90"></div>
+              <div class="attribute-icon int"><i class="fas fa-brain"></i></div>
+              <div class="attribute-info">
+                <div class="attribute-header">
+                  <span class="attribute-name">Backend Logic</span>
+                  <span class="attribute-value">88/100</span>
+                </div>
+                <div class="attribute-bar">
+                  <div class="attribute-fill int" data-width="88"></div>
+                </div>
               </div>
             </div>
             
             <div class="attribute-row">
-              <div class="attribute-header">
-                <span class="attribute-name">Cloud Technologies</span>
-                <span class="attribute-value">85%</span>
+              <div class="attribute-icon dex"><i class="fas fa-bolt"></i></div>
+              <div class="attribute-info">
+                <div class="attribute-header">
+                  <span class="attribute-name">Problem Solving</span>
+                  <span class="attribute-value">90/100</span>
+                </div>
+                <div class="attribute-bar">
+                  <div class="attribute-fill dex" data-width="90"></div>
+                </div>
               </div>
-              <div class="attribute-bar">
-                <div class="attribute-fill" data-width="85"></div>
+            </div>
+            
+            <div class="attribute-row">
+              <div class="attribute-icon wis"><i class="fas fa-cloud"></i></div>
+              <div class="attribute-info">
+                <div class="attribute-header">
+                  <span class="attribute-name">Cloud Mastery</span>
+                  <span class="attribute-value">85/100</span>
+                </div>
+                <div class="attribute-bar">
+                  <div class="attribute-fill wis" data-width="85"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -2492,53 +2762,51 @@ textarea.form-input {
           <div class="quick-stats">
             <div class="quick-stat">
               <div class="quick-stat-value" data-count="30">0</div>
-              <div class="quick-stat-label">Projects</div>
+              <div class="quick-stat-label">Quests</div>
             </div>
             <div class="quick-stat">
               <div class="quick-stat-value" data-count="6">0</div>
-              <div class="quick-stat-label">Companies</div>
+              <div class="quick-stat-label">Guilds</div>
             </div>
             <div class="quick-stat">
               <div class="quick-stat-value" data-count="5">0</div>
-              <div class="quick-stat-label">Awards</div>
+              <div class="quick-stat-label">Trophies</div>
             </div>
           </div>
         </div>
         
-        <div class="bio-content">
-          <div class="bio-card reveal-right delay-1">
-            <h3><i class="fas fa-book-open"></i> My Story</h3>
+        <div class="bio-section">
+          <div class="bio-card reveal delay-1">
+            <h3><i class="fas fa-scroll"></i> Backstory</h3>
             <p>
-              I'm a results-driven Full Stack Developer currently working at Creative Garage. 
-              I specialize in building scalable web applications using React.js, Node.js, 
-              and cloud technologies.
+              I'm a results-driven developer currently working at Creative Garage as a Full Stack Developer. 
+              I specialize in building scalable web applications using React.js, Node.js, and cloud technologies.
             </p>
             <p>
-              With hands-on experience from multiple roles, I'm passionate about creating 
-              efficient, user-centric solutions. Beyond development, I also work closely 
-              with leadership to ensure processes run smoothly and systems are optimized 
-              for maximum efficiency.
+              With hands-on experience from multiple roles, I'm passionate about creating efficient, 
+              user-centric solutions. Beyond development, I also work closely with leadership to ensure 
+              processes run smoothly and systems are optimized for maximum efficiency.
             </p>
             
             <div class="info-grid">
               <div class="info-item">
                 <div class="info-item-icon"><i class="fas fa-user"></i></div>
                 <div class="info-item-text">
-                  <h4>Name</h4>
+                  <h4>Player Name</h4>
                   <p>Akshit Ravula</p>
                 </div>
               </div>
               <div class="info-item">
                 <div class="info-item-icon"><i class="fas fa-map-marker-alt"></i></div>
                 <div class="info-item-text">
-                  <h4>Location</h4>
+                  <h4>Server</h4>
                   <p>Mumbai, India</p>
                 </div>
               </div>
               <div class="info-item">
                 <div class="info-item-icon"><i class="fas fa-graduation-cap"></i></div>
                 <div class="info-item-text">
-                  <h4>Education</h4>
+                  <h4>Training</h4>
                   <p>B.Tech CSE - VIT</p>
                 </div>
               </div>
@@ -2552,338 +2820,347 @@ textarea.form-input {
             </div>
           </div>
           
-          <a href="https://drive.google.com/file/d/1Hx5qvd31Ridh6qtpM6n51OvYTR1NMnOj/view?usp=drivesdk" target="_blank" rel="noopener" class="btn-neu primary reveal-right delay-2">
+          <a href="https://drive.google.com/file/d/1Hx5qvd31Ridh6qtpM6n51OvYTR1NMnOj/view?usp=drivesdk" target="_blank" rel="noopener" class="btn-neu primary reveal delay-2">
             <i class="fas fa-download"></i>
-            <span>Download Resume</span>
+            <span>Download Character Sheet</span>
           </a>
         </div>
       </div>
     </div>
   </section>
   
-  <!-- Skills Section -->
+  <!-- Skills / Ability Tree -->
   <section class="section" id="skills">
     <div class="container">
-      <div class="section-header reveal-3d">
-        <div class="section-icon"><i class="fas fa-code"></i></div>
-        <span class="section-label">Expertise</span>
-        <h2 class="section-title">Skills & Technologies</h2>
-        <p class="section-subtitle">Technologies I work with daily</p>
+      <div class="section-header">
+        <div class="section-icon"><i class="fas fa-magic"></i></div>
+        <span class="section-label">Ability Tree</span>
+        <h2 class="section-title">Skills & Powers</h2>
+        <p class="section-subtitle">Unlocked abilities and mastered technologies</p>
       </div>
       
       <div class="skills-grid">
-        <div class="skill-card reveal-3d" data-tilt>
-          <div class="skill-card-header">
-            <div class="skill-card-icon"><i class="fas fa-palette"></i></div>
+        <div class="skill-tree-card reveal">
+          <div class="skill-tree-header">
+            <div class="skill-tree-icon"><i class="fas fa-code"></i></div>
             <div>
-              <h3 class="skill-card-title">Frontend</h3>
-              <p class="skill-card-subtitle">User Interface Development</p>
+              <h3 class="skill-tree-title">Frontend Arts</h3>
+              <p class="skill-tree-level">⭐ Master Level</p>
             </div>
           </div>
           
           <div class="skill-item">
             <div class="skill-header">
-              <span class="skill-name">React.js</span>
-              <span class="skill-percent">92%</span>
+              <span class="skill-name"><i class="fas fa-star"></i> React.js</span>
+              <span class="skill-level">92/100</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-fill" data-width="92"></div>
-            </div>
-          </div>
-          
-          <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name">JavaScript</span>
-              <span class="skill-percent">90%</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-fill" data-width="90"></div>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" data-width="92"></div>
             </div>
           </div>
           
           <div class="skill-item">
             <div class="skill-header">
-              <span class="skill-name">HTML/CSS</span>
-              <span class="skill-percent">95%</span>
+              <span class="skill-name"><i class="fas fa-star"></i> JavaScript</span>
+              <span class="skill-level">90/100</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-fill" data-width="95"></div>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" data-width="90"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name"><i class="fas fa-star"></i> HTML/CSS</span>
+              <span class="skill-level">95/100</span>
+            </div>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" data-width="95"></div>
             </div>
           </div>
         </div>
         
-        <div class="skill-card reveal-3d delay-1" data-tilt>
-          <div class="skill-card-header">
-            <div class="skill-card-icon"><i class="fas fa-server"></i></div>
+        <div class="skill-tree-card reveal delay-1">
+          <div class="skill-tree-header">
+            <div class="skill-tree-icon"><i class="fas fa-server"></i></div>
             <div>
-              <h3 class="skill-card-title">Backend</h3>
-              <p class="skill-card-subtitle">Server-Side Development</p>
+              <h3 class="skill-tree-title">Backend Sorcery</h3>
+              <p class="skill-tree-level">⭐ Expert Level</p>
             </div>
           </div>
           
           <div class="skill-item">
             <div class="skill-header">
-              <span class="skill-name">Node.js</span>
-              <span class="skill-percent">88%</span>
+              <span class="skill-name"><i class="fas fa-star"></i> Node.js</span>
+              <span class="skill-level">88/100</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-fill" data-width="88"></div>
-            </div>
-          </div>
-          
-          <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name">MongoDB</span>
-              <span class="skill-percent">85%</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-fill" data-width="85"></div>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" data-width="88"></div>
             </div>
           </div>
           
           <div class="skill-item">
             <div class="skill-header">
-              <span class="skill-name">REST APIs</span>
-              <span class="skill-percent">90%</span>
+              <span class="skill-name"><i class="fas fa-star"></i> MongoDB</span>
+              <span class="skill-level">85/100</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-fill" data-width="90"></div>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" data-width="85"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name"><i class="fas fa-star"></i> REST APIs</span>
+              <span class="skill-level">90/100</span>
+            </div>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" data-width="90"></div>
             </div>
           </div>
         </div>
         
-        <div class="skill-card reveal-3d delay-2" data-tilt>
-          <div class="skill-card-header">
-            <div class="skill-card-icon"><i class="fas fa-cloud"></i></div>
+        <div class="skill-tree-card reveal delay-2">
+          <div class="skill-tree-header">
+            <div class="skill-tree-icon"><i class="fas fa-cloud"></i></div>
             <div>
-              <h3 class="skill-card-title">Cloud & Tools</h3>
-              <p class="skill-card-subtitle">DevOps & Platforms</p>
+              <h3 class="skill-tree-title">Cloud Magic</h3>
+              <p class="skill-tree-level">⭐ Adept Level</p>
             </div>
           </div>
           
           <div class="skill-item">
             <div class="skill-header">
-              <span class="skill-name">Azure</span>
-              <span class="skill-percent">82%</span>
+              <span class="skill-name"><i class="fas fa-star"></i> Azure</span>
+              <span class="skill-level">82/100</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-fill" data-width="82"></div>
-            </div>
-          </div>
-          
-          <div class="skill-item">
-            <div class="skill-header">
-              <span class="skill-name">WordPress</span>
-              <span class="skill-percent">95%</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-fill" data-width="95"></div>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" data-width="82"></div>
             </div>
           </div>
           
           <div class="skill-item">
             <div class="skill-header">
-              <span class="skill-name">Shopify</span>
-              <span class="skill-percent">88%</span>
+              <span class="skill-name"><i class="fas fa-star"></i> WordPress</span>
+              <span class="skill-level">95/100</span>
             </div>
-            <div class="skill-bar">
-              <div class="skill-fill" data-width="88"></div>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" data-width="95"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name"><i class="fas fa-star"></i> Shopify</span>
+              <span class="skill-level">88/100</span>
+            </div>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" data-width="88"></div>
             </div>
           </div>
         </div>
       </div>
       
-      <div class="tech-cloud reveal-scale">
-        <span class="tech-tag">React.js</span>
-        <span class="tech-tag">Node.js</span>
-        <span class="tech-tag">MongoDB</span>
-        <span class="tech-tag">JavaScript</span>
-        <span class="tech-tag">TypeScript</span>
-        <span class="tech-tag">Python</span>
-        <span class="tech-tag">HTML5</span>
-        <span class="tech-tag">CSS3</span>
-        <span class="tech-tag">MySQL</span>
-        <span class="tech-tag">Azure</span>
-        <span class="tech-tag">Git</span>
-        <span class="tech-tag">REST APIs</span>
-        <span class="tech-tag">WordPress</span>
-        <span class="tech-tag">Shopify</span>
-        <span class="tech-tag">Figma</span>
+      <div class="tech-cloud reveal">
+        <span class="tech-tag">⚔️ React.js</span>
+        <span class="tech-tag">🛡️ Node.js</span>
+        <span class="tech-tag">📦 MongoDB</span>
+        <span class="tech-tag">✨ JavaScript</span>
+        <span class="tech-tag">🔮 TypeScript</span>
+        <span class="tech-tag">🐍 Python</span>
+        <span class="tech-tag">🎨 HTML5</span>
+        <span class="tech-tag">💎 CSS3</span>
+        <span class="tech-tag">🗄️ MySQL</span>
+        <span class="tech-tag">☁️ Azure</span>
+        <span class="tech-tag">🔧 Git</span>
+        <span class="tech-tag">🌐 REST APIs</span>
+        <span class="tech-tag">📝 WordPress</span>
+        <span class="tech-tag">🛒 Shopify</span>
+        <span class="tech-tag">🎯 Figma</span>
       </div>
     </div>
   </section>
   
-  <!-- Experience Section -->
+  <!-- Experience / Quest Log -->
   <section class="section" id="experience">
     <div class="container">
-      <div class="section-header reveal-3d">
-        <div class="section-icon"><i class="fas fa-briefcase"></i></div>
-        <span class="section-label">Career</span>
-        <h2 class="section-title">Experience & Education</h2>
-        <p class="section-subtitle">My professional journey</p>
+      <div class="section-header">
+        <div class="section-icon"><i class="fas fa-scroll"></i></div>
+        <span class="section-label">Quest Log</span>
+        <h2 class="section-title">Completed Quests</h2>
+        <p class="section-subtitle">Adventures and achievements throughout my journey</p>
       </div>
       
-      <div class="experience-timeline">
-        <div class="exp-card current reveal-3d">
-          <div class="exp-header">
-            <span class="exp-date">Feb 2025 – Present</span>
-            <span class="exp-badge current">Current</span>
+      <div class="quest-log">
+        <div class="quest-card active reveal">
+          <div class="quest-header">
+            <span class="quest-date">Feb 2025 – Present</span>
+            <span class="quest-status active">🟢 Active</span>
           </div>
-          <h3 class="exp-title">Full Stack Developer</h3>
-          <p class="exp-company"><i class="fas fa-building"></i> Creative Garage</p>
-          <ul class="exp-list">
+          <h3 class="quest-title">Full Stack Developer</h3>
+          <p class="quest-location"><i class="fas fa-building"></i> Creative Garage</p>
+          <ul class="quest-objectives">
             <li>Developing robust full-stack applications with React.js and Node.js</li>
             <li>Working as Executive to CEO - managing processes and operations</li>
-            <li>Collaborating with UX/UI teams for exceptional user experiences</li>
+            <li>Collaborating with UX/UI teams for exceptional experiences</li>
             <li>Optimizing performance through efficient code practices</li>
           </ul>
+          <span class="quest-reward"><i class="fas fa-star"></i> +1000 XP / month</span>
         </div>
         
-        <div class="exp-card reveal-3d">
-          <div class="exp-header">
-            <span class="exp-date">Nov 2024 – Feb 2025</span>
+        <div class="quest-card reveal">
+          <div class="quest-header">
+            <span class="quest-date">Nov 2024 – Feb 2025</span>
+            <span class="quest-status completed">✓ Completed</span>
           </div>
-          <h3 class="exp-title">Full Stack Developer</h3>
-          <p class="exp-company"><i class="fas fa-building"></i> Bloom Agency</p>
-          <ul class="exp-list">
+          <h3 class="quest-title">Full Stack Developer</h3>
+          <p class="quest-location"><i class="fas fa-building"></i> Bloom Agency</p>
+          <ul class="quest-objectives">
             <li>Engineered scalable web applications using MERN stack</li>
             <li>Led development of client-facing dashboards</li>
             <li>Implemented RESTful API services</li>
           </ul>
+          <span class="quest-reward"><i class="fas fa-star"></i> +2500 XP earned</span>
         </div>
         
-        <div class="exp-card reveal-3d">
-          <div class="exp-header">
-            <span class="exp-date">Sep 2024 – Dec 2024</span>
+        <div class="quest-card reveal">
+          <div class="quest-header">
+            <span class="quest-date">Sep 2024 – Dec 2024</span>
+            <span class="quest-status completed">✓ Completed</span>
           </div>
-          <h3 class="exp-title">Web Developer</h3>
-          <p class="exp-company"><i class="fas fa-building"></i> Unremot</p>
-          <ul class="exp-list">
+          <h3 class="quest-title">Web Developer</h3>
+          <p class="quest-location"><i class="fas fa-building"></i> Unremot</p>
+          <ul class="quest-objectives">
             <li>Built user-friendly platform using HTML, CSS, and React.js</li>
             <li>Enhanced site responsiveness, cutting load times by 30%</li>
           </ul>
+          <span class="quest-reward"><i class="fas fa-star"></i> +1500 XP earned</span>
         </div>
         
-        <div class="exp-card reveal-3d">
-          <div class="exp-header">
-            <span class="exp-date">Jul 2024 – Sep 2024</span>
+        <div class="quest-card reveal">
+          <div class="quest-header">
+            <span class="quest-date">Jul 2024 – Sep 2024</span>
+            <span class="quest-status completed">✓ Completed</span>
           </div>
-          <h3 class="exp-title">Technical Lead</h3>
-          <p class="exp-company"><i class="fas fa-building"></i> Recit</p>
-          <ul class="exp-list">
+          <h3 class="quest-title">Technical Lead</h3>
+          <p class="quest-location"><i class="fas fa-building"></i> Recit</p>
+          <ul class="quest-objectives">
             <li>Implemented Google Sheets sync and API integrations</li>
             <li>Deployed responsive landing page boosting engagement by 25%</li>
           </ul>
+          <span class="quest-reward"><i class="fas fa-star"></i> +1200 XP earned</span>
         </div>
         
-        <div class="exp-card reveal-3d">
-          <div class="exp-header">
-            <span class="exp-date">Nov 2023 – Dec 2023</span>
+        <div class="quest-card reveal">
+          <div class="quest-header">
+            <span class="quest-date">Nov 2023 – Dec 2023</span>
+            <span class="quest-status completed">✓ Completed</span>
           </div>
-          <h3 class="exp-title">Cloud Computing Intern</h3>
-          <p class="exp-company"><i class="fas fa-building"></i> Sam Infosystems</p>
-          <ul class="exp-list">
+          <h3 class="quest-title">Cloud Computing Intern</h3>
+          <p class="quest-location"><i class="fas fa-building"></i> Sam Infosystems</p>
+          <ul class="quest-objectives">
             <li>Managed cloud infrastructure using Microsoft Azure</li>
           </ul>
+          <span class="quest-reward"><i class="fas fa-star"></i> +800 XP earned</span>
         </div>
         
-        <div class="exp-card reveal-3d">
-          <div class="exp-header">
-            <span class="exp-date">2021 – 2025</span>
-            <span class="exp-badge education">Education</span>
+        <div class="quest-card reveal">
+          <div class="quest-header">
+            <span class="quest-date">2021 – 2025</span>
+            <span class="quest-status education">🎓 Training</span>
           </div>
-          <h3 class="exp-title">B.Tech in Computer Science</h3>
-          <p class="exp-company"><i class="fas fa-university"></i> Vellore Institute of Technology</p>
-          <span class="exp-grade"><i class="fas fa-trophy"></i> CGPA: 8.23</span>
+          <h3 class="quest-title">B.Tech in Computer Science</h3>
+          <p class="quest-location"><i class="fas fa-university"></i> Vellore Institute of Technology</p>
+          <span class="quest-reward"><i class="fas fa-trophy"></i> CGPA: 8.23</span>
         </div>
       </div>
     </div>
   </section>
   
-  <!-- Projects Section -->
+  <!-- Projects / Inventory -->
   <section class="section" id="projects">
     <div class="container">
-      <div class="section-header reveal-3d">
-        <div class="section-icon"><i class="fas fa-rocket"></i></div>
-        <span class="section-label">Portfolio</span>
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-subtitle">A selection of my recent work</p>
+      <div class="section-header">
+        <div class="section-icon"><i class="fas fa-boxes"></i></div>
+        <span class="section-label">Inventory</span>
+        <h2 class="section-title">Crafted Items</h2>
+        <p class="section-subtitle">A collection of legendary projects I've built</p>
       </div>
       
       <!-- Desktop Grid -->
-      <div class="projects-grid" id="projectsGrid"></div>
+      <div class="inventory-grid" id="inventoryGrid"></div>
       
       <!-- Mobile Carousel -->
-      <div class="projects-mobile" id="projectsMobile">
-        <div class="projects-carousel" id="projectsCarousel"></div>
+      <div class="inventory-mobile" id="inventoryMobile">
+        <div class="inventory-carousel" id="inventoryCarousel"></div>
         <div class="carousel-dots" id="carouselDots"></div>
       </div>
     </div>
   </section>
   
-  <!-- Stats Banner -->
-  <section class="stats-banner">
-    <div class="stats-grid">
-      <div class="stat-item reveal-scale">
-        <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
-        <div class="stat-value" data-count="30">0</div>
-        <div class="stat-label">Projects</div>
+  <!-- Achievements Banner -->
+  <section class="achievements-banner">
+    <div class="achievements-grid">
+      <div class="achievement-item reveal">
+        <div class="achievement-icon"><i class="fas fa-trophy"></i></div>
+        <div class="achievement-value" data-count="30">0</div>
+        <div class="achievement-label">Quests</div>
       </div>
-      <div class="stat-item reveal-scale delay-1">
-        <div class="stat-icon"><i class="fas fa-building"></i></div>
-        <div class="stat-value" data-count="6">0</div>
-        <div class="stat-label">Companies</div>
+      <div class="achievement-item reveal delay-1">
+        <div class="achievement-icon"><i class="fas fa-users"></i></div>
+        <div class="achievement-value" data-count="6">0</div>
+        <div class="achievement-label">Guilds</div>
       </div>
-      <div class="stat-item reveal-scale delay-2">
-        <div class="stat-icon"><i class="fas fa-award"></i></div>
-        <div class="stat-value" data-count="5">0</div>
-        <div class="stat-label">Awards</div>
+      <div class="achievement-item reveal delay-2">
+        <div class="achievement-icon"><i class="fas fa-medal"></i></div>
+        <div class="achievement-value" data-count="5">0</div>
+        <div class="achievement-label">Trophies</div>
       </div>
-      <div class="stat-item reveal-scale delay-3">
-        <div class="stat-icon"><i class="fas fa-certificate"></i></div>
-        <div class="stat-value" data-count="3">0</div>
-        <div class="stat-label">Certifications</div>
+      <div class="achievement-item reveal delay-3">
+        <div class="achievement-icon"><i class="fas fa-certificate"></i></div>
+        <div class="achievement-value" data-count="3">0</div>
+        <div class="achievement-label">Badges</div>
       </div>
     </div>
   </section>
   
-  <!-- Contact Section -->
+  <!-- Contact / Guild Hall -->
   <section class="section" id="contact">
     <div class="container">
-      <div class="section-header reveal-3d">
-        <div class="section-icon"><i class="fas fa-envelope"></i></div>
-        <span class="section-label">Get In Touch</span>
-        <h2 class="section-title">Contact Me</h2>
-        <p class="section-subtitle">Let's work together on your next project</p>
+      <div class="section-header">
+        <div class="section-icon"><i class="fas fa-comments"></i></div>
+        <span class="section-label">Guild Hall</span>
+        <h2 class="section-title">Join My Party</h2>
+        <p class="section-subtitle">Send a message to start a new quest together!</p>
       </div>
       
       <div class="contact-grid">
-        <div class="contact-info-card reveal-left">
+        <div class="contact-info-card reveal">
           <h3><i class="fas fa-handshake"></i> Let's Connect</h3>
           <p>
             I'm always excited about new projects and opportunities. 
-            Whether you need a developer or have an interesting project - let's talk!
+            Whether you need a developer or have an interesting quest - let's talk!
           </p>
           
           <div class="contact-list">
             <div class="contact-item">
               <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
               <div class="contact-item-text">
-                <h4>Location</h4>
+                <h4>Server Location</h4>
                 <p>Mumbai, India</p>
               </div>
             </div>
             <div class="contact-item">
               <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
               <div class="contact-item-text">
-                <h4>Email</h4>
+                <h4>Mail Address</h4>
                 <a href="mailto:workwithakshitr@gmail.com">workwithakshitr@gmail.com</a>
               </div>
             </div>
             <div class="contact-item">
               <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
               <div class="contact-item-text">
-                <h4>Phone</h4>
+                <h4>Direct Line</h4>
                 <a href="tel:+917045538721">+91 7045538721</a>
               </div>
             </div>
@@ -2905,30 +3182,30 @@ textarea.form-input {
           </div>
         </div>
         
-        <div class="contact-form-card reveal-right delay-1">
+        <div class="contact-form-card reveal delay-1">
           <form id="contactForm">
             <div class="form-row">
               <label for="name">Your Name</label>
-              <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required>
+              <input type="text" id="name" name="name" class="form-input" placeholder="Enter your name..." required>
             </div>
             <div class="form-row">
               <label for="email">Your Email</label>
-              <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required>
+              <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email..." required>
             </div>
             <div class="form-row">
-              <label for="subject">Subject</label>
-              <input type="text" id="subject" name="subject" class="form-input" placeholder="Project Inquiry">
+              <label for="subject">Quest Type</label>
+              <input type="text" id="subject" name="subject" class="form-input" placeholder="Project / Collaboration / Hiring">
             </div>
             <div class="form-row">
               <label for="message">Message</label>
-              <textarea id="message" name="message" class="form-input" placeholder="Tell me about your project..." required></textarea>
+              <textarea id="message" name="message" class="form-input" placeholder="Describe your quest..." required></textarea>
             </div>
             <button type="submit" class="form-btn">
               <i class="fas fa-paper-plane"></i>
               Send Message
             </button>
             <div class="form-success" id="formSuccess">
-              <i class="fas fa-check-circle"></i> Message sent successfully!
+              <i class="fas fa-check-circle"></i> Quest submitted! Opening comms...
             </div>
           </form>
         </div>
@@ -2936,44 +3213,58 @@ textarea.form-input {
     </div>
   </section>
   
-  </div> <!-- End World Container -->
-  
   <!-- Footer -->
   <footer class="footer">
-    <p>© 2025 <a href="#">Akshit Ravula</a>. Built with passion & code.</p>
+    <p>© 2025 <a href="#">Akshit Ravula</a> | Built with ⚔️ & 💻</p>
   </footer>
 
 <script>
 // ==========================================
-// ALL PROJECTS DATA
+// ALL PROJECTS DATA WITH RARITY
 // ==========================================
 const allProjects = [
-  { title: "Clootrack", img: "images/project4.png", url: "https://www.clootrack.com/", desc: "Optimized website with enhanced UX.", stack: ["React", "JS", "Node"] },
-  { title: "SATO – LIXIL", img: "images/sato..jpg", url: "https://sato.lixil.com/", desc: "Global sanitation solutions with multilingual support.", stack: ["PHP", "MySQL", "JS"] },
-  { title: "Bharat Certis", img: "images/bharatcertis.jpg", url: "https://www.bharatcertis.com/", desc: "Corporate website for agrochemical company.", stack: ["PHP", "MySQL", "JS"] },
-  { title: "RD Overseas", img: "images/rdoverseas.jpg", url: "https://rdoverseas.in/", desc: "eCommerce store for automotive accessories.", stack: ["Shopify", "Liquid", "JS"] },
-  { title: "Vicefy", img: "images/vicefy.jpg", url: "https://vicefy.store/", desc: "Modern eCommerce for beauty and personal care.", stack: ["Shopify", "Liquid", "CSS"] },
-  { title: "Creative Garage", img: "images/creativegarage.jpg", url: "https://creative-garage.in/", desc: "Creative agency with bold design.", stack: ["WordPress", "JS", "CSS"] },
-  { title: "Bloom Agency", img: "images/project7.png", url: "https://www.bloomagency.in/", desc: "Digital agency website with modern UX.", stack: ["WordPress", "JS", "CSS"] },
-  { title: "Wooum", img: "images/project6.png", url: "https://www.wooum.com/", desc: "Visually appealing responsive design.", stack: ["WordPress", "JS", "CSS"] },
-  { title: "23 Consulting", img: "images/project16.png", url: "https://23consultingservices.com/", desc: "Professional consulting platform.", stack: ["WordPress", "JS"] },
-  { title: "Bodhi Diamonds", img: "images/project8.png", url: "https://www.bodhidiamonds.in/", desc: "Elegant jewelry platform.", stack: ["WordPress", "CSS"] },
-  { title: "Cycler", img: "images/project1.jpg", url: "#", desc: "Bicycle rental platform for students.", stack: ["React", "Node.js"] },
-  { title: "Fitness Tracker", img: "images/project2.jpg", url: "#", desc: "Tracks stress, calories, sleep.", stack: ["React", "Node.js"] },
-  { title: "Goldpot", img: "images/project15.png", url: "https://goldpot.in/", desc: "Digital gold investment platform.", stack: ["WordPress", "JS"] },
-  { title: "Haldiram's Franchise", img: "images/project10.png", url: "https://www.haldirams.store/", desc: "Professional franchise website.", stack: ["WordPress", "CSS"] },
-  { title: "Jewellery Khazana", img: "images/project12.png", url: "https://jewellerykhazana.com/", desc: "Elegant online jewellery platform.", stack: ["WordPress", "JS"] },
-  { title: "Mitaksh Radiance", img: "images/project9.png", url: "https://www.mitakshradiance.in/", desc: "Jewelry brand with elegant design.", stack: ["WordPress", "CSS"] },
-  { title: "Piers St. Barth", img: "images/pierstbarth.jpg", url: "https://pierstbarth.com/", desc: "Premium luxury fashion brand.", stack: ["Shopify", "Liquid"] },
-  { title: "AI Drug Discovery", img: "images/project17.jpeg", url: "#", desc: "AI-powered drug discovery research.", stack: ["Python", "TensorFlow"] }
+  { title: "Clootrack", img: "images/project4.png", url: "https://www.clootrack.com/", desc: "Optimized website with enhanced UX.", stack: ["React", "JS", "Node"], rarity: "legendary" },
+  { title: "SATO – LIXIL", img: "images/sato..jpg", url: "https://sato.lixil.com/", desc: "Global sanitation solutions with multilingual support.", stack: ["PHP", "MySQL", "JS"], rarity: "epic" },
+  { title: "Bharat Certis", img: "images/bharatcertis.jpg", url: "https://www.bharatcertis.com/", desc: "Corporate website for agrochemical company.", stack: ["PHP", "MySQL", "JS"], rarity: "epic" },
+  { title: "RD Overseas", img: "images/rdoverseas.jpg", url: "https://rdoverseas.in/", desc: "eCommerce store for automotive accessories.", stack: ["Shopify", "Liquid", "JS"], rarity: "rare" },
+  { title: "Vicefy", img: "images/vicefy.jpg", url: "https://vicefy.store/", desc: "Modern eCommerce for beauty and personal care.", stack: ["Shopify", "Liquid", "CSS"], rarity: "rare" },
+  { title: "Creative Garage", img: "images/creativegarage.jpg", url: "https://creative-garage.in/", desc: "Creative agency with bold design.", stack: ["WordPress", "JS", "CSS"], rarity: "legendary" },
+  { title: "Bloom Agency", img: "images/project7.png", url: "https://www.bloomagency.in/", desc: "Digital agency website with modern UX.", stack: ["WordPress", "JS", "CSS"], rarity: "epic" },
+  { title: "Wooum", img: "images/project6.png", url: "https://www.wooum.com/", desc: "Visually appealing responsive design.", stack: ["WordPress", "JS", "CSS"], rarity: "rare" },
+  { title: "23 Consulting", img: "images/project16.png", url: "https://23consultingservices.com/", desc: "Professional consulting platform.", stack: ["WordPress", "JS"], rarity: "rare" },
+  { title: "Amarjothi Granites", img: "images/amarjothi.jpg", url: "https://amarjothigranites.com/", desc: "Natural stone and granite exporter.", stack: ["WordPress", "CSS"], rarity: "rare" },
+  { title: "Anzo Controls", img: "images/anzocontrols.jpg", url: "https://www.anzocontrols.com/", desc: "Industrial automation solutions.", stack: ["WordPress", "JS"], rarity: "rare" },
+  { title: "Bodhi Diamonds", img: "images/project8.png", url: "https://www.bodhidiamonds.in/", desc: "Elegant jewelry platform.", stack: ["WordPress", "CSS"], rarity: "epic" },
+  { title: "Customer Care", img: "images/project13.png", url: "https://customercareelectronicservice.in/", desc: "Customer care service brand.", stack: ["WordPress", "CSS"], rarity: "rare" },
+  { title: "Cycler", img: "images/project1.jpg", url: "#", desc: "Bicycle rental platform for students.", stack: ["React", "Node.js"], rarity: "legendary" },
+  { title: "Ecotonique", img: "images/project5.png", url: "https://www.ecotonique.in/", desc: "Engaging user experience design.", stack: ["WordPress", "JS"], rarity: "rare" },
+  { title: "Fitness Tracker", img: "images/project2.jpg", url: "#", desc: "Tracks stress, calories, sleep.", stack: ["React", "Node.js"], rarity: "epic" },
+  { title: "Goldpot", img: "images/project15.png", url: "https://goldpot.in/", desc: "Digital gold investment platform.", stack: ["WordPress", "JS"], rarity: "epic" },
+  { title: "Haldiram's Franchise", img: "images/project10.png", url: "https://www.haldirams.store/", desc: "Professional franchise website.", stack: ["WordPress", "CSS"], rarity: "legendary" },
+  { title: "Hawtever", img: "images/hawtever.jpg", url: "https://hawtever.com/", desc: "Bold skincare and haircare brand.", stack: ["WordPress", "CSS"], rarity: "rare" },
+  { title: "Homecare Planners", img: "images/homecare.jpg", url: "https://homecareandplanners.com/", desc: "Property consultation services.", stack: ["WordPress", "JS"], rarity: "rare" },
+  { title: "House of Buck", img: "images/project14.png", url: "https://houseofbuck.in/", desc: "Dropshipping store with modern UI.", stack: ["WordPress", "CSS"], rarity: "rare" },
+  { title: "Jewellery Khazana", img: "images/project12.png", url: "https://jewellerykhazana.com/", desc: "Elegant online jewellery platform.", stack: ["WordPress", "JS"], rarity: "epic" },
+  { title: "Kailasa Ink", img: "images/kailasa.jpg", url: "https://kailasaink.com/", desc: "Spiritual ink brand with mythology.", stack: ["WordPress", "CSS"], rarity: "rare" },
+  { title: "Luvialz", img: "images/luvialz.jpg", url: "https://luvialz.com/", desc: "Luxury skincare and wellness.", stack: ["WordPress", "WooCommerce"], rarity: "epic" },
+  { title: "Mitaksh Radiance", img: "images/project9.png", url: "https://www.mitakshradiance.in/", desc: "Jewelry brand with elegant design.", stack: ["WordPress", "CSS"], rarity: "epic" },
+  { title: "OneWay Happiness", img: "images/onewayhappiness.jpg", url: "https://www.onewayhappiness.com/", desc: "Personal care and wellness brand.", stack: ["Shopify", "Liquid"], rarity: "rare" },
+  { title: "Piers St. Barth", img: "images/pierstbarth.jpg", url: "https://pierstbarth.com/", desc: "Premium luxury fashion brand.", stack: ["Shopify", "Liquid"], rarity: "legendary" },
+  { title: "PlanYourWay", img: "images/project3.jpg", url: "#", desc: "Ticket booking web application.", stack: ["HTML", "CSS", "JS"], rarity: "rare" },
+  { title: "SD Infra & Mep", img: "images/project11.png", url: "https://www.sdinframep.in/", desc: "Industry-focused platform.", stack: ["WordPress", "CSS"], rarity: "rare" },
+  { title: "Souvenir Care", img: "images/souvenircare.jpg", url: "https://souvenircare.com/", desc: "Beauty and wellness eCommerce.", stack: ["WordPress", "WooCommerce"], rarity: "rare" },
+  { title: "Trademark Dekho", img: "images/trademarkdekho.jpg", url: "https://trademarkdekho.in/", desc: "Legal consultancy for trademarks.", stack: ["WordPress", "JS"], rarity: "rare" },
+  { title: "TPS Aerospace", img: "images/tpsaerospace.jpg", url: "https://tpsaerospace.com/", desc: "MRO aviation company website.", stack: ["WordPress", "CSS"], rarity: "epic" },
+  { title: "Trudiance", img: "images/trudiance.jpg", url: "https://trudiance.com/", desc: "Clean beauty skincare brand.", stack: ["WordPress", "WooCommerce"], rarity: "rare" },
+  { title: "AI Drug Discovery", img: "images/project17.jpeg", url: "#", desc: "AI-powered drug discovery research.", stack: ["Python", "TensorFlow"], rarity: "legendary" }
 ];
 
 // ==========================================
 // RENDER PROJECTS
 // ==========================================
 function renderProjects() {
-  const gridContainer = document.getElementById('projectsGrid');
-  const carouselContainer = document.getElementById('projectsCarousel');
+  const gridContainer = document.getElementById('inventoryGrid');
+  const carouselContainer = document.getElementById('inventoryCarousel');
   const dotsContainer = document.getElementById('carouselDots');
   
   let gridHTML = '';
@@ -2982,27 +3273,28 @@ function renderProjects() {
   
   allProjects.forEach((project, index) => {
     const cardHTML = `
-      <div class="project-card reveal-3d ${index < 3 ? 'delay-' + (index % 3 + 1) : ''}" data-tilt>
-        <div class="project-img">
-          <img src="${project.img}" alt="${project.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x220?text=Project'">
-          <div class="project-overlay">
-            <a href="${project.url}" target="_blank" rel="noopener" class="project-link">
+      <div class="inventory-item reveal ${index < 3 ? 'delay-' + (index % 3 + 1) : ''}">
+        <div class="inventory-item-img">
+          <span class="inventory-rarity ${project.rarity}">${project.rarity}</span>
+          <img src="${project.img}" alt="${project.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x200?text=Project'">
+          <div class="inventory-overlay">
+            <a href="${project.url}" target="_blank" rel="noopener" class="inventory-link">
               <i class="fas fa-external-link-alt"></i>
             </a>
           </div>
         </div>
-        <div class="project-body">
-          <h3 class="project-title">${project.title}</h3>
-          <p class="project-desc">${project.desc}</p>
-          <div class="project-tags">
-            ${project.stack.map(s => `<span class="project-tag">${s}</span>`).join('')}
+        <div class="inventory-item-body">
+          <h3 class="inventory-item-title">${project.title}</h3>
+          <p class="inventory-item-desc">${project.desc}</p>
+          <div class="inventory-item-tags">
+            ${project.stack.map(s => `<span class="inventory-tag">${s}</span>`).join('')}
           </div>
         </div>
       </div>
     `;
     
     gridHTML += cardHTML;
-    carouselHTML += `<div class="carousel-slide">${cardHTML}</div>`;
+    carouselHTML += `<div class="inventory-slide">${cardHTML}</div>`;
     dotsHTML += `<button class="carousel-dot ${index === 0 ? 'active' : ''}" data-index="${index}" aria-label="Go to slide ${index + 1}"></button>`;
   });
   
@@ -3019,24 +3311,16 @@ document.addEventListener('DOMContentLoaded', function() {
   // Render projects
   renderProjects();
   
-  // ========== CUSTOM CURSOR ==========
-  const cursor = document.getElementById('cursor');
-  const cursorDot = document.getElementById('cursorDot');
-  
-  if (window.innerWidth > 1024) {
-    document.addEventListener('mousemove', function(e) {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      cursorDot.style.left = e.clientX + 'px';
-      cursorDot.style.top = e.clientY + 'px';
-    });
-    
-    // Hover effect on interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .btn-neu, .nav-link, .tech-tag, .project-card, .skill-card');
-    interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-    });
+  // Generate particles
+  const particlesContainer = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.top = Math.random() * 100 + '%';
+    particle.style.animationDelay = Math.random() * 8 + 's';
+    particle.style.animationDuration = (6 + Math.random() * 4) + 's';
+    particlesContainer.appendChild(particle);
   }
   
   // ========== PRELOADER ==========
@@ -3049,10 +3333,10 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   window.addEventListener('load', function() {
-    setTimeout(hidePreloader, 2500);
+    setTimeout(hidePreloader, 2200);
   });
   
-  setTimeout(hidePreloader, 4500);
+  setTimeout(hidePreloader, 4000);
   
   // ========== THEME TOGGLE ==========
   const themeToggle = document.getElementById('themeToggle');
@@ -3064,6 +3348,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
+    showXPPopup(this, '+5 XP');
   });
   
   // ========== MUSIC TOGGLE ==========
@@ -3074,11 +3359,12 @@ document.addEventListener('DOMContentLoaded', function() {
   musicBtn.addEventListener('click', function() {
     if (isPlaying) {
       bgMusic.pause();
-      musicBtn.style.color = '';
+      musicBtn.classList.remove('playing');
     } else {
       bgMusic.volume = 0.3;
       bgMusic.play().then(function() {
-        musicBtn.style.color = 'var(--primary)';
+        musicBtn.classList.add('playing');
+        showXPPopup(musicBtn, '+10 XP');
       }).catch(function(e) {
         console.log('Audio play failed:', e);
       });
@@ -3086,21 +3372,14 @@ document.addEventListener('DOMContentLoaded', function() {
     isPlaying = !isPlaying;
   });
   
-  // ========== SCROLL PROGRESS ==========
-  const scrollProgress = document.getElementById('scrollProgress');
+  // ========== XP PROGRESS BAR ==========
+  const xpProgress = document.getElementById('xpProgress');
   
   window.addEventListener('scroll', function() {
     const scrollTop = document.documentElement.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const progress = (scrollTop / scrollHeight) * 100;
-    scrollProgress.style.width = progress + '%';
-  });
-  
-  // ========== NAVBAR ==========
-  const navbar = document.getElementById('navbar');
-  
-  window.addEventListener('scroll', function() {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
+    xpProgress.style.width = progress + '%';
   });
   
   // ========== BACK TO TOP ==========
@@ -3114,16 +3393,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const menuToggle = document.getElementById('menuToggle');
   const navMenu = document.getElementById('navMenu');
   
-  function closeMenu() {
-    menuToggle.classList.remove('active');
-    navMenu.classList.remove('active');
-    document.body.classList.remove('menu-open');
-  }
-  
   function openMenu() {
     menuToggle.classList.add('active');
     navMenu.classList.add('active');
     document.body.classList.add('menu-open');
+  }
+  
+  function closeMenu() {
+    menuToggle.classList.remove('active');
+    navMenu.classList.remove('active');
+    document.body.classList.remove('menu-open');
   }
   
   menuToggle.addEventListener('click', function(e) {
@@ -3166,10 +3445,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // ========== TYPEWRITER ==========
   const typewriterTexts = [
     'Full Stack Developer',
-    'React.js Specialist',
+    'React.js Master',
     'Cloud Engineer',
     'Problem Solver',
-    'Creative Thinker'
+    'Code Wizard'
   ];
   let textIndex = 0, charIndex = 0, isDeleting = false;
   const typewriterElement = document.getElementById('typewriter');
@@ -3195,49 +3474,12 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   typeWriter();
   
-  // ========== 3D PARALLAX ON MOUSE MOVE ==========
-  const heroLayers = document.querySelectorAll('.hero-layer');
-  
-  document.addEventListener('mousemove', function(e) {
-    const x = (window.innerWidth / 2 - e.clientX) / 50;
-    const y = (window.innerHeight / 2 - e.clientY) / 50;
-    
-    heroLayers.forEach(layer => {
-      const speed = parseFloat(layer.dataset.speed) || 0.02;
-      layer.style.transform = `translate(${x * speed * 100}px, ${y * speed * 100}px)`;
-    });
-  });
-  
-  // ========== 3D TILT EFFECT ON CARDS ==========
-  const tiltCards = document.querySelectorAll('[data-tilt]');
-  
-  tiltCards.forEach(card => {
-    card.addEventListener('mousemove', function(e) {
-      const rect = this.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = (y - centerY) / 20;
-      const rotateY = (centerX - x) / 20;
-      
-      this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-    });
-    
-    card.addEventListener('mouseleave', function() {
-      this.style.transform = '';
-    });
-  });
-  
-  // ========== 3D REVEAL ON SCROLL ==========
-  const reveals = document.querySelectorAll('.reveal-3d, .reveal-left, .reveal-right, .reveal-scale');
+  // ========== REVEAL ON SCROLL ==========
+  const reveals = document.querySelectorAll('.reveal');
   
   function revealOnScroll() {
     reveals.forEach(function(el) {
-      const rect = el.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      
-      if (rect.top < windowHeight - 100) {
+      if (el.getBoundingClientRect().top < window.innerHeight - 100) {
         el.classList.add('active');
       }
     });
@@ -3246,8 +3488,8 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('scroll', revealOnScroll);
   revealOnScroll();
   
-  // ========== SKILL BARS ANIMATION ==========
-  const skillBars = document.querySelectorAll('.skill-fill, .attribute-fill');
+  // ========== SKILL BARS ==========
+  const skillBars = document.querySelectorAll('.skill-bar-fill, .attribute-fill');
   
   function animateSkills() {
     skillBars.forEach(function(bar) {
@@ -3271,12 +3513,12 @@ document.addEventListener('DOMContentLoaded', function() {
         counter.classList.add('counted');
         const target = parseInt(counter.getAttribute('data-count'));
         let count = 0;
-        const increment = Math.ceil(target / 40);
+        const increment = Math.ceil(target / 30);
         
         function update() {
           count = Math.min(count + increment, target);
           counter.textContent = count + '+';
-          if (count < target) setTimeout(update, 30);
+          if (count < target) setTimeout(update, 40);
         }
         update();
       }
@@ -3287,7 +3529,7 @@ document.addEventListener('DOMContentLoaded', function() {
   animateCounters();
   
   // ========== MOBILE CAROUSEL ==========
-  const carousel = document.getElementById('projectsCarousel');
+  const carousel = document.getElementById('inventoryCarousel');
   let currentSlide = 0;
   let startX = 0;
   let isDragging = false;
@@ -3328,6 +3570,49 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
+  // ========== CLICK EFFECT ==========
+  document.addEventListener('click', function(e) {
+    const effect = document.createElement('div');
+    effect.className = 'click-effect';
+    effect.style.left = e.clientX + 'px';
+    effect.style.top = e.clientY + 'px';
+    document.body.appendChild(effect);
+    
+    setTimeout(function() {
+      effect.remove();
+    }, 500);
+  });
+  
+  // ========== XP POPUP FUNCTION ==========
+  function showXPPopup(element, text) {
+    const rect = element.getBoundingClientRect();
+    const popup = document.createElement('div');
+    popup.className = 'xp-popup';
+    popup.textContent = text;
+    popup.style.left = rect.left + rect.width / 2 + 'px';
+    popup.style.top = rect.top + 'px';
+    document.body.appendChild(popup);
+    
+    setTimeout(function() {
+      popup.remove();
+    }, 1000);
+  }
+  
+  // ========== HOVER XP GAIN ==========
+  let xpGainTimeout;
+  document.querySelectorAll('.inventory-item, .quest-card, .skill-tree-card, .tech-tag').forEach(function(el) {
+    el.addEventListener('mouseenter', function() {
+      clearTimeout(xpGainTimeout);
+      xpGainTimeout = setTimeout(function() {
+        showXPPopup(el, '+2 XP');
+      }, 500);
+    });
+    
+    el.addEventListener('mouseleave', function() {
+      clearTimeout(xpGainTimeout);
+    });
+  });
+  
   // ========== CONTACT FORM ==========
   const contactForm = document.getElementById('contactForm');
   const formSuccess = document.getElementById('formSuccess');
@@ -3346,16 +3631,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     const whatsappText = 
-      '*New Contact Form Submission*\n\n' +
-      '*Name:* ' + name + '\n' +
+      '*New Quest Request*\n\n' +
+      '*Player:* ' + name + '\n' +
       '*Email:* ' + email + '\n' +
-      '*Subject:* ' + subject + '\n\n' +
+      '*Quest Type:* ' + subject + '\n\n' +
       '*Message:*\n' + message;
     
     const encodedMessage = encodeURIComponent(whatsappText);
     const whatsappURL = 'https://wa.me/917045538721?text=' + encodedMessage;
     
     formSuccess.classList.add('show');
+    showXPPopup(document.querySelector('.form-btn'), '+100 XP');
     
     setTimeout(function() {
       window.open(whatsappURL, '_blank');
@@ -3381,17 +3667,6 @@ document.addEventListener('DOMContentLoaded', function() {
           behavior: 'smooth' 
         });
       }
-    });
-  });
-  
-  // ========== PARALLAX ON SCROLL ==========
-  window.addEventListener('scroll', function() {
-    const scrollY = window.scrollY;
-    
-    // Parallax for floating shapes
-    document.querySelectorAll('.shape').forEach((shape, index) => {
-      const speed = (index + 1) * 0.05;
-      shape.style.transform = `translateY(${scrollY * speed}px)`;
     });
   });
   
