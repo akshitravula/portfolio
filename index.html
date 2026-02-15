@@ -113,9 +113,7 @@ body.menu-open {
 }
 
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { 
-  background: var(--neu-bg); 
-}
+::-webkit-scrollbar-track { background: var(--neu-bg); }
 ::-webkit-scrollbar-thumb { 
   background: linear-gradient(180deg, var(--primary), var(--secondary));
   border-radius: 3px;
@@ -1435,6 +1433,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border: 1px solid rgba(var(--primary-rgb), 0.2);
 }
 
+/* Hide extra cards on mobile */
+.quest-card.hidden-mobile {
+  display: none;
+}
+
 .quest-header {
   display: flex;
   flex-wrap: wrap;
@@ -1550,11 +1553,57 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 12px;
 }
 
+/* Load More Button */
+.load-more-wrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.load-more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: var(--neu-bg);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-neu);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+}
+
+.load-more-btn:active {
+  box-shadow: var(--shadow-neu-pressed);
+}
+
+.load-more-btn i {
+  transition: transform 0.3s ease;
+}
+
+.load-more-btn.expanded i {
+  transform: rotate(180deg);
+}
+
+.load-more-btn.hidden {
+  display: none;
+}
+
 /* Inventory Grid */
 .inventory-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
+}
+
+/* Hide extra projects on mobile initially */
+.inventory-item.hidden-mobile {
+  display: none;
 }
 
 .inventory-item {
@@ -1960,40 +2009,6 @@ textarea.form-input {
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-/* Click Effect */
-.click-effect {
-  position: fixed;
-  pointer-events: none;
-  width: 24px;
-  height: 24px;
-  border: 2px solid var(--primary);
-  border-radius: 50%;
-  animation: click-ripple 0.4s ease-out forwards;
-  z-index: 9999;
-}
-
-@keyframes click-ripple {
-  from { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-  to { transform: translate(-50%, -50%) scale(2); opacity: 0; }
-}
-
-/* XP Popup */
-.xp-popup {
-  position: fixed;
-  pointer-events: none;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--xp-gold);
-  text-shadow: 0 0 8px var(--xp-gold);
-  animation: xp-float 0.8s ease-out forwards;
-  z-index: 9999;
-}
-
-@keyframes xp-float {
-  from { transform: translate(-50%, 0); opacity: 1; }
-  to { transform: translate(-50%, -40px); opacity: 0; }
-}
-
 /* Desktop Styles */
 @media (min-width: 768px) {
   :root {
@@ -2208,8 +2223,22 @@ textarea.form-input {
     margin: 0 auto;
   }
   
+  /* Show all experience cards on desktop */
+  .quest-card.hidden-mobile {
+    display: block;
+  }
+  
+  .load-more-wrapper {
+    display: none;
+  }
+  
   .inventory-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* Show all projects on desktop */
+  .inventory-item.hidden-mobile {
+    display: block;
   }
   
   .achievements-grid {
@@ -2656,7 +2685,7 @@ textarea.form-input {
           <div class="skill-tree-header">
             <div class="skill-tree-icon"><i class="fas fa-cloud"></i></div>
             <div>
-              <h3 class="skill-tree-title">Tools & Cloud</h3>
+              <h3 class="skill-tree-title">Tools</h3>
               <p class="skill-tree-level">Proficient</p>
             </div>
           </div>
@@ -2706,7 +2735,6 @@ textarea.form-input {
         <span class="tech-tag">Git</span>
         <span class="tech-tag">WordPress</span>
         <span class="tech-tag">Shopify</span>
-        <span class="tech-tag">Figma</span>
       </div>
     </div>
   </section>
@@ -2720,7 +2748,7 @@ textarea.form-input {
         <p class="section-subtitle">My professional journey</p>
       </div>
       
-      <div class="quest-log">
+      <div class="quest-log" id="questLog">
         <div class="quest-card active reveal">
           <div class="quest-header">
             <span class="quest-date">Feb 2025 - Present</span>
@@ -2748,7 +2776,8 @@ textarea.form-input {
           </ul>
         </div>
         
-        <div class="quest-card reveal">
+        <!-- Hidden on mobile initially -->
+        <div class="quest-card reveal hidden-mobile">
           <div class="quest-header">
             <span class="quest-date">Sep 2024 - Dec 2024</span>
             <span class="quest-status completed">Completed</span>
@@ -2761,7 +2790,7 @@ textarea.form-input {
           </ul>
         </div>
         
-        <div class="quest-card reveal">
+        <div class="quest-card reveal hidden-mobile">
           <div class="quest-header">
             <span class="quest-date">Jul 2024 - Sep 2024</span>
             <span class="quest-status completed">Completed</span>
@@ -2774,7 +2803,7 @@ textarea.form-input {
           </ul>
         </div>
         
-        <div class="quest-card reveal">
+        <div class="quest-card reveal hidden-mobile">
           <div class="quest-header">
             <span class="quest-date">2021 - 2025</span>
             <span class="quest-status education">Education</span>
@@ -2783,6 +2812,13 @@ textarea.form-input {
           <p class="quest-location"><i class="fas fa-university"></i> Vellore Institute of Technology</p>
           <span class="quest-reward"><i class="fas fa-trophy"></i> CGPA: 8.23</span>
         </div>
+      </div>
+      
+      <div class="load-more-wrapper">
+        <button class="load-more-btn" id="loadMoreExp">
+          <span>Show More</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
       </div>
     </div>
   </section>
@@ -2797,6 +2833,13 @@ textarea.form-input {
       </div>
       
       <div class="inventory-grid" id="inventoryGrid"></div>
+      
+      <div class="load-more-wrapper">
+        <button class="load-more-btn" id="loadMoreProjects">
+          <span>Show More Projects</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+      </div>
     </div>
   </section>
   
@@ -2959,20 +3002,31 @@ var allProjects = [
   {title: "AI Drug Discovery", img: "images/project17.jpeg", url: "#", desc: "AI-powered drug discovery research.", stack: ["Python", "TensorFlow"], rarity: "legendary"}
 ];
 
+var INITIAL_PROJECTS_MOBILE = 4;
+var projectsExpanded = false;
+
+function isMobile() {
+  return window.innerWidth < 768;
+}
+
 function renderProjects() {
   var gridContainer = document.getElementById("inventoryGrid");
   var gridHTML = "";
   
   for (var i = 0; i < allProjects.length; i++) {
     var project = allProjects[i];
-    var delayClass = i < 3 ? " delay-" + ((i % 3) + 1) : "";
+    var hiddenClass = "";
+    
+    if (isMobile() && i >= INITIAL_PROJECTS_MOBILE && !projectsExpanded) {
+      hiddenClass = " hidden-mobile";
+    }
     
     var tagsHTML = "";
     for (var j = 0; j < project.stack.length; j++) {
       tagsHTML += '<span class="inventory-tag">' + project.stack[j] + '</span>';
     }
     
-    var cardHTML = '<div class="inventory-item reveal' + delayClass + '">' +
+    var cardHTML = '<div class="inventory-item reveal' + hiddenClass + '">' +
       '<div class="inventory-item-img">' +
         '<span class="inventory-rarity ' + project.rarity + '">' + project.rarity + '</span>' +
         '<img src="' + project.img + '" alt="' + project.title + '" loading="lazy" onerror="this.src=\'https://via.placeholder.com/400x180?text=Project\'">' +
@@ -2993,12 +3047,30 @@ function renderProjects() {
   }
   
   gridContainer.innerHTML = gridHTML;
+  
+  // Update load more button visibility
+  var loadMoreBtn = document.getElementById("loadMoreProjects");
+  if (isMobile() && !projectsExpanded) {
+    loadMoreBtn.classList.remove("hidden");
+    loadMoreBtn.querySelector("span").textContent = "Show More Projects";
+    loadMoreBtn.classList.remove("expanded");
+  } else if (isMobile() && projectsExpanded) {
+    loadMoreBtn.classList.remove("hidden");
+    loadMoreBtn.querySelector("span").textContent = "Show Less";
+    loadMoreBtn.classList.add("expanded");
+  } else {
+    loadMoreBtn.classList.add("hidden");
+  }
+  
+  // Re-run reveal animation
+  revealOnScroll();
 }
 
 document.addEventListener("DOMContentLoaded", function() {
   
   renderProjects();
   
+  // Particles
   var particlesContainer = document.getElementById("particles");
   for (var i = 0; i < 20; i++) {
     var particle = document.createElement("div");
@@ -3010,6 +3082,7 @@ document.addEventListener("DOMContentLoaded", function() {
     particlesContainer.appendChild(particle);
   }
   
+  // Preloader
   var preloader = document.getElementById("preloader");
   
   function hidePreloader() {
@@ -3024,6 +3097,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
   setTimeout(hidePreloader, 3500);
   
+  // Theme Toggle
   var themeToggle = document.getElementById("themeToggle");
   var html = document.documentElement;
   var savedTheme = localStorage.getItem("theme") || "dark";
@@ -3035,6 +3109,7 @@ document.addEventListener("DOMContentLoaded", function() {
     localStorage.setItem("theme", newTheme);
   });
   
+  // Music Toggle
   var musicBtn = document.getElementById("musicBtn");
   var bgMusic = document.getElementById("bgMusic");
   var isPlaying = false;
@@ -3053,6 +3128,7 @@ document.addEventListener("DOMContentLoaded", function() {
     isPlaying = !isPlaying;
   });
   
+  // XP Progress Bar
   var xpProgress = document.getElementById("xpProgress");
   
   window.addEventListener("scroll", function() {
@@ -3062,6 +3138,7 @@ document.addEventListener("DOMContentLoaded", function() {
     xpProgress.style.width = progress + "%";
   });
   
+  // Back to Top
   var backTop = document.getElementById("backTop");
   
   window.addEventListener("scroll", function() {
@@ -3072,6 +3149,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
   
+  // Mobile Menu
   var menuToggle = document.getElementById("menuToggle");
   var navMenu = document.getElementById("navMenu");
   
@@ -3097,6 +3175,7 @@ document.addEventListener("DOMContentLoaded", function() {
     navLinks[i].addEventListener("click", closeMenu);
   }
   
+  // Active Nav Link
   var sections = document.querySelectorAll("section[id]");
   
   window.addEventListener("scroll", function() {
@@ -3116,6 +3195,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
   
+  // Typewriter
   var typewriterTexts = ["Full Stack Developer", "React Developer", "Cloud Engineer", "Problem Solver"];
   var textIndex = 0;
   var charIndex = 0;
@@ -3149,9 +3229,9 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   typeWriter();
   
-  var reveals = document.querySelectorAll(".reveal");
-  
+  // Reveal on Scroll
   function revealOnScroll() {
+    var reveals = document.querySelectorAll(".reveal");
     for (var i = 0; i < reveals.length; i++) {
       if (reveals[i].getBoundingClientRect().top < window.innerHeight - 80) {
         reveals[i].classList.add("active");
@@ -3162,6 +3242,10 @@ document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener("scroll", revealOnScroll);
   revealOnScroll();
   
+  // Make revealOnScroll global
+  window.revealOnScroll = revealOnScroll;
+  
+  // Skill Bars
   var skillBars = document.querySelectorAll(".skill-bar-fill, .attribute-fill");
   
   function animateSkills() {
@@ -3176,6 +3260,7 @@ document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener("scroll", animateSkills);
   setTimeout(animateSkills, 500);
   
+  // Counter Animation
   var counters = document.querySelectorAll("[data-count]");
   
   function animateCounters() {
@@ -3204,6 +3289,63 @@ document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener("scroll", animateCounters);
   animateCounters();
   
+  // Load More Experience Button
+  var loadMoreExpBtn = document.getElementById("loadMoreExp");
+  var expExpanded = false;
+  
+  loadMoreExpBtn.addEventListener("click", function() {
+    var hiddenCards = document.querySelectorAll(".quest-card.hidden-mobile");
+    
+    if (!expExpanded) {
+      for (var i = 0; i < hiddenCards.length; i++) {
+        hiddenCards[i].classList.remove("hidden-mobile");
+        hiddenCards[i].classList.add("active");
+      }
+      loadMoreExpBtn.querySelector("span").textContent = "Show Less";
+      loadMoreExpBtn.classList.add("expanded");
+      expExpanded = true;
+    } else {
+      var allCards = document.querySelectorAll(".quest-card");
+      for (var j = 2; j < allCards.length; j++) {
+        allCards[j].classList.add("hidden-mobile");
+      }
+      loadMoreExpBtn.querySelector("span").textContent = "Show More";
+      loadMoreExpBtn.classList.remove("expanded");
+      expExpanded = false;
+    }
+    
+    revealOnScroll();
+  });
+  
+  // Load More Projects Button
+  var loadMoreProjectsBtn = document.getElementById("loadMoreProjects");
+  
+  loadMoreProjectsBtn.addEventListener("click", function() {
+    projectsExpanded = !projectsExpanded;
+    renderProjects();
+    
+    if (!projectsExpanded) {
+      document.getElementById("projects").scrollIntoView({ behavior: "smooth" });
+    }
+  });
+  
+  // Handle resize
+  window.addEventListener("resize", function() {
+    renderProjects();
+    
+    var loadMoreExpWrapper = loadMoreExpBtn.parentElement;
+    if (!isMobile()) {
+      loadMoreExpWrapper.style.display = "none";
+      var hiddenCards = document.querySelectorAll(".quest-card.hidden-mobile");
+      for (var i = 0; i < hiddenCards.length; i++) {
+        hiddenCards[i].classList.remove("hidden-mobile");
+      }
+    } else {
+      loadMoreExpWrapper.style.display = "block";
+    }
+  });
+  
+  // Contact Form
   var contactForm = document.getElementById("contactForm");
   var formSuccess = document.getElementById("formSuccess");
   
@@ -3237,6 +3379,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 500);
   });
   
+  // Smooth Scroll
   var anchors = document.querySelectorAll('a[href^="#"]');
   for (var i = 0; i < anchors.length; i++) {
     anchors[i].addEventListener("click", function(e) {
