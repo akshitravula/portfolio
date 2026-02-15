@@ -5,20 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Akshit Ravula | Level 25 Developer</title>
   <meta name="description" content="Akshit Ravula - Full Stack Developer & Cloud Engineer - Game Portfolio">
-  <meta name="keywords" content="Full Stack Developer, React Developer, Node.js, Cloud Engineer, Mumbai Developer, Web Developer">
-  <meta name="author" content="Akshit Ravula">
-  <meta property="og:title" content="Akshit Ravula | Full Stack Developer">
-  <meta property="og:description" content="Level 25 Full Stack Developer & Cloud Engineer">
-  <meta property="og:type" content="website">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-/* ==========================================
-   NEUMORPHISM GAME THEME VARIABLES
-========================================== */
 :root {
-  /* Game Colors */
   --xp-gold: #ffd700;
   --health-red: #ff4757;
   --mana-blue: #3742fa;
@@ -43,7 +34,6 @@
   --navbar-height: 80px;
 }
 
-/* Dark Neumorphism Theme */
 [data-theme="dark"] {
   --neu-bg: #1a1a2e;
   --neu-bg-dark: #0f0f1a;
@@ -69,7 +59,6 @@
   --shadow-neu-pressed: inset 6px 6px 12px var(--neu-shadow-dark), inset -6px -6px 12px var(--neu-shadow-light);
 }
 
-/* Light Neumorphism Theme */
 [data-theme="light"] {
   --neu-bg: #e0e5ec;
   --neu-bg-dark: #c8ccd4;
@@ -98,9 +87,6 @@
   --xp-gold: #f59e0b;
 }
 
-/* ==========================================
-   RESET & BASE
-========================================== */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -153,16 +139,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding: 0 24px;
 }
 
-/* ==========================================
-   GAME FONTS
-========================================== */
 .game-font {
   font-family: 'Orbitron', sans-serif;
 }
 
-/* ==========================================
-   PRELOADER - GAME LOADING
-========================================== */
 .preloader {
   position: fixed;
   inset: 0;
@@ -281,9 +261,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-style: italic;
 }
 
-/* ==========================================
-   GAME HUD - TOP BAR
-========================================== */
 .game-hud {
   position: fixed;
   top: 0;
@@ -421,7 +398,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   text-align: right;
 }
 
-/* HUD Center - Navigation */
 .hud-center {
   flex: 1;
   display: flex;
@@ -487,7 +463,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   box-shadow: 0 0 10px var(--primary);
 }
 
-/* HUD Right - Actions */
 .hud-right {
   display: flex;
   align-items: center;
@@ -550,7 +525,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 [data-theme="light"] .theme-btn .fa-sun { display: block; }
 [data-theme="light"] .theme-btn .fa-moon { display: none; }
 
-/* Mobile Menu Toggle */
 .menu-toggle {
   display: none;
   width: 44px;
@@ -599,9 +573,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transform: translateY(-6px) rotate(-45deg);
 }
 
-/* ==========================================
-   FLOATING ACTION BUTTONS
-========================================== */
 .floating-actions {
   position: fixed;
   bottom: 30px;
@@ -659,9 +630,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transform: translateY(0) scale(1);
 }
 
-/* ==========================================
-   XP PROGRESS BAR (TOP)
-========================================== */
 .xp-progress-bar {
   position: fixed;
   top: var(--navbar-height);
@@ -693,9 +661,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   box-shadow: 0 0 15px var(--xp-gold);
 }
 
-/* ==========================================
-   HERO - CHARACTER SELECT
-========================================== */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -706,7 +671,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   overflow: hidden;
 }
 
-/* Animated Background */
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -765,7 +729,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background: var(--secondary);
 }
 
-/* Hero Content */
 .hero-content {
   display: flex;
   gap: 60px;
@@ -782,7 +745,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   flex: 0 0 350px;
 }
 
-/* Character Card */
 .character-card {
   background: var(--neu-bg);
   border-radius: var(--radius);
@@ -888,7 +850,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-top: 4px;
 }
 
-/* Character Stats */
 .character-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -922,7 +883,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-top: 4px;
 }
 
-/* Hero Text */
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -1021,7 +981,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   opacity: 0;
 }
 
-/* Neumorphic Buttons */
 .hero-buttons {
   display: flex;
   gap: 16px;
@@ -1093,9 +1052,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: none;
 }
 
-/* ==========================================
-   SECTIONS
-========================================== */
 .section {
   padding: 100px 20px;
   position: relative;
@@ -1150,9 +1106,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin: 0 auto;
 }
 
-/* ==========================================
-   ABOUT - PLAYER STATS
-========================================== */
 .about-grid {
   display: grid;
   grid-template-columns: 350px 1fr;
@@ -1160,7 +1113,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   align-items: start;
 }
 
-/* Player Card (Left) */
 .player-card {
   background: var(--neu-bg);
   border-radius: var(--radius);
@@ -1203,7 +1155,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-top: 4px;
 }
 
-/* Attribute Bars */
 .attributes-section {
   margin-top: 24px;
 }
@@ -1281,7 +1232,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .attribute-fill.dex { background: linear-gradient(90deg, var(--stamina-green), #5af27a); }
 .attribute-fill.wis { background: linear-gradient(90deg, var(--legendary), #c084fc); }
 
-/* Quick Stats */
 .quick-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1321,7 +1271,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-top: 4px;
 }
 
-/* Bio Section (Right) */
 .bio-section {
   display: flex;
   flex-direction: column;
@@ -1361,7 +1310,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-bottom: 0;
 }
 
-/* Info Grid */
 .info-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1412,9 +1360,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin: 0;
 }
 
-/* ==========================================
-   SKILLS - ABILITY TREE
-========================================== */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -1473,7 +1418,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-top: 2px;
 }
 
-/* Individual Skills */
 .skill-item {
   margin-bottom: 18px;
 }
@@ -1532,7 +1476,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   animation: shimmer 2s infinite;
 }
 
-/* Tech Tags */
 .tech-cloud {
   display: flex;
   flex-wrap: wrap;
@@ -1565,9 +1508,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transform: translateY(0) scale(1);
 }
 
-/* ==========================================
-   EXPERIENCE - QUEST LOG
-========================================== */
 .quest-log {
   max-width: 800px;
   margin: 0 auto;
@@ -1697,7 +1637,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .quest-objectives li::before {
-  content: '✓';
+  content: '\2713';
   position: absolute;
   left: 0;
   top: 0;
@@ -1734,16 +1674,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 14px;
 }
 
-/* ==========================================
-   PROJECTS - INVENTORY
-========================================== */
 .inventory-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 24px;
 }
 
-/* Mobile Carousel */
 .inventory-mobile {
   display: none;
   position: relative;
@@ -1785,7 +1721,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   box-shadow: 0 0 15px var(--primary);
 }
 
-/* Inventory Item Card */
 .inventory-item {
   background: var(--neu-bg);
   border-radius: var(--radius);
@@ -1932,9 +1867,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-weight: 500;
 }
 
-/* ==========================================
-   STATS BANNER - ACHIEVEMENTS
-========================================== */
 .achievements-banner {
   background: linear-gradient(135deg, var(--neu-bg-dark), var(--neu-bg));
   padding: 60px 20px;
@@ -2014,9 +1946,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-top: 8px;
 }
 
-/* ==========================================
-   CONTACT - GUILD HALL
-========================================== */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2104,7 +2033,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--primary);
 }
 
-/* Social Links */
 .social-links {
   display: flex;
   gap: 14px;
@@ -2134,7 +2062,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .social-link:hover.twitter { background: #1da1f2; box-shadow: 0 8px 20px rgba(29, 161, 242, 0.4); }
 .social-link:hover.instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 8px 20px rgba(225, 48, 108, 0.4); }
 
-/* Contact Form */
 .contact-form-card {
   background: var(--neu-bg);
   border-radius: var(--radius);
@@ -2234,9 +2161,6 @@ textarea.form-input {
   animation: fadeIn 0.3s ease;
 }
 
-/* ==========================================
-   FOOTER
-========================================== */
 .footer {
   padding: 30px 20px;
   text-align: center;
@@ -2258,9 +2182,6 @@ textarea.form-input {
   color: var(--secondary);
 }
 
-/* ==========================================
-   REVEAL ANIMATION
-========================================== */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -2279,9 +2200,6 @@ textarea.form-input {
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ==========================================
-   CLICK EFFECT (GAME FEEDBACK)
-========================================== */
 .click-effect {
   position: fixed;
   pointer-events: none;
@@ -2304,7 +2222,6 @@ textarea.form-input {
   }
 }
 
-/* XP Popup */
 .xp-popup {
   position: fixed;
   pointer-events: none;
@@ -2328,9 +2245,6 @@ textarea.form-input {
   }
 }
 
-/* ==========================================
-   RESPONSIVE
-========================================== */
 @media (max-width: 1024px) {
   .hero-content {
     flex-direction: column-reverse;
@@ -2383,7 +2297,6 @@ textarea.form-input {
 @media (max-width: 768px) {
   .section { padding: 70px 16px; }
   
-  /* HUD Mobile */
   .hud-center { display: none; }
   .hud-left .player-bars { display: none; }
   
@@ -2523,12 +2436,10 @@ textarea.form-input {
 </head>
 
 <body>
-  <!-- XP Progress Bar -->
   <div class="xp-progress-bar">
     <div class="xp-progress-fill" id="xpProgress"></div>
   </div>
   
-  <!-- Preloader -->
   <div class="preloader" id="preloader">
     <div class="loader-game">
       <div class="loader-character">
@@ -2538,11 +2449,10 @@ textarea.form-input {
         <div class="loader-bar-fill"></div>
       </div>
       <div class="loader-text">Loading...</div>
-      <div class="loader-tip">💡 Tip: Hover over elements to gain XP!</div>
+      <div class="loader-tip">Tip: Hover over elements to gain XP!</div>
     </div>
   </div>
   
-  <!-- Floating Action Buttons -->
   <div class="floating-actions">
     <a href="https://wa.me/917045538721" target="_blank" class="fab whatsapp" aria-label="WhatsApp">
       <i class="fab fa-whatsapp"></i>
@@ -2552,12 +2462,10 @@ textarea.form-input {
     </a>
   </div>
   
-  <!-- Background Music -->
   <audio id="bgMusic" loop preload="auto">
     <source src="images/Boost Your Business with the RIGHT Background Music.mp3" type="audio/mpeg">
   </audio>
   
-  <!-- Game HUD / Navbar -->
   <nav class="game-hud" id="gameHud">
     <div class="hud-left">
       <div class="player-avatar">
@@ -2581,7 +2489,7 @@ textarea.form-input {
           <div class="stat-bar-track">
             <div class="stat-bar-fill xp"></div>
           </div>
-          <span class="stat-bar-text">7800 XP</span>
+          <span class="stat-bar-text">6500 XP</span>
         </div>
       </div>
     </div>
@@ -2615,7 +2523,6 @@ textarea.form-input {
     </div>
   </nav>
   
-  <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="hero-bg">
       <div class="hero-grid"></div>
@@ -2632,7 +2539,7 @@ textarea.form-input {
         </div>
         
         <h1 class="hero-title">
-          Hi, I'm <span class="highlight">Akshit Ravula</span>
+          Hi, I am <span class="highlight">Akshit Ravula</span>
         </h1>
         
         <div class="typewriter-wrapper">
@@ -2642,7 +2549,7 @@ textarea.form-input {
         </div>
         
         <p class="hero-description">
-          Level 25 Full Stack Developer & Cloud Engineer. I craft scalable digital 
+          Level 25 Full Stack Developer and Cloud Engineer. I craft scalable digital 
           solutions using modern tech stacks. Ready to embark on your next quest!
         </p>
         
@@ -2689,7 +2596,6 @@ textarea.form-input {
     </div>
   </section>
   
-  <!-- About / Player Stats -->
   <section class="section" id="about">
     <div class="container">
       <div class="section-header">
@@ -2785,11 +2691,11 @@ textarea.form-input {
           <div class="bio-card reveal delay-1">
             <h3><i class="fas fa-scroll"></i> Backstory</h3>
             <p>
-              I'm a results-driven developer currently working at Creative Garage as a Full Stack Developer. 
+              I am a results-driven developer currently working at Creative Garage as a Full Stack Developer. 
               I specialize in building scalable web applications using React.js, Node.js, and cloud technologies.
             </p>
             <p>
-              With hands-on experience from multiple roles, I'm passionate about creating efficient, 
+              With hands-on experience from multiple roles, I am passionate about creating efficient, 
               user-centric solutions. Beyond development, I also work closely with leadership to ensure 
               processes run smoothly and systems are optimized for maximum efficiency.
             </p>
@@ -2835,13 +2741,12 @@ textarea.form-input {
     </div>
   </section>
   
-  <!-- Skills / Ability Tree -->
   <section class="section" id="skills">
     <div class="container">
       <div class="section-header">
         <div class="section-icon"><i class="fas fa-magic"></i></div>
         <span class="section-label">Ability Tree</span>
-        <h2 class="section-title">Skills & Powers</h2>
+        <h2 class="section-title">Skills and Powers</h2>
         <p class="section-subtitle">Unlocked abilities and mastered technologies</p>
       </div>
       
@@ -2851,7 +2756,7 @@ textarea.form-input {
             <div class="skill-tree-icon"><i class="fas fa-code"></i></div>
             <div>
               <h3 class="skill-tree-title">Frontend Arts</h3>
-              <p class="skill-tree-level">⭐ Master Level</p>
+              <p class="skill-tree-level">Master Level</p>
             </div>
           </div>
           
@@ -2891,7 +2796,7 @@ textarea.form-input {
             <div class="skill-tree-icon"><i class="fas fa-server"></i></div>
             <div>
               <h3 class="skill-tree-title">Backend Sorcery</h3>
-              <p class="skill-tree-level">⭐ Expert Level</p>
+              <p class="skill-tree-level">Expert Level</p>
             </div>
           </div>
           
@@ -2931,7 +2836,7 @@ textarea.form-input {
             <div class="skill-tree-icon"><i class="fas fa-cloud"></i></div>
             <div>
               <h3 class="skill-tree-title">Cloud Magic</h3>
-              <p class="skill-tree-level">⭐ Adept Level</p>
+              <p class="skill-tree-level">Adept Level</p>
             </div>
           </div>
           
@@ -2968,26 +2873,25 @@ textarea.form-input {
       </div>
       
       <div class="tech-cloud reveal">
-        <span class="tech-tag">⚔️ React.js</span>
-        <span class="tech-tag">🛡️ Node.js</span>
-        <span class="tech-tag">📦 MongoDB</span>
-        <span class="tech-tag">✨ JavaScript</span>
-        <span class="tech-tag">🔮 TypeScript</span>
-        <span class="tech-tag">🐍 Python</span>
-        <span class="tech-tag">🎨 HTML5</span>
-        <span class="tech-tag">💎 CSS3</span>
-        <span class="tech-tag">🗄️ MySQL</span>
-        <span class="tech-tag">☁️ Azure</span>
-        <span class="tech-tag">🔧 Git</span>
-        <span class="tech-tag">🌐 REST APIs</span>
-        <span class="tech-tag">📝 WordPress</span>
-        <span class="tech-tag">🛒 Shopify</span>
-        <span class="tech-tag">🎯 Figma</span>
+        <span class="tech-tag">React.js</span>
+        <span class="tech-tag">Node.js</span>
+        <span class="tech-tag">MongoDB</span>
+        <span class="tech-tag">JavaScript</span>
+        <span class="tech-tag">TypeScript</span>
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">HTML5</span>
+        <span class="tech-tag">CSS3</span>
+        <span class="tech-tag">MySQL</span>
+        <span class="tech-tag">Azure</span>
+        <span class="tech-tag">Git</span>
+        <span class="tech-tag">REST APIs</span>
+        <span class="tech-tag">WordPress</span>
+        <span class="tech-tag">Shopify</span>
+        <span class="tech-tag">Figma</span>
       </div>
     </div>
   </section>
   
-  <!-- Experience / Quest Log -->
   <section class="section" id="experience">
     <div class="container">
       <div class="section-header">
@@ -3000,8 +2904,8 @@ textarea.form-input {
       <div class="quest-log">
         <div class="quest-card active reveal">
           <div class="quest-header">
-            <span class="quest-date">Feb 2025 – Present</span>
-            <span class="quest-status active">🟢 Active</span>
+            <span class="quest-date">Feb 2025 - Present</span>
+            <span class="quest-status active">Active</span>
           </div>
           <h3 class="quest-title">Full Stack Developer</h3>
           <p class="quest-location"><i class="fas fa-building"></i> Creative Garage</p>
@@ -3016,8 +2920,8 @@ textarea.form-input {
         
         <div class="quest-card reveal">
           <div class="quest-header">
-            <span class="quest-date">Nov 2024 – Feb 2025</span>
-            <span class="quest-status completed">✓ Completed</span>
+            <span class="quest-date">Nov 2024 - Feb 2025</span>
+            <span class="quest-status completed">Completed</span>
           </div>
           <h3 class="quest-title">Full Stack Developer</h3>
           <p class="quest-location"><i class="fas fa-building"></i> Bloom Agency</p>
@@ -3031,8 +2935,8 @@ textarea.form-input {
         
         <div class="quest-card reveal">
           <div class="quest-header">
-            <span class="quest-date">Sep 2024 – Dec 2024</span>
-            <span class="quest-status completed">✓ Completed</span>
+            <span class="quest-date">Sep 2024 - Dec 2024</span>
+            <span class="quest-status completed">Completed</span>
           </div>
           <h3 class="quest-title">Web Developer</h3>
           <p class="quest-location"><i class="fas fa-building"></i> Unremot</p>
@@ -3045,8 +2949,8 @@ textarea.form-input {
         
         <div class="quest-card reveal">
           <div class="quest-header">
-            <span class="quest-date">Jul 2024 – Sep 2024</span>
-            <span class="quest-status completed">✓ Completed</span>
+            <span class="quest-date">Jul 2024 - Sep 2024</span>
+            <span class="quest-status completed">Completed</span>
           </div>
           <h3 class="quest-title">Technical Lead</h3>
           <p class="quest-location"><i class="fas fa-building"></i> Recit</p>
@@ -3059,8 +2963,8 @@ textarea.form-input {
         
         <div class="quest-card reveal">
           <div class="quest-header">
-            <span class="quest-date">Nov 2023 – Dec 2023</span>
-            <span class="quest-status completed">✓ Completed</span>
+            <span class="quest-date">Nov 2023 - Dec 2023</span>
+            <span class="quest-status completed">Completed</span>
           </div>
           <h3 class="quest-title">Cloud Computing Intern</h3>
           <p class="quest-location"><i class="fas fa-building"></i> Sam Infosystems</p>
@@ -3072,8 +2976,8 @@ textarea.form-input {
         
         <div class="quest-card reveal">
           <div class="quest-header">
-            <span class="quest-date">2021 – 2025</span>
-            <span class="quest-status education">🎓 Training</span>
+            <span class="quest-date">2021 - 2025</span>
+            <span class="quest-status education">Training</span>
           </div>
           <h3 class="quest-title">B.Tech in Computer Science</h3>
           <p class="quest-location"><i class="fas fa-university"></i> Vellore Institute of Technology</p>
@@ -3083,20 +2987,17 @@ textarea.form-input {
     </div>
   </section>
   
-  <!-- Projects / Inventory -->
   <section class="section" id="projects">
     <div class="container">
       <div class="section-header">
         <div class="section-icon"><i class="fas fa-boxes"></i></div>
         <span class="section-label">Inventory</span>
         <h2 class="section-title">Crafted Items</h2>
-        <p class="section-subtitle">A collection of legendary projects I've built</p>
+        <p class="section-subtitle">A collection of legendary projects I have built</p>
       </div>
       
-      <!-- Desktop Grid -->
       <div class="inventory-grid" id="inventoryGrid"></div>
       
-      <!-- Mobile Carousel -->
       <div class="inventory-mobile" id="inventoryMobile">
         <div class="inventory-carousel" id="inventoryCarousel"></div>
         <div class="carousel-dots" id="carouselDots"></div>
@@ -3104,7 +3005,6 @@ textarea.form-input {
     </div>
   </section>
   
-  <!-- Achievements Banner -->
   <section class="achievements-banner">
     <div class="achievements-grid">
       <div class="achievement-item reveal">
@@ -3130,7 +3030,6 @@ textarea.form-input {
     </div>
   </section>
   
-  <!-- Contact / Guild Hall -->
   <section class="section" id="contact">
     <div class="container">
       <div class="section-header">
@@ -3142,10 +3041,10 @@ textarea.form-input {
       
       <div class="contact-grid">
         <div class="contact-info-card reveal">
-          <h3><i class="fas fa-handshake"></i> Let's Connect</h3>
+          <h3><i class="fas fa-handshake"></i> Lets Connect</h3>
           <p>
-            I'm always excited about new projects and opportunities. 
-            Whether you need a developer or have an interesting quest - let's talk!
+            I am always excited about new projects and opportunities. 
+            Whether you need a developer or have an interesting quest - lets talk!
           </p>
           
           <div class="contact-list">
@@ -3219,261 +3118,257 @@ textarea.form-input {
     </div>
   </section>
   
-  <!-- Footer -->
   <footer class="footer">
-    <p>© 2025 <a href="#">Akshit Ravula</a> | Built with ⚔️ & 💻</p>
+    <p>2025 <a href="#">Akshit Ravula</a> | Built with Code</p>
   </footer>
 
 <script>
-// ==========================================
-// ALL PROJECTS DATA WITH RARITY - UPDATED
-// ==========================================
-const allProjects = [
-  // NEW PROJECTS - Added at the top
-  { title: "Career AI", img: "images/Career Ai.png", url: "#", desc: "AI-powered career guidance and job matching platform with ML recommendations.", stack: ["React", "Python", "AI/ML"], rarity: "legendary" },
-  { title: "Hoshiyaar", img: "images/Hoshiyaar.png", url: "https://www.hoshiyaar.info/", desc: "Smart educational platform with interactive learning and progress tracking.", stack: ["React", "Node.js", "MongoDB"], rarity: "legendary" },
-  { title: "Trusatva", img: "images/Trusatva.png", url: "https://vedantawellness.co/", desc: "Ayurvedic wellness and natural products eCommerce platform.", stack: ["WordPress", "WooCommerce", "JS"], rarity: "epic" },
-  { title: "AM Group", img: "images/Am Group.png", url: "https://amgroup-gcc.com/", desc: "Professional corporate website for GCC-based business conglomerate.", stack: ["WordPress", "JS", "CSS"], rarity: "epic" },
-  { title: "Sonai Dairy", img: "images/Sonai.png", url: "https://sonaidairy.com/", desc: "Premium dairy brand showcasing farm-fresh products and services.", stack: ["WordPress", "JS", "CSS"], rarity: "epic" },
-  
-  // EXISTING PROJECTS
-  { title: "Clootrack", img: "images/project4.png", url: "https://www.clootrack.com/", desc: "Optimized website with enhanced UX.", stack: ["React", "JS", "Node"], rarity: "legendary" },
-  { title: "SATO – LIXIL", img: "images/sato..jpg", url: "https://sato.lixil.com/", desc: "Global sanitation solutions with multilingual support.", stack: ["PHP", "MySQL", "JS"], rarity: "epic" },
-  { title: "Bharat Certis", img: "images/bharatcertis.jpg", url: "https://www.bharatcertis.com/", desc: "Corporate website for agrochemical company.", stack: ["PHP", "MySQL", "JS"], rarity: "epic" },
-  { title: "RD Overseas", img: "images/rdoverseas.jpg", url: "https://rdoverseas.in/", desc: "eCommerce store for automotive accessories.", stack: ["Shopify", "Liquid", "JS"], rarity: "rare" },
-  { title: "Vicefy", img: "images/vicefy.jpg", url: "https://vicefy.store/", desc: "Modern eCommerce for beauty and personal care.", stack: ["Shopify", "Liquid", "CSS"], rarity: "rare" },
-  { title: "Creative Garage", img: "images/creativegarage.jpg", url: "https://creative-garage.in/", desc: "Creative agency with bold design.", stack: ["WordPress", "JS", "CSS"], rarity: "legendary" },
-  { title: "Bloom Agency", img: "images/project7.png", url: "https://www.bloomagency.in/", desc: "Digital agency website with modern UX.", stack: ["WordPress", "JS", "CSS"], rarity: "epic" },
-  { title: "Wooum", img: "images/project6.png", url: "https://www.wooum.com/", desc: "Visually appealing responsive design.", stack: ["WordPress", "JS", "CSS"], rarity: "rare" },
-  { title: "23 Consulting", img: "images/project16.png", url: "https://23consultingservices.com/", desc: "Professional consulting platform.", stack: ["WordPress", "JS"], rarity: "rare" },
-  { title: "Amarjothi Granites", img: "images/amarjothi.jpg", url: "https://amarjothigranites.com/", desc: "Natural stone and granite exporter.", stack: ["WordPress", "CSS"], rarity: "rare" },
-  { title: "Anzo Controls", img: "images/anzocontrols.jpg", url: "https://www.anzocontrols.com/", desc: "Industrial automation solutions.", stack: ["WordPress", "JS"], rarity: "rare" },
-  { title: "Bodhi Diamonds", img: "images/project8.png", url: "https://www.bodhidiamonds.in/", desc: "Elegant jewelry platform.", stack: ["WordPress", "CSS"], rarity: "epic" },
-  { title: "Customer Care", img: "images/project13.png", url: "https://customercareelectronicservice.in/", desc: "Customer care service brand.", stack: ["WordPress", "CSS"], rarity: "rare" },
-  { title: "Cycler", img: "images/project1.jpg", url: "#", desc: "Bicycle rental platform for students.", stack: ["React", "Node.js"], rarity: "legendary" },
-  { title: "Ecotonique", img: "images/project5.png", url: "https://www.ecotonique.in/", desc: "Engaging user experience design.", stack: ["WordPress", "JS"], rarity: "rare" },
-  { title: "Fitness Tracker", img: "images/project2.jpg", url: "#", desc: "Tracks stress, calories, sleep.", stack: ["React", "Node.js"], rarity: "epic" },
-  { title: "Goldpot", img: "images/project15.png", url: "https://goldpot.in/", desc: "Digital gold investment platform.", stack: ["WordPress", "JS"], rarity: "epic" },
-  { title: "Haldiram's Franchise", img: "images/project10.png", url: "https://www.haldirams.store/", desc: "Professional franchise website.", stack: ["WordPress", "CSS"], rarity: "legendary" },
-  { title: "Hawtever", img: "images/hawtever.jpg", url: "https://hawtever.com/", desc: "Bold skincare and haircare brand.", stack: ["WordPress", "CSS"], rarity: "rare" },
-  { title: "Homecare Planners", img: "images/homecare.jpg", url: "https://homecareandplanners.com/", desc: "Property consultation services.", stack: ["WordPress", "JS"], rarity: "rare" },
-  { title: "House of Buck", img: "images/project14.png", url: "https://houseofbuck.in/", desc: "Dropshipping store with modern UI.", stack: ["WordPress", "CSS"], rarity: "rare" },
-  { title: "Jewellery Khazana", img: "images/project12.png", url: "https://jewellerykhazana.com/", desc: "Elegant online jewellery platform.", stack: ["WordPress", "JS"], rarity: "epic" },
-  { title: "Kailasa Ink", img: "images/kailasa.jpg", url: "https://kailasaink.com/", desc: "Spiritual ink brand with mythology.", stack: ["WordPress", "CSS"], rarity: "rare" },
-  { title: "Luvialz", img: "images/luvialz.jpg", url: "https://luvialz.com/", desc: "Luxury skincare and wellness.", stack: ["WordPress", "WooCommerce"], rarity: "epic" },
-  { title: "Mitaksh Radiance", img: "images/project9.png", url: "https://www.mitakshradiance.in/", desc: "Jewelry brand with elegant design.", stack: ["WordPress", "CSS"], rarity: "epic" },
-  { title: "OneWay Happiness", img: "images/onewayhappiness.jpg", url: "https://www.onewayhappiness.com/", desc: "Personal care and wellness brand.", stack: ["Shopify", "Liquid"], rarity: "rare" },
-  { title: "Piers St. Barth", img: "images/pierstbarth.jpg", url: "https://pierstbarth.com/", desc: "Premium luxury fashion brand.", stack: ["Shopify", "Liquid"], rarity: "legendary" },
-  { title: "PlanYourWay", img: "images/project3.jpg", url: "#", desc: "Ticket booking web application.", stack: ["HTML", "CSS", "JS"], rarity: "rare" },
-  { title: "SD Infra & Mep", img: "images/project11.png", url: "https://www.sdinframep.in/", desc: "Industry-focused platform.", stack: ["WordPress", "CSS"], rarity: "rare" },
-  { title: "Souvenir Care", img: "images/souvenircare.jpg", url: "https://souvenircare.com/", desc: "Beauty and wellness eCommerce.", stack: ["WordPress", "WooCommerce"], rarity: "rare" },
-  { title: "Trademark Dekho", img: "images/trademarkdekho.jpg", url: "https://trademarkdekho.in/", desc: "Legal consultancy for trademarks.", stack: ["WordPress", "JS"], rarity: "rare" },
-  { title: "TPS Aerospace", img: "images/tpsaerospace.jpg", url: "https://tpsaerospace.com/", desc: "MRO aviation company website.", stack: ["WordPress", "CSS"], rarity: "epic" },
-  { title: "Trudiance", img: "images/trudiance.jpg", url: "https://trudiance.com/", desc: "Clean beauty skincare brand.", stack: ["WordPress", "WooCommerce"], rarity: "rare" },
-  { title: "AI Drug Discovery", img: "images/project17.jpeg", url: "#", desc: "AI-powered drug discovery research.", stack: ["Python", "TensorFlow"], rarity: "legendary" }
+var allProjects = [
+  {title: "Career AI", img: "images/Career Ai.png", url: "#", desc: "AI-powered career guidance and job matching platform.", stack: ["React", "Python", "AI/ML"], rarity: "legendary"},
+  {title: "Hoshiyaar", img: "images/Hoshiyaar.png", url: "https://www.hoshiyaar.info/", desc: "Smart educational platform with interactive learning.", stack: ["React", "Node.js", "MongoDB"], rarity: "legendary"},
+  {title: "Trusatva", img: "images/Trusatva.png", url: "https://vedantawellness.co/", desc: "Ayurvedic wellness and natural products platform.", stack: ["WordPress", "WooCommerce", "JS"], rarity: "epic"},
+  {title: "AM Group", img: "images/Am Group.png", url: "https://amgroup-gcc.com/", desc: "Corporate website for GCC-based conglomerate.", stack: ["WordPress", "JS", "CSS"], rarity: "epic"},
+  {title: "Sonai Dairy", img: "images/Sonai.png", url: "https://sonaidairy.com/", desc: "Premium dairy products and farm-fresh services.", stack: ["WordPress", "JS", "CSS"], rarity: "epic"},
+  {title: "Clootrack", img: "images/project4.png", url: "https://www.clootrack.com/", desc: "Optimized website with enhanced UX.", stack: ["React", "JS", "Node"], rarity: "legendary"},
+  {title: "SATO LIXIL", img: "images/sato..jpg", url: "https://sato.lixil.com/", desc: "Global sanitation solutions with multilingual support.", stack: ["PHP", "MySQL", "JS"], rarity: "epic"},
+  {title: "Bharat Certis", img: "images/bharatcertis.jpg", url: "https://www.bharatcertis.com/", desc: "Corporate website for agrochemical company.", stack: ["PHP", "MySQL", "JS"], rarity: "epic"},
+  {title: "RD Overseas", img: "images/rdoverseas.jpg", url: "https://rdoverseas.in/", desc: "eCommerce store for automotive accessories.", stack: ["Shopify", "Liquid", "JS"], rarity: "rare"},
+  {title: "Vicefy", img: "images/vicefy.jpg", url: "https://vicefy.store/", desc: "Modern eCommerce for beauty and personal care.", stack: ["Shopify", "Liquid", "CSS"], rarity: "rare"},
+  {title: "Creative Garage", img: "images/creativegarage.jpg", url: "https://creative-garage.in/", desc: "Creative agency with bold design.", stack: ["WordPress", "JS", "CSS"], rarity: "legendary"},
+  {title: "Bloom Agency", img: "images/project7.png", url: "https://www.bloomagency.in/", desc: "Digital agency website with modern UX.", stack: ["WordPress", "JS", "CSS"], rarity: "epic"},
+  {title: "Wooum", img: "images/project6.png", url: "https://www.wooum.com/", desc: "Visually appealing responsive design.", stack: ["WordPress", "JS", "CSS"], rarity: "rare"},
+  {title: "23 Consulting", img: "images/project16.png", url: "https://23consultingservices.com/", desc: "Professional consulting platform.", stack: ["WordPress", "JS"], rarity: "rare"},
+  {title: "Amarjothi Granites", img: "images/amarjothi.jpg", url: "https://amarjothigranites.com/", desc: "Natural stone and granite exporter.", stack: ["WordPress", "CSS"], rarity: "rare"},
+  {title: "Anzo Controls", img: "images/anzocontrols.jpg", url: "https://www.anzocontrols.com/", desc: "Industrial automation solutions.", stack: ["WordPress", "JS"], rarity: "rare"},
+  {title: "Bodhi Diamonds", img: "images/project8.png", url: "https://www.bodhidiamonds.in/", desc: "Elegant jewelry platform.", stack: ["WordPress", "CSS"], rarity: "epic"},
+  {title: "Customer Care", img: "images/project13.png", url: "https://customercareelectronicservice.in/", desc: "Customer care service brand.", stack: ["WordPress", "CSS"], rarity: "rare"},
+  {title: "Cycler", img: "images/project1.jpg", url: "#", desc: "Bicycle rental platform for students.", stack: ["React", "Node.js"], rarity: "legendary"},
+  {title: "Ecotonique", img: "images/project5.png", url: "https://www.ecotonique.in/", desc: "Engaging user experience design.", stack: ["WordPress", "JS"], rarity: "rare"},
+  {title: "Fitness Tracker", img: "images/project2.jpg", url: "#", desc: "Tracks stress, calories, sleep.", stack: ["React", "Node.js"], rarity: "epic"},
+  {title: "Goldpot", img: "images/project15.png", url: "https://goldpot.in/", desc: "Digital gold investment platform.", stack: ["WordPress", "JS"], rarity: "epic"},
+  {title: "Haldirams Franchise", img: "images/project10.png", url: "https://www.haldirams.store/", desc: "Professional franchise website.", stack: ["WordPress", "CSS"], rarity: "legendary"},
+  {title: "Hawtever", img: "images/hawtever.jpg", url: "https://hawtever.com/", desc: "Bold skincare and haircare brand.", stack: ["WordPress", "CSS"], rarity: "rare"},
+  {title: "Homecare Planners", img: "images/homecare.jpg", url: "https://homecareandplanners.com/", desc: "Property consultation services.", stack: ["WordPress", "JS"], rarity: "rare"},
+  {title: "House of Buck", img: "images/project14.png", url: "https://houseofbuck.in/", desc: "Dropshipping store with modern UI.", stack: ["WordPress", "CSS"], rarity: "rare"},
+  {title: "Jewellery Khazana", img: "images/project12.png", url: "https://jewellerykhazana.com/", desc: "Elegant online jewellery platform.", stack: ["WordPress", "JS"], rarity: "epic"},
+  {title: "Kailasa Ink", img: "images/kailasa.jpg", url: "https://kailasaink.com/", desc: "Spiritual ink brand with mythology.", stack: ["WordPress", "CSS"], rarity: "rare"},
+  {title: "Luvialz", img: "images/luvialz.jpg", url: "https://luvialz.com/", desc: "Luxury skincare and wellness.", stack: ["WordPress", "WooCommerce"], rarity: "epic"},
+  {title: "Mitaksh Radiance", img: "images/project9.png", url: "https://www.mitakshradiance.in/", desc: "Jewelry brand with elegant design.", stack: ["WordPress", "CSS"], rarity: "epic"},
+  {title: "OneWay Happiness", img: "images/onewayhappiness.jpg", url: "https://www.onewayhappiness.com/", desc: "Personal care and wellness brand.", stack: ["Shopify", "Liquid"], rarity: "rare"},
+  {title: "Piers St Barth", img: "images/pierstbarth.jpg", url: "https://pierstbarth.com/", desc: "Premium luxury fashion brand.", stack: ["Shopify", "Liquid"], rarity: "legendary"},
+  {title: "PlanYourWay", img: "images/project3.jpg", url: "#", desc: "Ticket booking web application.", stack: ["HTML", "CSS", "JS"], rarity: "rare"},
+  {title: "SD Infra Mep", img: "images/project11.png", url: "https://www.sdinframep.in/", desc: "Industry-focused platform.", stack: ["WordPress", "CSS"], rarity: "rare"},
+  {title: "Souvenir Care", img: "images/souvenircare.jpg", url: "https://souvenircare.com/", desc: "Beauty and wellness eCommerce.", stack: ["WordPress", "WooCommerce"], rarity: "rare"},
+  {title: "Trademark Dekho", img: "images/trademarkdekho.jpg", url: "https://trademarkdekho.in/", desc: "Legal consultancy for trademarks.", stack: ["WordPress", "JS"], rarity: "rare"},
+  {title: "TPS Aerospace", img: "images/tpsaerospace.jpg", url: "https://tpsaerospace.com/", desc: "MRO aviation company website.", stack: ["WordPress", "CSS"], rarity: "epic"},
+  {title: "Trudiance", img: "images/trudiance.jpg", url: "https://trudiance.com/", desc: "Clean beauty skincare brand.", stack: ["WordPress", "WooCommerce"], rarity: "rare"},
+  {title: "AI Drug Discovery", img: "images/project17.jpeg", url: "#", desc: "AI-powered drug discovery research.", stack: ["Python", "TensorFlow"], rarity: "legendary"}
 ];
 
-// ==========================================
-// RENDER PROJECTS
-// ==========================================
 function renderProjects() {
-  const gridContainer = document.getElementById('inventoryGrid');
-  const carouselContainer = document.getElementById('inventoryCarousel');
-  const dotsContainer = document.getElementById('carouselDots');
+  var gridContainer = document.getElementById("inventoryGrid");
+  var carouselContainer = document.getElementById("inventoryCarousel");
+  var dotsContainer = document.getElementById("carouselDots");
   
-  let gridHTML = '';
-  let carouselHTML = '';
-  let dotsHTML = '';
+  var gridHTML = "";
+  var carouselHTML = "";
+  var dotsHTML = "";
   
-  allProjects.forEach((project, index) => {
-    const cardHTML = `
-      <div class="inventory-item reveal ${index < 3 ? 'delay-' + (index % 3 + 1) : ''}">
-        <div class="inventory-item-img">
-          <span class="inventory-rarity ${project.rarity}">${project.rarity}</span>
-          <img src="${project.img}" alt="${project.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x200?text=Project'">
-          <div class="inventory-overlay">
-            <a href="${project.url}" target="_blank" rel="noopener" class="inventory-link">
-              <i class="fas fa-external-link-alt"></i>
-            </a>
-          </div>
-        </div>
-        <div class="inventory-item-body">
-          <h3 class="inventory-item-title">${project.title}</h3>
-          <p class="inventory-item-desc">${project.desc}</p>
-          <div class="inventory-item-tags">
-            ${project.stack.map(s => `<span class="inventory-tag">${s}</span>`).join('')}
-          </div>
-        </div>
-      </div>
-    `;
+  for (var i = 0; i < allProjects.length; i++) {
+    var project = allProjects[i];
+    var delayClass = i < 3 ? " delay-" + ((i % 3) + 1) : "";
+    
+    var tagsHTML = "";
+    for (var j = 0; j < project.stack.length; j++) {
+      tagsHTML += '<span class="inventory-tag">' + project.stack[j] + '</span>';
+    }
+    
+    var cardHTML = '<div class="inventory-item reveal' + delayClass + '">' +
+      '<div class="inventory-item-img">' +
+        '<span class="inventory-rarity ' + project.rarity + '">' + project.rarity + '</span>' +
+        '<img src="' + project.img + '" alt="' + project.title + '" loading="lazy" onerror="this.src=\'https://via.placeholder.com/400x200?text=Project\'">' +
+        '<div class="inventory-overlay">' +
+          '<a href="' + project.url + '" target="_blank" rel="noopener" class="inventory-link">' +
+            '<i class="fas fa-external-link-alt"></i>' +
+          '</a>' +
+        '</div>' +
+      '</div>' +
+      '<div class="inventory-item-body">' +
+        '<h3 class="inventory-item-title">' + project.title + '</h3>' +
+        '<p class="inventory-item-desc">' + project.desc + '</p>' +
+        '<div class="inventory-item-tags">' + tagsHTML + '</div>' +
+      '</div>' +
+    '</div>';
     
     gridHTML += cardHTML;
-    carouselHTML += `<div class="inventory-slide">${cardHTML}</div>`;
-    dotsHTML += `<button class="carousel-dot ${index === 0 ? 'active' : ''}" data-index="${index}" aria-label="Go to slide ${index + 1}"></button>`;
-  });
+    carouselHTML += '<div class="inventory-slide">' + cardHTML + '</div>';
+    dotsHTML += '<button class="carousel-dot' + (i === 0 ? ' active' : '') + '" data-index="' + i + '"></button>';
+  }
   
   gridContainer.innerHTML = gridHTML;
   carouselContainer.innerHTML = carouselHTML;
   dotsContainer.innerHTML = dotsHTML;
 }
 
-// ==========================================
-// MAIN SCRIPT
-// ==========================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function() {
   
-  // Render projects
   renderProjects();
   
-  // Generate particles
-  const particlesContainer = document.getElementById('particles');
-  for (let i = 0; i < 30; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.top = Math.random() * 100 + '%';
-    particle.style.animationDelay = Math.random() * 8 + 's';
-    particle.style.animationDuration = (6 + Math.random() * 4) + 's';
+  var particlesContainer = document.getElementById("particles");
+  for (var i = 0; i < 30; i++) {
+    var particle = document.createElement("div");
+    particle.className = "particle";
+    particle.style.left = Math.random() * 100 + "%";
+    particle.style.top = Math.random() * 100 + "%";
+    particle.style.animationDelay = Math.random() * 8 + "s";
+    particle.style.animationDuration = (6 + Math.random() * 4) + "s";
     particlesContainer.appendChild(particle);
   }
   
-  // ========== PRELOADER ==========
-  const preloader = document.getElementById('preloader');
+  var preloader = document.getElementById("preloader");
   
   function hidePreloader() {
     if (preloader) {
-      preloader.classList.add('loaded');
+      preloader.classList.add("loaded");
     }
   }
   
-  window.addEventListener('load', function() {
+  window.addEventListener("load", function() {
     setTimeout(hidePreloader, 2200);
   });
   
   setTimeout(hidePreloader, 4000);
   
-  // ========== THEME TOGGLE ==========
-  const themeToggle = document.getElementById('themeToggle');
-  const html = document.documentElement;
-  const savedTheme = localStorage.getItem('theme') || 'dark';
-  html.setAttribute('data-theme', savedTheme);
+  var themeToggle = document.getElementById("themeToggle");
+  var html = document.documentElement;
+  var savedTheme = localStorage.getItem("theme") || "dark";
+  html.setAttribute("data-theme", savedTheme);
   
-  themeToggle.addEventListener('click', function() {
-    const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    showXPPopup(this, '+5 XP');
+  themeToggle.addEventListener("click", function() {
+    var newTheme = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    html.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+    showXPPopup(this, "+5 XP");
   });
   
-  // ========== MUSIC TOGGLE ==========
-  const musicBtn = document.getElementById('musicBtn');
-  const bgMusic = document.getElementById('bgMusic');
-  let isPlaying = false;
+  var musicBtn = document.getElementById("musicBtn");
+  var bgMusic = document.getElementById("bgMusic");
+  var isPlaying = false;
   
-  musicBtn.addEventListener('click', function() {
+  musicBtn.addEventListener("click", function() {
     if (isPlaying) {
       bgMusic.pause();
-      musicBtn.classList.remove('playing');
+      musicBtn.classList.remove("playing");
     } else {
       bgMusic.volume = 0.3;
       bgMusic.play().then(function() {
-        musicBtn.classList.add('playing');
-        showXPPopup(musicBtn, '+10 XP');
+        musicBtn.classList.add("playing");
+        showXPPopup(musicBtn, "+10 XP");
       }).catch(function(e) {
-        console.log('Audio play failed:', e);
+        console.log("Audio play failed:", e);
       });
     }
     isPlaying = !isPlaying;
   });
   
-  // ========== XP PROGRESS BAR ==========
-  const xpProgress = document.getElementById('xpProgress');
+  var xpProgress = document.getElementById("xpProgress");
   
-  window.addEventListener('scroll', function() {
-    const scrollTop = document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const progress = (scrollTop / scrollHeight) * 100;
-    xpProgress.style.width = progress + '%';
+  window.addEventListener("scroll", function() {
+    var scrollTop = document.documentElement.scrollTop;
+    var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var progress = (scrollTop / scrollHeight) * 100;
+    xpProgress.style.width = progress + "%";
   });
   
-  // ========== BACK TO TOP ==========
-  const backTop = document.getElementById('backTop');
+  var backTop = document.getElementById("backTop");
   
-  window.addEventListener('scroll', function() {
-    backTop.classList.toggle('show', window.scrollY > 400);
+  window.addEventListener("scroll", function() {
+    if (window.scrollY > 400) {
+      backTop.classList.add("show");
+    } else {
+      backTop.classList.remove("show");
+    }
   });
   
-  // ========== MOBILE MENU ==========
-  const menuToggle = document.getElementById('menuToggle');
-  const navMenu = document.getElementById('navMenu');
+  var menuToggle = document.getElementById("menuToggle");
+  var navMenu = document.getElementById("navMenu");
   
   function openMenu() {
-    menuToggle.classList.add('active');
-    navMenu.classList.add('active');
-    document.body.classList.add('menu-open');
+    menuToggle.classList.add("active");
+    navMenu.classList.add("active");
+    document.body.classList.add("menu-open");
   }
   
   function closeMenu() {
-    menuToggle.classList.remove('active');
-    navMenu.classList.remove('active');
-    document.body.classList.remove('menu-open');
+    menuToggle.classList.remove("active");
+    navMenu.classList.remove("active");
+    document.body.classList.remove("menu-open");
   }
   
-  menuToggle.addEventListener('click', function(e) {
+  menuToggle.addEventListener("click", function(e) {
     e.stopPropagation();
-    if (navMenu.classList.contains('active')) {
+    if (navMenu.classList.contains("active")) {
       closeMenu();
     } else {
       openMenu();
     }
   });
   
-  document.querySelectorAll('.nav-link').forEach(function(link) {
-    link.addEventListener('click', closeMenu);
-  });
+  var navLinks = document.querySelectorAll(".nav-link");
+  for (var i = 0; i < navLinks.length; i++) {
+    navLinks[i].addEventListener("click", closeMenu);
+  }
   
-  document.addEventListener('click', function(e) {
-    if (navMenu.classList.contains('active') && 
-        !navMenu.contains(e.target) && 
-        !menuToggle.contains(e.target)) {
+  document.addEventListener("click", function(e) {
+    if (navMenu.classList.contains("active") && !navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
       closeMenu();
     }
   });
   
-  // ========== ACTIVE NAV LINK ==========
-  const sections = document.querySelectorAll('section[id]');
+  var sections = document.querySelectorAll("section[id]");
   
-  window.addEventListener('scroll', function() {
-    let current = '';
-    sections.forEach(function(section) {
-      if (window.scrollY >= section.offsetTop - 200) {
-        current = section.getAttribute('id');
+  window.addEventListener("scroll", function() {
+    var current = "";
+    for (var i = 0; i < sections.length; i++) {
+      if (window.scrollY >= sections[i].offsetTop - 200) {
+        current = sections[i].getAttribute("id");
       }
-    });
+    }
     
-    document.querySelectorAll('.nav-link').forEach(function(link) {
-      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
-    });
+    for (var j = 0; j < navLinks.length; j++) {
+      if (navLinks[j].getAttribute("href") === "#" + current) {
+        navLinks[j].classList.add("active");
+      } else {
+        navLinks[j].classList.remove("active");
+      }
+    }
   });
   
-  // ========== TYPEWRITER ==========
-  const typewriterTexts = [
-    'Full Stack Developer',
-    'React.js Master',
-    'Cloud Engineer',
-    'Problem Solver',
-    'Code Wizard'
+  var typewriterTexts = [
+    "Full Stack Developer",
+    "React.js Master",
+    "Cloud Engineer",
+    "Problem Solver",
+    "Code Wizard"
   ];
-  let textIndex = 0, charIndex = 0, isDeleting = false;
-  const typewriterElement = document.getElementById('typewriter');
+  var textIndex = 0;
+  var charIndex = 0;
+  var isDeleting = false;
+  var typewriterElement = document.getElementById("typewriter");
   
   function typeWriter() {
     if (!typewriterElement) return;
-    const currentText = typewriterTexts[textIndex];
+    var currentText = typewriterTexts[textIndex];
     
-    typewriterElement.textContent = currentText.substring(0, isDeleting ? --charIndex : ++charIndex);
+    if (isDeleting) {
+      charIndex--;
+    } else {
+      charIndex++;
+    }
     
-    let speed = isDeleting ? 40 : 80;
+    typewriterElement.textContent = currentText.substring(0, charIndex);
+    
+    var speed = isDeleting ? 40 : 80;
     
     if (!isDeleting && charIndex === currentText.length) {
       speed = 2000;
@@ -3488,85 +3383,90 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   typeWriter();
   
-  // ========== REVEAL ON SCROLL ==========
-  const reveals = document.querySelectorAll('.reveal');
+  var reveals = document.querySelectorAll(".reveal");
   
   function revealOnScroll() {
-    reveals.forEach(function(el) {
-      if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-        el.classList.add('active');
+    for (var i = 0; i < reveals.length; i++) {
+      if (reveals[i].getBoundingClientRect().top < window.innerHeight - 100) {
+        reveals[i].classList.add("active");
       }
-    });
+    }
   }
   
-  window.addEventListener('scroll', revealOnScroll);
+  window.addEventListener("scroll", revealOnScroll);
   revealOnScroll();
   
-  // ========== SKILL BARS ==========
-  const skillBars = document.querySelectorAll('.skill-bar-fill, .attribute-fill');
+  var skillBars = document.querySelectorAll(".skill-bar-fill, .attribute-fill");
   
   function animateSkills() {
-    skillBars.forEach(function(bar) {
-      const rect = bar.getBoundingClientRect();
+    for (var i = 0; i < skillBars.length; i++) {
+      var rect = skillBars[i].getBoundingClientRect();
       if (rect.top < window.innerHeight && rect.bottom >= 0) {
-        bar.style.width = bar.getAttribute('data-width') + '%';
+        skillBars[i].style.width = skillBars[i].getAttribute("data-width") + "%";
       }
-    });
+    }
   }
   
-  window.addEventListener('scroll', animateSkills);
+  window.addEventListener("scroll", animateSkills);
   setTimeout(animateSkills, 500);
   
-  // ========== COUNTER ANIMATION ==========
-  const counters = document.querySelectorAll('[data-count]');
+  var counters = document.querySelectorAll("[data-count]");
   
   function animateCounters() {
-    counters.forEach(function(counter) {
-      const rect = counter.getBoundingClientRect();
-      if (rect.top < window.innerHeight && !counter.classList.contains('counted')) {
-        counter.classList.add('counted');
-        const target = parseInt(counter.getAttribute('data-count'));
-        let count = 0;
-        const increment = Math.ceil(target / 30);
+    for (var i = 0; i < counters.length; i++) {
+      var counter = counters[i];
+      var rect = counter.getBoundingClientRect();
+      if (rect.top < window.innerHeight && !counter.classList.contains("counted")) {
+        counter.classList.add("counted");
+        var target = parseInt(counter.getAttribute("data-count"));
+        var count = 0;
+        var increment = Math.ceil(target / 30);
         
-        function update() {
-          count = Math.min(count + increment, target);
-          counter.textContent = count + '+';
-          if (count < target) setTimeout(update, 40);
-        }
-        update();
+        (function(counter, target, increment) {
+          var count = 0;
+          function update() {
+            count = Math.min(count + increment, target);
+            counter.textContent = count + "+";
+            if (count < target) setTimeout(update, 40);
+          }
+          update();
+        })(counter, target, increment);
       }
-    });
+    }
   }
   
-  window.addEventListener('scroll', animateCounters);
+  window.addEventListener("scroll", animateCounters);
   animateCounters();
   
-  // ========== MOBILE CAROUSEL ==========
-  const carousel = document.getElementById('inventoryCarousel');
-  let currentSlide = 0;
-  let startX = 0;
-  let isDragging = false;
+  var carousel = document.getElementById("inventoryCarousel");
+  var currentSlide = 0;
+  var startX = 0;
+  var isDragging = false;
   
   function goToSlide(index) {
-    const totalSlides = allProjects.length;
+    var totalSlides = allProjects.length;
     currentSlide = Math.max(0, Math.min(index, totalSlides - 1));
-    carousel.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+    carousel.style.transform = "translateX(-" + (currentSlide * 100) + "%)";
     
-    document.querySelectorAll('.carousel-dot').forEach(function(dot, i) {
-      dot.classList.toggle('active', i === currentSlide);
-    });
+    var dots = document.querySelectorAll(".carousel-dot");
+    for (var i = 0; i < dots.length; i++) {
+      if (i === currentSlide) {
+        dots[i].classList.add("active");
+      } else {
+        dots[i].classList.remove("active");
+      }
+    }
   }
   
-  carousel.addEventListener('touchstart', function(e) {
+  carousel.addEventListener("touchstart", function(e) {
     startX = e.touches[0].clientX;
     isDragging = true;
-  }, { passive: true });
+  }, {passive: true});
   
-  carousel.addEventListener('touchend', function(e) {
+  carousel.addEventListener("touchend", function(e) {
     if (!isDragging) return;
-    const endX = e.changedTouches[0].clientX;
-    const diff = startX - endX;
+    var endX = e.changedTouches[0].clientX;
+    var diff = startX - endX;
     
     if (Math.abs(diff) > 50) {
       if (diff > 0) {
@@ -3576,20 +3476,19 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     isDragging = false;
-  }, { passive: true });
+  }, {passive: true});
   
-  document.getElementById('carouselDots').addEventListener('click', function(e) {
-    if (e.target.classList.contains('carousel-dot')) {
-      goToSlide(parseInt(e.target.getAttribute('data-index')));
+  document.getElementById("carouselDots").addEventListener("click", function(e) {
+    if (e.target.classList.contains("carousel-dot")) {
+      goToSlide(parseInt(e.target.getAttribute("data-index")));
     }
   });
   
-  // ========== CLICK EFFECT ==========
-  document.addEventListener('click', function(e) {
-    const effect = document.createElement('div');
-    effect.className = 'click-effect';
-    effect.style.left = e.clientX + 'px';
-    effect.style.top = e.clientY + 'px';
+  document.addEventListener("click", function(e) {
+    var effect = document.createElement("div");
+    effect.className = "click-effect";
+    effect.style.left = e.clientX + "px";
+    effect.style.top = e.clientY + "px";
     document.body.appendChild(effect);
     
     setTimeout(function() {
@@ -3597,14 +3496,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 500);
   });
   
-  // ========== XP POPUP FUNCTION ==========
   function showXPPopup(element, text) {
-    const rect = element.getBoundingClientRect();
-    const popup = document.createElement('div');
-    popup.className = 'xp-popup';
+    var rect = element.getBoundingClientRect();
+    var popup = document.createElement("div");
+    popup.className = "xp-popup";
     popup.textContent = text;
-    popup.style.left = rect.left + rect.width / 2 + 'px';
-    popup.style.top = rect.top + 'px';
+    popup.style.left = rect.left + rect.width / 2 + "px";
+    popup.style.top = rect.top + "px";
     document.body.appendChild(popup);
     
     setTimeout(function() {
@@ -3612,75 +3510,58 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 1000);
   }
   
-  // ========== HOVER XP GAIN ==========
-  let xpGainTimeout;
-  document.querySelectorAll('.inventory-item, .quest-card, .skill-tree-card, .tech-tag').forEach(function(el) {
-    el.addEventListener('mouseenter', function() {
-      clearTimeout(xpGainTimeout);
-      xpGainTimeout = setTimeout(function() {
-        showXPPopup(el, '+2 XP');
-      }, 500);
-    });
-    
-    el.addEventListener('mouseleave', function() {
-      clearTimeout(xpGainTimeout);
-    });
-  });
+  var contactForm = document.getElementById("contactForm");
+  var formSuccess = document.getElementById("formSuccess");
   
-  // ========== CONTACT FORM ==========
-  const contactForm = document.getElementById('contactForm');
-  const formSuccess = document.getElementById('formSuccess');
-  
-  contactForm.addEventListener('submit', function(e) {
+  contactForm.addEventListener("submit", function(e) {
     e.preventDefault();
     
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const subject = document.getElementById('subject').value.trim() || 'No Subject';
-    const message = document.getElementById('message').value.trim();
+    var name = document.getElementById("name").value.trim();
+    var email = document.getElementById("email").value.trim();
+    var subject = document.getElementById("subject").value.trim() || "No Subject";
+    var message = document.getElementById("message").value.trim();
     
     if (!name || !email || !message) {
-      alert('Please fill in all required fields');
+      alert("Please fill in all required fields");
       return;
     }
     
-    const whatsappText = 
-      '*New Quest Request*\n\n' +
-      '*Player:* ' + name + '\n' +
-      '*Email:* ' + email + '\n' +
-      '*Quest Type:* ' + subject + '\n\n' +
-      '*Message:*\n' + message;
+    var whatsappText = "*New Quest Request*\n\n*Player:* " + name + "\n*Email:* " + email + "\n*Quest Type:* " + subject + "\n\n*Message:*\n" + message;
     
-    const encodedMessage = encodeURIComponent(whatsappText);
-    const whatsappURL = 'https://wa.me/917045538721?text=' + encodedMessage;
+    var encodedMessage = encodeURIComponent(whatsappText);
+    var whatsappURL = "https://wa.me/917045538721?text=" + encodedMessage;
     
-    formSuccess.classList.add('show');
-    showXPPopup(document.querySelector('.form-btn'), '+100 XP');
+    formSuccess.classList.add("show");
+    showXPPopup(document.querySelector(".form-btn"), "+100 XP");
     
     setTimeout(function() {
-      window.open(whatsappURL, '_blank');
+      window.open(whatsappURL, "_blank");
       contactForm.reset();
       
       setTimeout(function() {
-        formSuccess.classList.remove('show');
+        formSuccess.classList.remove("show");
       }, 3000);
     }, 500);
   });
   
-  // ========== SMOOTH SCROLL ==========
-  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-    anchor.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      if (href === '#') return;
+  var anchors = document.querySelectorAll('a[href^="#"]');
+  for (var i = 0; i < anchors.length; i++) {
+    anchors[i].addEventListener("click", function(e) {
+      var href = this.getAttribute("href");
+      if (href === "#") return;
       
       e.preventDefault();
-      const target = document.querySelector(href);
+      var target = document.querySelector(href);
       if (target) {
-        window.scrollTo({ 
-          top: target.offsetTop - 90, 
-          behavior: 'smooth' 
+        window.scrollTo({
+          top: target.offsetTop - 90,
+          behavior: "smooth"
         });
       }
     });
-  });
+  }
   
+});
+</script>
+</body>
+</html>
