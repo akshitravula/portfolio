@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <meta name="theme-color" content="#1a1a2e">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Akshit Ravula | Full Stack Developer</title>
   <meta name="description" content="Akshit Ravula - Full Stack Developer & Cloud Engineer Portfolio">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +24,6 @@
   --legendary: #a855f7;
   --epic: #3b82f6;
   --rare: #22d3ee;
-  --common: #94a3b8;
   
   --primary: #00d4ff;
   --primary-dark: #00a8cc;
@@ -59,9 +57,6 @@
   --text-muted: #8b95a5;
   --text-subtle: #5a6270;
   
-  --glass-bg: rgba(26, 26, 46, 0.8);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  
   --shadow-neu: 8px 8px 16px var(--neu-shadow-dark), -8px -8px 16px var(--neu-shadow-light);
   --shadow-neu-sm: 4px 4px 8px var(--neu-shadow-dark), -4px -4px 8px var(--neu-shadow-light);
   --shadow-neu-inset: inset 4px 4px 8px var(--neu-shadow-dark), inset -4px -4px 8px var(--neu-shadow-light);
@@ -81,9 +76,6 @@
   --text-muted: #64748b;
   --text-subtle: #94a3b8;
   
-  --glass-bg: rgba(224, 229, 236, 0.9);
-  --glass-border: rgba(0, 0, 0, 0.1);
-  
   --shadow-neu: 8px 8px 16px var(--neu-shadow-dark), -8px -8px 16px var(--neu-shadow-light);
   --shadow-neu-sm: 4px 4px 8px var(--neu-shadow-dark), -4px -4px 8px var(--neu-shadow-light);
   --shadow-neu-inset: inset 4px 4px 8px var(--neu-shadow-dark), inset -4px -4px 8px var(--neu-shadow-light);
@@ -94,7 +86,7 @@
 }
 
 /* ==========================================
-   RESET & BASE - PREVENT HORIZONTAL SCROLL
+   RESET & BASE
 ========================================== */
 *, *::before, *::after {
   margin: 0;
@@ -119,11 +111,8 @@ body {
   transition: background 0.5s ease, color 0.5s ease;
   min-height: 100vh;
   min-height: 100dvh;
-  padding-top: var(--safe-area-top);
-  padding-bottom: var(--safe-area-bottom);
   width: 100%;
-  max-width: 100vw;
-  position: relative;
+  max-width: 100%;
 }
 
 body.menu-open {
@@ -131,14 +120,6 @@ body.menu-open {
   position: fixed;
   width: 100%;
   height: 100%;
-}
-
-/* Wrapper to prevent overflow */
-.page-wrapper {
-  width: 100%;
-  max-width: 100vw;
-  overflow-x: hidden;
-  position: relative;
 }
 
 ::selection {
@@ -153,33 +134,11 @@ body.menu-open {
   border-radius: 4px;
 }
 
-img { 
-  max-width: 100%; 
-  height: auto; 
-  display: block;
-  -webkit-user-drag: none;
-}
-
-a { 
-  text-decoration: none; 
-  color: inherit;
-  -webkit-touch-callout: none;
-}
-
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
 ul, ol { list-style: none; }
-
-button { 
-  font-family: inherit; 
-  cursor: pointer; 
-  border: none; 
-  background: none;
-  touch-action: manipulation;
-}
-
-input, textarea {
-  font-size: 16px;
-  font-family: var(--font-main);
-}
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, textarea { font-size: 16px; font-family: var(--font-main); }
 
 .container {
   width: 100%;
@@ -198,7 +157,6 @@ input, textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   z-index: 99999;
   transition: opacity 0.8s ease, visibility 0.8s ease;
 }
@@ -215,8 +173,6 @@ input, textarea {
   align-items: center;
   gap: 24px;
   padding: 20px;
-  width: 100%;
-  max-width: 300px;
 }
 
 .loader-character {
@@ -258,8 +214,8 @@ input, textarea {
 }
 
 .loader-bar-wrapper {
-  width: 100%;
-  max-width: 260px;
+  width: 260px;
+  max-width: 80vw;
   padding: 6px;
   background: var(--neu-bg);
   border-radius: 50px;
@@ -291,7 +247,6 @@ input, textarea {
 }
 
 .loader-text {
-  font-family: var(--font-main);
   font-size: 12px;
   font-weight: 600;
   color: var(--primary);
@@ -299,20 +254,12 @@ input, textarea {
   text-transform: uppercase;
 }
 
-.loader-tip {
-  font-size: 12px;
-  color: var(--text-muted);
-  text-align: center;
-  font-style: italic;
-  padding: 0 20px;
-}
-
 /* ==========================================
-   GAME HUD - TOP BAR
+   NAVBAR / HUD
 ========================================== */
 .game-hud {
   position: fixed;
-  top: var(--safe-area-top);
+  top: 0;
   left: 0;
   right: 0;
   height: var(--navbar-height);
@@ -323,14 +270,12 @@ input, textarea {
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  transition: var(--transition);
 }
 
 .hud-left {
   display: flex;
   align-items: center;
   gap: 12px;
-  flex-shrink: 0;
 }
 
 .player-avatar {
@@ -357,21 +302,17 @@ input, textarea {
 }
 
 .player-name {
-  font-family: var(--font-main);
   font-size: 13px;
   font-weight: 700;
   color: var(--text-primary);
-  white-space: nowrap;
 }
 
 .player-class {
   font-size: 11px;
   color: var(--primary);
   font-weight: 500;
-  white-space: nowrap;
 }
 
-/* HUD Center - Navigation */
 .hud-center {
   flex: 1;
   display: flex;
@@ -383,10 +324,6 @@ input, textarea {
   gap: 6px;
 }
 
-.nav-item {
-  position: relative;
-}
-
 .nav-link {
   display: flex;
   align-items: center;
@@ -395,53 +332,24 @@ input, textarea {
   background: var(--neu-bg);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-neu-sm);
-  font-family: var(--font-main);
   font-size: 11px;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: var(--transition);
-  cursor: pointer;
-  white-space: nowrap;
+  position: relative;
 }
 
 .nav-link i { font-size: 12px; }
+.nav-link:hover { color: var(--primary); }
+.nav-link:active { box-shadow: var(--shadow-neu-pressed); }
+.nav-link.active { color: var(--primary); box-shadow: var(--shadow-neu-inset); }
 
-.nav-link:hover {
-  color: var(--primary);
-  transform: translateY(-2px);
-}
-
-.nav-link:active {
-  box-shadow: var(--shadow-neu-pressed);
-  transform: translateY(0);
-}
-
-.nav-link.active {
-  color: var(--primary);
-  box-shadow: var(--shadow-neu-inset);
-}
-
-.nav-link.active::after {
-  content: '';
-  position: absolute;
-  bottom: -3px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 5px;
-  height: 5px;
-  background: var(--primary);
-  border-radius: 50%;
-  box-shadow: 0 0 8px var(--primary);
-}
-
-/* HUD Right - Actions */
 .hud-right {
   display: flex;
   align-items: center;
   gap: 10px;
-  flex-shrink: 0;
 }
 
 .hud-btn {
@@ -456,31 +364,17 @@ input, textarea {
   color: var(--text-muted);
   font-size: 16px;
   transition: var(--transition);
-  position: relative;
 }
 
 .hud-btn:hover { color: var(--primary); }
-
-.hud-btn:active {
-  box-shadow: var(--shadow-neu-pressed);
-}
-
-.hud-btn.playing {
-  color: var(--primary);
-  animation: pulse-glow 1.5s ease infinite;
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: var(--shadow-neu-sm), 0 0 0 0 rgba(var(--primary-rgb), 0.4); }
-  50% { box-shadow: var(--shadow-neu-sm), 0 0 15px 3px rgba(var(--primary-rgb), 0.2); }
-}
+.hud-btn:active { box-shadow: var(--shadow-neu-pressed); }
+.hud-btn.playing { color: var(--primary); }
 
 .theme-btn .fa-sun { display: none; }
 .theme-btn .fa-moon { display: block; }
 [data-theme="light"] .theme-btn .fa-sun { display: block; }
 [data-theme="light"] .theme-btn .fa-moon { display: none; }
 
-/* Mobile Menu Toggle */
 .menu-toggle {
   display: none;
   width: 40px;
@@ -491,12 +385,7 @@ input, textarea {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: var(--transition);
   z-index: 1002;
-}
-
-.menu-toggle:active {
-  box-shadow: var(--shadow-neu-pressed);
 }
 
 .menu-toggle-inner {
@@ -513,26 +402,17 @@ input, textarea {
   background: var(--text-primary);
   border-radius: 2px;
   transition: var(--transition-bounce);
-  transform-origin: center;
 }
 
 .menu-toggle span:nth-child(2) { width: 70%; }
 .menu-toggle span:nth-child(3) { width: 85%; }
 
-.menu-toggle.active span:nth-child(1) {
-  transform: translateY(5px) rotate(45deg);
-}
-.menu-toggle.active span:nth-child(2) {
-  opacity: 0;
-  transform: translateX(-10px);
-}
-.menu-toggle.active span:nth-child(3) {
-  width: 100%;
-  transform: translateY(-5px) rotate(-45deg);
-}
+.menu-toggle.active span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { width: 100%; transform: translateY(-5px) rotate(-45deg); }
 
 /* ==========================================
-   FLOATING ACTION BUTTONS
+   FLOATING BUTTONS
 ========================================== */
 .floating-actions {
   position: fixed;
@@ -555,12 +435,9 @@ input, textarea {
   justify-content: center;
   font-size: 20px;
   transition: var(--transition-bounce);
-  position: relative;
 }
 
-.fab:active {
-  transform: scale(0.95);
-}
+.fab:active { transform: scale(0.95); }
 
 .fab.whatsapp {
   background: linear-gradient(135deg, #25d366, #128c7e);
@@ -587,7 +464,7 @@ input, textarea {
 ========================================== */
 .xp-progress-bar {
   position: fixed;
-  top: calc(var(--navbar-height) + var(--safe-area-top));
+  top: var(--navbar-height);
   left: 0;
   right: 0;
   height: 3px;
@@ -600,20 +477,6 @@ input, textarea {
   background: linear-gradient(90deg, var(--xp-gold), var(--primary), var(--secondary));
   width: 0%;
   transition: width 0.1s ease;
-  position: relative;
-}
-
-.xp-progress-fill::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 8px;
-  height: 8px;
-  background: var(--xp-gold);
-  border-radius: 50%;
-  box-shadow: 0 0 12px var(--xp-gold);
 }
 
 /* ==========================================
@@ -625,29 +488,21 @@ input, textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: calc(var(--navbar-height) + var(--safe-area-top) + 30px) 20px calc(50px + var(--safe-area-bottom));
+  padding: calc(var(--navbar-height) + 30px) 20px 50px;
   position: relative;
   overflow: hidden;
 }
 
 .hero-bg {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   z-index: -1;
   overflow: hidden;
-  pointer-events: none;
 }
 
 .hero-particles {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  inset: 0;
 }
 
 .particle {
@@ -667,10 +522,7 @@ input, textarea {
 
 .hero-grid {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-image: 
     linear-gradient(rgba(var(--primary-rgb), 0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(var(--primary-rgb), 0.02) 1px, transparent 1px);
@@ -683,7 +535,6 @@ input, textarea {
   border-radius: 50%;
   filter: blur(120px);
   opacity: 0.25;
-  pointer-events: none;
 }
 
 .hero-glow-1 {
@@ -711,14 +562,8 @@ input, textarea {
   z-index: 1;
 }
 
-.hero-left {
-  flex: 1;
-  min-width: 0;
-}
-
-.hero-right {
-  flex: 0 0 320px;
-}
+.hero-left { flex: 1; min-width: 0; }
+.hero-right { flex: 0 0 320px; }
 
 /* Character Card */
 .character-card {
@@ -747,13 +592,11 @@ input, textarea {
   padding: 5px 12px;
   background: linear-gradient(135deg, var(--legendary), #c084fc);
   border-radius: 20px;
-  font-family: var(--font-main);
   font-size: 9px;
   font-weight: 700;
   color: white;
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4);
 }
 
 .character-avatar {
@@ -795,7 +638,6 @@ input, textarea {
 .character-name {
   text-align: center;
   margin-top: 16px;
-  font-family: var(--font-main);
   font-size: 18px;
   font-weight: 700;
   color: var(--text-primary);
@@ -825,7 +667,6 @@ input, textarea {
 }
 
 .char-stat-value {
-  font-family: var(--font-main);
   font-size: 20px;
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -852,7 +693,6 @@ input, textarea {
   background: var(--neu-bg);
   border-radius: 50px;
   box-shadow: var(--shadow-neu-sm);
-  font-family: var(--font-main);
   font-size: 11px;
   font-weight: 600;
   color: var(--stamina-green);
@@ -866,7 +706,6 @@ input, textarea {
   background: var(--stamina-green);
   border-radius: 50%;
   animation: pulse 2s ease infinite;
-  box-shadow: 0 0 8px var(--stamina-green);
 }
 
 @keyframes pulse {
@@ -875,7 +714,6 @@ input, textarea {
 }
 
 .hero-title {
-  font-family: var(--font-main);
   font-size: clamp(28px, 6vw, 48px);
   font-weight: 800;
   line-height: 1.2;
@@ -911,16 +749,8 @@ input, textarea {
   flex-wrap: wrap;
 }
 
-.typewriter-wrapper .static { 
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-.typewriter-text { 
-  color: var(--primary); 
-  font-family: 'Fira Code', monospace;
-  font-weight: 500;
-}
+.typewriter-wrapper .static { color: var(--text-muted); font-weight: 500; }
+.typewriter-text { color: var(--primary); font-family: 'Fira Code', monospace; font-weight: 500; }
 
 .typewriter-cursor {
   display: inline-block;
@@ -928,8 +758,6 @@ input, textarea {
   height: 1.1em;
   background: var(--primary);
   animation: blink 1s step-end infinite;
-  border-radius: 2px;
-  box-shadow: 0 0 8px var(--primary);
 }
 
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
@@ -961,7 +789,6 @@ input, textarea {
   background: var(--neu-bg);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-neu);
-  font-family: var(--font-main);
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
@@ -981,23 +808,10 @@ input, textarea {
   transition: opacity 0.3s ease;
 }
 
-.btn-neu:hover {
-  color: white;
-}
-
-.btn-neu:hover::before {
-  opacity: 1;
-}
-
-.btn-neu:active {
-  box-shadow: var(--shadow-neu-pressed);
-}
-
-.btn-neu i,
-.btn-neu span {
-  position: relative;
-  z-index: 1;
-}
+.btn-neu:hover { color: white; }
+.btn-neu:hover::before { opacity: 1; }
+.btn-neu:active { box-shadow: var(--shadow-neu-pressed); }
+.btn-neu i, .btn-neu span { position: relative; z-index: 1; }
 
 .btn-neu.primary {
   background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -1041,7 +855,6 @@ input, textarea {
   background: var(--neu-bg);
   border-radius: 50px;
   box-shadow: var(--shadow-neu-sm);
-  font-family: var(--font-main);
   font-size: 11px;
   font-weight: 600;
   color: var(--primary);
@@ -1051,7 +864,6 @@ input, textarea {
 }
 
 .section-title {
-  font-family: var(--font-main);
   font-size: clamp(24px, 5vw, 36px);
   font-weight: 800;
   color: var(--text-primary);
@@ -1066,11 +878,11 @@ input, textarea {
 }
 
 /* ==========================================
-   ABOUT - PLAYER STATS
+   ABOUT - PROFILE CARD (FIXED FOR MOBILE)
 ========================================== */
 .about-grid {
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 1fr 1.5fr;
   gap: 40px;
   align-items: start;
 }
@@ -1080,7 +892,7 @@ input, textarea {
   border-radius: var(--radius);
   padding: 24px;
   box-shadow: var(--shadow-neu);
-  position: relative;
+  width: 100%;
 }
 
 .player-card-header {
@@ -1092,7 +904,6 @@ input, textarea {
   width: 100px;
   height: 100px;
   margin: 0 auto 14px;
-  position: relative;
 }
 
 .player-card-avatar img {
@@ -1105,7 +916,6 @@ input, textarea {
 }
 
 .player-card-name {
-  font-family: var(--font-main);
   font-size: 18px;
   font-weight: 700;
   color: var(--text-primary);
@@ -1123,7 +933,6 @@ input, textarea {
 }
 
 .attribute-title {
-  font-family: var(--font-main);
   font-size: 11px;
   font-weight: 600;
   color: var(--text-muted);
@@ -1135,21 +944,21 @@ input, textarea {
 .attribute-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
+  gap: 12px;
+  margin-bottom: 14px;
 }
 
 .attribute-icon {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
   background: var(--neu-bg);
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: var(--shadow-neu-sm);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
-  flex-shrink: 0;
+  font-size: 14px;
 }
 
 .attribute-icon.str { color: var(--health-red); }
@@ -1157,29 +966,32 @@ input, textarea {
 .attribute-icon.dex { color: var(--stamina-green); }
 .attribute-icon.wis { color: var(--legendary); }
 
-.attribute-info { flex: 1; min-width: 0; }
+.attribute-info {
+  flex: 1;
+  min-width: 0;
+}
 
 .attribute-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 5px;
+  align-items: center;
+  margin-bottom: 6px;
 }
 
 .attribute-name {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-secondary);
   font-weight: 500;
 }
 
 .attribute-value {
-  font-family: var(--font-main);
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
   color: var(--primary);
 }
 
 .attribute-bar {
-  height: 6px;
+  height: 8px;
   background: var(--neu-bg);
   border-radius: 10px;
   box-shadow: var(--shadow-neu-inset);
@@ -1202,21 +1014,19 @@ input, textarea {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 24px;
 }
 
 .quick-stat {
   background: var(--neu-bg);
   border-radius: var(--radius-sm);
-  padding: 14px 10px;
+  padding: 14px 8px;
   text-align: center;
   box-shadow: var(--shadow-neu-inset);
-  transition: var(--transition);
 }
 
 .quick-stat-value {
-  font-family: var(--font-main);
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
@@ -1225,7 +1035,7 @@ input, textarea {
 }
 
 .quick-stat-label {
-  font-size: 9px;
+  font-size: 10px;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1247,7 +1057,6 @@ input, textarea {
 }
 
 .bio-card h3 {
-  font-family: var(--font-main);
   font-size: 18px;
   font-weight: 700;
   color: var(--text-primary);
@@ -1263,7 +1072,7 @@ input, textarea {
   font-size: 14px;
   color: var(--text-muted);
   line-height: 1.7;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .bio-card p:last-of-type { margin-bottom: 0; }
@@ -1272,7 +1081,7 @@ input, textarea {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
-  margin-top: 18px;
+  margin-top: 20px;
 }
 
 .info-item {
@@ -1283,12 +1092,12 @@ input, textarea {
   background: var(--neu-bg);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-neu-inset);
-  transition: var(--transition);
 }
 
 .info-item-icon {
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
   background: var(--neu-bg);
   border-radius: 10px;
   box-shadow: var(--shadow-neu-sm);
@@ -1296,12 +1105,16 @@ input, textarea {
   align-items: center;
   justify-content: center;
   color: var(--primary);
-  font-size: 14px;
-  flex-shrink: 0;
+  font-size: 16px;
+}
+
+.info-item-text {
+  min-width: 0;
+  flex: 1;
 }
 
 .info-item-text h4 {
-  font-size: 9px;
+  font-size: 10px;
   color: var(--text-subtle);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1314,6 +1127,7 @@ input, textarea {
   color: var(--text-secondary);
   margin: 0;
   font-weight: 500;
+  word-break: break-word;
 }
 
 /* ==========================================
@@ -1321,7 +1135,7 @@ input, textarea {
 ========================================== */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
 }
 
@@ -1361,12 +1175,10 @@ input, textarea {
   justify-content: center;
   font-size: 20px;
   color: white;
-  box-shadow: 0 6px 16px rgba(var(--primary-rgb), 0.3);
   flex-shrink: 0;
 }
 
 .skill-tree-title {
-  font-family: var(--font-main);
   font-size: 16px;
   font-weight: 700;
   color: var(--text-primary);
@@ -1379,17 +1191,14 @@ input, textarea {
   font-weight: 600;
 }
 
-.skill-item {
-  margin-bottom: 14px;
-}
-
+.skill-item { margin-bottom: 16px; }
 .skill-item:last-child { margin-bottom: 0; }
 
 .skill-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .skill-name {
@@ -1401,25 +1210,20 @@ input, textarea {
   font-weight: 500;
 }
 
-.skill-name i {
-  font-size: 9px;
-  color: var(--xp-gold);
-}
+.skill-name i { font-size: 10px; color: var(--xp-gold); }
 
 .skill-level {
-  font-family: var(--font-main);
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
   color: var(--primary);
 }
 
 .skill-bar-wrapper {
-  height: 8px;
+  height: 10px;
   background: var(--neu-bg);
   border-radius: 10px;
   box-shadow: var(--shadow-neu-inset);
   overflow: hidden;
-  position: relative;
 }
 
 .skill-bar-fill {
@@ -1428,15 +1232,6 @@ input, textarea {
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   width: 0;
   transition: width 1.5s ease-out;
-  position: relative;
-}
-
-.skill-bar-fill::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  animation: shimmer 2s infinite;
 }
 
 .tech-cloud {
@@ -1452,23 +1247,19 @@ input, textarea {
   background: var(--neu-bg);
   border-radius: 50px;
   box-shadow: var(--shadow-neu-sm);
-  font-family: var(--font-main);
   font-size: 12px;
   font-weight: 500;
   color: var(--text-secondary);
   transition: var(--transition);
-  cursor: pointer;
 }
 
-.tech-tag:active {
-  box-shadow: var(--shadow-neu-pressed);
-}
+.tech-tag:active { box-shadow: var(--shadow-neu-pressed); }
 
 /* ==========================================
-   EXPERIENCE - QUEST LOG
+   EXPERIENCE - QUEST CARDS (FIXED FOR MOBILE)
 ========================================== */
 .quest-log {
-  max-width: 750px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -1477,10 +1268,9 @@ input, textarea {
   border-radius: var(--radius);
   padding: 24px;
   box-shadow: var(--shadow-neu);
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   position: relative;
   overflow: hidden;
-  transition: var(--transition);
 }
 
 .quest-card::before {
@@ -1489,54 +1279,51 @@ input, textarea {
   left: 0;
   top: 0;
   bottom: 0;
-  width: 3px;
+  width: 4px;
   background: linear-gradient(to bottom, var(--primary), var(--secondary));
   opacity: 0;
   transition: var(--transition);
 }
 
-.quest-card.active::before {
-  opacity: 1;
-}
+.quest-card.active::before { opacity: 1; }
 
 .quest-card.active {
   border: 1px solid rgba(var(--primary-rgb), 0.2);
-  background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.03), transparent);
 }
 
+/* Quest Header - Fixed for mobile */
 .quest-header {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 
 .quest-date {
-  padding: 5px 12px;
+  padding: 6px 14px;
   background: var(--neu-bg);
   border-radius: 20px;
   box-shadow: var(--shadow-neu-inset);
-  font-family: var(--font-main);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--primary);
+  white-space: nowrap;
 }
 
 .quest-status {
-  padding: 5px 12px;
+  padding: 6px 14px;
   border-radius: 20px;
-  font-family: var(--font-main);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
 .quest-status.active {
   background: linear-gradient(135deg, var(--stamina-green), #5af27a);
   color: #000;
-  box-shadow: 0 3px 12px rgba(46, 213, 115, 0.4);
 }
 
 .quest-status.completed {
@@ -1551,53 +1338,54 @@ input, textarea {
 }
 
 .quest-title {
-  font-family: var(--font-main);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  line-height: 1.3;
 }
 
 .quest-location {
   font-size: 14px;
   color: var(--primary);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   font-weight: 500;
 }
 
-.quest-location i { font-size: 11px; }
+.quest-location i { font-size: 12px; }
 
 .quest-objectives {
   padding-left: 0;
+  margin-bottom: 16px;
 }
 
 .quest-objectives li {
   position: relative;
-  padding-left: 24px;
-  margin-bottom: 8px;
-  font-size: 13px;
+  padding-left: 28px;
+  margin-bottom: 10px;
+  font-size: 14px;
   color: var(--text-muted);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .quest-objectives li::before {
   content: '✓';
   position: absolute;
   left: 0;
-  top: 0;
-  width: 18px;
-  height: 18px;
+  top: 2px;
+  width: 20px;
+  height: 20px;
   background: var(--neu-bg);
-  border-radius: 5px;
+  border-radius: 6px;
   box-shadow: var(--shadow-neu-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--stamina-green);
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
 }
 
@@ -1606,21 +1394,19 @@ input, textarea {
 .quest-reward {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 149, 0, 0.1));
+  gap: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 149, 0, 0.15));
   border-radius: 20px;
-  margin-top: 14px;
-  font-family: var(--font-main);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--xp-gold);
 }
 
-.quest-reward i { font-size: 12px; }
+.quest-reward i { font-size: 14px; }
 
 /* ==========================================
-   PROJECTS - INVENTORY
+   PROJECTS
 ========================================== */
 .inventory-grid {
   display: grid;
@@ -1630,7 +1416,6 @@ input, textarea {
 
 .inventory-mobile {
   display: none;
-  position: relative;
   width: 100%;
   overflow: hidden;
 }
@@ -1638,15 +1423,12 @@ input, textarea {
 .inventory-carousel {
   display: flex;
   transition: transform 0.4s ease;
-  touch-action: pan-x;
-  width: 100%;
 }
 
 .inventory-slide {
   min-width: 100%;
   flex-shrink: 0;
   padding: 0 8px;
-  box-sizing: border-box;
 }
 
 .carousel-dots {
@@ -1655,7 +1437,6 @@ input, textarea {
   gap: 8px;
   margin-top: 24px;
   flex-wrap: wrap;
-  padding: 0 20px;
 }
 
 .carousel-dot {
@@ -1666,7 +1447,6 @@ input, textarea {
   box-shadow: var(--shadow-neu-sm);
   border: none;
   cursor: pointer;
-  transition: var(--transition);
 }
 
 .carousel-dot.active {
@@ -1679,7 +1459,6 @@ input, textarea {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-neu);
-  transition: var(--transition);
   height: 100%;
 }
 
@@ -1694,7 +1473,6 @@ input, textarea {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
 }
 
 .inventory-rarity {
@@ -1703,30 +1481,25 @@ input, textarea {
   left: 12px;
   padding: 5px 10px;
   border-radius: 20px;
-  font-family: var(--font-main);
   font-size: 9px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
   z-index: 2;
 }
 
 .inventory-rarity.legendary {
   background: linear-gradient(135deg, var(--legendary), #c084fc);
   color: white;
-  box-shadow: 0 3px 12px rgba(168, 85, 247, 0.4);
 }
 
 .inventory-rarity.epic {
   background: linear-gradient(135deg, var(--epic), #60a5fa);
   color: white;
-  box-shadow: 0 3px 12px rgba(59, 130, 246, 0.4);
 }
 
 .inventory-rarity.rare {
   background: linear-gradient(135deg, var(--rare), #67e8f9);
   color: #000;
-  box-shadow: 0 3px 12px rgba(34, 211, 238, 0.4);
 }
 
 .inventory-overlay {
@@ -1740,9 +1513,7 @@ input, textarea {
   transition: var(--transition);
 }
 
-.inventory-item:hover .inventory-overlay {
-  opacity: 1;
-}
+.inventory-item:hover .inventory-overlay { opacity: 1; }
 
 .inventory-link {
   width: 44px;
@@ -1754,16 +1525,11 @@ input, textarea {
   justify-content: center;
   color: white;
   font-size: 16px;
-  transition: var(--transition);
-  box-shadow: 0 6px 16px rgba(var(--primary-rgb), 0.4);
 }
 
-.inventory-item-body {
-  padding: 20px;
-}
+.inventory-item-body { padding: 20px; }
 
 .inventory-item-title {
-  font-family: var(--font-main);
   font-size: 15px;
   font-weight: 700;
   color: var(--text-primary);
@@ -1798,12 +1564,11 @@ input, textarea {
 }
 
 /* ==========================================
-   ACHIEVEMENTS BANNER
+   ACHIEVEMENTS
 ========================================== */
 .achievements-banner {
   background: linear-gradient(135deg, var(--neu-bg-dark), var(--neu-bg));
   padding: 50px 20px;
-  position: relative;
   overflow: hidden;
 }
 
@@ -1814,7 +1579,7 @@ input, textarea {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--xp-gold), var(--primary), var(--secondary), var(--accent));
+  background: linear-gradient(90deg, var(--xp-gold), var(--primary), var(--secondary));
 }
 
 .achievements-grid {
@@ -1825,10 +1590,7 @@ input, textarea {
   margin: 0 auto;
 }
 
-.achievement-item {
-  text-align: center;
-  position: relative;
-}
+.achievement-item { text-align: center; }
 
 .achievement-icon {
   width: 70px;
@@ -1840,7 +1602,6 @@ input, textarea {
   align-items: center;
   justify-content: center;
   margin: 0 auto 14px;
-  position: relative;
 }
 
 .achievement-icon i {
@@ -1851,17 +1612,7 @@ input, textarea {
   background-clip: text;
 }
 
-.achievement-icon::after {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: 50%;
-  border: 2px solid var(--xp-gold);
-  opacity: 0.3;
-}
-
 .achievement-value {
-  font-family: var(--font-main);
   font-size: clamp(28px, 5vw, 42px);
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -1871,7 +1622,6 @@ input, textarea {
 }
 
 .achievement-label {
-  font-family: var(--font-main);
   font-size: 11px;
   font-weight: 600;
   color: var(--text-muted);
@@ -1897,7 +1647,6 @@ input, textarea {
 }
 
 .contact-info-card h3 {
-  font-family: var(--font-main);
   font-size: 20px;
   font-weight: 700;
   color: var(--text-primary);
@@ -1916,9 +1665,7 @@ input, textarea {
   margin-bottom: 24px;
 }
 
-.contact-list {
-  margin-bottom: 24px;
-}
+.contact-list { margin-bottom: 24px; }
 
 .contact-item {
   display: flex;
@@ -1932,6 +1679,7 @@ input, textarea {
 .contact-item-icon {
   width: 44px;
   height: 44px;
+  min-width: 44px;
   background: var(--neu-bg);
   border-radius: 12px;
   box-shadow: var(--shadow-neu-sm);
@@ -1940,8 +1688,6 @@ input, textarea {
   justify-content: center;
   color: var(--primary);
   font-size: 18px;
-  transition: var(--transition);
-  flex-shrink: 0;
 }
 
 .contact-item-text h4 {
@@ -1957,9 +1703,8 @@ input, textarea {
 .contact-item-text a {
   font-size: 14px;
   color: var(--text-secondary);
-  margin: 0;
-  word-break: break-word;
   font-weight: 500;
+  word-break: break-word;
 }
 
 .social-links {
@@ -1982,10 +1727,6 @@ input, textarea {
   transition: var(--transition);
 }
 
-.social-link:active {
-  box-shadow: var(--shadow-neu-pressed);
-}
-
 .contact-form-card {
   background: var(--neu-bg);
   border-radius: var(--radius);
@@ -1993,13 +1734,10 @@ input, textarea {
   box-shadow: var(--shadow-neu);
 }
 
-.form-row {
-  margin-bottom: 18px;
-}
+.form-row { margin-bottom: 18px; }
 
 .form-row label {
   display: block;
-  font-family: var(--font-main);
   font-size: 11px;
   font-weight: 600;
   color: var(--text-secondary);
@@ -2017,10 +1755,7 @@ input, textarea {
   box-shadow: var(--shadow-neu-inset);
   color: var(--text-primary);
   font-size: 16px;
-  font-family: var(--font-main);
   transition: var(--transition);
-  -webkit-appearance: none;
-  appearance: none;
 }
 
 .form-input:focus {
@@ -2028,9 +1763,7 @@ input, textarea {
   box-shadow: var(--shadow-neu-inset), 0 0 0 2px rgba(var(--primary-rgb), 0.2);
 }
 
-.form-input::placeholder {
-  color: var(--text-subtle);
-}
+.form-input::placeholder { color: var(--text-subtle); }
 
 textarea.form-input {
   min-height: 120px;
@@ -2043,34 +1776,26 @@ textarea.form-input {
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   border: none;
   border-radius: var(--radius-sm);
-  box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.4);
   color: white;
-  font-family: var(--font-main);
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
-  transition: var(--transition);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
 
-.form-btn:active {
-  transform: scale(0.98);
-}
-
 .form-success {
   display: none;
   padding: 18px;
-  background: linear-gradient(135deg, rgba(46, 213, 115, 0.1), rgba(90, 242, 122, 0.1));
+  background: rgba(46, 213, 115, 0.1);
   border-radius: var(--radius-sm);
   color: var(--stamina-green);
   text-align: center;
   margin-top: 18px;
-  font-family: var(--font-main);
   font-size: 13px;
   font-weight: 600;
 }
@@ -2080,32 +1805,26 @@ textarea.form-input {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  animation: fadeIn 0.3s ease;
 }
 
 /* ==========================================
    FOOTER
 ========================================== */
 .footer {
-  padding: 24px 20px calc(24px + var(--safe-area-bottom));
+  padding: 24px 20px;
   text-align: center;
   background: var(--neu-bg-dark);
 }
 
 .footer p {
-  font-family: var(--font-main);
   font-size: 13px;
   color: var(--text-muted);
-  font-weight: 500;
 }
 
-.footer a {
-  color: var(--primary);
-  transition: color 0.3s ease;
-}
+.footer a { color: var(--primary); }
 
 /* ==========================================
-   REVEAL ANIMATION
+   ANIMATIONS
 ========================================== */
 .reveal {
   opacity: 0;
@@ -2122,30 +1841,9 @@ textarea.form-input {
 .reveal.delay-2 { transition-delay: 0.2s; }
 .reveal.delay-3 { transition-delay: 0.3s; }
 
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fadeInUp { 
   from { opacity: 0; transform: translateY(25px); } 
   to { opacity: 1; transform: translateY(0); } 
-}
-
-/* ==========================================
-   XP POPUP
-========================================== */
-.xp-popup {
-  position: fixed;
-  pointer-events: none;
-  font-family: var(--font-main);
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--xp-gold);
-  text-shadow: 0 0 8px var(--xp-gold);
-  animation: xp-float 1s ease-out forwards;
-  z-index: 9999;
-}
-
-@keyframes xp-float {
-  from { transform: translate(-50%, 0); opacity: 1; }
-  to { transform: translate(-50%, -40px); opacity: 0; }
 }
 
 /* ==========================================
@@ -2176,8 +1874,8 @@ textarea.form-input {
   }
   
   .player-card {
-    max-width: 360px;
-    margin: 0 auto;
+    max-width: 100%;
+    width: 100%;
   }
   
   .contact-grid {
@@ -2187,7 +1885,6 @@ textarea.form-input {
   
   .achievements-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
   }
   
   .nav-link span { display: none; }
@@ -2195,20 +1892,15 @@ textarea.form-input {
 }
 
 /* ==========================================
-   RESPONSIVE - MOBILE (NO HORIZONTAL SCROLL FIX)
+   RESPONSIVE - MOBILE (MAIN FIX)
 ========================================== */
 @media (max-width: 768px) {
   :root {
     --navbar-height: 60px;
   }
   
-  html, body {
-    overflow-x: hidden;
-  }
-  
   .section { 
     padding: 60px 16px;
-    overflow: hidden;
   }
   
   .container {
@@ -2260,23 +1952,13 @@ textarea.form-input {
   .menu-toggle { display: flex; }
   
   .hero {
-    padding: calc(var(--navbar-height) + var(--safe-area-top) + 20px) 16px calc(40px + var(--safe-area-bottom));
+    padding: calc(var(--navbar-height) + 20px) 16px 40px;
     min-height: auto;
   }
   
   .hero-glow {
     width: 200px;
     height: 200px;
-  }
-  
-  .hero-glow-1 {
-    top: -50px;
-    right: -50px;
-  }
-  
-  .hero-glow-2 {
-    bottom: -50px;
-    left: -50px;
   }
   
   .hero-buttons {
@@ -2291,15 +1973,211 @@ textarea.form-input {
     padding: 16px 24px;
   }
   
+  /* ===== PROFILE CARD MOBILE FIX ===== */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .player-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+  }
+  
+  .player-card-avatar {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .player-card-name {
+    font-size: 16px;
+  }
+  
+  .player-card-class {
+    font-size: 12px;
+  }
+  
+  .attribute-row {
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  
+  .attribute-icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    font-size: 12px;
+    border-radius: 8px;
+  }
+  
+  .attribute-name {
+    font-size: 12px;
+  }
+  
+  .attribute-value {
+    font-size: 11px;
+  }
+  
+  .attribute-bar {
+    height: 6px;
+  }
+  
+  .quick-stats {
+    gap: 8px;
+    margin-top: 20px;
+  }
+  
+  .quick-stat {
+    padding: 12px 6px;
+  }
+  
+  .quick-stat-value {
+    font-size: 18px;
+  }
+  
+  .quick-stat-label {
+    font-size: 8px;
+  }
+  
+  .bio-card {
+    padding: 20px;
+  }
+  
+  .bio-card h3 {
+    font-size: 16px;
+  }
+  
+  .bio-card p {
+    font-size: 13px;
+  }
+  
   .info-grid {
     grid-template-columns: 1fr;
     gap: 10px;
   }
   
+  .info-item {
+    padding: 12px;
+    gap: 10px;
+  }
+  
+  .info-item-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    font-size: 14px;
+  }
+  
+  .info-item-text h4 {
+    font-size: 9px;
+  }
+  
+  .info-item-text p {
+    font-size: 12px;
+  }
+  
+  /* ===== EXPERIENCE CARDS MOBILE FIX ===== */
+  .quest-log {
+    width: 100%;
+  }
+  
+  .quest-card {
+    padding: 18px;
+    margin-bottom: 16px;
+  }
+  
+  .quest-header {
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .quest-date {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+  
+  .quest-status {
+    padding: 5px 10px;
+    font-size: 9px;
+  }
+  
+  .quest-title {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  
+  .quest-location {
+    font-size: 13px;
+    margin-bottom: 12px;
+    gap: 6px;
+  }
+  
+  .quest-location i {
+    font-size: 11px;
+  }
+  
+  .quest-objectives {
+    margin-bottom: 12px;
+  }
+  
+  .quest-objectives li {
+    padding-left: 26px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  
+  .quest-objectives li::before {
+    width: 18px;
+    height: 18px;
+    font-size: 9px;
+    top: 1px;
+  }
+  
+  .quest-reward {
+    padding: 6px 12px;
+    font-size: 11px;
+    gap: 6px;
+  }
+  
+  .quest-reward i {
+    font-size: 12px;
+  }
+  
+  /* Skills Mobile */
   .skills-grid {
     grid-template-columns: 1fr;
   }
   
+  .skill-tree-card {
+    padding: 20px;
+  }
+  
+  .skill-tree-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+  }
+  
+  .skill-tree-title {
+    font-size: 14px;
+  }
+  
+  .skill-bar-wrapper {
+    height: 8px;
+  }
+  
+  .tech-cloud {
+    gap: 8px;
+  }
+  
+  .tech-tag {
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+  
+  /* Projects Mobile */
   .inventory-grid { display: none; }
   .inventory-mobile { display: block; }
   
@@ -2308,16 +2186,12 @@ textarea.form-input {
     aspect-ratio: 16 / 10;
   }
   
-  .inventory-mobile .inventory-item-img img {
-    object-fit: contain;
-    background: var(--neu-bg-dark);
-  }
-  
   .inventory-mobile .inventory-overlay {
     opacity: 1;
     background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 40%);
   }
   
+  /* Achievements Mobile */
   .achievements-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
@@ -2328,11 +2202,18 @@ textarea.form-input {
     height: 55px;
   }
   
-  .achievement-icon i { font-size: 20px; }
+  .achievement-icon i {
+    font-size: 20px;
+  }
   
+  .achievement-label {
+    font-size: 9px;
+  }
+  
+  /* Floating */
   .floating-actions {
-    bottom: calc(16px + var(--safe-area-bottom));
     right: 14px;
+    bottom: 16px;
     gap: 10px;
   }
   
@@ -2341,164 +2222,65 @@ textarea.form-input {
     height: 46px;
     font-size: 18px;
   }
-  
-  .tech-cloud {
-    gap: 8px;
-    padding: 0 10px;
-  }
-  
-  .tech-tag {
-    padding: 8px 14px;
-    font-size: 11px;
-  }
 }
 
 /* ==========================================
    RESPONSIVE - SMALL MOBILE
 ========================================== */
-@media (max-width: 480px) {
-  .section { padding: 50px 14px; }
+@media (max-width: 400px) {
+  .section { padding: 50px 12px; }
+  .container { padding: 0 12px; }
   
-  .container { padding: 0 14px; }
-  
-  .player-avatar { width: 38px; height: 38px; }
-  .player-name { font-size: 12px; }
-  .player-class { font-size: 10px; }
+  .player-avatar { width: 36px; height: 36px; }
+  .player-name { font-size: 11px; }
+  .player-class { font-size: 9px; }
   
   .hud-btn { width: 36px; height: 36px; font-size: 14px; }
   .menu-toggle { width: 36px; height: 36px; }
   
-  .character-card { padding: 20px 16px; }
-  .character-avatar { width: 120px; height: 120px; }
-  .character-name { font-size: 16px; }
-  .character-stats { gap: 8px; }
-  .char-stat { padding: 10px 6px; }
-  .char-stat-value { font-size: 18px; }
+  .character-card { padding: 16px; }
+  .character-avatar { width: 110px; height: 110px; }
+  .character-name { font-size: 15px; }
+  .char-stat-value { font-size: 16px; }
   .char-stat-label { font-size: 8px; }
   
-  .hero-badge { 
-    padding: 8px 14px; 
-    font-size: 10px;
-    gap: 6px;
-  }
-  .hero-badge .pulse { width: 6px; height: 6px; }
-  
-  .hero-description { font-size: 14px; margin-bottom: 24px; }
-  
-  .section-icon { width: 50px; height: 50px; font-size: 20px; }
-  .section-title { font-size: clamp(22px, 6vw, 32px); }
-  .section-subtitle { font-size: 13px; }
-  
-  .player-card { padding: 20px 16px; }
+  .player-card { padding: 16px; }
   .player-card-avatar { width: 80px; height: 80px; }
-  .player-card-name { font-size: 16px; }
+  .player-card-name { font-size: 15px; }
   
-  .attribute-row { gap: 8px; }
-  .attribute-icon { width: 28px; height: 28px; font-size: 11px; }
+  .attribute-icon { width: 28px; height: 28px; min-width: 28px; font-size: 11px; }
   .attribute-name { font-size: 11px; }
   .attribute-value { font-size: 10px; }
-  .attribute-bar { height: 5px; }
   
-  .quick-stats { gap: 8px; }
-  .quick-stat { padding: 10px 6px; }
-  .quick-stat-value { font-size: 18px; }
-  .quick-stat-label { font-size: 8px; }
+  .quick-stat-value { font-size: 16px; }
+  .quick-stat-label { font-size: 7px; }
   
-  .bio-card { padding: 20px 16px; }
-  .bio-card h3 { font-size: 16px; }
-  .bio-card p { font-size: 13px; }
-  
-  .info-item { padding: 12px; gap: 10px; }
-  .info-item-icon { width: 34px; height: 34px; font-size: 12px; }
-  .info-item-text h4 { font-size: 8px; }
-  .info-item-text p { font-size: 12px; }
-  
-  .skill-tree-card { padding: 20px 16px; }
-  .skill-tree-icon { width: 42px; height: 42px; font-size: 18px; }
-  .skill-tree-title { font-size: 14px; }
-  .skill-bar-wrapper { height: 6px; }
-  
-  .quest-card { padding: 20px 16px; }
+  .quest-card { padding: 14px; }
+  .quest-date { font-size: 9px; padding: 4px 8px; }
+  .quest-status { font-size: 8px; padding: 4px 8px; }
   .quest-title { font-size: 14px; }
-  .quest-location { font-size: 13px; }
-  .quest-objectives li { font-size: 12px; padding-left: 22px; }
+  .quest-location { font-size: 12px; }
+  .quest-objectives li { font-size: 12px; padding-left: 24px; }
   .quest-objectives li::before { width: 16px; height: 16px; font-size: 8px; }
-  .quest-reward { font-size: 10px; padding: 5px 12px; }
-  
-  .inventory-item-body { padding: 16px; }
-  .inventory-item-title { font-size: 13px; }
-  .inventory-item-desc { font-size: 12px; }
-  .inventory-tag { padding: 4px 8px; font-size: 9px; }
-  
-  .achievement-icon { width: 50px; height: 50px; }
-  .achievement-icon i { font-size: 18px; }
-  .achievement-label { font-size: 10px; letter-spacing: 1px; }
+  .quest-reward { font-size: 10px; }
   
   .contact-info-card,
-  .contact-form-card { padding: 22px 16px; }
-  .contact-info-card h3 { font-size: 18px; }
-  .contact-item { gap: 12px; }
-  .contact-item-icon { width: 40px; height: 40px; font-size: 16px; }
-  .social-link { width: 40px; height: 40px; font-size: 14px; }
-  
-  .form-input { padding: 12px 14px; }
-  .form-btn { padding: 14px; font-size: 13px; }
-  
-  .floating-actions {
-    right: 12px;
-    bottom: calc(12px + var(--safe-area-bottom));
-  }
+  .contact-form-card { padding: 18px; }
   
   .fab { width: 42px; height: 42px; font-size: 16px; }
-  
-  .carousel-dots { gap: 6px; }
-  .carousel-dot { width: 8px; height: 8px; }
 }
 
-/* ==========================================
-   REDUCED MOTION
-========================================== */
+/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
-  }
-  html { scroll-behavior: auto; }
-}
-
-/* ==========================================
-   LANDSCAPE MOBILE
-========================================== */
-@media (max-height: 500px) and (orientation: landscape) {
-  .hero {
-    min-height: auto;
-    padding: calc(var(--navbar-height) + 20px) 16px 30px;
-  }
-  
-  .hero-content { gap: 20px; }
-  
-  .character-card { padding: 16px; }
-  .character-avatar { width: 80px; height: 80px; margin: 10px auto; }
-  .character-stats { gap: 6px; }
-  .char-stat { padding: 8px 4px; }
-  
-  .nav-menu {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 10px;
-  }
-  
-  .nav-menu .nav-link {
-    padding: 10px 20px;
-    font-size: 11px;
   }
 }
 </style>
 </head>
 
 <body>
-  <div class="page-wrapper">
   <!-- XP Progress Bar -->
   <div class="xp-progress-bar">
     <div class="xp-progress-fill" id="xpProgress"></div>
@@ -2514,11 +2296,10 @@ textarea.form-input {
         <div class="loader-bar-fill"></div>
       </div>
       <div class="loader-text">Loading...</div>
-      <div class="loader-tip">💡 Tip: Explore to discover more!</div>
     </div>
   </div>
   
-  <!-- Floating Action Buttons -->
+  <!-- Floating Actions -->
   <div class="floating-actions">
     <a href="https://wa.me/917045538721" target="_blank" class="fab whatsapp" aria-label="WhatsApp">
       <i class="fab fa-whatsapp"></i>
@@ -2528,16 +2309,16 @@ textarea.form-input {
     </a>
   </div>
   
-  <!-- Background Music -->
+  <!-- Audio -->
   <audio id="bgMusic" loop preload="auto">
     <source src="images/Boost Your Business with the RIGHT Background Music.mp3" type="audio/mpeg">
   </audio>
   
-  <!-- Game HUD / Navbar -->
+  <!-- Navbar -->
   <nav class="game-hud" id="gameHud">
     <div class="hud-left">
       <div class="player-avatar">
-        <img src="images/mypicture.jpg" alt="Akshit Ravula" onerror="this.src='https://via.placeholder.com/50'">
+        <img src="images/mypicture.jpg" alt="Akshit" onerror="this.src='https://via.placeholder.com/50'">
       </div>
       <div class="player-info">
         <span class="player-name">Akshit Ravula</span>
@@ -2547,12 +2328,12 @@ textarea.form-input {
     
     <div class="hud-center">
       <ul class="nav-menu" id="navMenu">
-        <li class="nav-item"><a href="#home" class="nav-link active"><i class="fas fa-home"></i><span>Home</span></a></li>
-        <li class="nav-item"><a href="#about" class="nav-link"><i class="fas fa-user"></i><span>About</span></a></li>
-        <li class="nav-item"><a href="#skills" class="nav-link"><i class="fas fa-magic"></i><span>Skills</span></a></li>
-        <li class="nav-item"><a href="#experience" class="nav-link"><i class="fas fa-briefcase"></i><span>Experience</span></a></li>
-        <li class="nav-item"><a href="#projects" class="nav-link"><i class="fas fa-folder"></i><span>Projects</span></a></li>
-        <li class="nav-item"><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
+        <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i><span>Home</span></a></li>
+        <li><a href="#about" class="nav-link"><i class="fas fa-user"></i><span>About</span></a></li>
+        <li><a href="#skills" class="nav-link"><i class="fas fa-cogs"></i><span>Skills</span></a></li>
+        <li><a href="#experience" class="nav-link"><i class="fas fa-briefcase"></i><span>Experience</span></a></li>
+        <li><a href="#projects" class="nav-link"><i class="fas fa-folder"></i><span>Projects</span></a></li>
+        <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
       </ul>
     </div>
     
@@ -2564,7 +2345,7 @@ textarea.form-input {
         <i class="fas fa-moon"></i>
         <i class="fas fa-sun"></i>
       </button>
-      <div class="menu-toggle" id="menuToggle" aria-label="Toggle Menu" role="button" tabindex="0">
+      <div class="menu-toggle" id="menuToggle" role="button" tabindex="0">
         <div class="menu-toggle-inner">
           <span></span>
           <span></span>
@@ -2574,7 +2355,7 @@ textarea.form-input {
     </div>
   </nav>
   
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero" id="home">
     <div class="hero-bg">
       <div class="hero-grid"></div>
@@ -2623,7 +2404,7 @@ textarea.form-input {
           <div class="character-avatar">
             <div class="character-avatar-ring"></div>
             <div class="character-avatar-inner">
-              <img src="images/mypicture.jpg" alt="Akshit Ravula" onerror="this.src='https://via.placeholder.com/180'">
+              <img src="images/mypicture.jpg" alt="Akshit" onerror="this.src='https://via.placeholder.com/180'">
             </div>
           </div>
           <h2 class="character-name">Akshit Ravula</h2>
@@ -2647,7 +2428,7 @@ textarea.form-input {
     </div>
   </section>
   
-  <!-- About Section -->
+  <!-- About -->
   <section class="section" id="about">
     <div class="container">
       <div class="section-header">
@@ -2661,7 +2442,7 @@ textarea.form-input {
         <div class="player-card reveal">
           <div class="player-card-header">
             <div class="player-card-avatar">
-              <img src="images/mypicture.jpg" alt="Akshit Ravula" onerror="this.src='https://via.placeholder.com/120'">
+              <img src="images/mypicture.jpg" alt="Akshit" onerror="this.src='https://via.placeholder.com/100'">
             </div>
             <h3 class="player-card-name">Akshit Ravula</h3>
             <p class="player-card-class">Full Stack Developer</p>
@@ -2748,8 +2529,7 @@ textarea.form-input {
             </p>
             <p>
               With hands-on experience from multiple roles, I'm passionate about creating efficient, 
-              user-centric solutions. Beyond development, I also work closely with leadership to ensure 
-              processes run smoothly and systems are optimized for maximum efficiency.
+              user-centric solutions that make a real impact.
             </p>
             
             <div class="info-grid">
@@ -2793,7 +2573,7 @@ textarea.form-input {
     </div>
   </section>
   
-  <!-- Skills Section -->
+  <!-- Skills -->
   <section class="section" id="skills">
     <div class="container">
       <div class="section-header">
@@ -2937,7 +2717,6 @@ textarea.form-input {
         <span class="tech-tag">MySQL</span>
         <span class="tech-tag">Azure</span>
         <span class="tech-tag">Git</span>
-        <span class="tech-tag">REST APIs</span>
         <span class="tech-tag">WordPress</span>
         <span class="tech-tag">Shopify</span>
         <span class="tech-tag">Figma</span>
@@ -2945,14 +2724,14 @@ textarea.form-input {
     </div>
   </section>
   
-  <!-- Experience Section -->
+  <!-- Experience -->
   <section class="section" id="experience">
     <div class="container">
       <div class="section-header">
         <div class="section-icon"><i class="fas fa-briefcase"></i></div>
         <span class="section-label">Experience</span>
         <h2 class="section-title">Work History</h2>
-        <p class="section-subtitle">Professional journey and achievements</p>
+        <p class="section-subtitle">Professional journey</p>
       </div>
       
       <div class="quest-log">
@@ -2965,9 +2744,8 @@ textarea.form-input {
           <p class="quest-location"><i class="fas fa-building"></i> Creative Garage</p>
           <ul class="quest-objectives">
             <li>Developing robust full-stack applications with React.js and Node.js</li>
-            <li>Working as Executive to CEO - managing processes and operations</li>
-            <li>Collaborating with UX/UI teams for exceptional experiences</li>
-            <li>Optimizing performance through efficient code practices</li>
+            <li>Working as Executive to CEO - managing operations</li>
+            <li>Collaborating with UX/UI teams</li>
           </ul>
           <span class="quest-reward"><i class="fas fa-star"></i> Currently Working</span>
         </div>
@@ -2980,11 +2758,10 @@ textarea.form-input {
           <h3 class="quest-title">Full Stack Developer</h3>
           <p class="quest-location"><i class="fas fa-building"></i> Bloom Agency</p>
           <ul class="quest-objectives">
-            <li>Engineered scalable web applications using MERN stack</li>
-            <li>Led development of client-facing dashboards</li>
-            <li>Implemented RESTful API services</li>
+            <li>Engineered scalable web apps using MERN stack</li>
+            <li>Led development of client dashboards</li>
           </ul>
-          <span class="quest-reward"><i class="fas fa-check-circle"></i> Completed Successfully</span>
+          <span class="quest-reward"><i class="fas fa-check-circle"></i> Completed</span>
         </div>
         
         <div class="quest-card reveal">
@@ -2995,10 +2772,10 @@ textarea.form-input {
           <h3 class="quest-title">Web Developer</h3>
           <p class="quest-location"><i class="fas fa-building"></i> Unremot</p>
           <ul class="quest-objectives">
-            <li>Built user-friendly platform using HTML, CSS, and React.js</li>
-            <li>Enhanced site responsiveness, cutting load times by 30%</li>
+            <li>Built user-friendly platform using React.js</li>
+            <li>Cut load times by 30%</li>
           </ul>
-          <span class="quest-reward"><i class="fas fa-check-circle"></i> Completed Successfully</span>
+          <span class="quest-reward"><i class="fas fa-check-circle"></i> Completed</span>
         </div>
         
         <div class="quest-card reveal">
@@ -3009,23 +2786,10 @@ textarea.form-input {
           <h3 class="quest-title">Technical Lead</h3>
           <p class="quest-location"><i class="fas fa-building"></i> Recit</p>
           <ul class="quest-objectives">
-            <li>Implemented Google Sheets sync and API integrations</li>
-            <li>Deployed responsive landing page boosting engagement by 25%</li>
+            <li>Implemented API integrations</li>
+            <li>Boosted engagement by 25%</li>
           </ul>
-          <span class="quest-reward"><i class="fas fa-check-circle"></i> Completed Successfully</span>
-        </div>
-        
-        <div class="quest-card reveal">
-          <div class="quest-header">
-            <span class="quest-date">Nov 2023 – Dec 2023</span>
-            <span class="quest-status completed">Completed</span>
-          </div>
-          <h3 class="quest-title">Cloud Computing Intern</h3>
-          <p class="quest-location"><i class="fas fa-building"></i> Sam Infosystems</p>
-          <ul class="quest-objectives">
-            <li>Managed cloud infrastructure using Microsoft Azure</li>
-          </ul>
-          <span class="quest-reward"><i class="fas fa-check-circle"></i> Completed Successfully</span>
+          <span class="quest-reward"><i class="fas fa-check-circle"></i> Completed</span>
         </div>
         
         <div class="quest-card reveal">
@@ -3033,28 +2797,26 @@ textarea.form-input {
             <span class="quest-date">2021 – 2025</span>
             <span class="quest-status education">Education</span>
           </div>
-          <h3 class="quest-title">B.Tech in Computer Science</h3>
-          <p class="quest-location"><i class="fas fa-university"></i> Vellore Institute of Technology</p>
+          <h3 class="quest-title">B.Tech Computer Science</h3>
+          <p class="quest-location"><i class="fas fa-university"></i> VIT University</p>
           <span class="quest-reward"><i class="fas fa-trophy"></i> CGPA: 8.23</span>
         </div>
       </div>
     </div>
   </section>
   
-  <!-- Projects Section -->
+  <!-- Projects -->
   <section class="section" id="projects">
     <div class="container">
       <div class="section-header">
         <div class="section-icon"><i class="fas fa-folder-open"></i></div>
         <span class="section-label">Portfolio</span>
         <h2 class="section-title">Featured Projects</h2>
-        <p class="section-subtitle">A collection of projects I've built</p>
+        <p class="section-subtitle">Projects I've built</p>
       </div>
       
-      <!-- Desktop Grid -->
       <div class="inventory-grid" id="inventoryGrid"></div>
       
-      <!-- Mobile Carousel -->
       <div class="inventory-mobile" id="inventoryMobile">
         <div class="inventory-carousel" id="inventoryCarousel"></div>
         <div class="carousel-dots" id="carouselDots"></div>
@@ -3062,7 +2824,7 @@ textarea.form-input {
     </div>
   </section>
   
-  <!-- Achievements Banner -->
+  <!-- Achievements -->
   <section class="achievements-banner">
     <div class="achievements-grid">
       <div class="achievement-item reveal">
@@ -3088,22 +2850,22 @@ textarea.form-input {
     </div>
   </section>
   
-  <!-- Contact Section -->
+  <!-- Contact -->
   <section class="section" id="contact">
     <div class="container">
       <div class="section-header">
         <div class="section-icon"><i class="fas fa-envelope"></i></div>
         <span class="section-label">Contact</span>
         <h2 class="section-title">Get In Touch</h2>
-        <p class="section-subtitle">Let's work together on your next project!</p>
+        <p class="section-subtitle">Let's work together!</p>
       </div>
       
       <div class="contact-grid">
         <div class="contact-info-card reveal">
           <h3><i class="fas fa-handshake"></i> Let's Connect</h3>
           <p>
-            I'm always excited about new projects and opportunities. 
-            Whether you need a developer or have an interesting project - let's talk!
+            I'm always excited about new projects. Whether you need a developer 
+            or have an interesting project - let's talk!
           </p>
           
           <div class="contact-list">
@@ -3131,18 +2893,10 @@ textarea.form-input {
           </div>
           
           <div class="social-links">
-            <a href="https://www.linkedin.com/in/akshit-ravula/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://github.com/akshitravula" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
-              <i class="fab fa-github"></i>
-            </a>
-            <a href="https://x.com/AkshitRAVULA1" target="_blank" rel="noopener" class="social-link" aria-label="Twitter">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="https://www.instagram.com/theakshitravula" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
+            <a href="https://www.linkedin.com/in/akshit-ravula/" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/akshitravula" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="https://x.com/AkshitRAVULA1" target="_blank" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/theakshitravula" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
         
@@ -3150,26 +2904,26 @@ textarea.form-input {
           <form id="contactForm">
             <div class="form-row">
               <label for="name">Your Name</label>
-              <input type="text" id="name" name="name" class="form-input" placeholder="Enter your name..." required autocomplete="name">
+              <input type="text" id="name" class="form-input" placeholder="Enter your name..." required>
             </div>
             <div class="form-row">
               <label for="email">Your Email</label>
-              <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email..." required autocomplete="email">
+              <input type="email" id="email" class="form-input" placeholder="Enter your email..." required>
             </div>
             <div class="form-row">
               <label for="subject">Subject</label>
-              <input type="text" id="subject" name="subject" class="form-input" placeholder="Project / Collaboration / Hiring">
+              <input type="text" id="subject" class="form-input" placeholder="Project / Collaboration">
             </div>
             <div class="form-row">
               <label for="message">Message</label>
-              <textarea id="message" name="message" class="form-input" placeholder="Tell me about your project..." required></textarea>
+              <textarea id="message" class="form-input" placeholder="Tell me about your project..." required></textarea>
             </div>
             <button type="submit" class="form-btn">
               <i class="fas fa-paper-plane"></i>
               Send Message
             </button>
             <div class="form-success" id="formSuccess">
-              <i class="fas fa-check-circle"></i> Message sent! Opening WhatsApp...
+              <i class="fas fa-check-circle"></i> Message sent!
             </div>
           </form>
         </div>
@@ -3181,280 +2935,189 @@ textarea.form-input {
   <footer class="footer">
     <p>© 2025 <a href="#">Akshit Ravula</a> • Built with passion</p>
   </footer>
-  
-  </div><!-- End page-wrapper -->
 
 <script>
-// ==========================================
-// ALL PROJECTS DATA
-// ==========================================
+// Projects Data
 const allProjects = [
-  { title: "Career AI", img: "images/Career Ai.png", url: "#", desc: "AI-powered career guidance and job matching platform.", stack: ["React", "Python", "AI/ML"], rarity: "legendary" },
-  { title: "Hoshiyaar", img: "images/Hoshiyaar.png", url: "https://www.hoshiyaar.info/", desc: "Smart educational platform with interactive learning.", stack: ["React", "Node.js", "MongoDB"], rarity: "legendary" },
-  { title: "Trusatva", img: "images/Trusatva.png", url: "https://vedantawellness.co/", desc: "Ayurvedic wellness and natural products platform.", stack: ["Liquid", "GraphQL", "JS"], rarity: "epic" },
-  { title: "AM Group", img: "images/Am Group.png", url: "https://amgroup-gcc.com/", desc: "Corporate website for GCC-based conglomerate.", stack: ["PHP", "JS", "CSS"], rarity: "epic" },
-  { title: "Sonai Dairy", img: "images/Sonai.png", url: "https://sonaidairy.com/", desc: "Premium dairy products and farm-fresh services.", stack: ["PHP", "JS", "CSS"], rarity: "epic" },
+  { title: "Career AI", img: "images/Career Ai.png", url: "#", desc: "AI-powered career guidance platform.", stack: ["React", "Python", "AI/ML"], rarity: "legendary" },
+  { title: "Hoshiyaar", img: "images/Hoshiyaar.png", url: "https://www.hoshiyaar.info/", desc: "Smart educational platform.", stack: ["React", "Node.js", "MongoDB"], rarity: "legendary" },
   { title: "Clootrack", img: "images/project4.png", url: "https://www.clootrack.com/", desc: "Optimized website with enhanced UX.", stack: ["React", "JS", "Node"], rarity: "legendary" },
-  { title: "SATO – LIXIL", img: "images/sato..jpg", url: "https://sato.lixil.com/", desc: "Global sanitation solutions with multilingual support.", stack: ["PHP", "MySQL", "JS"], rarity: "epic" },
-  { title: "Bharat Certis", img: "images/bharatcertis.jpg", url: "https://www.bharatcertis.com/", desc: "Corporate website for agrochemical company.", stack: ["PHP", "MySQL", "JS"], rarity: "epic" },
-  { title: "RD Overseas", img: "images/rdoverseas.jpg", url: "https://rdoverseas.in/", desc: "eCommerce store for automotive accessories.", stack: ["Shopify", "Liquid", "JS"], rarity: "rare" },
-  { title: "Vicefy", img: "images/vicefy.jpg", url: "https://vicefy.store/", desc: "Modern eCommerce for beauty and personal care.", stack: ["Shopify", "Liquid", "CSS"], rarity: "rare" },
-  { title: "Creative Garage", img: "images/creativegarage.jpg", url: "https://creative-garage.in/", desc: "Creative agency with bold design.", stack: ["WordPress", "JS", "CSS"], rarity: "legendary" },
-  { title: "Bloom Agency", img: "images/project7.png", url: "https://www.bloomagency.in/", desc: "Digital agency website with modern UX.", stack: ["WordPress", "JS", "CSS"], rarity: "epic" }
+  { title: "Creative Garage", img: "images/creativegarage.jpg", url: "https://creative-garage.in/", desc: "Creative agency website.", stack: ["WordPress", "JS", "CSS"], rarity: "legendary" },
+  { title: "AM Group", img: "images/Am Group.png", url: "https://amgroup-gcc.com/", desc: "Corporate website.", stack: ["PHP", "JS", "CSS"], rarity: "epic" },
+  { title: "Sonai Dairy", img: "images/Sonai.png", url: "https://sonaidairy.com/", desc: "Premium dairy products.", stack: ["PHP", "JS", "CSS"], rarity: "epic" },
+  { title: "SATO – LIXIL", img: "images/sato..jpg", url: "https://sato.lixil.com/", desc: "Global sanitation solutions.", stack: ["PHP", "MySQL", "JS"], rarity: "epic" },
+  { title: "Bloom Agency", img: "images/project7.png", url: "https://www.bloomagency.in/", desc: "Digital agency website.", stack: ["WordPress", "JS", "CSS"], rarity: "epic" },
+  { title: "RD Overseas", img: "images/rdoverseas.jpg", url: "https://rdoverseas.in/", desc: "eCommerce store.", stack: ["Shopify", "Liquid", "JS"], rarity: "rare" },
+  { title: "Vicefy", img: "images/vicefy.jpg", url: "https://vicefy.store/", desc: "Beauty eCommerce.", stack: ["Shopify", "Liquid", "CSS"], rarity: "rare" }
 ];
 
-// ==========================================
-// RENDER PROJECTS
-// ==========================================
+// Render Projects
 function renderProjects() {
-  const gridContainer = document.getElementById('inventoryGrid');
-  const carouselContainer = document.getElementById('inventoryCarousel');
-  const dotsContainer = document.getElementById('carouselDots');
+  const grid = document.getElementById('inventoryGrid');
+  const carousel = document.getElementById('inventoryCarousel');
+  const dots = document.getElementById('carouselDots');
   
-  let gridHTML = '';
-  let carouselHTML = '';
-  let dotsHTML = '';
+  let gridHTML = '', carouselHTML = '', dotsHTML = '';
   
-  allProjects.forEach((project, index) => {
-    const cardHTML = `
-      <div class="inventory-item reveal ${index < 3 ? 'delay-' + (index % 3 + 1) : ''}">
+  allProjects.forEach((p, i) => {
+    const card = `
+      <div class="inventory-item reveal ${i < 3 ? 'delay-' + (i % 3 + 1) : ''}">
         <div class="inventory-item-img">
-          <span class="inventory-rarity ${project.rarity}">${project.rarity}</span>
-          <img src="${project.img}" alt="${project.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x200?text=Project'">
+          <span class="inventory-rarity ${p.rarity}">${p.rarity}</span>
+          <img src="${p.img}" alt="${p.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x200?text=Project'">
           <div class="inventory-overlay">
-            <a href="${project.url}" target="_blank" rel="noopener" class="inventory-link" aria-label="View ${project.title}">
-              <i class="fas fa-external-link-alt"></i>
-            </a>
+            <a href="${p.url}" target="_blank" class="inventory-link"><i class="fas fa-external-link-alt"></i></a>
           </div>
         </div>
         <div class="inventory-item-body">
-          <h3 class="inventory-item-title">${project.title}</h3>
-          <p class="inventory-item-desc">${project.desc}</p>
-          <div class="inventory-item-tags">
-            ${project.stack.map(s => `<span class="inventory-tag">${s}</span>`).join('')}
-          </div>
+          <h3 class="inventory-item-title">${p.title}</h3>
+          <p class="inventory-item-desc">${p.desc}</p>
+          <div class="inventory-item-tags">${p.stack.map(s => `<span class="inventory-tag">${s}</span>`).join('')}</div>
         </div>
-      </div>
-    `;
+      </div>`;
     
-    gridHTML += cardHTML;
-    carouselHTML += `<div class="inventory-slide">${cardHTML}</div>`;
-    dotsHTML += `<button class="carousel-dot ${index === 0 ? 'active' : ''}" data-index="${index}" aria-label="Go to slide ${index + 1}"></button>`;
+    gridHTML += card;
+    carouselHTML += `<div class="inventory-slide">${card}</div>`;
+    dotsHTML += `<button class="carousel-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></button>`;
   });
   
-  gridContainer.innerHTML = gridHTML;
-  carouselContainer.innerHTML = carouselHTML;
-  dotsContainer.innerHTML = dotsHTML;
+  grid.innerHTML = gridHTML;
+  carousel.innerHTML = carouselHTML;
+  dots.innerHTML = dotsHTML;
 }
 
-// ==========================================
-// MAIN SCRIPT
-// ==========================================
+// Main
 document.addEventListener('DOMContentLoaded', function() {
-  
   renderProjects();
   
-  // Generate particles (reduced for mobile)
-  const particlesContainer = document.getElementById('particles');
-  const isMobile = window.innerWidth <= 768;
-  const particleCount = isMobile ? 10 : 20;
-  
-  for (let i = 0; i < particleCount; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.top = Math.random() * 100 + '%';
-    particle.style.animationDelay = Math.random() * 8 + 's';
-    particle.style.animationDuration = (6 + Math.random() * 4) + 's';
-    particlesContainer.appendChild(particle);
+  // Particles
+  const particles = document.getElementById('particles');
+  const count = window.innerWidth <= 768 ? 10 : 20;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.top = Math.random() * 100 + '%';
+    p.style.animationDelay = Math.random() * 8 + 's';
+    particles.appendChild(p);
   }
   
   // Preloader
   const preloader = document.getElementById('preloader');
-  function hidePreloader() {
-    if (preloader) preloader.classList.add('loaded');
-  }
-  window.addEventListener('load', function() {
-    setTimeout(hidePreloader, 2000);
-  });
-  setTimeout(hidePreloader, 3500);
+  window.addEventListener('load', () => setTimeout(() => preloader.classList.add('loaded'), 2000));
+  setTimeout(() => preloader.classList.add('loaded'), 3500);
   
-  // Theme Toggle
+  // Theme
   const themeToggle = document.getElementById('themeToggle');
   const html = document.documentElement;
-  const savedTheme = localStorage.getItem('theme') || 'dark';
-  html.setAttribute('data-theme', savedTheme);
+  html.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+  themeToggle.onclick = () => {
+    const theme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  };
   
-  themeToggle.addEventListener('click', function() {
-    const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-  });
-  
-  // Music Toggle
+  // Music
   const musicBtn = document.getElementById('musicBtn');
   const bgMusic = document.getElementById('bgMusic');
-  let isPlaying = false;
+  let playing = false;
+  musicBtn.onclick = () => {
+    if (playing) { bgMusic.pause(); musicBtn.classList.remove('playing'); }
+    else { bgMusic.volume = 0.3; bgMusic.play().catch(() => {}); musicBtn.classList.add('playing'); }
+    playing = !playing;
+  };
   
-  musicBtn.addEventListener('click', function() {
-    if (isPlaying) {
-      bgMusic.pause();
-      musicBtn.classList.remove('playing');
-    } else {
-      bgMusic.volume = 0.3;
-      bgMusic.play().catch(function() {});
-      musicBtn.classList.add('playing');
-    }
-    isPlaying = !isPlaying;
-  });
-  
-  // XP Progress Bar
+  // XP Bar
   const xpProgress = document.getElementById('xpProgress');
-  function updateXPProgress() {
-    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+  window.addEventListener('scroll', () => {
+    const progress = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
     xpProgress.style.width = progress + '%';
-  }
-  window.addEventListener('scroll', updateXPProgress, { passive: true });
+  }, { passive: true });
   
-  // Back to Top
+  // Back Top
   const backTop = document.getElementById('backTop');
-  function toggleBackTop() {
-    backTop.classList.toggle('show', window.scrollY > 400);
-  }
-  window.addEventListener('scroll', toggleBackTop, { passive: true });
+  window.addEventListener('scroll', () => backTop.classList.toggle('show', window.scrollY > 400), { passive: true });
   
-  // Mobile Menu
+  // Menu
   const menuToggle = document.getElementById('menuToggle');
   const navMenu = document.getElementById('navMenu');
-  let scrollPosition = 0;
+  let scrollPos = 0;
   
-  function openMenu() {
-    scrollPosition = window.pageYOffset;
-    menuToggle.classList.add('active');
-    navMenu.classList.add('active');
-    document.body.classList.add('menu-open');
-    document.body.style.top = -scrollPosition + 'px';
-  }
+  menuToggle.onclick = (e) => {
+    e.stopPropagation();
+    if (navMenu.classList.contains('active')) {
+      menuToggle.classList.remove('active');
+      navMenu.classList.remove('active');
+      document.body.classList.remove('menu-open');
+      document.body.style.top = '';
+      window.scrollTo(0, scrollPos);
+    } else {
+      scrollPos = window.pageYOffset;
+      menuToggle.classList.add('active');
+      navMenu.classList.add('active');
+      document.body.classList.add('menu-open');
+      document.body.style.top = -scrollPos + 'px';
+    }
+  };
   
-  function closeMenu() {
+  document.querySelectorAll('.nav-link').forEach(l => l.onclick = () => {
     menuToggle.classList.remove('active');
     navMenu.classList.remove('active');
     document.body.classList.remove('menu-open');
     document.body.style.top = '';
-    window.scrollTo(0, scrollPosition);
-  }
-  
-  menuToggle.addEventListener('click', function(e) {
-    e.stopPropagation();
-    if (navMenu.classList.contains('active')) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
+    window.scrollTo(0, scrollPos);
   });
   
-  menuToggle.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      menuToggle.click();
-    }
-  });
-  
-  document.querySelectorAll('.nav-link').forEach(function(link) {
-    link.addEventListener('click', closeMenu);
-  });
-  
-  document.addEventListener('click', function(e) {
-    if (navMenu.classList.contains('active') && 
-        !navMenu.contains(e.target) && 
-        !menuToggle.contains(e.target)) {
-      closeMenu();
-    }
-  });
-  
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-      closeMenu();
-    }
-  });
-  
-  // Active Nav Link
+  // Active Nav
   const sections = document.querySelectorAll('section[id]');
-  function updateActiveNav() {
+  window.addEventListener('scroll', () => {
     let current = '';
-    sections.forEach(function(section) {
-      if (window.scrollY >= section.offsetTop - 150) {
-        current = section.getAttribute('id');
-      }
-    });
-    document.querySelectorAll('.nav-link').forEach(function(link) {
-      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
-    });
-  }
-  window.addEventListener('scroll', updateActiveNav, { passive: true });
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 150) current = s.id; });
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + current));
+  }, { passive: true });
   
   // Typewriter
-  const typewriterTexts = ['Full Stack Developer', 'React Specialist', 'Cloud Engineer', 'Problem Solver'];
-  let textIndex = 0, charIndex = 0, isDeleting = false;
-  const typewriterElement = document.getElementById('typewriter');
+  const texts = ['Full Stack Developer', 'React Specialist', 'Cloud Engineer', 'Problem Solver'];
+  let ti = 0, ci = 0, del = false;
+  const tw = document.getElementById('typewriter');
   
-  function typeWriter() {
-    if (!typewriterElement) return;
-    const currentText = typewriterTexts[textIndex];
-    typewriterElement.textContent = currentText.substring(0, isDeleting ? --charIndex : ++charIndex);
-    let speed = isDeleting ? 40 : 80;
-    if (!isDeleting && charIndex === currentText.length) {
-      speed = 2000;
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      textIndex = (textIndex + 1) % typewriterTexts.length;
-      speed = 400;
-    }
-    setTimeout(typeWriter, speed);
+  function type() {
+    tw.textContent = texts[ti].substring(0, del ? --ci : ++ci);
+    let speed = del ? 40 : 80;
+    if (!del && ci === texts[ti].length) { speed = 2000; del = true; }
+    else if (del && ci === 0) { del = false; ti = (ti + 1) % texts.length; speed = 400; }
+    setTimeout(type, speed);
   }
-  typeWriter();
+  type();
   
-  // Reveal on Scroll
+  // Reveal
   const reveals = document.querySelectorAll('.reveal');
-  function revealOnScroll() {
-    reveals.forEach(function(el) {
-      if (el.getBoundingClientRect().top < window.innerHeight - 80) {
-        el.classList.add('active');
-      }
-    });
+  function reveal() {
+    reveals.forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active'); });
   }
-  window.addEventListener('scroll', revealOnScroll, { passive: true });
-  revealOnScroll();
+  window.addEventListener('scroll', reveal, { passive: true });
+  reveal();
   
   // Skill Bars
-  const skillBars = document.querySelectorAll('.skill-bar-fill, .attribute-fill');
-  function animateSkills() {
-    skillBars.forEach(function(bar) {
-      const rect = bar.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom >= 0 && !bar.style.width) {
-        bar.style.width = bar.getAttribute('data-width') + '%';
-      }
-    });
+  const bars = document.querySelectorAll('.skill-bar-fill, .attribute-fill');
+  function animateBars() {
+    bars.forEach(b => { if (b.getBoundingClientRect().top < window.innerHeight && !b.style.width) b.style.width = b.dataset.width + '%'; });
   }
-  window.addEventListener('scroll', animateSkills, { passive: true });
-  setTimeout(animateSkills, 500);
+  window.addEventListener('scroll', animateBars, { passive: true });
+  setTimeout(animateBars, 500);
   
-  // Counter Animation
+  // Counters
   const counters = document.querySelectorAll('[data-count]');
   function animateCounters() {
-    counters.forEach(function(counter) {
-      const rect = counter.getBoundingClientRect();
-      if (rect.top < window.innerHeight && !counter.classList.contains('counted')) {
-        counter.classList.add('counted');
-        const target = parseInt(counter.getAttribute('data-count'));
+    counters.forEach(c => {
+      if (c.getBoundingClientRect().top < window.innerHeight && !c.classList.contains('counted')) {
+        c.classList.add('counted');
+        const target = parseInt(c.dataset.count);
         let count = 0;
-        const increment = Math.ceil(target / 30);
+        const inc = Math.ceil(target / 30);
         function update() {
-          count = Math.min(count + increment, target);
-          counter.textContent = count + '+';
+          count = Math.min(count + inc, target);
+          c.textContent = count + '+';
           if (count < target) requestAnimationFrame(update);
         }
         requestAnimationFrame(update);
@@ -3464,91 +3127,56 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('scroll', animateCounters, { passive: true });
   animateCounters();
   
-  // Mobile Carousel
+  // Carousel
   const carousel = document.getElementById('inventoryCarousel');
-  let currentSlide = 0;
-  let startX = 0;
-  let currentX = 0;
-  let isDragging = false;
+  let slide = 0, startX = 0, currX = 0, dragging = false;
   
-  function goToSlide(index) {
-    const totalSlides = allProjects.length;
-    currentSlide = Math.max(0, Math.min(index, totalSlides - 1));
-    carousel.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-    document.querySelectorAll('.carousel-dot').forEach(function(dot, i) {
-      dot.classList.toggle('active', i === currentSlide);
-    });
+  function goTo(i) {
+    slide = Math.max(0, Math.min(i, allProjects.length - 1));
+    carousel.style.transform = `translateX(-${slide * 100}%)`;
+    document.querySelectorAll('.carousel-dot').forEach((d, j) => d.classList.toggle('active', j === slide));
   }
   
-  carousel.addEventListener('touchstart', function(e) {
-    startX = e.touches[0].clientX;
-    currentX = startX;
-    isDragging = true;
+  carousel.addEventListener('touchstart', e => { startX = currX = e.touches[0].clientX; dragging = true; }, { passive: true });
+  carousel.addEventListener('touchmove', e => { if (dragging) currX = e.touches[0].clientX; }, { passive: true });
+  carousel.addEventListener('touchend', () => {
+    if (dragging && Math.abs(startX - currX) > 50) goTo(startX - currX > 0 ? slide + 1 : slide - 1);
+    dragging = false;
   }, { passive: true });
   
-  carousel.addEventListener('touchmove', function(e) {
-    if (!isDragging) return;
-    currentX = e.touches[0].clientX;
-  }, { passive: true });
+  document.getElementById('carouselDots').onclick = e => {
+    if (e.target.classList.contains('carousel-dot')) goTo(parseInt(e.target.dataset.index));
+  };
   
-  carousel.addEventListener('touchend', function() {
-    if (!isDragging) return;
-    const diff = startX - currentX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) goToSlide(currentSlide + 1);
-      else goToSlide(currentSlide - 1);
-    }
-    isDragging = false;
-  }, { passive: true });
-  
-  document.getElementById('carouselDots').addEventListener('click', function(e) {
-    if (e.target.classList.contains('carousel-dot')) {
-      goToSlide(parseInt(e.target.getAttribute('data-index')));
-    }
-  });
-  
-  // Contact Form
-  const contactForm = document.getElementById('contactForm');
-  const formSuccess = document.getElementById('formSuccess');
-  
-  contactForm.addEventListener('submit', function(e) {
+  // Form
+  document.getElementById('contactForm').onsubmit = e => {
     e.preventDefault();
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const subject = document.getElementById('subject').value.trim() || 'No Subject';
     const message = document.getElementById('message').value.trim();
     
-    if (!name || !email || !message) {
-      alert('Please fill in all required fields');
-      return;
-    }
+    if (!name || !email || !message) { alert('Please fill required fields'); return; }
     
-    const whatsappText = '*New Inquiry*\n\n*Name:* ' + name + '\n*Email:* ' + email + '\n*Subject:* ' + subject + '\n\n*Message:*\n' + message;
-    const whatsappURL = 'https://wa.me/917045538721?text=' + encodeURIComponent(whatsappText);
-    
-    formSuccess.classList.add('show');
-    setTimeout(function() {
-      window.open(whatsappURL, '_blank');
-      contactForm.reset();
-      setTimeout(function() {
-        formSuccess.classList.remove('show');
-      }, 3000);
+    const text = `*New Inquiry*\n\n*Name:* ${name}\n*Email:* ${email}\n*Subject:* ${subject}\n\n*Message:*\n${message}`;
+    document.getElementById('formSuccess').classList.add('show');
+    setTimeout(() => {
+      window.open('https://wa.me/917045538721?text=' + encodeURIComponent(text), '_blank');
+      e.target.reset();
+      setTimeout(() => document.getElementById('formSuccess').classList.remove('show'), 3000);
     }, 500);
-  });
+  };
   
   // Smooth Scroll
-  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-    anchor.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.onclick = e => {
+      const href = a.getAttribute('href');
       if (href === '#') return;
       e.preventDefault();
       const target = document.querySelector(href);
-      if (target) {
-        window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
-      }
-    });
+      if (target) window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+    };
   });
-  
 });
 </script>
 </body>
